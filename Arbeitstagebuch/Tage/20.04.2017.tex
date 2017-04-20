@@ -1,0 +1,34 @@
+\section*{20.04.2017}
+
+\subsection*{Allgemein}
+\begin{itemize}
+	\item Einlesen in die Paper \textit{main} und das Paper \textit{non-term}
+\end{itemize}
+
+
+
+\subsection*{Probleme/Offene Fragen}
+Zu \textit{main}:
+\begin{enumerate}
+	\item Seite 2, Preliminaries \newline
+		Die Summe startet bei 0, jedoch passt dies nicht. Wenn man $k=0$ setzt sollte $\begin{pmatrix}3\ 1\end{pmatrix}^T$ rauskommen, da keine Schleifeniteration durchgeführt wird also nur der \textbf{STEM}-Teil relevant ist. allerdings kommt dann $\begin{pmatrix}10\ 2\end{pmatrix}^T$ raus, was der Wert nach der 1. Interaation ist.
+	
+	\item Seite 3, Definition 2.2 \newline
+		$Gx<g \land MX+m=x'$, was sind $G,g,M$ und $m$?
+\end{enumerate}
+
+zu \textit{non-term}:
+\begin{enumerate}
+	\item Seite 4, Definition 1: \newline
+		$x,x' \in \mathbb{R}^n$, also $x=\begin{pmatrix}x_1,\ ... \ x_n\end{pmatrix}^T$ \newline
+%		$A \in \mathbb{R}^{n \times m} $ \newline
+%		Wenn $A\begin{pmatrix}x\ x'\end{pmatrix}$ korrekt sein soll, dann muss $\begin{pmatrix}x\\ x'\end{pmatrix} = \begin{pmatrix}
+%			\begin{pmatrix}x_1,\ ... \ x_n\end{pmatrix} \\
+%			\begin{pmatrix}x_1',\ ... \ x_n'\end{pmatrix}
+%			\end{pmatrix}$ sein 
+		Welche Dimension hat dann $\begin{pmatrix}x\\ x'\end{pmatrix}$?\newline
+		$\begin{pmatrix}
+					\begin{pmatrix}x_1,\ ... \ x_n\end{pmatrix} \\
+					\begin{pmatrix}x_1',\ ... \ x_n'\end{pmatrix}
+		\end{pmatrix} \in R^{2\times n}$?
+\end{enumerate}

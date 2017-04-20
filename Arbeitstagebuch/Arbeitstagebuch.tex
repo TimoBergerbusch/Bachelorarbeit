@@ -1,0 +1,35 @@
+%%Vorlage "Tagebuch", v1.03 %%
+
+\documentclass[a4paper,11pt,DIV=calc]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[osf]{libertine}
+\usepackage{microtype,setspace}
+\usepackage[colorlinks=false,pdfborder={0 0 0},bookmarksnumbered]{hyperref} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\hypersetup{
+	pdftitle={Arbeitstagebuch},
+	pdfauthor={Timo Bergerbusch},
+	pdfsubject={Arbeitstagebuch}
+	}
+	
+\title{Arbeitstagebuch}
+\subtitle{Bachelorarbeit 2017}
+\author{Timo Bergerbusch}
+\date{}
+\maketitle
+
+\onehalfspace % 1,5-facher Zeilenabstand
+
+%Vorwort zum Tagebuch
+\input{Vorwort.tex}
+
+%Alle Tage
+\input{Tage/20.04.2017.tex}
+
+\end{document}
