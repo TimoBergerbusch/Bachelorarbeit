@@ -9,6 +9,10 @@
 \usepackage[colorlinks=false,pdfborder={0 0 0},bookmarksnumbered]{hyperref} 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{color}
+
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
+\newcommand{\answer}{\color{red}Antwort: \color{black}}
 
 \begin{document}
 
@@ -30,6 +34,7 @@
 \input{Vorwort.tex}
 
 %Alle Tage
-\input{Tage/20.04.2017.tex}
+%\input{Tage/20.04.2017.tex}
+\input{alleTage.tex}
 
 \end{document}
