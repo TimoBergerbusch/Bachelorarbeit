@@ -1,0 +1,22 @@
+\section*{Datum}
+
+\paragraph{Allgemein}
+\begin{itemize}
+	\item Weiteres Einlesen in \emph{non-term} und \emph{main}
+	\item Vielleicht erst eine Methode um für geg. \emph{GNA} zu testen ob die 4 Bedingungen(\emph{non-term}, Seite 5) halten
+	\item Verwendung von SMT-Solver 
+\end{itemize}
+
+\myparagraph{Probleme/Offene Fragen}
+zu \emph{main}:
+\begin{enumerate}
+	\item Seite 5, Definition 3.1: Wenn wir $k \lambda$'s haben aber nur $k-1 \mu$'s, wie sind dann Programme wie: 
+		\begin{lstlisting}
+			b=1;
+			while a+b >= 4 do
+				a = 3*a+b;
+				b = 2*b +a;
+			end while 
+		\end{lstlisting}
+		möglich? Das eine \mu wird für die Beziehung von $a$ zu $b$ gebraucht aber dann ex. kein weiteres \mu für die Beziehung von $b$ zu $a$.
+\end{enumerate}
