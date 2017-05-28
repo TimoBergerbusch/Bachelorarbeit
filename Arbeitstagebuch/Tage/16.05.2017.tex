@@ -1,0 +1,46 @@
+\section*{16.05.2017}
+
+\paragraph{Allgemein}
+\begin{itemize}
+	\item David eine E-Mail geschrieben \answer Jera kommt Mittwoch (17.05.2017) wieder. David könnte mit bei der Installation am Freitag (19.05.2017) helfen
+	\item erste Gedanken über den Ablauf:
+	\begin{enumerate}
+		\item Syntaxcheck: 
+			\begin{enumerate}
+				\item Teste auf erlaubte Elemente
+					\begin{itemize}
+						\item keine \textit{for}-Schleifen
+						\item keine \textit{GOTO}'s oder ähnliches
+					\end{itemize}
+				\item Teste auf Unterteilung in \emph{STEM}
+					\begin{enumerate}
+						\item Anfangswerte für Variablen
+						\item nicht aufgeführte Variablen werden mitgeschrieben
+					\end{enumerate}
+				\item Teste auf Unterteilung von \emph{LOOP}
+					\begin{itemize}
+						\item \textit{Guard} identifizieren 
+						\item \underline{ausschließlich} lineare Updates
+					\end{itemize}
+			\end{enumerate}
+		\item Simple Fälle abfangen
+			\begin{itemize}
+				\item eine Variable wird immer auf \code{nondet()} gesetzt
+			\end{itemize}
+	\end{enumerate}
+\end{itemize}
+
+\myparagraph{Probleme/Offene Fragen}
+Zu non-term:
+\begin{enumerate}
+	\item non-term, Seite 2: Die Ausführung von \textit{Figure 1a}: Wieso $ \left( 2,0 \right)^T$ und $ \left( 2,1 \right)^T$ ? Angenommen die Reihenfolge ist $ \left( a,b \right)^T$ dann müsste es doch mit so etwas wie $ \left( undef/0,1 \right)^T$ starten. $b$ wird immer wieder auf \code{nondet} gesetzt was jede Ausführung sein kann. Sind also 2 und (immer) 1 zufällig gewählt? \idea Die ersten Einträge sind vor dem \emph{STEM} und somit beide \code{nondet}. Dann kommt der \emph{STEM} und dann die \emph{LOOP}. Zudem muss $a$ so gesetzt sein, dass die \textit{Guard} "passt"
+	\item die Geometrische Reihe passt für \textit{Figure 1a} und \textit{Figure 1b} nicht
+	\item zu \textit{Figure 1c}: $\mu$ Faktor von $b$?
+\end{enumerate}
+
+Allgemein:
+\begin{enumerate}	
+	\item Wo wird das Programm angesetzt? Als einzelner Thread nebenher oder an einer bestimmten Stelle?
+	\item Gibt es dann Elemente auf die ich bereits zurückgreifen kann?
+	\item Nur für Java?
+\end{enumerate}
