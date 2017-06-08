@@ -10,15 +10,63 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{color}
-\usepackage{listings}
+\usepackage{listings, lstautogobble}
 
 \newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
 \newcommand{\answer}{\color{green}Antwort: \color{black}}
 \newcommand{\idea}{\color{red}Antwort: \color{black}}
 \newcommand{\code}{\texttt} 
 
+% DEFINE CUSTOM C 
+\usepackage[dvipsnames]{xcolor}
+\lstdefinestyle{customc}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=L,
+	xleftmargin=\parindent,
+	language=C,
+	showstringspaces=false,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+% END CUSTOM C
+% DEFINE TERMINAL
+\lstdefinestyle{BASH}
+{
+	backgroundcolor=\color{black},
+	basicstyle=\scriptsize\color{white}\ttfamily,
+	keywordstyle=\color{green!80!black},
+	keywordstyle=[2]\color{red!80!white},
+	morekeywords={timo@Ubuntu},
+	keywords=[2]{ctest}
+}
+
+% END TERMINAL
+% DEFINE JAVA
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\lstset{language=Java,
+	showspaces=false,
+	showtabs=false,
+	breaklines=true,
+	showstringspaces=false,
+	breakatwhitespace=true,
+	commentstyle=\color{pgreen},
+	keywordstyle=\color{pblue},
+	stringstyle=\color{pred},
+	basicstyle=\tiny,
+	moredelim=[il][\textcolor{pgrey}]{$$},
+	moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+% END JAVA
 
 \begin{document}
+
 
 \hypersetup{
 	pdftitle={Arbeitstagebuch},

@@ -1,0 +1,36 @@
+\section*{08.06.2017}
+
+\paragraph{Allgemein}
+\begin{itemize}
+	\item Compilieren von \emph{.c}-Dateien in \emph{.llvm}-Dateien
+	\item Reproduzieren von verschiedenen Beweisen um mehr Verständnis zu erhalten wie ein ITRS abgelesen werden könnte
+	\item Eingearbeitet in \emph{sat4j} und Erstellung einer Basis, welche eine Datein in CNF auf Erfüllbarkeit prüft: 
+	\lstinputlisting[language=Java]{listings/sat4j-CNFSolver.java}
+	Das Problem als Input
+	\lstinputlisting{listings/CNF-InputFile.txt}
+	
+	
+\end{itemize}
+
+\myparagraph{Probleme/Offene Fragen}
+\begin{enumerate}
+	\item Wenn ich 
+		\lstset{autogobble=true}
+		\begin{lstlisting}[style=BASH]
+			timo@Ubuntu:~/Downloads$ clang -S -emit-llvm ctest.c
+		\end{lstlisting}
+		für meine Testdatei \emph{ctest.c} eingebe erstellt mir \emph{Clang} eine \emph{.ll}-Datei, welche in Eclipse zu dem (bekannten) \emph{computePointerSizeFromDataLayout}-NullPointer führt. \newline
+		\answer Benutze den Befehl: 
+		\begin{lstlisting}[style=BASH]
+			timo@Ubuntu:~/Downloads$ clang ctest.c -S -emit-llvm -o ctest.llvm
+		\end{lstlisting}
+	\item die \emph{clang} -Kompilierung verwirft die \emph{query}-Angabe und schreibt jedes mal \emph{source\_filename = "ctest.c"} hinzu, was Eclipse Probleme bereitet
+	\item wenn ich einen \emph{.llvm}-Code erstellen lasse und die Anpassungen für \emph{query} und \emph{source\_filename} mache erhalte ich immer eine \emph{InconsistentStateException} im Graphen 
+	\item Auch beim Web Interface bekomme ich die selben Probleme (nicht ausführen des Beweises: \emph{Analyze Termination of all function calls matching the pattern: main()}) . Z.B. für mein Test-File
+	\newpage
+		% DAS LISTING
+		\lstset{escapechar=@, style=customc,xleftmargin=.2\textwidth, xrightmargin=.2\textwidth, autogobble=true}
+		\lstinputlisting[language=C]{listings/simple-While.c}	
+	\item Wo genau kann ich das ITRS herbekommen um darauf zu arbeiten? An welcher Stelle/Klasse o."a.
+\end{enumerate}
+
