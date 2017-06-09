@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  8 JUN 2017 19:24
-=======
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.27)  26 APR 2017 11:27
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  16 MAY 2017 16:30
->>>>>>> origin/master
->>>>>>> origin/master
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  9 JUN 2017 11:59
 entering extended mode
 **./Arbeitstagebuch.tex
 (Arbeitstagebuch.tex
@@ -1240,7 +1232,12 @@ t available
 n input line 3.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineMonoT-TLF/b/n' will be
 (Font)              scaled to size 9.0pt on input line 3.
-)))
+)) (Tage/09.06.2017.tex
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+
+ []
+
+))
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 92.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 92.
@@ -1264,10 +1261,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 92.
 ### semi simple group (level 1) entered at line 83 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14608 strings out of 493333
- 233686 string characters out of 3144357
+ 14621 strings out of 493333
+ 233901 string characters out of 3144357
  483470 words of memory out of 3000000
- 17668 multiletter control sequences out of 15000+200000
+ 17674 multiletter control sequences out of 15000+200000
  87312 words of font info for 136 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,14n,95p,8852b,1654s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1295,9 +1292,9 @@ onts/cm/cmr8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:
 /Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy6.pfb><D:/Tools/MikTex/fonts/t
 ype1/public/amsfonts/cm/cmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/
 symbols/msbm10.pfb>
-Output written on Arbeitstagebuch.pdf (8 pages, 480094 bytes).
+Output written on Arbeitstagebuch.pdf (8 pages, 482018 bytes).
 PDF statistics:
- 254 PDF objects out of 1000 (max. 8388607)
- 125 named destinations out of 1000 (max. 500000)
+ 259 PDF objects out of 1000 (max. 8388607)
+ 129 named destinations out of 1000 (max. 500000)
  23553 words of extra memory for PDF output out of 24883 (max. 10000000)
 
