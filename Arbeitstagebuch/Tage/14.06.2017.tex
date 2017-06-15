@@ -1,0 +1,48 @@
+\section*{14.06.2017}
+
+\paragraph{Allgemein}
+\begin{itemize}
+	\item Erstellung der \emph{testingGNT.strategy} in \emph{aprove/PredefinedStartegies/Auto} als Kopie der \emph{Current}-Strategie und abändern der \emph{LLVM}-Prozessoren die ausgeführt werden sollen. Hinweis: dort ist noch immer ein T2 Prozessor und nicht "mein" Ansatz vermerkt.
+	\item Hinzufügen eines
+		\begin{lstlisting}
+			Zeile 756: declare 
+		\end{lstlisting}
+	\item Ausgeben lassen des IRSwTProblems durch folgenden Code:
+		\lstinputlisting[language=Java]{listings/IRSwTProblem-Printer.java}
+		Dieser wird im IRSwTProblem in die \code{toString()}-Methode unmittelbar vor \code{return} eingefügt.
+	\item[\label{IRSwTProblemMethoden}\textbullet] wenn ich eine Instanz der Klasse \code{IRSwTProblem irswt} bekomme, bekomme ich
+		\begin{itemize}
+			\item das Startsymbol per \code{irswt.getStartTerm()}
+			\item die Regeln per \code{irswt.getRules()}
+		\end{itemize}
+\end{itemize}
+
+\myparagraph{Integer Rewrite System with Terms (IRSwT)}
+Consists of rules of the form
+$ f(t_1, ..., t_n) -> g(s_1, ..., s_m) | \phi$
+where the arguments $t_1, ..., t_n, s_1, ..., s_m$ are terms that only use
+non-defined symbols (i.e., symbols h for which no rule $h(...) -> ...$)
+exists. The right arguments $s_1, ...,s_m$  might additionally use basic arithmetical
+operations (+,-,* and constants).\newline\newline
+To apply such a rule the instantiation of the variables has to satisfy the condition $\phi$, which
+is a conjunction of atomic formulae over the signature {+, -, *, > (,=)} $\cup \mathbb{Z}$.
+Variables not occurring in $\phi$ or in arithmetical operations may be instantiated by terms consisting
+of constructor symbols.\newline
+\newline
+Example:
+$ f(x,y) -> g(x,y) | TRUE $ \newline
+$ g(s(x),y) -> g(x,y) | TRUE $ \newline
+$ g(0,y) -> f(z,y-1) | y > 0$ \newline
+\newline
+Here we have the following decreasing ->-chain: \newline
+$ f(s(0),1) -> g(s(0),1) -> g(0,1) -> f(s(s(17)),0) -> ...$\newline
+\newline
+Please note that every variable occurring in an arithmetical operation or in $ \phi$ has to be instantiated by an
+integer.
+
+\myparagraph{Probleme/Offene Fragen}
+\begin{enumerate}
+	\item Git Submodules/SymLinks
+	\item Zitat von Jera: "\textit{Dein Arbeitsschwerpunkt sollte eher auf den Ideen des Papiers liegen und nicht auf technischen Details von AProVE.}" - Heißt das ich soll es gar nicht programmieren sondern nur überlegen wie man das theoretisch auslesen kann?
+\end{enumerate}
+
