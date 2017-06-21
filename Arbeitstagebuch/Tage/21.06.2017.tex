@@ -1,0 +1,26 @@
+\section*{21.05.2017}
+
+\paragraph{Allgemein}
+\begin{itemize}
+	\item Erstellen der 3 Testprogramme aus dem Paper $($ Programm 1 wird nicht laufen können wegen \code{undef$( )$} $)$
+	\item rumschlagen mit Ecplise was schlussendlich zum neuen Aufsetzen der Vm führte, incl. neues Aufsetzen von Eclipse Neon.
+	\item einfügen der \emph{onlyT2.strategy}
+	\item \underline{nicht} erneutes Erstellen der Grammars per \emph{ant}, da sonst alles doppelt vorkommt und/oder Fehler schmeißt.
+\end{itemize}
+
+\myparagraph{Probleme/Offene Fragen}
+\begin{enumerate}
+	\item wie sollen die "neuen" Variablen aufgefasst werden? Bekommen die einen random Wert? Beispiel: \newline 
+		\begin{figure}[h]
+			\centering
+			$f_{79}(x_{3}, x_{8}) \rightarrow f_{79}(x_{12}, 2 * x_{8}) $\quad$ :|: 3 < 2 * x_{8}$\quad$\&\&$\quad$3 * x_{3} = 2 + x_{12}$\quad$\&\&$\quad$x_3 + x_8 > 5$\quad$\&\&$\quad$x_{12} > 9$
+		\end{figure}
+		\newline Woher kommt $x_{12}$ und was weiß man darüber? \answer die zweite Regel besagt: $3 * x_{3} = 2 + x_{12}$ somit kann  man sich den Wert von $x_{12}$ herleiten wenn man $x_3$ kennt. \newline
+		Wo ist der STEM-Teil des Programms hin? Das Programm (Testprogramme/non-term-paper-example2.c) beginnt mit 
+		\begin{lstlisting}[language=c, commentstyle=\fontsize{12}{14.4}\selectfont, basicstyle=\ttfamily\fontsize{10}{12}\selectfont]
+			int a=2,b=1;
+		\end{lstlisting}
+		Zudem wird bewiesen, dass es nicht terminiert durch das AProVE-Tool, jedoch die das ITRS hält bereits für die erste Iteration mit $a=2$ und $b=1$ nicht, weil $ x_8=b=1 $ gilt und dann $ 3<2*x_8 $ nicht mehr gilt. \answer b ist nicht $x_8$
+	\item Startterm wird beim IRSwTProblem nicht mit angegeben, wenn \emph{noT2.strategy} verwendet wird. \answer verwende die 		\emph{onlyT2.strategy}
+	\item kann trotz neuem \emph{aprove-build.xml} keine neuen Grammars erzeugen und somit nicht automatisiert C-Programme testen
+\end{enumerate}
