@@ -1,6 +1,5 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
-import aprove.DPFramework.BasicStructures.GeneralizedRule;
 import aprove.DPFramework.BasicStructures.TRSFunctionApplication;
 import aprove.DPFramework.BasicStructures.TRSTerm;
 import aprove.DPFramework.IDPProblem.IGeneralizedRule;
@@ -25,6 +24,12 @@ import aprove.Framework.IntTRS.IRSwTProblem;
 public class GeoNonTermAnalysis {
 
 	/**
+	 * a Logger or Outputstream to print data into a file <br/>
+	 * (Default: "/home/timo/Downloads/GeoNonTerm-ausgabe.txt")
+	 */
+	public static final Logger LOG = new Logger();
+	
+	/**
 	 * the original IRSwTProblem, which is generated out of the LLVMGraph
 	 * 
 	 */
@@ -36,12 +41,6 @@ public class GeoNonTermAnalysis {
 	private Stem stem;
 
 	/**
-	 * a Logger or Outputstream to print data into a file <br/>
-	 * (Default: "/home/timo/Downloads/GeoNonTerm-ausgabe.txt")
-	 */
-	private final Logger log;
-
-	/**
 	 * The constructor of the GeoNonTermAnalysis
 	 * 
 	 * @param problem
@@ -49,7 +48,6 @@ public class GeoNonTermAnalysis {
 	 */
 	public GeoNonTermAnalysis(IRSwTProblem problem) {
 		this.problem = problem;
-		this.log = new Logger();
 		this.deriveSTEM();
 	}
 
@@ -61,28 +59,35 @@ public class GeoNonTermAnalysis {
 		TRSFunctionApplication startterm = this.problem.getStartTerm();
 		IGeneralizedRule[] rules = this.problem.getRules().toArray(new IGeneralizedRule[] {});
 
-		log.writeln("Der Startterm ist: " + startterm.toString());
+		LOG.writeln("Der Startterm ist: " + startterm.toString());
 
 		for (int i = 0; i < rules.length; i++) {
 			if (rules[i].getLeft().equals(startterm)) { 
 				// Suchen der ersten passenden regel
-				log.writeln("First rule match:" + rules[i].toString()); 
+				LOG.writeln("First rule match:" + rules[i].toString()); 
 
 				TRSTerm r = rules[i].getRight();
 
-				log.newLine();
-				log.writeln("RHS Term: " + r.toString());
-				log.writeln("FunctionSymbols: " + r.getFunctionSymbols().toString());
-				log.writeln("Variables: " + r.getVariables());
-
-				log.close();
+				LOG.newLine();
+				LOG.writeln("RHS Term: " + r.toString());
+				LOG.writeln("FunctionSymbols: " + r.getFunctionSymbols().toString());
+				LOG.writeln("Variables: " + r.getVariables());
+				
 				
 				break; // danach kann abgebrochen werden
 			} else if (i == rules.length - 1) { 
 				// dieser Fall darf eigentlich nie eintreten
-				log.writeln("No match found.");
+				LOG.writeln("No match found.");
+			} else {
+				// für den Fall, dass es nicht die STEM->LOOP rule ist
+				LOG.writeln("Rule: "+ rules[i].toString());
+				TRSTerm c = rules[i].getCondTerm();
+				LOG.writeln("Cond Term: " +c.toString());
+				LOG.writeln("FunctionSymbols: " + c.getFunctionSymbols().toString());
+				LOG.writeln("Variables: " + c.getVariables());
 			}
 		}
+		LOG.close();
 
 	}
 
