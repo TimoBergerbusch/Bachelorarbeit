@@ -4,11 +4,11 @@
 \begin{itemize}
 	\item Erstellung der \emph{testingGNT.strategy} in \emph{aprove/PredefinedStartegies/Auto} als Kopie der \emph{Current}-Strategie und abändern der \emph{LLVM}-Prozessoren die ausgeführt werden sollen. Hinweis: dort ist noch immer ein T2 Prozessor und nicht "mein" Ansatz vermerkt.
 	\item Hinzufügen eines
-		\begin{lstlisting}
+		\begin{lstlisting}[ commentstyle=\fontsize{12}{14.4}\selectfont, basicstyle=\ttfamily\fontsize{10}{12}\selectfont]
 			Zeile 756: declare 
 		\end{lstlisting}
 	\item Ausgeben lassen des IRSwTProblems durch folgenden Code:
-		\lstinputlisting[language=Java]{listings/IRSwTProblem-Printer.java}
+		\lstinputlisting[language=Java, commentstyle=\fontsize{12}{14.4}\selectfont, basicstyle=\ttfamily\fontsize{10}{12}\selectfont]{listings/IRSwTProblem-Printer.java}
 		Dieser wird im IRSwTProblem in die \code{toString()}-Methode unmittelbar vor \code{return} eingefügt.
 	\item[\label{IRSwTProblemMethoden}\textbullet] wenn ich eine Instanz der Klasse \code{IRSwTProblem irswt} bekomme, bekomme ich
 		\begin{itemize}
