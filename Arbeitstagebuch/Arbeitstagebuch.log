@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  21 JUN 2017 22:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  22 JUN 2017 17:24
 entering extended mode
 **./Arbeitstagebuch.tex
 (Arbeitstagebuch.tex
@@ -1251,34 +1251,133 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 layer\tikz\libraries\tikzlibrarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
+(D:\Tools\MikTex\tex\latex\pstricks\pstricks.sty
+Package: pstricks 2015/11/14 v0.62 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(D:\Tools\MikTex\tex\generic\pstricks\pstricks.tex
+(D:\Tools\MikTex\tex\generic\xkeyval\pst-xkey.tex
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+)
+(D:\Tools\MikTex\tex\generic\pstricks\pst-fp.tex
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count143
+\pstFP@xia=\count144
+\pstFP@xib=\count145
+\pstFP@xfa=\count146
+\pstFP@xfb=\count147
+\pstFP@rega=\count148
+\pstFP@regb=\count149
+\pstFP@regs=\count150
+\pstFP@times=\count151
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilitie
+s\pgfutil-common.tex"
+\pgfutil@everybye=\toks38
+\pgfutil@tempdima=\dimen170
+\pgfutil@tempdimb=\dimen171
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilitie
+s\pgfutil-common-lists.tex"))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilitie
+s\pgfkeys.code.tex")
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilitie
+s\pgffor.code.tex"
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgf
+math.code.tex")
+\pgffor@iter=\dimen172
+\pgffor@skip=\dimen173
+\pgffor@stack=\toks39
+\pgffor@toks=\toks40
+)
+\psLoopIndex=\count152
+
+`PSTricks' v2.71  <2016/12/23> (tvz)
+\pst@dima=\dimen174
+\pst@dimb=\dimen175
+\pst@dimc=\dimen176
+\pst@dimd=\dimen177
+\pst@dimg=\dimen178
+\pst@dimh=\dimen179
+\pst@dimm=\dimen180
+\pst@dimn=\dimen181
+\pst@dimo=\dimen182
+\pst@dimp=\dimen183
+\pst@hbox=\box43
+\pst@ibox=\box44
+\pst@boxg=\box45
+\pst@cnta=\count153
+\pst@cntb=\count154
+\pst@cntc=\count155
+\pst@cntd=\count156
+\pst@cntg=\count157
+\pst@cnth=\count158
+\pst@cntm=\count159
+\pst@cntn=\count160
+\pst@cnto=\count161
+\pst@cntp=\count162
+\@zero=\count163
+\pst@toks=\toks41
+(D:\Tools\MikTex\tex\generic\pstricks\pstricks.con)
+\psunit=\dimen184
+\psxunit=\dimen185
+\psyunit=\dimen186
+\pst@C@@rType=\count164
+\pslinewidth=\dimen187
+\psk@startLW=\dimen188
+\psk@endLW=\dimen189
+\pst@customdefs=\toks42
+\pslinearc=\dimen190
+\pst@symbolStep=\dimen191
+\pst@symbolWidth=\dimen192
+\pst@symbolLinewidth=\dimen193
+\everypsbox=\toks43
+\psframesep=\dimen194
+\pslabelsep=\dimen195
+\sh@wgridXunit=\dimen196
+\sh@wgridYunit=\dimen197
+\pst@shift=\dimen198
+)
+File: pstricks.tex 2016/12/23 v2.71 `PSTricks' (tvz,hv)
+
+(D:\Tools\MikTex\tex\generic\pstricks\pst-fp.tex)
+File: pst-fp.tex 2016/12/23 v2.71 `PST-fp' (hv)
+)
+(D:\Tools\MikTex\tex\latex\float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count165
+\float@exts=\toks44
+\float@box=\box46
+\@float@everytoks=\toks45
+\@floatcapt=\box47
+)
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstla
 ng1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (Arbeitstagebuch.aux)
 \openout1 = `Arbeitstagebuch.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 70.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 72.
  (D:\Tools\MikTex\tex\latex\base\ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
 LaTeX Font Info:    Try loading font information for T1+LinuxLibertineT-TOsF on
- input line 70.
+ input line 72.
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\libertine\t1li
 nuxlibertinet-tosf.fd"
@@ -1286,10 +1385,10 @@ File: T1LinuxLibertineT-TOsF.fd 2017/03/20 (autoinst) Font definitions for T1/L
 inuxLibertineT-TOsF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TOsF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 70.
-\c@mv@tabular=\count143
-\c@mv@boldtabular=\count144
-LaTeX Info: Redefining \microtypecontext on input line 70.
+(Font)              scaled to size 10.95pt on input line 72.
+\c@mv@tabular=\count166
+\c@mv@boldtabular=\count167
+LaTeX Info: Redefining \microtypecontext on input line 72.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1303,19 +1402,19 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxLibertineT-TOsF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-\AtBeginShipoutBox=\box43
-Package hyperref Info: Link coloring OFF on input line 70.
+\AtBeginShipoutBox=\box48
+Package hyperref Info: Link coloring OFF on input line 72.
  (D:\Tools\MikTex\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (D:\Tools\MikTex\tex\generic\oberdiek\gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count145
+\c@section@level=\count168
 )
-LaTeX Info: Redefining \ref on input line 70.
-LaTeX Info: Redefining \pageref on input line 70.
-LaTeX Info: Redefining \nameref on input line 70.
+LaTeX Info: Redefining \ref on input line 72.
+LaTeX Info: Redefining \pageref on input line 72.
+LaTeX Info: Redefining \nameref on input line 72.
  (Arbeitstagebuch.out) (Arbeitstagebuch.out)
 \@outlinefile=\write4
 \openout4 = `Arbeitstagebuch.out'.
@@ -1324,17 +1423,17 @@ LaTeX Info: Redefining \nameref on input line 70.
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pd
 f.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count146
-\scratchdimen=\dimen170
-\scratchbox=\box44
-\nofMPsegments=\count147
-\nofMParguments=\count148
-\everyMPshowfont=\toks38
-\MPscratchCnt=\count149
-\MPscratchDim=\dimen171
-\MPnumerator=\count150
-\makeMPintoPDFobject=\count151
-\everyMPtoPDFconversion=\toks39
+\scratchcounter=\count169
+\scratchdimen=\dimen199
+\scratchbox=\box49
+\nofMPsegments=\count170
+\nofMParguments=\count171
+\everyMPshowfont=\toks46
+\MPscratchCnt=\count172
+\MPscratchDim=\dimen256
+\MPnumerator=\count173
+\makeMPintoPDFobject=\count174
+\everyMPtoPDFconversion=\toks47
 ) (D:\Tools\MikTex\tex\latex\oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1348,23 +1447,23 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\c@lstlisting=\count152
+\c@lstlisting=\count175
 
 ABD: EveryShipout initializing macros
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 79.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 79.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 79.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 79.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 79.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 77.
+(babel)             in language  on input line 79.
 LaTeX Font Info:    Try loading font information for T1+LinuxBiolinumT-TOsF on 
-input line 84.
+input line 86.
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\libertine\t1li
 nuxbiolinumt-tosf.fd"
@@ -1372,26 +1471,26 @@ File: T1LinuxBiolinumT-TOsF.fd 2017/03/20 (autoinst) Font definitions for T1/Li
 nuxBiolinumT-TOsF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TOsF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 84.
+(Font)              scaled to size 10.95pt on input line 86.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxBiolinumT-TOsF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TOsF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 84.
+(Font)              scaled to size 10.95pt on input line 86.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TOsF/b/n' will be
-(Font)              scaled to size 20.74pt on input line 84.
+(Font)              scaled to size 20.74pt on input line 86.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TOsF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 84.
+(Font)              scaled to size 12.0pt on input line 86.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TOsF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 84.
+(Font)              scaled to size 14.4pt on input line 86.
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\microtype\mt-c
 mr.cfg"
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 84.
+LaTeX Font Info:    Try loading font information for U+msa on input line 86.
  (D:\Tools\MikTex\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -1399,7 +1498,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 sa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 84.
+LaTeX Font Info:    Try loading font information for U+msb on input line 86.
  (D:\Tools\MikTex\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -1437,7 +1536,15 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 19.
  [1
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
 
+
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
 
 {C:/Users/Timo Bergerbusch/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
  (Tage/26.04.2017.tex
@@ -1633,56 +1740,94 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 7.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 7.
- [10] (src/classdiagram.tex
+ [10] (src/15.06.2017-IRSwTProblem-classdiagram.tex
 \du=\skip60
-)
-Overfull \hbox (20.64159pt too wide) in paragraph at lines 285--11
- [][] 
+))
+(Tage/21.06.2017.tex
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 7.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 7.
+ [11pdfTeX warning (ext4): destination with the same identifier (name{figure.1}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.7 	\item e
+            infügen der \emph{onlyT2.strategy}]
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
  []
 
-) (Tage/21.06.2017.tex
+) (Tage/22.06.2017.tex
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 9.
+(babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 9.
+(babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 9.
+(babel)             in language  on input line 5.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 9.
- [11]
-Underfull \hbox (badness 10000) in paragraph at lines 11--12
+(babel)             in language  on input line 5.
+ [12] (src/22.06.2017-GeoNonTerm-classdiagram.tex)
+(src/22.06.2017-IRSwTProblem-classdiagram.tex)
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 30.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 30.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.30 \end{itemize}
+                  ]
+Underfull \hbox (badness 10000) in paragraph at lines 32--33
 
  []
 
 ))
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 94.
+(babel)             in language  on input line 96.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 94.
+(babel)             in language  on input line 96.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 94.
+(babel)             in language  on input line 96.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 94.
- [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 94.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 94.
+(babel)             in language  on input line 96.
+ [14pdfTeX warning (ext4): destination with the same identifier (name{figure.3}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.96 \end{document}
+                   ]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 96.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 96.
  (Arbeitstagebuch.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 94.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 94.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 96.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 96.
 Package rerunfilecheck Info: File `Arbeitstagebuch.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 94.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 96.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 85 (\begingroup)
+### semi simple group (level 1) entered at line 87 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 24571 strings out of 493333
- 452206 string characters out of 3144357
- 650936 words of memory out of 3000000
- 27326 multiletter control sequences out of 15000+200000
- 89391 words of font info for 152 fonts, out of 3000000 for 9000
+ 26068 strings out of 493333
+ 474845 string characters out of 3144357
+ 693225 words of memory out of 3000000
+ 28762 multiletter control sequences out of 15000+200000
+ 89937 words of font info for 156 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,14n,90p,8852b,2200s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Timo Bergerbusch/AppData/Roaming/MiKTeX/2.9/fonts/enc
@@ -1708,9 +1853,9 @@ nts/type1/public/amsfonts/cm/cmr10.pfb><D:/Tools/MikTex/fonts/type1/public/amsf
 onts/cm/cmr8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:
 /Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Tools/MikTex/fonts/t
 ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Arbeitstagebuch.pdf (12 pages, 505123 bytes).
+Output written on Arbeitstagebuch.pdf (14 pages, 514846 bytes).
 PDF statistics:
- 313 PDF objects out of 1000 (max. 8388607)
- 164 named destinations out of 1000 (max. 500000)
- 25101 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 332 PDF objects out of 1000 (max. 8388607)
+ 174 named destinations out of 1000 (max. 500000)
+ 25089 words of extra memory for PDF output out of 29859 (max. 10000000)
 
