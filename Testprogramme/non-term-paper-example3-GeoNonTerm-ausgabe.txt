@@ -1,13 +1,26 @@
-
-
 Der Startterm ist: f_2
-Rule: f_99(x3, x8) -> f_99(3 * x3 + x8, 2 * x8) :|: 3 * x3 > 29 && x3 + x8 > 11 && 31 < 3 * x3 + x8 && 3 < 2 * x8
-Cond Term: &&(&&(&&(>(*(3, x3), 29), >(+(x3, x8), 11)), <(31, +(*(3, x3), x8))), <(3, *(2, x8)))
-FunctionSymbols: [&&_2, >_2, *_2, 3, 29, +_2, 11, <_2, 31, 2]
-Variables: [x3, x8]
-
-
 First rule match:f_2 -> f_99(10, 2)
-RHS Term: f_99(10, 2)
-FunctionSymbols: [f_99_2, 10, 2]
-Variables: []
+##########
+f_99(x3, x8) matches f_99_2
+So Rule Nr.0 starts with f_99_2
+##########
+Investigating the rule f_99(x3, x8) -> f_99(3 * x3 + x8, 2 * x8) :|: 3 * x3 > 29 && x3 + x8 > 11 && 31 < 3 * x3 + x8 && 3 < 2 * x8
+Rule 0 is of the Form: f_x -> f_x :|: cond
++++++++++
+left:
+f_99(x3, x8)
+[x3, x8]
+right:
+f_99(+(*(3, x3), x8), *(2, x8))
++(*(3, x3), x8)
+COLLECTION START
+([],f_99(+(*(3, x3), x8), *(2, x8)))
+([0],+(*(3, x3), x8))
+([0,0],*(3, x3))
+([0,0,0],3)
+([0,0,1],x3)
+([0,1],x8)
+([1],*(2, x8))
+([1,0],2)
+([1,1],x8)
++++++++++

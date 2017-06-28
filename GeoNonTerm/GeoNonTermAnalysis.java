@@ -3,6 +3,7 @@ package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 import aprove.DPFramework.BasicStructures.TRSFunctionApplication;
 import aprove.DPFramework.BasicStructures.TRSTerm;
 import aprove.DPFramework.IDPProblem.IGeneralizedRule;
+import aprove.Framework.BasicStructures.FunctionSymbol;
 import aprove.Framework.IntTRS.IRSwTProblem;
 
 /**
@@ -28,12 +29,14 @@ public class GeoNonTermAnalysis {
 	 * (Default: "/home/timo/Downloads/GeoNonTerm-ausgabe.txt")
 	 */
 	public static final Logger LOG = new Logger();
-	
+
 	/**
 	 * the original IRSwTProblem, which is generated out of the LLVMGraph
 	 * 
 	 */
 	private final IRSwTProblem problem;
+
+	private final IGeneralizedRule[] rules;
 
 	/**
 	 * the STEM of the loop program
@@ -48,7 +51,11 @@ public class GeoNonTermAnalysis {
 	 */
 	public GeoNonTermAnalysis(IRSwTProblem problem) {
 		this.problem = problem;
+		rules = this.problem.getRules().toArray(new IGeneralizedRule[] {});
 		this.deriveSTEM();
+		this.deriveLOOP();
+
+		LOG.close();
 	}
 
 	/**
@@ -57,37 +64,25 @@ public class GeoNonTermAnalysis {
 	 */
 	private void deriveSTEM() {
 		TRSFunctionApplication startterm = this.problem.getStartTerm();
-		IGeneralizedRule[] rules = this.problem.getRules().toArray(new IGeneralizedRule[] {});
 
 		LOG.writeln("Der Startterm ist: " + startterm.toString());
 
 		for (int i = 0; i < rules.length; i++) {
-			if (rules[i].getLeft().equals(startterm)) { 
+			if (rules[i].getLeft().equals(startterm)) {
 				// Suchen der ersten passenden regel
-				LOG.writeln("First rule match:" + rules[i].toString()); 
+				LOG.writeln("First rule match:" + rules[i].toString());
 
 				TRSTerm r = rules[i].getRight();
 
-				LOG.newLine();
-				LOG.writeln("RHS Term: " + r.toString());
-				LOG.writeln("FunctionSymbols: " + r.getFunctionSymbols().toString());
-				LOG.writeln("Variables: " + r.getVariables());
-				
-				
+				FunctionSymbol[] arr = new FunctionSymbol[r.getSize() - 1];
+				arr = r.getFunctionSymbols().toArray(arr);
+				stem = new Stem(arr);
 				break; // danach kann abgebrochen werden
-			} else if (i == rules.length - 1) { 
+			} else if (i == rules.length - 1) {
 				// dieser Fall darf eigentlich nie eintreten
 				LOG.writeln("No match found.");
-			} else {
-				// für den Fall, dass es nicht die STEM->LOOP rule ist
-				LOG.writeln("Rule: "+ rules[i].toString());
-				TRSTerm c = rules[i].getCondTerm();
-				LOG.writeln("Cond Term: " +c.toString());
-				LOG.writeln("FunctionSymbols: " + c.getFunctionSymbols().toString());
-				LOG.writeln("Variables: " + c.getVariables());
 			}
 		}
-		LOG.close();
 
 	}
 
@@ -96,7 +91,45 @@ public class GeoNonTermAnalysis {
 	 * rules with respect to the guards
 	 */
 	private void deriveLOOP() {
+		int index = this.getIndexOfSymbol(rules, stem.getStartFunctionSymbol());
+		TRSFunctionApplication leftSide = rules[index].getLeft(); // is instance
+																	// of
+																	// TRSConstantTerm
+		TRSTerm rightSide = rules[index].getRight(); // is instance of
+														// TRSCompundTerm
 
+		// Vergleichen des ersten FunctionSymbol der beiden Seiten
+		if (leftSide.getFunctionSymbols().toArray(new FunctionSymbol[] {})[0]
+				.equals(rightSide.getFunctionSymbols().toArray(new FunctionSymbol[] {})[0])) {
+			// die Regel hat die Form f_x -> f_x :|: cond
+			LOG.writeln("Investigating the rule " + rules[index]);
+			LOG.writeln("Rule " + index + " is of the Form: f_x -> f_x :|: cond");
+
+			LOG.writeln("+++++++++");
+			LOG.writeln("left:");
+			LOG.writeln(leftSide.toString());
+			LOG.writeln(leftSide.getVariables().toString());
+			LOG.writeln("right:");
+			LOG.writeln(rightSide.toString());
+			// LOG.printArray(rightSide.getLeafPositions().toArray());
+			// LOG.printArray(((TRSFunctionApplication)rightSide).getArguments().toArray());
+			// LOG.writeln(((TRSFunctionApplication)rightSide).getArguments().toArray()[0].toString());
+
+			// Hier muss das als Baum traversiert werden
+			for (TRSTerm term : ((TRSFunctionApplication) rightSide).getArguments()) {
+				LOG.writeln(term.toString());
+			}
+			// LOG.writeln("COLLECTION START");
+			// Collection<Pair<Position,TRSTerm>> poswterms =
+			// rightSide.getPositionsWithSubTerms();
+			// for(Pair p : poswterms){
+			// LOG.writeln(p.toString());
+			// }
+			LOG.writeln("+++++++++");
+		} else {
+			// die Regel hat die Form f_x -> f_y :|: cond
+			LOG.writeln("Rule " + index + " is of the Form: f_x -> f_y :|: cond");
+		}
 	}
 
 	/**
@@ -106,4 +139,29 @@ public class GeoNonTermAnalysis {
 
 	}
 
+	/**
+	 * looks up the index of a {@link IGeneralizedRule} in an array that starts
+	 * with the given {@link FunctionSymbol}
+	 * 
+	 * @param rules
+	 *            the array of {@link IGeneralizedRule}'s
+	 * @param fs
+	 *            the query {@link FunctionSymbol}
+	 * @return den index ( -1 if isn't contained)
+	 */
+	private int getIndexOfSymbol(IGeneralizedRule[] rules, FunctionSymbol fs) {
+		int i = -1;
+		for (IGeneralizedRule rule : rules) {
+			if (rule.getLeft().getFunctionSymbol().equals(fs)) {
+				LOG.writeln("##########");
+				LOG.writeln(rule.getLeft().toString() + " matches " + fs.toString());
+				LOG.writeln("So Rule Nr." + i + " starts with " + fs.toString());
+				LOG.writeln("##########");
+				break;
+			}
+			i++;
+		}
+
+		return i;
+	}
 }
