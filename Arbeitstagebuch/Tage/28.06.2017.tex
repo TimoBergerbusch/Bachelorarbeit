@@ -1,0 +1,55 @@
+\newpage
+\section*{28.06.2017}
+
+\paragraph{Allgemein}
+\begin{itemize}
+	\item Änderung des \emph{STEM}'s von einer Erweiterung der Klasse \emph{VecInt} zu einer normalen Klasse mit einem Element von \emph{VecInt}
+	\item Einlesen des \emph{STEM}'s aus dem Programm heraus fertig.
+	\item \emph{TRSFunctionApplication} zum Diagramm vom \emph{IRSwTProblem} hinzufügen
+		\begin{figure}[H]
+			\centering
+			\input{src/28.06.2017-IRSwTProblem-classdiagram.tex}
+			\caption{Das Klassendiagram des IRSwTProblem und seinen Komponenten zum besseren Verständnis der notwendigen Programmteile. Stand: 28.06.2017}
+			\label{28.06.2017:: IRSwTPRoblem-classdiagram}
+		\end{figure}
+	\item Änderungen der Methoden und Attribute in dem \emph{GeoNonTerm}-Package
+		\begin{figure}[H]
+			\centering
+			\input{src/28.06.2017-GeoNonTerm-classdiagram.tex}
+			\caption{Das Klassendiagram des Geometrischen Nicht-Terminierungs Ansatz und seinen Komponenten zum besseren Verständnis der notwendigen Programmteile. Stand: 28.06.2017}
+			\label{28.06.2017:: GeoNonTerm-classdiagram}
+		\end{figure}
+	\item Definieren der verschiedenen Ausgaben:
+		\begin{itemize}
+			\item \code{\#\#\#\#\#\#\#\#\#\#}: dies sind Ausgaben für die Verständlichkeit/Nachvollziehbarkeit
+			\item \code{++++++++++}: dies sind Ausgaben rein zum Testen
+		\end{itemize}
+	\item mit \code{getPositionsWithSubTerms} die Collection als Baum aufbauen und so die Postfix-Notation bzw. Matrixeinträge herleiten
+	\item kommentieren aller Klassen und Methoden
+\end{itemize}
+
+
+\myparagraph{TODO am Code}
+\begin{enumerate}
+	\item Verbesserung des \emph{Loggers} hinsichtlich der Ausgabe verschiedener Klassen in vielleicht verschiedene Dokumente
+\end{enumerate}
+
+\myparagraph{Probleme/Offene Fragen}
+\begin{enumerate}
+	\item Wieso kommt bei z.B.
+		\begin{figure}[H]
+			\centering
+			$f_{99}(x_3, x_8) \rightarrow f_{99}(3 * x_3 + x_8, 2 * x_8) :|: ... \newline
+			f_2 \rightarrow f_{99}(10, 2)$
+		\end{figure}
+		Als Symbol der linken Seite der ersten Regel \code{f\_99} und als Symbol bei der rechten Seite der zweiten Regel \code{f\_99\_2} raus? Eine Prüfung auf \emph{equals} ergibt aber auch Gleichheit. \idea Beim zweiten wird die Anzahl der Argumente mit angehängt, welche beim ersten die selbe ist aber nicht mit angegeben wird. \answer die \emph{aprove/Framework/BasicStructures/FunctionSymbol.java} unter der Methode \emph{equals} macht genau den Namens, hashCode und Größencheck, sodass die verschiedenen \code{toString}-Werte keinen Ausschlag geben.
+	\item Wo packt man das \code{LOG.close();} am besten hin?
+	\item Wie soll ich die \emph{Umgekehrt Polnische Notation} behandeln um z.B. 
+		  die Vorfaktoren einer Regel abzuleiten \answer Umschreiben in Postfix und stupides Iterieren
+	\item geht als IRSwTProblem auch:
+		\begin{figure}[H]
+			\centering
+			$f_x(a+1,b) \rightarrow f_x(a,b) :|: cond$
+		\end{figure}
+		\answer Ja geht soll aber vorerst mit \emph{assert} abgefangen werden
+\end{enumerate}
