@@ -7,20 +7,8 @@ So Rule Nr.0 starts with f_99_2
 Investigating the rule f_99(x3, x8) -> f_99(3 * x3 + x8, 2 * x8) :|: 3 * x3 > 29 && x3 + x8 > 11 && 31 < 3 * x3 + x8 && 3 < 2 * x8
 Rule 0 is of the Form: f_x -> f_x :|: cond
 +++++++++
-left:
-f_99(x3, x8)
-[x3, x8]
-right:
-f_99(+(*(3, x3), x8), *(2, x8))
-+(*(3, x3), x8)
-COLLECTION START
-([],f_99(+(*(3, x3), x8), *(2, x8)))
-([0],+(*(3, x3), x8))
-([0,0],*(3, x3))
-([0,0,0],3)
-([0,0,1],x3)
-([0,1],x8)
-([1],*(2, x8))
-([1,0],2)
-([1,1],x8)
-+++++++++
+leftSide: f_99(x3, x8)
+right: f_99(+(*(3, x3), x8), *(2, x8))
+Variables : [x3, x8]
+++++++++++
+{ 3  *  x3  +  x8, 2  *  x8}

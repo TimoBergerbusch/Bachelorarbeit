@@ -1,10 +1,15 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
+import java.util.Collection;
+
+import aprove.DPFramework.BasicStructures.Position;
 import aprove.DPFramework.BasicStructures.TRSFunctionApplication;
 import aprove.DPFramework.BasicStructures.TRSTerm;
 import aprove.DPFramework.IDPProblem.IGeneralizedRule;
 import aprove.Framework.BasicStructures.FunctionSymbol;
 import aprove.Framework.IntTRS.IRSwTProblem;
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.*;
+import aprove.Framework.Utility.GenericStructures.Pair;
 
 /**
  * The main class of the geometric non-termination analysis presented by Jan
@@ -36,6 +41,11 @@ public class GeoNonTermAnalysis {
 	 */
 	private final IRSwTProblem problem;
 
+	/**
+	 * the rules of the problem. <br>
+	 * these are separately stored to derive {@link Stem} and {@link Loop}
+	 * separately without recomputing the rules.
+	 */
 	private final IGeneralizedRule[] rules;
 
 	/**
@@ -96,7 +106,7 @@ public class GeoNonTermAnalysis {
 																	// of
 																	// TRSConstantTerm
 		TRSTerm rightSide = rules[index].getRight(); // is instance of
-														// TRSCompundTerm
+														// TRSCompoundTerm
 
 		// Vergleichen des ersten FunctionSymbol der beiden Seiten
 		if (leftSide.getFunctionSymbols().toArray(new FunctionSymbol[] {})[0]
@@ -106,26 +116,28 @@ public class GeoNonTermAnalysis {
 			LOG.writeln("Rule " + index + " is of the Form: f_x -> f_x :|: cond");
 
 			LOG.writeln("+++++++++");
-			LOG.writeln("left:");
-			LOG.writeln(leftSide.toString());
-			LOG.writeln(leftSide.getVariables().toString());
-			LOG.writeln("right:");
-			LOG.writeln(rightSide.toString());
-			// LOG.printArray(rightSide.getLeafPositions().toArray());
-			// LOG.printArray(((TRSFunctionApplication)rightSide).getArguments().toArray());
-			// LOG.writeln(((TRSFunctionApplication)rightSide).getArguments().toArray()[0].toString());
+			LOG.writeln("leftSide: " + leftSide.toString());
+			LOG.writeln("right: " + rightSide.toString());
+			LOG.writeln("Variables : " + leftSide.getVariables().toString());
+			LOG.writeln("++++++++++");
 
-			// Hier muss das als Baum traversiert werden
-			for (TRSTerm term : ((TRSFunctionApplication) rightSide).getArguments()) {
-				LOG.writeln(term.toString());
+			// Es wird versucht die rechte Seite in ein RPNTree zu parsen
+			RPNTreeParser tp = new RPNTreeParser();
+			RPNNode[] variableUpdates = new RPNNode[leftSide.getVariables().size()];
+			try {
+				for (int i = 0; i < variableUpdates.length; i++)
+					variableUpdates[i] = tp.parseSetToTree(rightSide.getSubterm(Position.create(i)));
+			} catch (UnsupportetArithmeticSymbolException e) {
+				e.printStackTrace();
+				LOG.writeln("UnsupportetArithmeticSymbolException: " + e.getMessage());
+			} catch (ArrayIndexOutOfBoundsException e) {
+				e.printStackTrace();
+				LOG.writeln("ArrayIndexOutOfBoundsException: More Vars then Updates");
 			}
-			// LOG.writeln("COLLECTION START");
-			// Collection<Pair<Position,TRSTerm>> poswterms =
-			// rightSide.getPositionsWithSubTerms();
-			// for(Pair p : poswterms){
-			// LOG.writeln(p.toString());
-			// }
-			LOG.writeln("+++++++++");
+
+			LOG.printArray(variableUpdates);
+			
+			// LOG.writeln(rightSide.getSubterm(Position.create(0)).toString());
 		} else {
 			// die Regel hat die Form f_x -> f_y :|: cond
 			LOG.writeln("Rule " + index + " is of the Form: f_x -> f_y :|: cond");
@@ -150,18 +162,19 @@ public class GeoNonTermAnalysis {
 	 * @return den index ( -1 if isn't contained)
 	 */
 	private int getIndexOfSymbol(IGeneralizedRule[] rules, FunctionSymbol fs) {
-		int i = -1;
-		for (IGeneralizedRule rule : rules) {
-			if (rule.getLeft().getFunctionSymbol().equals(fs)) {
+		int j = -1;
+		for (int i = 0; i < this.rules.length; i++) {
+			if (rules[i].getLeft().getFunctionSymbol().equals(fs)) {
+				j = i;
 				LOG.writeln("##########");
-				LOG.writeln(rule.getLeft().toString() + " matches " + fs.toString());
-				LOG.writeln("So Rule Nr." + i + " starts with " + fs.toString());
+				LOG.writeln(rules[i].getLeft().toString() + " matches " + fs.toString());
+				LOG.writeln("So Rule Nr." + j + " starts with " + fs.toString());
 				LOG.writeln("##########");
 				break;
 			}
-			i++;
 		}
 
-		return i;
+		return j;
 	}
+
 }

@@ -62,6 +62,11 @@ public class Logger {
 			// Ignored
 		}
 	}
+	
+	
+	public void writeln(Object o) {
+		this.writeln(o.toString());
+	}
 
 	/**
 	 * Jumping into a new line. If an {@link IOException} occurs the method will
