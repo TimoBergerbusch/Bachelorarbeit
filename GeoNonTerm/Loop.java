@@ -22,16 +22,16 @@ public class Loop {
 	private static boolean SHOULD_PRINT = false;
 
 	/**
-	 * the speed {@link Matrix} defining the speed of convergence of the
+	 * the speed {@link UpdateMatrix} defining the speed of convergence of the
 	 * geometric series
 	 */
-	private Matrix speedMatrix;
+	private UpdateMatrix speedMatrix;
 
 	/**
-	 * the direction {@link Matrix} defining the direction of convergence of the
-	 * geometric series
+	 * the direction {@link UpdateMatrix} defining the direction of convergence
+	 * of the geometric series
 	 */
-	private Matrix directionMatrix;
+	private UpdateMatrix directionMatrix;
 
 	/**
 	 * a vector of just one's to convert the matrices into vectors <br>
@@ -57,7 +57,7 @@ public class Loop {
 	/**
 	 * @return the directionMatrix
 	 */
-	public Matrix getDirectionMatrix() {
+	public UpdateMatrix getDirectionMatrix() {
 		return directionMatrix;
 	}
 
@@ -65,14 +65,14 @@ public class Loop {
 	 * @param directionMatrix
 	 *            the directionMatrix to set
 	 */
-	public void setDirectionMatrix(Matrix directionMatrix) {
+	public void setDirectionMatrix(UpdateMatrix directionMatrix) {
 		this.directionMatrix = directionMatrix;
 	}
 
 	/**
 	 * @return the speedMatrix
 	 */
-	public Matrix getSpeedMatrix() {
+	public UpdateMatrix getSpeedMatrix() {
 		return speedMatrix;
 	}
 
@@ -80,7 +80,7 @@ public class Loop {
 	 * @param speedMatrix
 	 *            the speedMatrix to set
 	 */
-	public void setSpeedMatrix(Matrix speedMatrix) {
+	public void setSpeedMatrix(UpdateMatrix speedMatrix) {
 		this.speedMatrix = speedMatrix;
 	}
 
