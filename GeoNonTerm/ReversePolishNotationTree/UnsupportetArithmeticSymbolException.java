@@ -26,7 +26,7 @@ public class UnsupportetArithmeticSymbolException extends Exception {
      *            the unsupported {@link ArithmeticSymbol}
      */
     public UnsupportetArithmeticSymbolException(String message) {
-	super(message);
+		super(message);
     }
 
 }

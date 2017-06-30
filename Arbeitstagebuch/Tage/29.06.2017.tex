@@ -1,0 +1,34 @@
+\section*{29.06.2017}
+
+\paragraph{Allgemein}
+\begin{itemize}
+	\item Viel rumprobiererei wegen der Umgekehrt Polnischen Notation
+	\item die \emph{TRSCompound}-s sind die Funktionsterme und im \emph{RPNTree} die \emph{RPNFunctionSymbols}. Sie haben den Aufbau:
+		\begin{figure}[H]
+			\centering
+			$\underbrace{+}_{var: f} ( \underbrace{\_\_, ..., \_\_}_{var: args} ) $
+		\end{figure}
+		also wäre für $+(3,x3)$: $f=+$ und $args = \{3, x3\}$
+	\item Die rechte Seite in den eigenen \emph{RPNTree} geparst. Beschränkt derzeit auf 2 argumentige Funktionssymbole.
+	\item Die \emph{UpdateMatric geschrieben}
+	\item auslesen der Vorfaktoren der Variablen in den Iterationsschritten
+	\item Änderungen der Methoden und Attribute in dem \emph{GeoNonTerm}-Package
+	\begin{figure}[H]
+		\centering
+		\input{src/29.06.2017-GeoNonTerm-classdiagram.tex}
+		\caption{Das Klassendiagram des Geometrischen Nicht-Terminierungs Ansatz und seinen Komponenten zum besseren Verständnis der notwendigen Programmteile. Stand: 29.06.2017}
+		\label{29.06.2017:: GeoNonTerm-classdiagram}
+	\end{figure}
+\end{itemize}
+
+\myparagraph{Probleme/Offene Fragen}
+\begin{enumerate}
+	\item Bekomme es nicht in den Baum geparst. \answer doch. 
+	\item Wie bringt man LP's der Form
+		\begin{figure}[H]
+			$f_a(x_1, x_2, ..., x_n) \rightarrow f_a (x_1+1, x_2, ..., x_n)$ oder
+			$f_a(x_1, x_2, ..., x_n) \rightarrow f_a (x_1*x_2, x_2, ..., x_n)$
+		\end{figure}
+		in eine Matrixschreibweise
+	\item bei ArithmeticalSymbol.MINUS wirklich flippen?
+\end{enumerate}
