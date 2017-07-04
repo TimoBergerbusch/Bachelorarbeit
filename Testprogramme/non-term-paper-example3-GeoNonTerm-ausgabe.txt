@@ -7,8 +7,20 @@ So Rule Nr.0 starts with f_99_2
 Investigating the rule f_99(x3, x8) -> f_99(3 * x3 + x8, 2 * x8) :|: 3 * x3 > 29 && x3 + x8 > 11 && 31 < 3 * x3 + x8 && 3 < 2 * x8
 Rule 0 is of the Form: f_x -> f_x :|: cond
 +++++++++
-leftSide: f_99(x3, x8)
-right: f_99(+(*(3, x3), x8), *(2, x8))
-Variables : [x3, x8]
+Überprüfe: 3  <  2  *  x8
+-> beinhaltet x8 mit dem Factor: 2
+Überprüfe: 31  <  3  *  x3  +  x8
+-> beinhaltet x3 mit dem Factor: 3
+-> beinhaltet x8 mit dem Factor: 1
+Überprüfe: x3  +  x8  >  11
+-> beinhaltet x3 mit dem Factor: 1
+-> beinhaltet x8 mit dem Factor: 1
+Überprüfe: 3  *  x3  >  29
+-> beinhaltet x3 mit dem Factor: 3
 ++++++++++
-{ 3  *  x3  +  x8, 2  *  x8}
+Guards:
+┌	0	-2	┐	┌	x3	┐	 <=	┌	-3	┐
+├	-3	-1	┤	└	x8	┘	 <=	├	-31	┤
+├	-1	-1	┤				 <=	├	-11	┤
+└	-3	0	┘				 <=	└	-29	┘
+
