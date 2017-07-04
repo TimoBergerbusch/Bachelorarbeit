@@ -1,0 +1,67 @@
+\section*{04.07.2017}
+
+\paragraph{Allgemein}
+\begin{itemize}
+	\item Mir ist aufgefallen, dass die \emph{LOOP} in der angedachten Form wenig bringt. Was ich brauche ist nachher $A*x<b$ um darauf die non-term Bedingungen zu prüfen. Aus \emph{main} wird deutlich wie man $A$ und $b$ herleitet. Als: 
+		\begin{figure}[H]
+			\centering
+			$G*x<g \land M*x+m=x'$ \newline
+			$A = 
+				\begin{pmatrix} 
+					G &  0 \\ 
+					M & -I \\
+					-M & I 
+				\end{pmatrix}, b = \begin{pmatrix}
+					g \\
+					-m \\
+					m
+				\end{pmatrix}$
+		\end{figure}
+		Die bisher hergeleitete \emph{Speed}-Matrix kann als $M$ übernommen werden, da es die linearen Updates schreibt. Im folgenden werde ich die Matrizen wie folgt nennen:
+		\begin{figure}[H]
+			\centering
+			\begin{minipage}{0.4\textwidth}
+				\begin{description}
+					\item $G$: GuardUpdates
+					\item $g$: GuardConstants
+					\item $M$: UpdateMatrix
+				\end{description}
+			\end{minipage}
+			\begin{minipage}{0.4\textwidth}
+				\begin{description}
+					\item $m$: UpdateConstants
+					\item $A$: IterationMatrix
+					\item $b$: IterationConstants
+				\end{description}
+			\end{minipage}
+		\end{figure}
+	\item Muss den RPNTree anpassen, damit ich die conditions parsen kann. Vielleicht kann ich die \&\&'s splitten, sodass $n$-conds bleiben. \answer und hat auch genau so funktioniert.
+	\item Beobachtung: \begin{description}
+		\item Sei $n = \# vars$ dann sind sind $x, x' \in \mathbb{Z}^n$
+		\item Demnach muss die Updatematrix $M \in \mathbb{Z}^{n\times n}$, da es die Updates für die Variablen ist und $m \in \mathbb{Z}^n$
+		\item Sei $m = \# conditions$
+			Somit ist $G \in \mathbb{Z}^{m \times n}$ und $g \in \mathbb{Z}^m$
+		\item Somit folgt durch $b = \begin{pmatrix} g \\ -m \\	m \end{pmatrix} = \begin{pmatrix} \mathbb{Z}^m \\ \mathbb{Z}^n \\ \mathbb{Z}^n \end{pmatrix} \in \mathbb{Z}^{2*n+m}$,
+			dass \newline $A = 
+			\begin{pmatrix} 
+				G &  0 \\ 
+				M & -I \\
+				-M & I 
+			\end{pmatrix} = \begin{pmatrix} 
+			\mathbb{Z}^{m\times n} &  \{0\}^{n\times n} \\ 
+			\mathbb{Z}^{n\times n} & I^{n\times n} \\
+			\mathbb{Z}^{n\times n} & I^{n\times n} 
+			\end{pmatrix} \in \mathbb{Z}^{2*n+m\times 2*n}$.
+		\end{description}
+	\item Habe die GuardMatrix und die GuardConstants auslesen lassen. Jedoch siehe Problem 3.
+	\item ANPASSEN DES DIAGRAMMS
+\end{itemize}
+
+\myparagraph{Probleme/Offene Fragen}
+\begin{enumerate}
+	\item brauche ich dann den \emph{STEM} noch?
+	\item woher kommt $Y=\begin{pmatrix}
+		4 & 3 \\ 0 & 1 
+	\end{pmatrix}$?
+	\item Muss in der Guard noch alle $>$ zu $<$ umdrehen damit diese einheitlich sind zu der Literatur \answer Gemacht aber ist das richtig?
+\end{enumerate}
