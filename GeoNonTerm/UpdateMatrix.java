@@ -34,15 +34,17 @@ public class UpdateMatrix {
     private int[][] matrix;
 
     /**
-     * represents the names of the rows and columns. The first row has the same
-     * name as the first column and so on.
+     * represents the names of the rows and columns. The first row has the same name
+     * as the first column and so on.
      */
     private final String[] varNames;
 
+    private final String[] rowNames;
+
     /**
      * creates a new {@link UpdateMatrix}. <br>
-     * It sets the {@link #matrix} as a square matrix defined by the length of
-     * the parameter array length and sets every entry to <code>0</code> by
+     * It sets the {@link #matrix} as a square matrix defined by the length of the
+     * parameter array length and sets every entry to <code>0</code> by
      * <code>default</code>.
      * 
      * @param varNames
@@ -50,6 +52,7 @@ public class UpdateMatrix {
      */
     public UpdateMatrix(String[] varNames) {
 	this.varNames = varNames;
+	this.rowNames = varNames;
 
 	this.matrix = new int[varNames.length][varNames.length];
 	for (int i = 0; i < varNames.length; i++)
@@ -57,10 +60,19 @@ public class UpdateMatrix {
 		matrix[i][j] = 0;
     }
 
+    public UpdateMatrix(int rowDimension, int columnDimension, String[] varNames) {
+	assert columnDimension == varNames.length;
+	this.varNames = varNames;
+	this.matrix = new int[rowDimension][columnDimension];
+
+	this.rowNames = new String[rowDimension];
+	for (int i = 0; i < rowDimension; i++)
+	    this.rowNames[i] = i + "";
+    }
+
     /**
-     * sets an entry in the {@link #matrix} using the exact
-     * <code>int</code>-values to adress the entry and sets it to the parameter
-     * <code>value</code>.
+     * sets an entry in the {@link #matrix} using the exact <code>int</code>-values
+     * to adress the entry and sets it to the parameter <code>value</code>.
      * 
      * @param row
      *            the row
@@ -75,8 +87,8 @@ public class UpdateMatrix {
 
     /**
      * sets an entry in the {@link #matrix} using the names of the row- and
-     * column-variables stored in {@link #varNames} using
-     * {@link #getIndex(String)} and {@link #setEntry(int, int, int)}
+     * column-variables stored in {@link #varNames} using {@link #getIndex(String)}
+     * and {@link #setEntry(int, int, int)}
      * 
      * @param rowOf
      *            the name of the row variable
@@ -93,6 +105,23 @@ public class UpdateMatrix {
 	else
 	    GeoNonTermAnalysis.LOG.writeln("ERRROR: Invalid Matrix setEntry Attributes: " + rowOf + "= " + row + "\t"
 		    + valueOf + "=" + column + "\t" + value);
+    }
+
+    public void setEntry(int rowNumber, String varName, int value) {
+	int columnIndex = -1;
+	for (int i = 0; i < varNames.length; i++) {
+	    if (varNames[i].equals(varName))
+		columnIndex = i;
+	}
+
+	if (columnIndex == -1)
+	    assert false;
+	else
+	    this.setEntry(rowNumber, columnIndex, value);
+    }
+
+    public int getEntry(int row, int column) {
+	return this.matrix[row][column];
     }
 
     /**
@@ -163,12 +192,22 @@ public class UpdateMatrix {
 	    sb.append(s + "\t");
 	sb.append("\n");
 	for (int i = 0; i < matrix.length; i++) {
-	    sb.append(varNames[i] + "\t");
+	    sb.append(rowNames[i] + "\t");
 	    for (int j = 0; j < matrix[0].length; j++) {
 		sb.append(matrix[i][j] + "\t");
 	    }
 	    sb.append("\n");
 	}
 	return sb.toString();
+    }
+
+    public int size() {
+	return matrix.length;
+    }
+
+    public void negateMatrix() {
+	for (int i = 0; i < matrix.length; i++)
+	    for (int j = 0; j < matrix[0].length; j++)
+		matrix[i][j] *= -1;
     }
 }

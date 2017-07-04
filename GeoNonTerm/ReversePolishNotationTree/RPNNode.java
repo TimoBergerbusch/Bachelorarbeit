@@ -1,7 +1,6 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree;
 
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.GeoNonTermAnalysis;
-import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.ArithmeticSymbol;
 
 /**
  * The RPNNode is an abstract node in the binary RPNTree (reverse polish
@@ -18,30 +17,30 @@ import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.Arit
 public abstract class RPNNode {
 
     /**
-     * This method derives the factors of the given variable within the tree
-     * using the following recursive algorithm: <br>
+     * This method derives the factors of the given variable within the tree using
+     * the following recursive algorithm: <br>
      * <ol>
      * <li>checks whether it is a {@link RPNVariable} or a {@link RPNConstant},
-     * which both have no following {@link RPNNode RPNNode's} and the value can
-     * be obviously derived
+     * which both have no following {@link RPNNode RPNNode's} and the value can be
+     * obviously derived
      * <li>for a {@link RPNFunctionSymbol} it distinguishes between the three
      * different {@link ArithmeticSymbol ArithmeticSymbol's}:
      * <ul>
-     * <li>{@link ArithmeticSymbol#TIMES}: derives the factor recursively within
-     * the child {@link RPNNode} that does <u>not</u> contain the variable,
-     * because if would not contain the factor
-     * <li>{@link ArithmeticSymbol#PLUS}: derives the factor within the child
-     * that contains the var and can neglect the other child, because of syntax
-     * reasons (more below)
+     * <li>{@link ArithmeticSymbol#TIMES}: derives the factor recursively within the
+     * child {@link RPNNode} that does <u>not</u> contain the variable, because if
+     * would not contain the factor
+     * <li>{@link ArithmeticSymbol#PLUS}: derives the factor within the child that
+     * contains the var and can neglect the other child, because of syntax reasons
+     * (more below)
      * <li>{@link ArithmeticSymbol#MINUS}: same as for
-     * {@link ArithmeticSymbol#PLUS}, but changes the result by negating the
-     * factor, because of the -
+     * {@link ArithmeticSymbol#PLUS}, but changes the result by negating the factor,
+     * because of the -
      * <li>if non of the other hold's the method returns <code>0</code>
      * </ul>
      * </ol>
      * <br>
-     * The assumtion the method makes is that the terms are linear and
-     * flattened. So 2*(a+b) would be 2*a+2*b
+     * The assumtion the method makes is that the terms are linear and flattened. So
+     * 2*(a+b) would be 2*a+2*b
      * 
      * @param varName
      *            the name of the variable of which the factor should be derived
@@ -62,8 +61,8 @@ public abstract class RPNNode {
 
 	    if (func.getFunctionSymbol() == ArithmeticSymbol.TIMES) {
 		/*
-		 * Bei TIMES kann man den zweiten Teil, welcher die Var enthält
-		 * vernachlässigen, da im andern Teilbaum der Faktor steht.
+		 * Bei TIMES kann man den zweiten Teil, welcher die Var enthält vernachlässigen,
+		 * da im andern Teilbaum der Faktor steht.
 		 * 
 		 * ANNAHME: sowas wie (a*b)*varName ist nicht gültig
 		 */
@@ -79,11 +78,16 @@ public abstract class RPNNode {
 			return ((RPNConstant) func.getLeft()).getValue();
 		}
 
+	    } else if (func.getFunctionSymbol() == ArithmeticSymbol.LESS_THAN
+		    || func.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN) {
+		if (func.getRight().containsVar(varName))
+		    return func.getRight().getFactorOfVar(varName);
+		else
+		    return func.getLeft().getFactorOfVar(varName);
 	    } else if (func.getFunctionSymbol() == ArithmeticSymbol.PLUS) {
 		/*
-		 * Bei PLUS oder MINUS kann man den zweiten Teil, welcher nicht
-		 * die Var enthält vernachlässigen, da sie keinen Einfluss auf
-		 * den Factor haben kann
+		 * Bei PLUS oder MINUS kann man den zweiten Teil, welcher nicht die Var enthält
+		 * vernachlässigen, da sie keinen Einfluss auf den Factor haben kann
 		 * 
 		 * flipvalue setzt den Wert bei z.B. x3 - x8 auf -1 statt 1
 		 */
@@ -95,6 +99,24 @@ public abstract class RPNNode {
 		    return func.getLeft().getFactorOfVar(varName) * flipvalue;
 		else
 		    return func.getRight().getFactorOfVar(varName) * flipvalue;
+	    }
+	}
+
+	return 0;
+    }
+
+    public int getConstantTerm() {
+	if (this instanceof RPNConstant)
+	    return ((RPNConstant) this).getValue();
+	else if (this instanceof RPNFunctionSymbol) {
+	    RPNFunctionSymbol fs = ((RPNFunctionSymbol) this);
+	    int flipped = 1;
+	    if (fs.getFunctionSymbol().equals(ArithmeticSymbol.MINUS))
+		flipped = -1;
+	    if (!fs.getFunctionSymbol().equals(ArithmeticSymbol.TIMES)) {
+		int left = fs.getLeft().getConstantTerm();
+		int right = fs.getRight().getConstantTerm() * flipped;
+		return left + right;
 	    }
 	}
 

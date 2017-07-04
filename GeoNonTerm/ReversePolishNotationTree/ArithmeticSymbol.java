@@ -12,7 +12,7 @@ package aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree;
 public enum ArithmeticSymbol {
 
     /**
-     * The three supported arithmetic operators:
+     * The five supported arithmetic operators:
      * <table>
      * <tr>
      * <td>Name</td>
@@ -30,13 +30,20 @@ public enum ArithmeticSymbol {
      * <td><code>TIMES</code>
      * <td>*</td>
      * </tr>
+     * <tr>
+     * <td><code>LESS_THAN</code>
+     * <td>&gt;</td>
+     * </tr>
+     * <tr>
+     * <td><code>GREATER_THAN</code>
+     * <td>&lt;</td>
+     * </tr>
      * </table>
      */
-    PLUS, MINUS, TIMES;
+    PLUS, MINUS, TIMES, LESS_THAN, GREATER_THAN;
 
     /**
-     * gives the arithmetic operator as it's representing
-     * <code>String</code>.<br>
+     * gives the arithmetic operator as it's representing <code>String</code>.<br>
      * It's mainly used within the {@link RPNFunctionSymbol#toPrefixString()},
      * {@link RPNFunctionSymbol#toInfixString()} and
      * {@link RPNFunctionSymbol#toSuffixString()}.
@@ -53,6 +60,10 @@ public enum ArithmeticSymbol {
 	    return " - ";
 	case TIMES:
 	    return " * ";
+	case LESS_THAN:
+	    return " < ";
+	case GREATER_THAN:
+	    return " > ";
 	default:
 	    return "ENUM toString() Error";
 	}
