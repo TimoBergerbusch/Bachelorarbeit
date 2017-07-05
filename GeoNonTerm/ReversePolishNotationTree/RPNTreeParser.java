@@ -48,7 +48,7 @@ public class RPNTreeParser {
      * 
      * WARNING: The method only provides a binary tree and does <u>not</u>
      * support any {@link ArithmeticSymbol ArithmeticalSymbol's} other than the
-     * three dyadic {@link ArithmeticSymbol ArithmeticalSymbol's} stated.
+     * five {@link ArithmeticSymbol ArithmeticalSymbol's} stated.
      * 
      * 
      * @param trsTerm

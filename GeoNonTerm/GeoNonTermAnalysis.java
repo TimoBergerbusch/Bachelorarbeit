@@ -29,17 +29,17 @@ import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.Unsu
  * {@link aprove.Framework.IntTRS.IRSwTProblem#IRSwTProblem(immutables.Immutable.ImmutableSet)
  * IRSwTProblem}, derives a speed matrix J as a column vector of generalized
  * eigenvalues and a direction matrix Y. <br/>
- * After the derivation of the linear program to the form X + Y * (sum_i_k) * 1
- * where k is the k-th iteration step the method uses a SMTSolver to derive a so
- * called Geometric Non-Termination Argument.
+ * After the derivation of the iteration matrix A and constants b, so that A*(x
+ * x') <= b , the method uses a SMTSolver to derive a so called Geometric
+ * Non-Termination Argument.
  * 
  * @author Timo Bergerbusch *
  */
 public class GeoNonTermAnalysis {
 
     /**
-     * a static boolean to determine if the information about the process should be
-     * printed using the {@link GeoNonTermAnalysis#LOG Logger}.
+     * a static boolean to determine if the information about the process should
+     * be printed using the {@link GeoNonTermAnalysis#LOG Logger}.
      */
     private static boolean SHOULD_PRINT = false;
 
@@ -67,6 +67,9 @@ public class GeoNonTermAnalysis {
      */
     private Stem stem;
 
+    /**
+     * the LOOP of the loop program
+     */
     private Loop loop;
 
     /**
@@ -114,6 +117,17 @@ public class GeoNonTermAnalysis {
 
     }
 
+    /**
+     * computes the {@link Loop} by computing the updateMatrix and
+     * updateConstants of the {@link Loop} using
+     * {@link #deriveUpdatePart(TRSTerm, TRSTerm)} and afterwards computing the
+     * guardMatrix with corresponding guardConstants using
+     * {@link #deriveGuardPart(IGeneralizedRule)}.
+     * 
+     * @see GeoNonTermAnalysis#deriveUpdatePart(TRSTerm, TRSTerm)
+     * @see #deriveGuardPart(IGeneralizedRule)
+     * @see Loop
+     */
     private void deriveLOOP() {
 	this.loop = new Loop();
 
@@ -148,6 +162,18 @@ public class GeoNonTermAnalysis {
 	}
     }
 
+    /**
+     * This method derives the update matrix and constants to a given rule, by
+     * parsing it into a {@link RPNNode RPNTree} using
+     * {@link RPNTreeParser#parseSetToTree(TRSTerm)}. Note: it gets left and
+     * right instead of the rule itself, because they are already computed
+     * anyway.
+     * 
+     * @param leftSide
+     *            the left side the rule
+     * @param rightSide
+     *            the right side of the rule.
+     */
     private void deriveUpdatePart(TRSTerm leftSide, TRSTerm rightSide) {
 	String[] occuringVars = this.deriveVariablesAsStringArray(leftSide.getVariables());
 
@@ -169,13 +195,16 @@ public class GeoNonTermAnalysis {
 	// Herleiten der Update-Matrix Einträge
 	for (int i = 0; i < occuringVars.length; i++) {
 	    for (int j = 0; j < occuringVars.length; j++) {
-		// LOG.writeln("Does " + occuringVars[i] + " contain " + occuringVars[j] + "? "
-		// + variableUpdates[i].containsVar(occuringVars[j]) + " \t Value:"
+		// LOG.writeln("Does " + occuringVars[i] + " contain " +
+		// occuringVars[j] + "? "
+		// + variableUpdates[i].containsVar(occuringVars[j]) + " \t
+		// Value:"
 		// + variableUpdates[i].getFactorOfVar(occuringVars[j]));
 		updateMatrix.setEntry(occuringVars[i], occuringVars[j],
 			variableUpdates[i].getFactorOfVar(occuringVars[j]));
 	    }
-	    // LOG.writeln("Does Update of Var. " + i + " contain a Constant term? Term: "
+	    // LOG.writeln("Does Update of Var. " + i + " contain a Constant
+	    // term? Term: "
 	    // + variableUpdates[i].getConstantTerm());
 	    updateConstants.set(i, variableUpdates[i].getConstantTerm());
 	}
@@ -185,6 +214,16 @@ public class GeoNonTermAnalysis {
 	loop.setUpdateConstants(updateConstants);
     }
 
+    /**
+     * This method derives the guard matrix and constants of a given rule, by
+     * parsing only the condition terms into a {@link RPNNode RPNTree} after
+     * splitting them into the different rules. <br>
+     * So it splits: <code>x_1 > 0 && x_3 > 5</code><br>
+     * Into the two conditions and parses them separately.
+     * 
+     * @param rule
+     *            the rule containing the conditions
+     */
     private void deriveGuardPart(IGeneralizedRule rule) {
 	LOG.writeln("++++++++++");
 	// LOG.writeln("Cond Term: " + rule.getCondTerm());
@@ -235,7 +274,8 @@ public class GeoNonTermAnalysis {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    }
-	// TODO: alle > in < umdrehen, sodass die constante immer < da steht: ... < c
+	// TODO: alle > in < umdrehen, sodass die constante immer < da steht:
+	// ... < c
 	guardMatrix.negateMatrix();
 	for (int i = 0; i < guardConstants.size(); i++)
 	    guardConstants.set(i, guardConstants.get(i) * -1);
@@ -250,8 +290,8 @@ public class GeoNonTermAnalysis {
 
     /**
      * converts a {@link Set} of {@link TRSVariable TRSVariable's} into a
-     * <code>String</code> array of the same size only storing their names given by
-     * {@link TRSVariable}{@link #toString()}.
+     * <code>String</code> array of the same size only storing their names given
+     * by {@link TRSVariable}{@link #toString()}.
      * 
      * @param variables
      *            the Set of {@link TRSVariable TRSVariable's}
@@ -270,8 +310,8 @@ public class GeoNonTermAnalysis {
     }
 
     /**
-     * looks up the index of a {@link IGeneralizedRule} in an array that starts with
-     * the given {@link FunctionSymbol}
+     * looks up the index of a {@link IGeneralizedRule} in an array that starts
+     * with the given {@link FunctionSymbol}
      * 
      * @param rules
      *            the array of {@link IGeneralizedRule}'s

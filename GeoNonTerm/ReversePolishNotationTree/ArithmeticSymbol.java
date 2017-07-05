@@ -43,7 +43,8 @@ public enum ArithmeticSymbol {
     PLUS, MINUS, TIMES, LESS_THAN, GREATER_THAN;
 
     /**
-     * gives the arithmetic operator as it's representing <code>String</code>.<br>
+     * gives the arithmetic operator as it's representing
+     * <code>String</code>.<br>
      * It's mainly used within the {@link RPNFunctionSymbol#toPrefixString()},
      * {@link RPNFunctionSymbol#toInfixString()} and
      * {@link RPNFunctionSymbol#toSuffixString()}.

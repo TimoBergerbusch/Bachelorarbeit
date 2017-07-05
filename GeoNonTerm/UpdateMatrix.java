@@ -1,11 +1,12 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
+import aprove.Framework.Algebra.Matrices.Matrix;
+
 /**
- * Represents a square <code>int</code>-matrix and a labeling to the rows and
- * columns. <br>
- * The i-th row has the same label as the i-th column. <br>
+ * Represents a <code>int</code>-matrix and a labeling to the rows and columns.
  * <br>
- * The application of it are the speed and direction matrices in the
+ * <br>
+ * The application of it are the update-, guard- and iteration matrices in the
  * {@link Loop} used within the {@link GeoNonTermAnalysis Geometric Non
  * Termination Analysis}.
  * 
@@ -34,17 +35,21 @@ public class UpdateMatrix {
     private int[][] matrix;
 
     /**
-     * represents the names of the rows and columns. The first row has the same name
-     * as the first column and so on.
+     * represents the names of the columns. Typically these are the variable
+     * names
      */
     private final String[] varNames;
 
+    /**
+     * represents the names of the rows. Depending if it is a square matrix is
+     * could be again the variable names or simple an enumeration.
+     */
     private final String[] rowNames;
 
     /**
      * creates a new {@link UpdateMatrix}. <br>
-     * It sets the {@link #matrix} as a square matrix defined by the length of the
-     * parameter array length and sets every entry to <code>0</code> by
+     * It sets the {@link #matrix} as a square matrix defined by the length of
+     * the parameter array length and sets every entry to <code>0</code> by
      * <code>default</code>.
      * 
      * @param varNames
@@ -60,6 +65,16 @@ public class UpdateMatrix {
 		matrix[i][j] = 0;
     }
 
+    /**
+     * creates a new {@link UpdateMatrix}. <br>
+     * It sets the {@link Matrix} to the given dimensions, sets the
+     * {@link #varNames} to the given parameter and initializes the
+     * {@link #rowNames} as a typical enumeration.
+     * 
+     * @param rowDimension
+     * @param columnDimension
+     * @param varNames
+     */
     public UpdateMatrix(int rowDimension, int columnDimension, String[] varNames) {
 	assert columnDimension == varNames.length;
 	this.varNames = varNames;
@@ -71,8 +86,9 @@ public class UpdateMatrix {
     }
 
     /**
-     * sets an entry in the {@link #matrix} using the exact <code>int</code>-values
-     * to adress the entry and sets it to the parameter <code>value</code>.
+     * sets an entry in the {@link #matrix} using the exact
+     * <code>int</code>-values to adress the entry and sets it to the parameter
+     * <code>value</code>.
      * 
      * @param row
      *            the row
@@ -87,8 +103,8 @@ public class UpdateMatrix {
 
     /**
      * sets an entry in the {@link #matrix} using the names of the row- and
-     * column-variables stored in {@link #varNames} using {@link #getIndex(String)}
-     * and {@link #setEntry(int, int, int)}
+     * column-variables stored in {@link #varNames} using
+     * {@link #getIndex(String)} and {@link #setEntry(int, int, int)}
      * 
      * @param rowOf
      *            the name of the row variable
@@ -107,6 +123,19 @@ public class UpdateMatrix {
 		    + valueOf + "=" + column + "\t" + value);
     }
 
+    /**
+     * sets an entry in the {@link #matrix} using the given row number and
+     * variable name using {@link #getIndex(String)} and
+     * {@link #setEntry(int, int, int)}. <br>
+     * This method is typically used for non-square matrices.
+     * 
+     * @param rowNumber
+     *            the row of the entry
+     * @param varName
+     *            the corresponding variable
+     * @param value
+     *            the new value of the entry
+     */
     public void setEntry(int rowNumber, String varName, int value) {
 	int columnIndex = -1;
 	for (int i = 0; i < varNames.length; i++) {
@@ -120,6 +149,16 @@ public class UpdateMatrix {
 	    this.setEntry(rowNumber, columnIndex, value);
     }
 
+    /**
+     * returns the entry at a requested position.
+     * 
+     * @param row
+     *            the row of the entry
+     * @param column
+     *            the column of the entry
+     * @return the value of {@link #getMatrix()} at
+     *         <code>matrix[row][column]</code>
+     */
     public int getEntry(int row, int column) {
 	return this.matrix[row][column];
     }
@@ -201,10 +240,18 @@ public class UpdateMatrix {
 	return sb.toString();
     }
 
+    /**
+     * returns the size of rows of the matrix.
+     * 
+     * @return <code>matrix.length</code>
+     */
     public int size() {
 	return matrix.length;
     }
 
+    /**
+     * multiplies the {@link #matrix} with -1.
+     */
     public void negateMatrix() {
 	for (int i = 0; i < matrix.length; i++)
 	    for (int j = 0; j < matrix[0].length; j++)

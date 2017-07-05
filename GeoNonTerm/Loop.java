@@ -16,23 +16,76 @@ import aprove.Framework.Algebra.Matrices.Matrix;
 public class Loop {
 
     /**
-     * a static boolean to determine if the information about the process should be
-     * printed using the {@link GeoNonTermAnalysis#LOG Logger}.
+     * a static boolean to determine if the information about the process should
+     * be printed using the {@link GeoNonTermAnalysis#LOG Logger}.
      */
     private static boolean SHOULD_PRINT = false;
 
+    /**
+     * the guards depending on the variables. <br>
+     * often referred as G.
+     */
     private UpdateMatrix guardMatrix;
 
+    /**
+     * the update in every step of the iteration only within the rule without
+     * regarding the guards.<br>
+     * often referred as M.
+     */
     private UpdateMatrix updateMatrix;
 
+    /**
+     * the matrix which describes a complete iteration step. It is computed as
+     * <code>A= 
+     * <table>
+     * <tr>
+     * <td>G</td>
+     * <td>0</td>
+     * </tr>
+     * <tr>
+     * <td>M</td>
+     * <td>-I</td>
+     * </tr>
+     * <tr>
+     * <td>-M</td>
+     * <td>I</td>
+     * </tr>
+     * </table>
+     * </code>
+     */
     private UpdateMatrix iterationMatrix;
 
+    /**
+     * the constants corresponding to the {@link #guardMatrix}
+     */
     private VecInt guardConstants;
 
+    /**
+     * the constants corresponding to the {@link #updateMatrix}
+     */
     private VecInt updateConstants;
 
+    /**
+     * the constants corresponding to the {@link #iterationMatrix}. It is
+     * computed as <code>b= 
+     * <table>
+     * <tr>
+     * <td>g</td>
+     * </tr>
+     * <tr>
+     * <td>-m</td>
+     * </tr>
+     * <tr>
+     * <td>m</td>
+     * </tr>
+     * </table>
+     * </code>
+     */
     private VecInt iterationConstants;
 
+    /**
+     * the default constructor. No other functionality so far.
+     */
     public Loop() {
 	// if (SHOULD_PRINT) {
 	// GeoNonTermAnalysis.LOG.startClassOutput("LOOP");
@@ -43,6 +96,12 @@ public class Loop {
 	// }
     }
 
+    /**
+     * returns the matrices in a simple-to-read way. It should be the typical
+     * mathematical form.
+     * 
+     * @return the matrices in mathematical form
+     */
     public String getSystemAsString() {
 	StringBuilder sb = new StringBuilder();
 
@@ -78,6 +137,16 @@ public class Loop {
 
     }
 
+    /**
+     * a helping function for {@link #getSystemAsString()}. It finds the best
+     * fitting matrix opening symbol for a row with respect to the cap.
+     * 
+     * @param rowNumber
+     *            the row within the matrix
+     * @param cap
+     *            the max. number of rows
+     * @return a top left, mid oder bottom left matrix opening symbol
+     */
     private String getFrontString(int rowNumber, int cap) {
 	if (rowNumber == 0)
 	    return "┌";
@@ -87,6 +156,16 @@ public class Loop {
 	    return "├";
     }
 
+    /**
+     * a helping function for {@link #getSystemAsString()}. It finds the best
+     * fitting matrix closing symbol for a row with respect to the cap.
+     * 
+     * @param rowNumber
+     *            the row within the matrix
+     * @param cap
+     *            the max. number of rows
+     * @return a top right, mid oder bottom right matrix closing symbol
+     */
     private String getBackString(int rowNumber, int cap) {
 	if (rowNumber == 0)
 	    return "┐";
@@ -96,6 +175,10 @@ public class Loop {
 	    return "┤";
     }
 
+    /**
+     * prints the matrices and corresponding constants if they are initialized
+     * as a simple string.
+     */
     public void printInformationString() {
 	StringBuilder sb = new StringBuilder();
 	if (guardMatrix != null) {
