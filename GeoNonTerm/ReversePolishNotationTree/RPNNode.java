@@ -29,7 +29,7 @@ public abstract class RPNNode {
      * <li>{@link ArithmeticSymbol#TIMES}: derives the factor recursively within the
      * child {@link RPNNode} that does <u>not</u> contain the variable, because if
      * would not contain the factor
-     * <li>{@link ArithmeticSymbol#PLUS}: derives the factor within the child that
+	 * <li> {@link ArithmeticSymbol#LESS_THAN}/{@link ArithmeticSymbol#GREATER_THAN}/{@link ArithmeticSymbol#PLUS}: derives the factor within the child that
      * contains the var and can neglect the other child, because of syntax reasons
      * (more below)
      * <li>{@link ArithmeticSymbol#MINUS}: same as for
@@ -105,6 +105,11 @@ public abstract class RPNNode {
 	return 0;
     }
 
+	/**
+	* this method derives the constant term within a {@link RPNNode RPNTree}.
+	* If two child nodes containt a constant (should <u>never</u> happen) they get added.
+	* @return the constant term( 0 by default)
+	*/
     public int getConstantTerm() {
 	if (this instanceof RPNConstant)
 	    return ((RPNConstant) this).getValue();
