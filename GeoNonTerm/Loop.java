@@ -200,21 +200,6 @@ public class Loop {
     // GETTER UND SETTER
 
     /**
-     * @return the sHOULD_PRINT
-     */
-    public static boolean isSHOULD_PRINT() {
-	return SHOULD_PRINT;
-    }
-
-    /**
-     * @param sHOULD_PRINT
-     *            the sHOULD_PRINT to set
-     */
-    public static void setSHOULD_PRINT(boolean sHOULD_PRINT) {
-	SHOULD_PRINT = sHOULD_PRINT;
-    }
-
-    /**
      * @return the guardUpdates
      */
     public UpdateMatrix getGuardUpdates() {
