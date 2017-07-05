@@ -6,7 +6,7 @@ import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.Arit
  * The UnsupportetArithmeticSymbolException is a subclass of {@link Exception}
  * and is used to indicate that an other {@link ArithmeticSymbol} than
  * {@link ArithmeticSymbol#PLUS + (PLUS)}, {@link ArithmeticSymbol#MINUS -
- * (MINUS)}, {@link ArithmeticSymbol#TIMES * (TIMES)}, {@link ArithmeticSymbol#TIMES < (LESS_THAN)} or {@link ArithmeticSymbol#TIMES > (GREATER_THAN)} is used. <br>
+ * (MINUS)} or {@link ArithmeticSymbol#TIMES * (TIMES)} is used. <br>
  * 
  * @author Timo Bergerbusch
  *
@@ -26,7 +26,7 @@ public class UnsupportetArithmeticSymbolException extends Exception {
      *            the unsupported {@link ArithmeticSymbol}
      */
     public UnsupportetArithmeticSymbolException(String message) {
-		super(message);
+	super(message);
     }
 
 }

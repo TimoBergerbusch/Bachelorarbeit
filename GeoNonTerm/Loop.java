@@ -2,8 +2,6 @@ package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
 import org.sat4j.core.VecInt;
 
-import aprove.Framework.Algebra.Matrices.Matrix;
-
 /**
  * This class is the representative of the LOOP-matrices used for the
  * {@link GeoNonTermAnalysis Geometric Non-Termination Analysis}.
