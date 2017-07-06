@@ -153,7 +153,10 @@ public class GeoNonTermAnalysis {
 	    // suche aus den conditions the Regeln raus
 	    this.deriveGuardPart(rules[index]);
 
-	    LOG.writeln(loop.getSystemAsString());
+	    loop.computeIterationMatrixAndConstants();
+
+	    LOG.writeln(loop.getSystemAsString(loop.getIterationMatrix(),
+		    new String[] { "x0_0", "x0_1", "x1_0", "x1_1" }, loop.getIterationConstants()));
 	    // LOG.writeln(rightSide.getSubterm(Position.create(0)).toString());
 	} else {
 	    // die Regel hat die Form f_x -> f_y :|: cond
@@ -225,7 +228,7 @@ public class GeoNonTermAnalysis {
      *            the rule containing the conditions
      */
     private void deriveGuardPart(IGeneralizedRule rule) {
-	LOG.writeln("++++++++++");
+//	LOG.writeln("++++++++++");
 	// LOG.writeln("Cond Term: " + rule.getCondTerm());
 	// LOG.writeln("Cond Vars" + rule.getCondVariables());
 
@@ -259,13 +262,13 @@ public class GeoNonTermAnalysis {
 	for (int i = 0; i < condTerms.size(); i++)
 	    try {
 		RPNNode root = RPNTreeParser.parseSetToTree(condTerms.get(i));
-		// if (SHOULD_PRINT)
-		LOG.writeln("Überprüfe: " + root.toString());
+		if (SHOULD_PRINT)
+		    LOG.writeln("Überprüfe: " + root.toString());
 		for (TRSVariable var : condTerms.get(i).getVariables()) {
 		    if (root.containsVar(var.toString())) {
-			// if (SHOULD_PRINT)
-			LOG.writeln("-> beinhaltet " + var.toString() + " mit dem Factor: "
-				+ root.getFactorOfVar(var.toString()));
+			if (SHOULD_PRINT)
+			    LOG.writeln("-> beinhaltet " + var.toString() + " mit dem Factor: "
+				    + root.getFactorOfVar(var.toString()));
 			guardMatrix.setEntry(i, var.toString(), root.getFactorOfVar(var.toString()));
 		    }
 		}
@@ -276,7 +279,7 @@ public class GeoNonTermAnalysis {
 	    }
 	// TODO: alle > in < umdrehen, sodass die constante immer < da steht:
 	// ... < c
-	guardMatrix.negateMatrix();
+	UpdateMatrix.negateMatrix(guardMatrix);
 	for (int i = 0; i < guardConstants.size(); i++)
 	    guardConstants.set(i, guardConstants.get(i) * -1);
 
@@ -285,7 +288,7 @@ public class GeoNonTermAnalysis {
 
 	// LOG.writeln(guardMatrix);
 	// LOG.writeln(guardConstants);
-	LOG.writeln("++++++++++");
+//	LOG.writeln("++++++++++");
     }
 
     /**

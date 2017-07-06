@@ -1,7 +1,5 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
-import aprove.Framework.Algebra.Matrices.Matrix;
-
 /**
  * Represents a <code>int</code>-matrix and a labeling to the rows and columns.
  * <br>
@@ -16,20 +14,50 @@ import aprove.Framework.Algebra.Matrices.Matrix;
 public class UpdateMatrix {
 
     /**
+     * creates a new square Identity-matrix, which is an {@link UpdateMatrix}
+     * with 1's in the diagonal and 0 else.
+     * 
+     * @param size
+     *            the dimension if the Identity-matrix
+     * @return the Identity-matrix
+     */
+    public static UpdateMatrix IdentityMatrix(int size) {
+	UpdateMatrix I = new UpdateMatrix(size, size);
+
+	for (int i = 0; i < size; i++) {
+	    I.setEntry(i, i, 1);
+	}
+
+	return I;
+    }
+
+    /**
+     * a static method to negate an {@link UpdateMatrix}
+     * 
+     * @param m
+     *            the {@link UpdateMatrix} that should be negated
+     * @return the negated {@link UpdateMatrix}
+     */
+    public static UpdateMatrix negateMatrix(UpdateMatrix m) {
+	for (int i = 0; i < m.rowSize(); i++)
+	    for (int j = 0; j < m.columnSize(); j++)
+		m.setEntry(i, j, m.getEntry(i, j) * -1);
+	return m;
+    }
+
+    /**
      * a two dimensional int array to represent the values as a row-major
      * matrix.<br>
      * <br>
-     * Example: the matrix m =
-     * <table>
-     * <tr>
-     * <td>a</td>
-     * <td>b</td>
-     * </tr>
-     * <tr>
-     * <td>c</td>
-     * <td>d</td>
-     * </tr>
-     * </table>
+     * Example: the matrix
+     * 
+     * <pre>
+     * <code>
+     *        a b
+     *  m = ( c d )
+     * </code>
+     * </pre>
+     * 
      * would be <code>{{a,b},{c,d}}</code>
      */
     private int[][] matrix;
@@ -38,7 +66,7 @@ public class UpdateMatrix {
      * represents the names of the columns. Typically these are the variable
      * names
      */
-    private final String[] varNames;
+    private final String[] columnNames;
 
     /**
      * represents the names of the rows. Depending if it is a square matrix is
@@ -53,10 +81,10 @@ public class UpdateMatrix {
      * <code>default</code>.
      * 
      * @param varNames
-     *            the {@link #varNames names} of the variables
+     *            the {@link #columnNames names} of the variables
      */
     public UpdateMatrix(String[] varNames) {
-	this.varNames = varNames;
+	this.columnNames = varNames;
 	this.rowNames = varNames;
 
 	this.matrix = new int[varNames.length][varNames.length];
@@ -67,23 +95,106 @@ public class UpdateMatrix {
 
     /**
      * creates a new {@link UpdateMatrix}. <br>
-     * It sets the {@link Matrix} to the given dimensions, sets the
-     * {@link #varNames} to the given parameter and initializes the
+     * It sets the {@link #matrix} to the given dimensions, sets the
+     * {@link #columnNames} to the given parameter and initializes the
      * {@link #rowNames} as a typical enumeration.
      * 
      * @param rowDimension
+     *            the row dimension
      * @param columnDimension
-     * @param varNames
+     *            the column dimension
+     * @param columnNames
+     *            the names of the columns
      */
-    public UpdateMatrix(int rowDimension, int columnDimension, String[] varNames) {
-	assert columnDimension == varNames.length;
-	this.varNames = varNames;
+    public UpdateMatrix(int rowDimension, int columnDimension, String[] columnNames) {
+	assert columnDimension == columnNames.length;
+	this.columnNames = columnNames;
 	this.matrix = new int[rowDimension][columnDimension];
 
 	this.rowNames = new String[rowDimension];
 	for (int i = 0; i < rowDimension; i++)
 	    this.rowNames[i] = i + "";
     }
+
+    /**
+     * creates a new {@link UpdateMatrix}. <br>
+     * It sets the {@link #matrix} to the given dimensions and initializes the
+     * {@link #rowNames} and {@link #columnNames} to the corresponding numbers
+     * of the rows/columns.
+     * 
+     * @param rowDimension
+     *            the row dimension
+     * @param columnDimension
+     *            the column dimension
+     */
+    public UpdateMatrix(int rowDimension, int columnDimension) {
+	this.matrix = new int[rowDimension][columnDimension];
+
+	this.columnNames = new String[columnDimension];
+	this.rowNames = new String[rowDimension];
+	for (int i = 0; i < rowDimension; i++) {
+	    this.rowNames[i] = i + "";
+	}
+	for (int i = 0; i < columnDimension; i++) {
+	    this.columnNames[i] = i + "";
+	}
+    }
+
+    /**
+     * inserts a {@link UpdateMatrix} at a given starting point into this
+     * instances #{@link UpdateMatrix}.
+     * 
+     * @param src
+     *            the {@link UpdateMatrix} that should be inserted
+     * @param rowPos
+     *            the row the insertion should start
+     * @param columnPos
+     *            the column the insertion should start
+     */
+    public void insert(UpdateMatrix src, int rowPos, int columnPos) {
+
+	for (int row = rowPos; row < rowPos + src.rowSize(); row++) {
+	    for (int column = columnPos; column < columnPos + src.columnSize(); column++) {
+		this.matrix[row][column] = src.getEntry(row - rowPos, column - columnPos);
+	    }
+	}
+    }
+
+    /**
+     * returns the {@link #matrix} with it's entries and the {@link #columnNames
+     * labeling of the rows and columns} <br>
+     * <br>
+     * Example to the {@link #matrix } <code>m = {{a,b},{c,d}}</code> and the
+     * {@link #columnNames labels} <code>varName= {"x", "y"}</code> <br>
+     * <br>
+     * 
+     * <pre>
+     * <code>
+     *   x y
+     * x a b
+     * y c d
+     * </code>
+     * </pre>
+     * 
+     * @return the {@link #matrix} in the presented form
+     */
+    public String toString() {
+	StringBuilder sb = new StringBuilder();
+	sb.append("\t");
+	for (String s : columnNames)
+	    sb.append(s + "\t");
+	sb.append("\n");
+	for (int i = 0; i < matrix.length; i++) {
+	    sb.append(rowNames[i] + "\t");
+	    for (int j = 0; j < matrix[0].length; j++) {
+		sb.append(matrix[i][j] + "\t");
+	    }
+	    sb.append("\n");
+	}
+	return sb.toString();
+    }
+
+    // GETTER AND SETTER
 
     /**
      * sets an entry in the {@link #matrix} using the exact
@@ -103,7 +214,7 @@ public class UpdateMatrix {
 
     /**
      * sets an entry in the {@link #matrix} using the names of the row- and
-     * column-variables stored in {@link #varNames} using
+     * column-variables stored in {@link #columnNames} using
      * {@link #getIndex(String)} and {@link #setEntry(int, int, int)}
      * 
      * @param rowOf
@@ -138,8 +249,8 @@ public class UpdateMatrix {
      */
     public void setEntry(int rowNumber, String varName, int value) {
 	int columnIndex = -1;
-	for (int i = 0; i < varNames.length; i++) {
-	    if (varNames[i].equals(varName))
+	for (int i = 0; i < columnNames.length; i++) {
+	    if (columnNames[i].equals(varName))
 		columnIndex = i;
 	}
 
@@ -164,16 +275,17 @@ public class UpdateMatrix {
     }
 
     /**
-     * retrieves the index of an entry in {@link #varNames} to the given input.
+     * retrieves the index of an entry in {@link #columnNames} to the given
+     * input.
      * 
      * @param key
      *            the name of the variables, which's index should be returned
-     * @return the index of the key within the {@link #varNames} array. Returns
-     *         <code>null</code> if the value can't be found
+     * @return the index of the key within the {@link #columnNames} array.
+     *         Returns <code>null</code> if the value can't be found
      */
     private int getIndex(String key) {
-	for (int i = 0; i < varNames.length; i++)
-	    if (varNames[i].equals(key))
+	for (int i = 0; i < columnNames.length; i++)
+	    if (columnNames[i].equals(key))
 		return i;
 
 	return -1;
@@ -189,72 +301,32 @@ public class UpdateMatrix {
     }
 
     /**
-     * getter for the {@link #varNames}
+     * getter for the {@link #columnNames}
      * 
      * @return the varNames
      */
     public String[] getVarNames() {
-	return varNames;
+	return columnNames;
     }
 
     /**
-     * returns the {@link #matrix} with it's entries and the {@link #varNames
-     * labeling of the rows and columns} <br>
-     * <br>
-     * Example to the {@link #matrix } <code>m = {{a,b},{c,d}}</code> and the
-     * {@link #varNames labels} <code>varName= {"x", "y"}</code> <br>
-     * <br>
-     * <table>
-     * <tr>
-     * <td></td>
-     * <td>x</td>
-     * <td>y</td>
-     * </tr>
-     * <tr>
-     * <td>x</td>
-     * <td>a</td>
-     * <td>b</td>
-     * </tr>
-     * <tr>
-     * <td>y</td>
-     * <td>c</td>
-     * <td>d</td>
-     * </tr>
-     * </table>
-     * 
-     * @return the {@link #matrix} in the presented form
-     */
-    public String toString() {
-	StringBuilder sb = new StringBuilder();
-	sb.append("\t");
-	for (String s : varNames)
-	    sb.append(s + "\t");
-	sb.append("\n");
-	for (int i = 0; i < matrix.length; i++) {
-	    sb.append(rowNames[i] + "\t");
-	    for (int j = 0; j < matrix[0].length; j++) {
-		sb.append(matrix[i][j] + "\t");
-	    }
-	    sb.append("\n");
-	}
-	return sb.toString();
-    }
-
-    /**
-     * returns the size of rows of the matrix.
+     * returns the number of rows of the matrix.
      * 
      * @return <code>matrix.length</code>
      */
-    public int size() {
+    public int rowSize() {
+	assert matrix != null;
 	return matrix.length;
     }
 
     /**
-     * multiplies the {@link #matrix} with -1.
+     * returns the number of columns of the matrix
+     * 
+     * @return <code>matrix[0].length</code>
      */
-    public void negateMatrix() {
-	for (int i = 0; i < matrix.length; i++)
-	    for (int j = 0; j < matrix[0].length; j++)
-		matrix[i][j] *= -1;
+    public int columnSize() {
+	assert this.rowSize() >= 0;
+	return matrix[0].length;
     }
+
 }

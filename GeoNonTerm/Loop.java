@@ -1,6 +1,7 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
 import org.sat4j.core.VecInt;
+import org.sat4j.specs.IVecInt;
 
 /**
  * This class is the representative of the LOOP-matrices used for the
@@ -34,22 +35,14 @@ public class Loop {
 
     /**
      * the matrix which describes a complete iteration step. It is computed as
-     * <code>A= 
-     * <table>
-     * <tr>
-     * <td>G</td>
-     * <td>0</td>
-     * </tr>
-     * <tr>
-     * <td>M</td>
-     * <td>-I</td>
-     * </tr>
-     * <tr>
-     * <td>-M</td>
-     * <td>I</td>
-     * </tr>
-     * </table>
+     * 
+     * <pre>
+     * <code>
+     *        G  0
+     *  A = ( M -I )
+     *       -M  I
      * </code>
+     * </pre>
      */
     private UpdateMatrix iterationMatrix;
 
@@ -65,19 +58,15 @@ public class Loop {
 
     /**
      * the constants corresponding to the {@link #iterationMatrix}. It is
-     * computed as <code>b= 
-     * <table>
-     * <tr>
-     * <td>g</td>
-     * </tr>
-     * <tr>
-     * <td>-m</td>
-     * </tr>
-     * <tr>
-     * <td>m</td>
-     * </tr>
-     * </table>
+     * computed as
+     * 
+     * <pre>
+     * <code>
+     *        g
+     *  b = (-m)
+     *        m
      * </code>
+     * </pre>
      */
     private VecInt iterationConstants;
 
@@ -95,39 +84,100 @@ public class Loop {
     }
 
     /**
+     * computes the {@link #iterationMatrix}A and {@link #iterationConstants} b
+     * as <br>
+     * 
+     * <pre>
+     * <code>
+     *        G  0             g
+     *  A = ( M -I ) and b = (-m)
+     *       -M  I             m
+     * </code>
+     * </pre>
+     */
+    public void computeIterationMatrixAndConstants() {
+	assert guardMatrix != null;
+	assert guardConstants != null;
+	assert updateMatrix != null;
+	assert updateConstants != null;
+
+	int n = guardMatrix.columnSize();
+	int m = guardMatrix.rowSize();
+
+	iterationConstants = new VecInt(0, 0);
+
+	iterationConstants.pushAll(guardConstants);
+	iterationConstants.pushAll(this.negateVec(updateConstants));
+	iterationConstants.pushAll(updateConstants);
+
+	iterationMatrix = new UpdateMatrix(2 * n + m, 2 * n);
+
+	// Setzen von G
+	iterationMatrix.insert(guardMatrix, 0, 0);
+	// Setzen von M
+	iterationMatrix.insert(updateMatrix, m, 0);
+	// Setzen von -M
+	iterationMatrix.insert(UpdateMatrix.negateMatrix(updateMatrix), m + n, 0);
+	// Setzen von -I
+	iterationMatrix.insert(UpdateMatrix.negateMatrix(UpdateMatrix.IdentityMatrix(n)), m, n);
+	// Setzen von I
+	iterationMatrix.insert(UpdateMatrix.IdentityMatrix(n), m + n, n);
+
+	if (SHOULD_PRINT) {
+	    GeoNonTermAnalysis.LOG.writeln(iterationMatrix);
+	    GeoNonTermAnalysis.LOG.writeln(iterationConstants);
+	}
+    }
+
+    /**
+     * multiplies a {@link VecInt} with -1
+     * 
+     * @param vec
+     *            the {@link VecInt} that should be negated
+     * @return the negated {@link VecInt}
+     */
+    private IVecInt negateVec(VecInt vec) {
+	for (int i = 0; i < vec.size(); i++) {
+	    vec.set(i, vec.get(i) * -1);
+	}
+	return vec;
+    }
+
+    // print OR toString METHODS
+
+    /**
      * returns the matrices in a simple-to-read way. It should be the typical
      * mathematical form.
      * 
      * @return the matrices in mathematical form
      */
-    public String getSystemAsString() {
+    public String getSystemAsString(UpdateMatrix matrix, String[] names, VecInt constant) {
 	StringBuilder sb = new StringBuilder();
 
-	sb.append("Guards:" + "\n");
-	for (int row = 0; row < guardMatrix.getMatrix().length; row++) {
+	for (int row = 0; row < matrix.getMatrix().length; row++) {
 
-	    sb.append(this.getFrontString(row, guardMatrix.getMatrix().length)).append("\t");
+	    sb.append(this.getFrontString(row, matrix.getMatrix().length)).append("\t");
 
-	    for (int column = 0; column < guardMatrix.getMatrix()[0].length; column++) {
-		sb.append(guardMatrix.getEntry(row, column) + "\t");
+	    for (int column = 0; column < matrix.getMatrix()[0].length; column++) {
+		sb.append(matrix.getEntry(row, column) + "\t");
 	    }
 	    // sb.append("]").append("\t");
 
-	    sb.append(this.getBackString(row, guardMatrix.getMatrix().length));
+	    sb.append(this.getBackString(row, matrix.getMatrix().length));
 
 	    sb.append("\t");
-	    if (row < guardMatrix.getVarNames().length) {
-		sb.append(this.getFrontString(row, guardMatrix.getVarNames().length)).append("\t");
-		sb.append(guardMatrix.getVarNames()[row]);
+	    if (row < names.length) {
+		sb.append(this.getFrontString(row, names.length)).append("\t");
+		sb.append(names[row]);
 		// sb.append("x");
-		sb.append("\t").append(this.getBackString(row, guardMatrix.getVarNames().length));
+		sb.append("\t").append(this.getBackString(row, names.length));
 	    } else {
 		sb.append("\t").append("\t");
 	    }
 	    sb.append("\t").append("<=").append("\t");
-	    sb.append(this.getFrontString(row, guardConstants.size())).append("\t");
-	    sb.append(guardConstants.get(row)).append("\t");
-	    sb.append(this.getBackString(row, guardConstants.size())).append("\n");
+	    sb.append(this.getFrontString(row, constant.size())).append("\t");
+	    sb.append(constant.get(row)).append("\t");
+	    sb.append(this.getBackString(row, constant.size())).append("\n");
 
 	}
 
@@ -136,8 +186,9 @@ public class Loop {
     }
 
     /**
-     * a helping function for {@link #getSystemAsString()}. It finds the best
-     * fitting matrix opening symbol for a row with respect to the cap.
+     * a helping function for
+     * {@link #getSystemAsString(UpdateMatrix, String[], VecInt)}. It finds the
+     * best fitting matrix opening symbol for a row with respect to the cap.
      * 
      * @param rowNumber
      *            the row within the matrix
@@ -155,8 +206,9 @@ public class Loop {
     }
 
     /**
-     * a helping function for {@link #getSystemAsString()}. It finds the best
-     * fitting matrix closing symbol for a row with respect to the cap.
+     * a helping function for
+     * {@link #getSystemAsString(UpdateMatrix, String[], VecInt)}. It finds the
+     * best fitting matrix closing symbol for a row with respect to the cap.
      * 
      * @param rowNumber
      *            the row within the matrix
