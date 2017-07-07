@@ -136,7 +136,7 @@ public class Loop {
      *            the {@link VecInt} that should be negated
      * @return the negated {@link VecInt}
      */
-    private IVecInt negateVec(VecInt vec) {
+    private VecInt negateVec(VecInt vec) {
 	for (int i = 0; i < vec.size(); i++) {
 	    vec.set(i, vec.get(i) * -1);
 	}

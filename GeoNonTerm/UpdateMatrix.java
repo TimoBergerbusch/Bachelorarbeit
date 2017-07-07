@@ -194,8 +194,6 @@ public class UpdateMatrix {
 	return sb.toString();
     }
 
-    // GETTER AND SETTER
-
     /**
      * sets an entry in the {@link #matrix} using the exact
      * <code>int</code>-values to adress the entry and sets it to the parameter
@@ -291,6 +289,8 @@ public class UpdateMatrix {
 	return -1;
     }
 
+	// GETTER AND SETTER
+	
     /**
      * getter for the {@link #matrix}
      * 

@@ -4,4 +4,20 @@
 \begin{itemize}
 	\item Berechnung der Iterationmatrix $A$ und der Iterationskonstanten $b$ wie am 05.07.2017 beschrieben.
 	\item kommentieren neuer Methoden und Änderung mancher Sichtbarkeiten
+	\item Änderungen der Methoden und Attribute in dem \emph{GeoNonTerm}-Package. Änderungen:
+		\begin{itemize}
+			\item UpdateMatrix	
+				\begin{itemize}
+					\item IdentityMatrix-Methode, welche mir statisch eine Einheitsmatrix von angebbarer Größe liefert
+					\item negateMatrix-Methode: welche eine Matrix mit $-1$ multipliziert
+					\item Mmbenennung von varNames in columnNames
+					\item neuen Konstruktor mit nur den Dimensionen
+					\item insert-Methode: fügt eine Matrix in die aktuelle ein
+				\end{itemize}
+			\item Loop
+				\begin{itemize}
+					\item computeIterationsMatrixAndConstants-Methode
+					\item negateVec-Methode: multipliziert einen Vektor mit $-1$
+				\end{itemize}
+		\end{itemize}
 \end{itemize}
