@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  7 JUL 2017 10:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  10 JUL 2017 12:01
 entering extended mode
 **./Arbeitstagebuch.tex
 (Arbeitstagebuch.tex
@@ -1967,7 +1967,55 @@ Package babel Info: Redefining ngerman shorthand "~
                                                   \fi \fi 
 l.5 	\item B
             erechnung der Iterationmatrix $A$ und der Iterationskonstanten $...
-]))
+]) (Tage/07.07.2017.tex
+Overfull \hbox (23.95201pt too wide) in paragraph at lines 5--25
+\T1/LinuxLibertineT-TOsF/m/n/10.95 (-20) Demnach müs-sen die kor-re-spon-die-re
+n-den \T1/LinuxLibertineMonoT-TLF/m/n/10.95 Y \T1/LinuxLibertineT-TOsF/m/n/10.9
+5 (-20) an-ge-passt wer-den. $\OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95  [] \O
+T1/cmr/m/n/10.95 =
+ []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 25.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 25.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 25.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 25.
+[25]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 38.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 38.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 38.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 38.
+ [26]
+Overfull \hbox (6.69946pt too wide) in paragraph at lines 41--42
+[]\T1/LinuxLibertineT-TOsF/m/n/10.95 (-20) Point: {{-1,-1,0,0},{3,1,-1,0},{0,2,
+0,-1},{-3,-1,1,0},{0,-2,0,1}}*{3,1,10,2}<={-4,0,0,0,0} 
+ []
+
+
+Overfull \hbox (16.68147pt too wide) in paragraph at lines 42--43
+[]\T1/LinuxLibertineT-TOsF/m/n/10.95 (-20) Ray 1: {{-1,-1,0,0},{3,1,-1,0},{0,2,
+0,-1},{-3,-1,1,0},{0,-2,0,1}}*{a,b,3*a,3*b}<={0,0,0,0,0} 
+ []
+
+
+Overfull \hbox (27.49457pt too wide) in paragraph at lines 43--44
+[]\T1/LinuxLibertineT-TOsF/m/n/10.95 (-20) Ray 2: {{-1,-1,0,0},{3,1,-1,0},{0,2,
+0,-1},{-3,-1,1,0},{0,-2,0,1}}*{3,1,2*3+4,2*1}<={0,0,0,0,0} 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+
+ []
+
+))
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 96.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1976,7 +2024,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 96.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 96.
- [25]
+ [27]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 96.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 96.
  (Arbeitstagebuch.aux)
@@ -1991,11 +2039,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 96.
 ### semi simple group (level 1) entered at line 87 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 26213 strings out of 493333
- 478362 string characters out of 3144357
+ 26228 strings out of 493333
+ 478624 string characters out of 3144357
  696113 words of memory out of 3000000
- 28808 multiletter control sequences out of 15000+200000
- 98086 words of font info for 179 fonts, out of 3000000 for 9000
+ 28811 multiletter control sequences out of 15000+200000
+ 98457 words of font info for 181 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,14n,90p,8852b,2200s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Timo Bergerbusch/AppData/Roaming/MiKTeX/2.9/fonts/enc
@@ -2021,9 +2069,9 @@ nts/type1/public/amsfonts/cm/cmr10.pfb><D:/Tools/MikTex/fonts/type1/public/amsf
 onts/cm/cmr8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:
 /Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Tools/MikTex/fonts/t
 ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Arbeitstagebuch.pdf (25 pages, 562449 bytes).
+Output written on Arbeitstagebuch.pdf (27 pages, 570140 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 213 named destinations out of 1000 (max. 500000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 219 named destinations out of 1000 (max. 500000)
  25601 words of extra memory for PDF output out of 29859 (max. 10000000)
 
