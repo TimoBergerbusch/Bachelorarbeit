@@ -1,5 +1,7 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
+import org.sat4j.core.VecInt;
+
 /**
  * Represents a <code>int</code>-matrix and a labeling to the rows and columns.
  * <br>
@@ -43,6 +45,22 @@ public class UpdateMatrix {
 	    for (int j = 0; j < m.columnSize(); j++)
 		m.setEntry(i, j, m.getEntry(i, j) * -1);
 	return m;
+    }
+
+    public static VecInt mult(UpdateMatrix m, VecInt vec) {
+	assert m.columnSize() == vec.size();
+
+	VecInt res = new VecInt(m.rowSize(), 0);
+	int entry;
+	for (int i = 0; i < m.rowSize(); i++) {
+	    entry = 0;
+	    for (int j = 0; j < m.columnSize(); j++) {
+		entry += m.getEntry(i, j) * vec.get(j);
+	    }
+	    res.set(i, entry);
+	}
+
+	return res;
     }
 
     /**
@@ -194,6 +212,8 @@ public class UpdateMatrix {
 	return sb.toString();
     }
 
+    // GETTER AND SETTER
+
     /**
      * sets an entry in the {@link #matrix} using the exact
      * <code>int</code>-values to adress the entry and sets it to the parameter
@@ -289,8 +309,6 @@ public class UpdateMatrix {
 	return -1;
     }
 
-	// GETTER AND SETTER
-	
     /**
      * getter for the {@link #matrix}
      * 

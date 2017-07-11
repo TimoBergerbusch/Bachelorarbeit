@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.sat4j.core.VecInt;
+
 public class Logger {
 
     /**
@@ -155,5 +157,13 @@ public class Logger {
 	sb.append("}");
 
 	return sb.toString();
+    }
+
+    public String[] VecIntToArray(VecInt vec) {
+	String[] items = new String[vec.size()];
+	for (int i = 0; i < items.length; i++) {
+	    items[i] = vec.get(i) + "";
+	}
+	return items;
     }
 }

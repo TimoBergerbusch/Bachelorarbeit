@@ -107,7 +107,7 @@ public class Loop {
 	iterationConstants = new VecInt(0, 0);
 
 	iterationConstants.pushAll(guardConstants);
-	iterationConstants.pushAll(this.negateVec(updateConstants));
+	iterationConstants.pushAll(GeoNonTermAnalysis.negateVec(updateConstants));
 	iterationConstants.pushAll(updateConstants);
 
 	iterationMatrix = new UpdateMatrix(2 * n + m, 2 * n);
@@ -129,20 +129,6 @@ public class Loop {
 	}
     }
 
-    /**
-     * multiplies a {@link VecInt} with -1
-     * 
-     * @param vec
-     *            the {@link VecInt} that should be negated
-     * @return the negated {@link VecInt}
-     */
-    private VecInt negateVec(VecInt vec) {
-	for (int i = 0; i < vec.size(); i++) {
-	    vec.set(i, vec.get(i) * -1);
-	}
-	return vec;
-    }
-
     // print OR toString METHODS
 
     /**
@@ -151,33 +137,33 @@ public class Loop {
      * 
      * @return the matrices in mathematical form
      */
-    public String getSystemAsString(UpdateMatrix matrix, String[] names, VecInt constant) {
+    public static String getSystemAsString(UpdateMatrix matrix, String[] names, VecInt constant) {
 	StringBuilder sb = new StringBuilder();
 
 	for (int row = 0; row < matrix.getMatrix().length; row++) {
 
-	    sb.append(this.getFrontString(row, matrix.getMatrix().length)).append("\t");
+	    sb.append(Loop.getFrontString(row, matrix.getMatrix().length)).append("\t");
 
 	    for (int column = 0; column < matrix.getMatrix()[0].length; column++) {
 		sb.append(matrix.getEntry(row, column) + "\t");
 	    }
 	    // sb.append("]").append("\t");
 
-	    sb.append(this.getBackString(row, matrix.getMatrix().length));
+	    sb.append(Loop.getBackString(row, matrix.getMatrix().length));
 
 	    sb.append("\t");
 	    if (row < names.length) {
-		sb.append(this.getFrontString(row, names.length)).append("\t");
+		sb.append(Loop.getFrontString(row, names.length)).append("\t");
 		sb.append(names[row]);
 		// sb.append("x");
-		sb.append("\t").append(this.getBackString(row, names.length));
+		sb.append("\t").append(Loop.getBackString(row, names.length));
 	    } else {
 		sb.append("\t").append("\t");
 	    }
 	    sb.append("\t").append("<=").append("\t");
-	    sb.append(this.getFrontString(row, constant.size())).append("\t");
+	    sb.append(Loop.getFrontString(row, constant.size())).append("\t");
 	    sb.append(constant.get(row)).append("\t");
-	    sb.append(this.getBackString(row, constant.size())).append("\n");
+	    sb.append(Loop.getBackString(row, constant.size())).append("\n");
 
 	}
 
@@ -196,7 +182,7 @@ public class Loop {
      *            the max. number of rows
      * @return a top left, mid oder bottom left matrix opening symbol
      */
-    private String getFrontString(int rowNumber, int cap) {
+    private static String getFrontString(int rowNumber, int cap) {
 	if (rowNumber == 0)
 	    return "┌";
 	else if (rowNumber == cap - 1)
@@ -216,7 +202,7 @@ public class Loop {
      *            the max. number of rows
      * @return a top right, mid oder bottom right matrix closing symbol
      */
-    private String getBackString(int rowNumber, int cap) {
+    private static String getBackString(int rowNumber, int cap) {
 	if (rowNumber == 0)
 	    return "┐";
 	else if (rowNumber == cap - 1)

@@ -38,6 +38,49 @@ import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.Unsu
 public class GeoNonTermAnalysis {
 
     /**
+     * multiplies a {@link VecInt} with -1
+     * 
+     * @param vec
+     *            the {@link VecInt} that should be negated
+     * @return the negated {@link VecInt}
+     */
+    protected static VecInt negateVec(VecInt vec) {
+	for (int i = 0; i < vec.size(); i++) {
+	    vec.set(i, vec.get(i) * -1);
+	}
+	return vec;
+    }
+
+    protected static VecInt add(VecInt a, VecInt b) {
+	assert a.size() == b.size();
+
+	VecInt res = new VecInt(a.size(), 0);
+	for (int i = 0; i < a.size(); i++) {
+	    res.set(i, a.get(i) + b.get(i));
+	}
+
+	return res;
+    }
+
+    protected static boolean lessOrEqualThan(VecInt vec, VecInt b) {
+	assert vec.size() == b.size();
+
+	for (int i = 0; i < vec.size(); i++)
+	    if (!(vec.get(i) <= b.get(i)))
+		return false;
+
+	return true;
+    }
+
+    protected static VecInt mult(VecInt vec, int cons) {
+	VecInt res = new VecInt(vec.size(), 0);
+	for (int i = 0; i < vec.size(); i++) {
+	    res.set(i, vec.get(i) * cons);
+	}
+	return res;
+    }
+
+    /**
      * a static boolean to determine if the information about the process should
      * be printed using the {@link GeoNonTermAnalysis#LOG Logger}.
      */
@@ -81,8 +124,50 @@ public class GeoNonTermAnalysis {
     public GeoNonTermAnalysis(IRSwTProblem problem) {
 	this.problem = problem;
 	rules = this.problem.getRules().toArray(new IGeneralizedRule[] {});
-	this.deriveSTEM();
-	this.deriveLOOP();
+	 this.deriveSTEM();
+	 this.deriveLOOP();
+	
+	 GeoNonTermArgument gna = new GeoNonTermArgument(stem,
+	 new VecInt[] { new VecInt(new int[] { 11, 1 }), new VecInt(new int[]
+	 { 11, 1 }) }, new int[] { 3, 2 },
+	 new int[] { 1 });
+	
+	 LOG.writeln("Point: " +
+	 gna.checkPointCriteria(loop.getIterationMatrix(),
+	 loop.getIterationConstants()));
+	 LOG.writeln("Ray: " +
+	 gna.checkRayCriteria(loop.getIterationMatrix()));
+	 LOG.writeln("Overall: " + gna.validate(loop.getIterationMatrix(),
+	 loop.getIterationConstants()));
+
+//	Stem teststem = new Stem(null);
+//	teststem.setStemVec(new VecInt(new int[] { 3, 1 }));
+//	GeoNonTermArgument gna = new GeoNonTermArgument(teststem,
+//		new VecInt[] { new VecInt(new int[] { 4, 0 }), new VecInt(new int[] { 3, 1 }) }, new int[] { 3, 2 },
+//		new int[] { 1 });
+//
+//	UpdateMatrix g = new UpdateMatrix(1, 2);
+//	g.setEntry(0, 0, -1);
+//	g.setEntry(0, 1, -1);
+//	VecInt gConst = new VecInt(new int[] { -4 });
+//	UpdateMatrix m = new UpdateMatrix(2, 2);
+//	m.setEntry(0, 0, 3);
+//	m.setEntry(0, 1, 1);
+//	m.setEntry(1, 1, 2);
+//	VecInt mConst = new VecInt(new int[] { 0, 0 });
+//	Loop testloop = new Loop();
+//	testloop.setGuardUpdates(g);
+//	testloop.setGuardConstants(gConst);
+//	testloop.setUpdateMatrix(m);
+//	testloop.setUpdateConstants(mConst);
+//	testloop.computeIterationMatrixAndConstants();
+//
+//	LOG.writeln(Loop.getSystemAsString(testloop.getIterationMatrix(),
+//		new String[] { "x0_0", "x0_1", "x1_0", "x1_1" }, testloop.getIterationConstants()));
+//	LOG.writeln(
+//		"Point: " + gna.checkPointCriteria(testloop.getIterationMatrix(), testloop.getIterationConstants()));
+//	LOG.writeln("Ray: " + gna.checkRayCriteria(testloop.getIterationMatrix()));
+//	LOG.writeln("Overall: " + gna.validate(testloop.getIterationMatrix(), testloop.getIterationConstants()));
 
 	LOG.close();
     }
@@ -228,7 +313,7 @@ public class GeoNonTermAnalysis {
      *            the rule containing the conditions
      */
     private void deriveGuardPart(IGeneralizedRule rule) {
-//	LOG.writeln("++++++++++");
+	// LOG.writeln("++++++++++");
 	// LOG.writeln("Cond Term: " + rule.getCondTerm());
 	// LOG.writeln("Cond Vars" + rule.getCondVariables());
 
@@ -252,6 +337,12 @@ public class GeoNonTermAnalysis {
 	    }
 	}
 
+	ArrayList<TRSTerm> condTermsReverse = new ArrayList<>();
+	for (int i = condTerms.size() - 1; i >= 0; i--) {
+	    condTermsReverse.add(condTerms.get(i));
+	}
+	condTerms = condTermsReverse;
+
 	// Die GuardMatrix für die versch. Bedingungen
 	UpdateMatrix guardMatrix = new UpdateMatrix(condTerms.size(), rule.getLeft().getVariables().size(),
 		this.deriveVariablesAsStringArray(rule.getLeft().getVariables()));
@@ -274,21 +365,20 @@ public class GeoNonTermAnalysis {
 		}
 		guardConstants.set(i, root.getConstantTerm());
 	    } catch (UnsupportetArithmeticSymbolException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    }
-	// TODO: alle > in < umdrehen, sodass die constante immer < da steht:
+	// alle > in < umdrehen, sodass die constante immer < da steht:
 	// ... < c
 	UpdateMatrix.negateMatrix(guardMatrix);
 	for (int i = 0; i < guardConstants.size(); i++)
-	    guardConstants.set(i, guardConstants.get(i) * -1);
+	    guardConstants.set(i, guardConstants.get(i) * -1 - 1);
 
 	loop.setGuardUpdates(guardMatrix);
 	loop.setGuardConstants(guardConstants);
 
 	// LOG.writeln(guardMatrix);
 	// LOG.writeln(guardConstants);
-//	LOG.writeln("++++++++++");
+	// LOG.writeln("++++++++++");
     }
 
     /**
