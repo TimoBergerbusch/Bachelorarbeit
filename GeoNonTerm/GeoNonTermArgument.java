@@ -1,7 +1,5 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
-import java.io.Console;
-
 import org.sat4j.core.VecInt;
 
 public class GeoNonTermArgument {
@@ -48,11 +46,12 @@ public class GeoNonTermArgument {
 	vec.pushAll(x.getStemVec());
 	vec.pushAll(GeoNonTermAnalysis.add(x.getStemVec(), sum));
 
-	 GeoNonTermAnalysis.LOG.writeln(Loop.getSystemAsString(a,
-	 GeoNonTermAnalysis.LOG.VecIntToArray(vec), b));
-	 GeoNonTermAnalysis.LOG.writeln(UpdateMatrix.mult(a, vec));
+	if(!checkHolding(a, vec, b)){
+	    GeoNonTermAnalysis.LOG.writeln("PointCriteria doesn't hold");
+	    return false;
+	}
 
-	return checkHolding(a, vec, b);
+	return true;
     }
 
     public boolean checkRayCriteria(UpdateMatrix a) {
@@ -70,15 +69,12 @@ public class GeoNonTermArgument {
 	    else
 		vec.pushAll(GeoNonTermAnalysis.add(GeoNonTermAnalysis.mult(y[i], lambda[i]),
 			GeoNonTermAnalysis.mult(y[i - 1], mu[i - 1])));
-	    // GeoNonTermAnalysis.LOG.writeln(y[i] + "*" + lambda[i] + "+" + y[i
-	    // - 1] + "*" + mu[i - 1]);
 
-	    // GeoNonTermAnalysis.LOG
-	    // .writeln(Loop.getSystemAsString(a,
-	    // GeoNonTermAnalysis.LOG.VecIntToArray(vec), nullen));
-
-	    if (!this.checkHolding(a, vec, nullen))
+	    if (!this.checkHolding(a, vec, nullen)) {
+		GeoNonTermAnalysis.LOG.writeln("RayCriteria of index: " + i + "doesn't hold!");
+		GeoNonTermAnalysis.LOG.writeln(Loop.getSystemAsString(a, vec, nullen));
 		return false;
+	    }
 	    vec.clear();
 	}
 

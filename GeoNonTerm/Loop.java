@@ -171,6 +171,10 @@ public class Loop {
 
     }
 
+    public static String getSystemAsString(UpdateMatrix matrix, VecInt vec, VecInt constant) {
+	return getSystemAsString(matrix, GeoNonTermAnalysis.LOG.VecIntToArray(vec), constant);
+    }
+
     /**
      * a helping function for
      * {@link #getSystemAsString(UpdateMatrix, String[], VecInt)}. It finds the
