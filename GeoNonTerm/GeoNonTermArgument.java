@@ -46,7 +46,7 @@ public class GeoNonTermArgument {
 	vec.pushAll(x.getStemVec());
 	vec.pushAll(GeoNonTermAnalysis.add(x.getStemVec(), sum));
 
-	if(!checkHolding(a, vec, b)){
+	if (!checkHolding(a, vec, b)) {
 	    GeoNonTermAnalysis.LOG.writeln("PointCriteria doesn't hold");
 	    return false;
 	}

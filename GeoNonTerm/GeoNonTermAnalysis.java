@@ -7,6 +7,11 @@ import java.util.Stack;
 
 import org.apache.commons.math3.linear.EigenDecomposition;
 import org.sat4j.core.VecInt;
+import org.sat4j.minisat.SolverFactory;
+import org.sat4j.specs.ContradictionException;
+import org.sat4j.specs.IProblem;
+import org.sat4j.specs.ISolver;
+import org.sat4j.specs.TimeoutException;
 
 import aprove.DPFramework.BasicStructures.Position;
 import aprove.DPFramework.BasicStructures.TRSCompoundTerm;
@@ -83,9 +88,32 @@ public class GeoNonTermAnalysis {
 
     private static int[] computeEigenvalues(UpdateMatrix m) {
 	EigenDecomposition ed = new EigenDecomposition(m.getAsRealMatrix());
-	for (double d : ed.getRealEigenvalues())
-	    LOG.writeln("Eigenvalue: " + d);
-	return new int[] { 3, 2 };
+	double[] values = ed.getRealEigenvalues();
+	int[] normValues = new int[values.length];
+	for (int i = 0; i < values.length; i++)
+	    normValues[i] = (int) Math.abs((values[i]));
+	return normValues;
+    }
+
+    /**
+     * converts a {@link Set} of {@link TRSVariable TRSVariable's} into a
+     * <code>String</code> array of the same size only storing their names given
+     * by {@link TRSVariable}{@link #toString()}.
+     * 
+     * @param variables
+     *            the Set of {@link TRSVariable TRSVariable's}
+     * @return the <code>String</code> array of the variables names
+     */
+    private static String[] deriveVariablesAsStringArray(Set<TRSVariable> variables) {
+	String[] names = new String[variables.size()];
+	Iterator<TRSVariable> iterator = variables.iterator();
+	int i = 0;
+	while (iterator.hasNext()) {
+	    names[i] = iterator.next().toString();
+	    i++;
+	}
+
+	return names;
     }
 
     /**
@@ -132,13 +160,11 @@ public class GeoNonTermAnalysis {
     public GeoNonTermAnalysis(IRSwTProblem problem) {
 	this.problem = problem;
 	rules = this.problem.getRules().toArray(new IGeneralizedRule[] {});
+
 	this.deriveSTEM();
 	this.deriveLOOP();
 
-	GeoNonTermArgument gna = new GeoNonTermArgument(stem,
-		new VecInt[] { new VecInt(new int[] { 12, 0 }), new VecInt(new int[] { 10, 2 }) },
-		computeEigenvalues(loop.getUpdateMatrix()), new int[] { 1 });
-
+	GeoNonTermArgument gna = this.tryDerivingAGNA();
 	LOG.writeln("GNA-Test: " + gna.validate(loop.getIterationMatrix(), loop.getIterationConstants()));
 
 	LOG.close();
@@ -355,25 +381,30 @@ public class GeoNonTermAnalysis {
 	// LOG.writeln("++++++++++");
     }
 
-    /**
-     * converts a {@link Set} of {@link TRSVariable TRSVariable's} into a
-     * <code>String</code> array of the same size only storing their names given
-     * by {@link TRSVariable}{@link #toString()}.
-     * 
-     * @param variables
-     *            the Set of {@link TRSVariable TRSVariable's}
-     * @return the <code>String</code> array of the variables names
-     */
-    private String[] deriveVariablesAsStringArray(Set<TRSVariable> variables) {
-	String[] names = new String[variables.size()];
-	Iterator<TRSVariable> iterator = variables.iterator();
-	int i = 0;
-	while (iterator.hasNext()) {
-	    names[i] = iterator.next().toString();
-	    i++;
+    private GeoNonTermArgument tryDerivingAGNA() {
+	int[] eigenvalues = computeEigenvalues(loop.getUpdateMatrix());
+
+	// +++++++++++++++++++++++++++++++++++++++++++++
+	ISolver solver = SolverFactory.newDefault();
+	solver.setTimeout(36000);
+	solver.newVar(4);
+	try {
+	    solver.addClause(new VecInt(new int[] { 1, 2, 3, 4 }));
+
+	    IProblem problem = solver;
+
+	    LOG.writeln("Problem: " + problem.toString());
+	    LOG.writeln("Result: " + problem.isSatisfiable());
+	} catch (ContradictionException | TimeoutException e) {
+	    e.printStackTrace();
 	}
 
-	return names;
+	// +++++++++++++++++++++++++++++++++++++++++++++
+	GeoNonTermArgument gna = new GeoNonTermArgument(stem,
+		new VecInt[] { new VecInt(new int[] { 12, 0 }), new VecInt(new int[] { 10, 2 }) }, eigenvalues,
+		new int[] { 1 });
+
+	return gna;
     }
 
     /**
