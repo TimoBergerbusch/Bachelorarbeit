@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Stack;
 
+import org.apache.commons.math3.linear.EigenDecomposition;
 import org.sat4j.core.VecInt;
 
 import aprove.DPFramework.BasicStructures.Position;
@@ -80,6 +81,13 @@ public class GeoNonTermAnalysis {
 	return res;
     }
 
+    private static int[] computeEigenvalues(UpdateMatrix m) {
+	EigenDecomposition ed = new EigenDecomposition(m.getAsRealMatrix());
+	for (double d : ed.getRealEigenvalues())
+	    LOG.writeln("Eigenvalue: " + d);
+	return new int[] { 3, 2 };
+    }
+
     /**
      * a static boolean to determine if the information about the process should
      * be printed using the {@link GeoNonTermAnalysis#LOG Logger}.
@@ -128,8 +136,8 @@ public class GeoNonTermAnalysis {
 	this.deriveLOOP();
 
 	GeoNonTermArgument gna = new GeoNonTermArgument(stem,
-		new VecInt[] { new VecInt(new int[] { 12, 0 }), new VecInt(new int[] { 10, 2 }) }, new int[] { 3, 2 },
-		new int[] { 1 });
+		new VecInt[] { new VecInt(new int[] { 12, 0 }), new VecInt(new int[] { 10, 2 }) },
+		computeEigenvalues(loop.getUpdateMatrix()), new int[] { 1 });
 
 	LOG.writeln("GNA-Test: " + gna.validate(loop.getIterationMatrix(), loop.getIterationConstants()));
 
@@ -205,7 +213,6 @@ public class GeoNonTermAnalysis {
 	    loop.computeIterationMatrixAndConstants();
 
 	    if (SHOULD_PRINT) {
-		LOG.writeln("the derived Iteration:");
 		LOG.writeln(Loop.getSystemAsString(loop.getIterationMatrix(),
 			new String[] { "x0_0", "x0_1", "x1_0", "x1_1" }, loop.getIterationConstants()));
 	    }

@@ -1,5 +1,7 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
+import org.apache.commons.math3.linear.BlockRealMatrix;
+import org.apache.commons.math3.linear.RealMatrix;
 import org.sat4j.core.VecInt;
 
 /**
@@ -345,6 +347,14 @@ public class UpdateMatrix {
     public int columnSize() {
 	assert this.rowSize() >= 0;
 	return matrix[0].length;
+    }
+
+    public RealMatrix getAsRealMatrix() {
+	double[][] doubleMatrix = new double[this.rowSize()][this.columnSize()];
+	for (int i = 0; i < this.rowSize(); i++)
+	    for (int j = 0; j < this.columnSize(); j++)
+		doubleMatrix[i][j] = matrix[i][j];
+	return new BlockRealMatrix(doubleMatrix);
     }
 
 }
