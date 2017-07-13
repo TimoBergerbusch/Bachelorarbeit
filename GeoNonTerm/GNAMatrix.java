@@ -1,8 +1,8 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
 import org.apache.commons.math3.linear.BlockRealMatrix;
+import org.apache.commons.math3.linear.EigenDecomposition;
 import org.apache.commons.math3.linear.RealMatrix;
-import org.sat4j.core.VecInt;
 
 /**
  * Represents a <code>int</code>-matrix and a labeling to the rows and columns.
@@ -15,54 +15,24 @@ import org.sat4j.core.VecInt;
  * @author Timo Bergerbusch
  *
  */
-public class UpdateMatrix {
+public class GNAMatrix {
 
     /**
-     * creates a new square Identity-matrix, which is an {@link UpdateMatrix}
-     * with 1's in the diagonal and 0 else.
+     * creates a new square Identity-matrix, which is an {@link GNAMatrix} with
+     * 1's in the diagonal and 0 else.
      * 
      * @param size
      *            the dimension if the Identity-matrix
      * @return the Identity-matrix
      */
-    public static UpdateMatrix IdentityMatrix(int size) {
-	UpdateMatrix I = new UpdateMatrix(size, size);
+    public static GNAMatrix IdentityMatrix(int size) {
+	GNAMatrix I = new GNAMatrix(size, size);
 
 	for (int i = 0; i < size; i++) {
 	    I.setEntry(i, i, 1);
 	}
 
 	return I;
-    }
-
-    /**
-     * a static method to negate an {@link UpdateMatrix}
-     * 
-     * @param m
-     *            the {@link UpdateMatrix} that should be negated
-     * @return the negated {@link UpdateMatrix}
-     */
-    public static UpdateMatrix negateMatrix(UpdateMatrix m) {
-	for (int i = 0; i < m.rowSize(); i++)
-	    for (int j = 0; j < m.columnSize(); j++)
-		m.setEntry(i, j, m.getEntry(i, j) * -1);
-	return m;
-    }
-
-    public static VecInt mult(UpdateMatrix m, VecInt vec) {
-	assert m.columnSize() == vec.size();
-
-	VecInt res = new VecInt(m.rowSize(), 0);
-	int entry;
-	for (int i = 0; i < m.rowSize(); i++) {
-	    entry = 0;
-	    for (int j = 0; j < m.columnSize(); j++) {
-		entry += m.getEntry(i, j) * vec.get(j);
-	    }
-	    res.set(i, entry);
-	}
-
-	return res;
     }
 
     /**
@@ -95,7 +65,7 @@ public class UpdateMatrix {
     private final String[] rowNames;
 
     /**
-     * creates a new {@link UpdateMatrix}. <br>
+     * creates a new {@link GNAMatrix}. <br>
      * It sets the {@link #matrix} as a square matrix defined by the length of
      * the parameter array length and sets every entry to <code>0</code> by
      * <code>default</code>.
@@ -103,7 +73,7 @@ public class UpdateMatrix {
      * @param varNames
      *            the {@link #columnNames names} of the variables
      */
-    public UpdateMatrix(String[] varNames) {
+    public GNAMatrix(String[] varNames) {
 	this.columnNames = varNames;
 	this.rowNames = varNames;
 
@@ -114,7 +84,7 @@ public class UpdateMatrix {
     }
 
     /**
-     * creates a new {@link UpdateMatrix}. <br>
+     * creates a new {@link GNAMatrix}. <br>
      * It sets the {@link #matrix} to the given dimensions, sets the
      * {@link #columnNames} to the given parameter and initializes the
      * {@link #rowNames} as a typical enumeration.
@@ -126,7 +96,7 @@ public class UpdateMatrix {
      * @param columnNames
      *            the names of the columns
      */
-    public UpdateMatrix(int rowDimension, int columnDimension, String[] columnNames) {
+    public GNAMatrix(int rowDimension, int columnDimension, String[] columnNames) {
 	assert columnDimension == columnNames.length;
 	this.columnNames = columnNames;
 	this.matrix = new int[rowDimension][columnDimension];
@@ -137,7 +107,7 @@ public class UpdateMatrix {
     }
 
     /**
-     * creates a new {@link UpdateMatrix}. <br>
+     * creates a new {@link GNAMatrix}. <br>
      * It sets the {@link #matrix} to the given dimensions and initializes the
      * {@link #rowNames} and {@link #columnNames} to the corresponding numbers
      * of the rows/columns.
@@ -147,7 +117,7 @@ public class UpdateMatrix {
      * @param columnDimension
      *            the column dimension
      */
-    public UpdateMatrix(int rowDimension, int columnDimension) {
+    public GNAMatrix(int rowDimension, int columnDimension) {
 	this.matrix = new int[rowDimension][columnDimension];
 
 	this.columnNames = new String[columnDimension];
@@ -160,24 +130,62 @@ public class UpdateMatrix {
 	}
     }
 
+    public GNAMatrix negate() {
+	this.matrix = this.negatedMatrixCopy().matrix;
+	return this;
+    }
+
+    public GNAMatrix negatedMatrixCopy() {
+	GNAMatrix res = new GNAMatrix(this.rowSize(), this.columnSize());
+	for (int i = 0; i < res.rowSize(); i++)
+	    for (int j = 0; j < res.columnSize(); j++)
+		res.setEntry(i, j, this.getEntry(i, j) * -1);
+	return res;
+    }
+
+    public GNAVector mult(GNAVector vec) {
+	assert this.columnSize() == vec.size();
+
+	GNAVector res = new GNAVector(this.rowSize(), 0);
+	int entry;
+	for (int i = 0; i < this.rowSize(); i++) {
+	    entry = 0;
+	    for (int j = 0; j < this.columnSize(); j++) {
+		entry += this.getEntry(i, j) * vec.get(j);
+	    }
+	    res.set(i, entry);
+	}
+
+	return res;
+    }
+
     /**
-     * inserts a {@link UpdateMatrix} at a given starting point into this
-     * instances #{@link UpdateMatrix}.
+     * inserts a {@link GNAMatrix} at a given starting point into this instances
+     * #{@link GNAMatrix}.
      * 
      * @param src
-     *            the {@link UpdateMatrix} that should be inserted
+     *            the {@link GNAMatrix} that should be inserted
      * @param rowPos
      *            the row the insertion should start
      * @param columnPos
      *            the column the insertion should start
      */
-    public void insert(UpdateMatrix src, int rowPos, int columnPos) {
+    public void insert(GNAMatrix src, int rowPos, int columnPos) {
 
 	for (int row = rowPos; row < rowPos + src.rowSize(); row++) {
 	    for (int column = columnPos; column < columnPos + src.columnSize(); column++) {
 		this.matrix[row][column] = src.getEntry(row - rowPos, column - columnPos);
 	    }
 	}
+    }
+
+    public int[] computeEigenvalues() {
+	EigenDecomposition ed = new EigenDecomposition(this.getAsRealMatrix());
+	double[] values = ed.getRealEigenvalues();
+	int[] normValues = new int[values.length];
+	for (int i = 0; i < values.length; i++)
+	    normValues[i] = (int) Math.abs((values[i]));
+	return normValues;
     }
 
     /**
@@ -250,8 +258,8 @@ public class UpdateMatrix {
 	if (row >= 0 && column >= 0)
 	    this.setEntry(row, column, value);
 	else
-	    GeoNonTermAnalysis.LOG.writeln("ERRROR: Invalid Matrix setEntry Attributes: " + rowOf + "= " + row + "\t"
-		    + valueOf + "=" + column + "\t" + value);
+	    Logger.getLog().writeln("ERRROR: Invalid Matrix setEntry Attributes: " + rowOf + "= " + row + "\t" + valueOf
+		    + "=" + column + "\t" + value);
     }
 
     /**

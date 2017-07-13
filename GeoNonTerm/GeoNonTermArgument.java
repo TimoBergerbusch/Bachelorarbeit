@@ -1,18 +1,16 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
-import org.sat4j.core.VecInt;
-
 public class GeoNonTermArgument {
 
     private Stem x;
 
-    private VecInt[] y;
+    private GNAVector[] y;
 
     private int[] lambda;
 
     private int[] mu;
 
-    public GeoNonTermArgument(Stem x, VecInt[] y, int[] lambda, int[] mu) {
+    public GeoNonTermArgument(Stem x, GNAVector[] y, int[] lambda, int[] mu) {
 	assert y.length == lambda.length;
 	assert mu.length == y.length - 1;
 
@@ -22,7 +20,7 @@ public class GeoNonTermArgument {
 	this.mu = mu;
     }
 
-    public boolean validate(UpdateMatrix a, VecInt b) {
+    public boolean validate(GNAMatrix a, GNAVector b) {
 
 	boolean bool = true;
 
@@ -34,29 +32,31 @@ public class GeoNonTermArgument {
 	return bool;
     }
 
-    public boolean checkPointCriteria(UpdateMatrix a, VecInt b) {
+    public boolean checkPointCriteria(GNAMatrix a, GNAVector b) {
 
-	VecInt sum = y[0];
+	GNAVector sum = y[0];
 	for (int i = 1; i < y.length; i++) {
-	    sum = GeoNonTermAnalysis.add(sum, y[i]);
+	    // sum = GeoNonTermAnalysis.add(sum, y[i]);
+	    sum = sum.add(y[i]);
 	}
 
-	VecInt vec = new VecInt();
+	GNAVector vec = new GNAVector();
 
 	vec.pushAll(x.getStemVec());
-	vec.pushAll(GeoNonTermAnalysis.add(x.getStemVec(), sum));
+	// vec.pushAll(GeoNonTermAnalysis.add(x.getStemVec(), sum));
+	vec.pushAll(sum.add(x.getStemVec()));
 
 	if (!checkHolding(a, vec, b)) {
-	    GeoNonTermAnalysis.LOG.writeln("PointCriteria doesn't hold");
+	    Logger.getLog().writeln("PointCriteria doesn't hold");
 	    return false;
 	}
 
 	return true;
     }
 
-    public boolean checkRayCriteria(UpdateMatrix a) {
-	VecInt vec = new VecInt();
-	VecInt nullen = new VecInt();
+    public boolean checkRayCriteria(GNAMatrix a) {
+	GNAVector vec = new GNAVector();
+	GNAVector nullen = new GNAVector();
 	for (int entry = 0; entry < a.rowSize(); entry++) {
 	    nullen.push(0);
 	}
@@ -65,14 +65,17 @@ public class GeoNonTermArgument {
 
 	    vec.pushAll(y[i]);
 	    if (i == 0)
-		vec.pushAll(GeoNonTermAnalysis.mult(y[i], lambda[i]));
+		// vec.pushAll(GeoNonTermAnalysis.mult(y[i], lambda[i]));
+		vec.pushAll(y[i].mult(lambda[i]));
 	    else
-		vec.pushAll(GeoNonTermAnalysis.add(GeoNonTermAnalysis.mult(y[i], lambda[i]),
-			GeoNonTermAnalysis.mult(y[i - 1], mu[i - 1])));
+		// vec.pushAll(GeoNonTermAnalysis.add(GeoNonTermAnalysis.mult(y[i],
+		// lambda[i]),
+		// GeoNonTermAnalysis.mult(y[i - 1], mu[i - 1])));
+		vec.pushAll(y[i].mult(lambda[i]).add(y[i - 1].mult(mu[i - 1])));
 
 	    if (!this.checkHolding(a, vec, nullen)) {
-		GeoNonTermAnalysis.LOG.writeln("RayCriteria of index: " + i + "doesn't hold!");
-		GeoNonTermAnalysis.LOG.writeln(Loop.getSystemAsString(a, vec, nullen));
+		Logger.getLog().writeln("RayCriteria of index: " + i + "doesn't hold!");
+		Logger.getLog().writeln(Loop.getSystemAsString(a, vec, nullen));
 		return false;
 	    }
 	    vec.clear();
@@ -81,9 +84,10 @@ public class GeoNonTermArgument {
 	return true;
     }
 
-    private boolean checkHolding(UpdateMatrix a, VecInt vec, VecInt b) {
-	vec = UpdateMatrix.mult(a, vec);
+    private boolean checkHolding(GNAMatrix a, GNAVector vec, GNAVector b) {
+	// vec = UpdateMatrix.mult(a, vec);
+	vec = a.mult(vec);
 
-	return GeoNonTermAnalysis.lessOrEqualThan(vec, b);
+	return vec.lessOrEqualThan(b);
     }
 }

@@ -1,7 +1,5 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
-import org.sat4j.core.VecInt;
-
 import aprove.Framework.BasicStructures.FunctionSymbol;
 
 /**
@@ -24,7 +22,7 @@ public class Stem {
     /**
      * the STEM vector to calculate for example the geometric series
      */
-    private VecInt stemVec;
+    private GNAVector stemVec;
 
     /**
      * the {@link FunctionSymbol} that is the start symbol <br>
@@ -45,16 +43,14 @@ public class Stem {
      *            a {@link FunctionSymbol} array
      */
     public Stem(FunctionSymbol[] array) {
-	if(array==null)
+	if (array == null)
 	    return;
 	startFunctionSymbol = array[0];
 	if (SHOULD_PRINT) {
-	    GeoNonTermAnalysis.LOG.writeln("########################");
-	    GeoNonTermAnalysis.LOG.writeln("######### STEM #########");
-	    GeoNonTermAnalysis.LOG.writeln("########################");
-	    GeoNonTermAnalysis.LOG.writeln("Recieved: " + GeoNonTermAnalysis.LOG.arrayToString(array));
-	    GeoNonTermAnalysis.LOG.writeln("array[0]: " + array[0] + " saved in startFunctionSymbol");
-	    GeoNonTermAnalysis.LOG.writeln("Define Rest as STEM.");
+	    Logger.getLog().startClassOutput("Stem");
+	    Logger.getLog().writeln("Recieved: " + Logger.getLog().arrayToString(array));
+	    Logger.getLog().writeln("array[0]: " + array[0] + " saved in startFunctionSymbol");
+	    Logger.getLog().writeln("Define Rest as STEM.");
 	}
 
 	int[] stem = new int[array.length - 1];
@@ -63,10 +59,9 @@ public class Stem {
 	    stem[i] = Integer.parseInt(array[i + 1].toString());
 	}
 
-	stemVec = new VecInt(stem);
+	stemVec = new GNAVector(stem);
 	if (SHOULD_PRINT) {
-	    GeoNonTermAnalysis.LOG.writeln("Final STEM: " + this.toString());
-	    GeoNonTermAnalysis.LOG.writeln("########################");
+	    Logger.getLog().endClassOutput("Stem");
 	}
     }
 
@@ -91,7 +86,7 @@ public class Stem {
     /**
      * @return the stemVec
      */
-    public VecInt getStemVec() {
+    public GNAVector getStemVec() {
 	return stemVec;
     }
 
@@ -99,7 +94,7 @@ public class Stem {
      * @param stemVec
      *            the stemVec to set
      */
-    public void setStemVec(VecInt stemVec) {
+    public void setStemVec(GNAVector stemVec) {
 	this.stemVec = stemVec;
     }
 

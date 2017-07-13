@@ -1,8 +1,5 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
-import org.sat4j.core.VecInt;
-import org.sat4j.specs.IVecInt;
-
 /**
  * This class is the representative of the LOOP-matrices used for the
  * {@link GeoNonTermAnalysis Geometric Non-Termination Analysis}.
@@ -24,14 +21,14 @@ public class Loop {
      * the guards depending on the variables. <br>
      * often referred as G.
      */
-    private UpdateMatrix guardMatrix;
+    private GNAMatrix guardMatrix;
 
     /**
      * the update in every step of the iteration only within the rule without
      * regarding the guards.<br>
      * often referred as M.
      */
-    private UpdateMatrix updateMatrix;
+    private GNAMatrix updateMatrix;
 
     /**
      * the matrix which describes a complete iteration step. It is computed as
@@ -44,17 +41,17 @@ public class Loop {
      * </code>
      * </pre>
      */
-    private UpdateMatrix iterationMatrix;
+    private GNAMatrix iterationMatrix;
 
     /**
      * the constants corresponding to the {@link #guardMatrix}
      */
-    private VecInt guardConstants;
+    private GNAVector guardConstants;
 
     /**
      * the constants corresponding to the {@link #updateMatrix}
      */
-    private VecInt updateConstants;
+    private GNAVector updateConstants;
 
     /**
      * the constants corresponding to the {@link #iterationMatrix}. It is
@@ -68,7 +65,7 @@ public class Loop {
      * </code>
      * </pre>
      */
-    private VecInt iterationConstants;
+    private GNAVector iterationConstants;
 
     /**
      * the default constructor. No other functionality so far.
@@ -104,28 +101,28 @@ public class Loop {
 	int n = guardMatrix.columnSize();
 	int m = guardMatrix.rowSize();
 
-	iterationConstants = new VecInt(0, 0);
+	iterationConstants = new GNAVector(0, 0);
 
 	iterationConstants.pushAll(guardConstants);
-	iterationConstants.pushAll(GeoNonTermAnalysis.negateVec(updateConstants));
+	iterationConstants.pushAll(updateConstants.negatedCopy());
 	iterationConstants.pushAll(updateConstants);
 
-	iterationMatrix = new UpdateMatrix(2 * n + m, 2 * n);
+	iterationMatrix = new GNAMatrix(2 * n + m, 2 * n);
 
 	// Setzen von G
 	iterationMatrix.insert(guardMatrix, 0, 0);
 	// Setzen von M
 	iterationMatrix.insert(updateMatrix, m, 0);
 	// Setzen von -M
-	iterationMatrix.insert(UpdateMatrix.negateMatrix(updateMatrix), m + n, 0);
+	iterationMatrix.insert(updateMatrix.negate(), m + n, 0);
 	// Setzen von -I
-	iterationMatrix.insert(UpdateMatrix.negateMatrix(UpdateMatrix.IdentityMatrix(n)), m, n);
+	iterationMatrix.insert(GNAMatrix.IdentityMatrix(n).negate(), m, n);
 	// Setzen von I
-	iterationMatrix.insert(UpdateMatrix.IdentityMatrix(n), m + n, n);
+	iterationMatrix.insert(GNAMatrix.IdentityMatrix(n), m + n, n);
 
 	if (SHOULD_PRINT) {
-	    GeoNonTermAnalysis.LOG.writeln(iterationMatrix);
-	    GeoNonTermAnalysis.LOG.writeln(iterationConstants);
+	    Logger.getLog().writeln(iterationMatrix);
+	    Logger.getLog().writeln(iterationConstants);
 	}
     }
 
@@ -137,7 +134,7 @@ public class Loop {
      * 
      * @return the matrices in mathematical form
      */
-    public static String getSystemAsString(UpdateMatrix matrix, String[] names, VecInt constant) {
+    public static String getSystemAsString(GNAMatrix matrix, String[] names, GNAVector constant) {
 	StringBuilder sb = new StringBuilder();
 
 	for (int row = 0; row < matrix.getMatrix().length; row++) {
@@ -171,13 +168,13 @@ public class Loop {
 
     }
 
-    public static String getSystemAsString(UpdateMatrix matrix, VecInt vec, VecInt constant) {
-	return getSystemAsString(matrix, GeoNonTermAnalysis.LOG.VecIntToArray(vec), constant);
+    public static String getSystemAsString(GNAMatrix matrix, GNAVector vec, GNAVector constant) {
+	return getSystemAsString(matrix, vec.toStringArray(), constant);
     }
 
     /**
      * a helping function for
-     * {@link #getSystemAsString(UpdateMatrix, String[], VecInt)}. It finds the
+     * {@link #getSystemAsString(GNAMatrix, String[], GNAVector)}. It finds the
      * best fitting matrix opening symbol for a row with respect to the cap.
      * 
      * @param rowNumber
@@ -197,7 +194,7 @@ public class Loop {
 
     /**
      * a helping function for
-     * {@link #getSystemAsString(UpdateMatrix, String[], VecInt)}. It finds the
+     * {@link #getSystemAsString(GNAMatrix, String[], GNAVector)}. It finds the
      * best fitting matrix closing symbol for a row with respect to the cap.
      * 
      * @param rowNumber
@@ -234,9 +231,9 @@ public class Loop {
 	    sb.append("iterationConstants: " + iterationConstants.toString());
 	}
 
-	GeoNonTermAnalysis.LOG.startClassOutput("LOOP");
-	GeoNonTermAnalysis.LOG.writeln(sb.toString());
-	GeoNonTermAnalysis.LOG.endClassOutput("LOOP");
+	Logger.getLog().startClassOutput("LOOP");
+	Logger.getLog().writeln(sb.toString());
+	Logger.getLog().endClassOutput("LOOP");
     }
 
     // GETTER UND SETTER
@@ -244,7 +241,7 @@ public class Loop {
     /**
      * @return the guardUpdates
      */
-    public UpdateMatrix getGuardUpdates() {
+    public GNAMatrix getGuardUpdates() {
 	return guardMatrix;
     }
 
@@ -252,14 +249,14 @@ public class Loop {
      * @param guardUpdates
      *            the guardUpdates to set
      */
-    public void setGuardUpdates(UpdateMatrix guardUpdates) {
+    public void setGuardUpdates(GNAMatrix guardUpdates) {
 	this.guardMatrix = guardUpdates;
     }
 
     /**
      * @return the updateMatrix
      */
-    public UpdateMatrix getUpdateMatrix() {
+    public GNAMatrix getUpdateMatrix() {
 	return updateMatrix;
     }
 
@@ -267,14 +264,14 @@ public class Loop {
      * @param updateMatrix
      *            the updateMatrix to set
      */
-    public void setUpdateMatrix(UpdateMatrix updateMatrix) {
+    public void setUpdateMatrix(GNAMatrix updateMatrix) {
 	this.updateMatrix = updateMatrix;
     }
 
     /**
      * @return the iterationMatrix
      */
-    public UpdateMatrix getIterationMatrix() {
+    public GNAMatrix getIterationMatrix() {
 	return iterationMatrix;
     }
 
@@ -282,14 +279,14 @@ public class Loop {
      * @param iterationMatrix
      *            the iterationMatrix to set
      */
-    public void setIterationMatrix(UpdateMatrix iterationMatrix) {
+    public void setIterationMatrix(GNAMatrix iterationMatrix) {
 	this.iterationMatrix = iterationMatrix;
     }
 
     /**
      * @return the guardConstants
      */
-    public VecInt getGuardConstants() {
+    public GNAVector getGuardConstants() {
 	return guardConstants;
     }
 
@@ -297,14 +294,14 @@ public class Loop {
      * @param guardConstants
      *            the guardConstants to set
      */
-    public void setGuardConstants(VecInt guardConstants) {
+    public void setGuardConstants(GNAVector guardConstants) {
 	this.guardConstants = guardConstants;
     }
 
     /**
      * @return the updateConstants
      */
-    public VecInt getUpdateConstants() {
+    public GNAVector getUpdateConstants() {
 	return updateConstants;
     }
 
@@ -312,14 +309,14 @@ public class Loop {
      * @param updateConstants
      *            the updateConstants to set
      */
-    public void setUpdateConstants(VecInt updateConstants) {
+    public void setUpdateConstants(GNAVector updateConstants) {
 	this.updateConstants = updateConstants;
     }
 
     /**
      * @return the iterationConstants
      */
-    public VecInt getIterationConstants() {
+    public GNAVector getIterationConstants() {
 	return iterationConstants;
     }
 
@@ -327,7 +324,7 @@ public class Loop {
      * @param iterationConstants
      *            the iterationConstants to set
      */
-    public void setIterationConstants(VecInt iterationConstants) {
+    public void setIterationConstants(GNAVector iterationConstants) {
 	this.iterationConstants = iterationConstants;
     }
 

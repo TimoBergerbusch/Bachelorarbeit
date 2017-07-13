@@ -1,6 +1,6 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree;
 
-import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.GeoNonTermAnalysis;
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.Logger;
 
 /**
  * The RPNNode is an abstract node in the binary RPNTree (reverse polish
@@ -69,12 +69,12 @@ public abstract class RPNNode {
 		 */
 		if (func.getLeft().containsVar(varName)) {
 		    if (!(func.getRight() instanceof RPNConstant))
-			GeoNonTermAnalysis.LOG.writeln("ERROR: getFactorOfVar nicht nach dem Schema const*var");
+			Logger.getLog().writeln("ERROR: getFactorOfVar nicht nach dem Schema const*var");
 		    else
 			return ((RPNConstant) func.getRight()).getValue();
 		} else if (func.getRight().containsVar(varName)) {
 		    if (!(func.getLeft() instanceof RPNConstant))
-			GeoNonTermAnalysis.LOG.writeln("ERROR: getFactorOfVar nicht nach dem Schema const*var");
+			Logger.getLog().writeln("ERROR: getFactorOfVar nicht nach dem Schema const*var");
 		    else
 			return ((RPNConstant) func.getLeft()).getValue();
 		}
