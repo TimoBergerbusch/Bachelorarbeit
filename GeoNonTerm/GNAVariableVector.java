@@ -37,17 +37,17 @@ public class GNAVariableVector {
     }
 
     public int getEntryAsInt(int index) {
-	assert !this.isVar(index);
+	assert this.isInt(index);
 
 	return Integer.parseInt(values[index]);
     }
 
-    public boolean isVar(int index) {
+    public boolean isInt(int index) {
 	try {
 	    Integer.parseInt(values[index]);
-	    return false;
-	} catch (Exception e) {
 	    return true;
+	} catch (Exception e) {
+	    return false;
 	}
     }
 
@@ -95,36 +95,65 @@ public class GNAVariableVector {
     public RPNNode getTreeOfVector() {
 	int value = 0;
 
-	ArrayList<Pair<String, Integer>> list = new ArrayList<>();
+	ArrayList<RPNNode> nodeList = new ArrayList<>();
 
 	for (int i = 0; i < this.size(); i++) {
-	    if (!isVar(i))
+	    if (this.isInt(i))
 		value += this.getEntryAsInt(i);
-	    else {
-		// Logger.getLog().writeln("test:"+this.getEntry(i));
-		// Logger.getLog().close();
-		String[] split = this.getEntry(i).split("\\*");
-		list.add(new Pair<String, Integer>(split[1], Integer.parseInt(split[0])));
+	    else if (this.getEntry(i).contains("*")) {
+		int factor = 1;
+
+		ArrayList<String> varNames = new ArrayList<>();
+		for (String s : this.getEntry(i).split("\\*")) {
+		    if (this.isInt(s))
+			factor *= Integer.parseInt(s);
+		    else
+			varNames.add(s);
+		}
+
+		if (varNames.size() != 0 && factor != 0)
+		    nodeList.add(new RPNFunctionSymbol(ArithmeticSymbol.TIMES, new RPNConstant(factor),
+			    this.createRecursiveMult(varNames)));
+		else if (factor != 0)
+		    nodeList.add(new RPNConstant(factor));
+
 	    }
 	}
+	nodeList.add(new RPNConstant(value));
 
-	return this.getTreeOfParts(value, list);
+	// Logger.getLog().writeln("Size: " + nodeList.size());
+
+	// Logger.getLog().writeln(this.createRecursiveAdd(nodeList).toInfixString());
+	return this.createRecursiveAdd(nodeList);
     }
 
-    private RPNNode getTreeOfParts(int value, ArrayList<Pair<String, Integer>> list) {
-	if (list.size() == 0)
-	    return new RPNConstant(value);
+    private RPNNode createRecursiveAdd(ArrayList<RPNNode> nodes) {
+	if (nodes.size() == 1)
+	    return nodes.get(0);
 	else {
-	    Pair<String, Integer> pair = list.get(list.size() - 1);
-	    list.remove(pair);
-	    // Logger.getLog().writeln("Pair:" + pair.toString());
-	    // erstellen eines Knoten der die Variable als Binäre Opertation
-	    // auffasst und den Rest rekursiv abarbeitet
-	    RPNFunctionSymbol root = new RPNFunctionSymbol(ArithmeticSymbol.PLUS, getTreeOfParts(value, list),
-		    new RPNFunctionSymbol(ArithmeticSymbol.TIMES, new RPNConstant(pair.getValue()),
-			    new RPNVariable(pair.getKey())));
-	    return root;
+	    RPNNode node = nodes.get(0);
+	    nodes.remove(node);
+	    return new RPNFunctionSymbol(ArithmeticSymbol.PLUS, node, this.createRecursiveAdd(nodes));
 	}
     }
 
+    private RPNNode createRecursiveMult(ArrayList<String> varNames) {
+	if (varNames.size() == 1)
+	    return new RPNVariable(varNames.get(0));
+	else {
+	    String s = varNames.get(0);
+	    varNames.remove(s);
+	    return new RPNFunctionSymbol(ArithmeticSymbol.TIMES, new RPNVariable(s),
+		    this.createRecursiveMult(varNames));
+	}
+    }
+
+    public boolean isInt(String s) {
+	try {
+	    Integer.parseInt(s);
+	    return true;
+	} catch (Exception e) {
+	    return false;
+	}
+    }
 }

@@ -36,6 +36,8 @@ public class SMTFactory {
     }
 
     public FunctionalIntegerExpression parseRPNTreeToSMTRule(RPNNode root) {
+	// TODO: für eine nested Variable z.B. 2*s1 bekommt man derzeit falsche
+	// Ergebnisse
 	if (root instanceof RPNConstant)
 	    return this.createConst(((RPNConstant) root).getConstantTerm());
 	else if (root instanceof RPNVariable)
@@ -47,13 +49,13 @@ public class SMTFactory {
 	    FunctionalIntegerExpression rightExpr = this.parseRPNTreeToSMTRule(fs.getRight());
 
 	    switch (fs.getFunctionSymbol()) {
-	    case PLUS:
-		return this.createOperation(ArithmeticOperationType.ADD, leftExpr, rightExpr);
-	    case TIMES:
-		return this.createOperation(ArithmeticOperationType.MUL, leftExpr, rightExpr);
-	    default:
-		Logger.getLog().writeln("ÜBERHAUPT NICHT GUT");
-		break;
+        	    case PLUS:
+        		return this.createOperation(ArithmeticOperationType.ADD, leftExpr, rightExpr);
+        	    case TIMES:
+        		return this.createOperation(ArithmeticOperationType.MUL, leftExpr, rightExpr);
+        	    default:
+        		Logger.getLog().writeln("ÜBERHAUPT NICHT GUT");
+        		break;
 	    }
 
 	}

@@ -1,5 +1,7 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
+import java.util.ArrayList;
+
 import org.apache.commons.math3.linear.BlockRealMatrix;
 import org.apache.commons.math3.linear.EigenDecomposition;
 import org.apache.commons.math3.linear.RealMatrix;
@@ -166,18 +168,23 @@ public class GNAMatrix {
 
 	RPNNode[] nodes = new RPNNode[this.rowSize()];
 
-	GNAVariableVector tmp = new GNAVariableVector(vec.size());
+	GNAVariableVector tmp; // = new GNAVariableVector(vec.size());
+	ArrayList<String> list = new ArrayList<>();
 
 	// Logger.getLog().writeln("++++++++++++++++++++++++++++++++");
 	for (int i = 0; i < this.rowSize(); i++) {
 	    for (int j = 0; j < vec.size(); j++) {
-		if (!vec.isVar(j))
-		    tmp.setEntry(j, this.matrix[i][j] * vec.getEntryAsInt(j));
-		else
-		    tmp.setEntry(j, this.matrix[i][j] + "*" + vec.getEntry(j));
+		if (vec.isInt(j))
+		    list.add((this.matrix[i][j] * vec.getEntryAsInt(j)) + "");
+		else if (vec.getEntry(j).contains("+")) {
+		    for (String s : vec.getEntry(j).split("\\+"))
+			list.add(this.matrix[i][j] + "*" + s);
+		} else
+		    list.add(this.matrix[i][j] + "*" + vec.getEntry(j));
 	    }
-	    // Logger.getLog().writeln("Vector nummer " + i + ": " +
-	    // tmp.toString());
+	    tmp = new GNAVariableVector(list.toArray(new String[] {}));
+	    list.clear();
+//	    Logger.getLog().writeln("Vector nummer " + i + ": " + tmp.toString());
 	    nodes[i] = tmp.getTreeOfVector();
 	    // Logger.getLog().writeln(nodes[i]);
 

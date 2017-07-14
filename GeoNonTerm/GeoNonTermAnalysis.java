@@ -26,6 +26,7 @@ import aprove.Framework.IntTRS.IRSwTProblem;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNNode;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNTreeParser;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.UnsupportetArithmeticSymbolException;
+import aprove.Framework.Logic.YNM;
 import aprove.Framework.SMT.SMTLIBLogic;
 import aprove.Framework.SMT.Expressions.StaticBuilders.Ints;
 import aprove.Framework.SMT.Solver.Factories.Z3ExtSolverFactory;
@@ -353,7 +354,7 @@ public class GeoNonTermAnalysis {
 
 	// +++++++++++++++++++++++++++++++++++++++++++++
 	Z3ExtSolverFactory factory = new Z3ExtSolverFactory();
-	Z3Solver solver = factory.getSMTSolver(SMTLIBLogic.QF_LIA, AbortionFactory.create());
+	Z3Solver solver = factory.getSMTSolver(SMTLIBLogic.QF_NIA, AbortionFactory.create());
 	SMTFactory smt = new SMTFactory();
 	// ArrayList<PlainIntegerRelation> relations = new ArrayList<>();
 	// relations.add(new PlainIntegerRelation(IntegerRelationType.LE,
@@ -369,24 +370,51 @@ public class GeoNonTermAnalysis {
 	// Logger.getLog().writeln("TEST: " + solver.getModel().toString());
 	// +++++++++++++++++++++++++++++++++++++++++++++
 
-	GNAVariableVector varVec = new GNAVariableVector(new String[] { "10", "2", "s1", "s2" });
+	// Das berechnen vom Point Kriterium
+	GNAVariableVector varVec = new GNAVariableVector(new String[] { "10", "2", "10+s1", "2+s2" });
 	RPNNode[] nodes = loop.getIterationMatrix().mult(varVec);
-	// Logger.getLog().writeln("Test: " +
-	// smt.parseRPNTreeToSMTRule(nodes[0]));
 	FunctionalIntegerExpression exp;
 	for (int i = 0; i < nodes.length; i++) {
 	    exp = smt.parseRPNTreeToSMTRule(nodes[i]);
+
 	    solver.addAssertion(
 		    smt.createRule(IntegerRelationType.LE, exp, smt.createConst(loop.getIterationConstants().get(i)))
 			    .toSMTExp());
 	}
 
-	Logger.getLog().writeln("TEST: " + solver.checkSAT().toString());
-	Logger.getLog().writeln("TEST: " + solver.getModel().toString());
+	GNAVariableVector pointCritVec1 = new GNAVariableVector(new String[] { "a", "b", "3*a", "3*b" });
+	RPNNode[] nodesCrit1 = loop.getIterationMatrix().mult(pointCritVec1);
+	FunctionalIntegerExpression expCrit1;
+	for (int i = 0; i < nodesCrit1.length; i++) {
+	    expCrit1 = smt.parseRPNTreeToSMTRule(nodesCrit1[i]);
 
+	    solver.addAssertion(smt.createRule(IntegerRelationType.LE, expCrit1, smt.createConst(0)).toSMTExp());
+	}
+
+	GNAVariableVector pointCritVec2 = new GNAVariableVector(new String[] { "c", "d", "2*c+x*a", "2*d+x*b" });
+	RPNNode[] nodesCrit2 = loop.getIterationMatrix().mult(pointCritVec2);
+	FunctionalIntegerExpression expCrit2;
+	for (int i = 0; i < nodesCrit2.length; i++) {
+	    expCrit2 = smt.parseRPNTreeToSMTRule(nodesCrit2[i]);
+
+	    solver.addAssertion(smt.createRule(IntegerRelationType.LE, expCrit2, smt.createConst(0)).toSMTExp());
+	}
+
+	solver.addAssertion(smt.createRule(IntegerRelationType.EQ,
+		smt.createOperation(ArithmeticOperationType.ADD, smt.createVar("a"), smt.createVar("c")),
+		smt.createVar("s1")).toSMTExp());
+	solver.addAssertion(smt.createRule(IntegerRelationType.EQ,
+		smt.createOperation(ArithmeticOperationType.ADD, smt.createVar("b"), smt.createVar("d")),
+		smt.createVar("s2")).toSMTExp());
+
+	Logger.getLog().writeln("SAT: " + solver.checkSAT().toString());
+	if (solver.checkSAT() == YNM.YES)
+	    Logger.getLog().writeln("MODEl: " + solver.getModel().toString());
+
+	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	GeoNonTermArgument gna = new GeoNonTermArgument(stem,
-		new GNAVector[] { new GNAVector(new int[] { 12, 0 }), new GNAVector(new int[] { 10, 2 }) }, eigenvalues,
-		new int[] { 1 });
+		new GNAVector[] { new GNAVector(new int[] { 8, 0 }), new GNAVector(new int[] { 14, 2 }) }, eigenvalues,
+		new int[] { 2 });
 
 	return gna;
     }
