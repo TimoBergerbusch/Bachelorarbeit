@@ -4,6 +4,8 @@ import org.apache.commons.math3.linear.BlockRealMatrix;
 import org.apache.commons.math3.linear.EigenDecomposition;
 import org.apache.commons.math3.linear.RealMatrix;
 
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNNode;
+
 /**
  * Represents a <code>int</code>-matrix and a labeling to the rows and columns.
  * <br>
@@ -157,6 +159,31 @@ public class GNAMatrix {
 	}
 
 	return res;
+    }
+
+    public RPNNode[] mult(GNAVariableVector vec) {
+	assert this.columnSize() == vec.size();
+
+	RPNNode[] nodes = new RPNNode[this.rowSize()];
+
+	GNAVariableVector tmp = new GNAVariableVector(vec.size());
+
+	// Logger.getLog().writeln("++++++++++++++++++++++++++++++++");
+	for (int i = 0; i < this.rowSize(); i++) {
+	    for (int j = 0; j < vec.size(); j++) {
+		if (!vec.isVar(j))
+		    tmp.setEntry(j, this.matrix[i][j] * vec.getEntryAsInt(j));
+		else
+		    tmp.setEntry(j, this.matrix[i][j] + "*" + vec.getEntry(j));
+	    }
+	    // Logger.getLog().writeln("Vector nummer " + i + ": " +
+	    // tmp.toString());
+	    nodes[i] = tmp.getTreeOfVector();
+	    // Logger.getLog().writeln(nodes[i]);
+
+	}
+	// Logger.getLog().writeln("++++++++++++++++++++++++++++++++");
+	return nodes;
     }
 
     /**

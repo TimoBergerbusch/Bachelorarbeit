@@ -1,9 +1,12 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Stack;
+
+import org.sat4j.minisat.SolverFactory;
 
 import aprove.DPFramework.BasicStructures.Position;
 import aprove.DPFramework.BasicStructures.TRSCompoundTerm;
@@ -12,10 +15,23 @@ import aprove.DPFramework.BasicStructures.TRSTerm;
 import aprove.DPFramework.BasicStructures.TRSVariable;
 import aprove.DPFramework.IDPProblem.IGeneralizedRule;
 import aprove.Framework.BasicStructures.FunctionSymbol;
+import aprove.Framework.BasicStructures.Arithmetic.ArithmeticOperationType;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.FunctionalIntegerExpression;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.IntegerRelationType;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerConstant;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerOperation;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerRelation;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerVariable;
 import aprove.Framework.IntTRS.IRSwTProblem;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNNode;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNTreeParser;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.UnsupportetArithmeticSymbolException;
+import aprove.Framework.SMT.SMTLIBLogic;
+import aprove.Framework.SMT.Expressions.StaticBuilders.Ints;
+import aprove.Framework.SMT.Solver.Factories.Z3ExtSolverFactory;
+import aprove.Framework.SMT.Solver.Z3.Z3Solver;
+import aprove.Framework.SMT.Solver.Z3.Z3SolverFactory;
+import aprove.Strategies.Abortions.AbortionFactory;
 
 /**
  * The main class of the geometric non-termination analysis presented by Jan
@@ -66,14 +82,14 @@ public class GeoNonTermAnalysis {
      * the original IRSwTProblem, which is generated out of the LLVMGraph
      * 
      */
-    private final IRSwTProblem problem;
+    private IRSwTProblem problem;
 
     /**
      * the rules of the problem. <br>
      * these are separately stored to derive {@link Stem} and {@link Loop}
      * separately without recomputing the rules.
      */
-    private final IGeneralizedRule[] rules;
+    private IGeneralizedRule[] rules;
 
     /**
      * the STEM of the loop program
@@ -95,11 +111,14 @@ public class GeoNonTermAnalysis {
 	this.problem = problem;
 	rules = this.problem.getRules().toArray(new IGeneralizedRule[] {});
 
-	this.deriveSTEM();
-	this.deriveLOOP();
+	if (this.problem.getStartTerm() != null) {
+	    this.deriveSTEM();
+	    this.deriveLOOP();
 
-	GeoNonTermArgument gna = this.tryDerivingAGNA();
-	Logger.getLog().writeln("GNA-Test: " + gna.validate(loop.getIterationMatrix(), loop.getIterationConstants()));
+	    GeoNonTermArgument gna = this.tryDerivingAGNA();
+	    Logger.getLog()
+		    .writeln("GNA-Test: " + gna.validate(loop.getIterationMatrix(), loop.getIterationConstants()));
+	}
 
 	Logger.getLog().close();
     }
@@ -112,26 +131,37 @@ public class GeoNonTermAnalysis {
 	TRSFunctionApplication startterm = this.problem.getStartTerm();
 
 	if (SHOULD_PRINT)
-	    Logger.getLog().writeln("Der Startterm ist: " + startterm.toString());
+	    if (startterm != null)
+		Logger.getLog().writeln("Der Startterm ist: " + startterm.toString());
+	    else
+		Logger.getLog().writeln("Das IRS hat keinen Startterm.");
 
-	for (int i = 0; i < rules.length; i++) {
-	    if (rules[i].getLeft().equals(startterm)) {
-		// Suchen der ersten passenden regel
-		if (SHOULD_PRINT)
-		    Logger.getLog().writeln("First rule match:" + rules[i].toString());
+	if (startterm == null) {
+	    // TODO: wenn es keinen Startterm gibt muss eine Belegung gefunden
+	    // werden, sodass eine Regel anwendbar ist.
+	} else
+	    for (int i = 0; i < rules.length; i++) {
+		if (rules[i].getLeft().equals(startterm)) {
+		    // Suchen der ersten passenden regel
+		    if (SHOULD_PRINT)
+			Logger.getLog().writeln("First rule match:" + rules[i].toString());
 
-		TRSTerm r = rules[i].getRight();
-
-		FunctionSymbol[] arr = new FunctionSymbol[r.getSize() - 1];
-		arr = r.getFunctionSymbols().toArray(arr);
-		stem = new Stem(arr);
-		break; // danach kann abgebrochen werden
-	    } else if (i == rules.length - 1) {
-		// dieser Fall darf eigentlich nie eintreten
-		Logger.getLog().writeln("ERROR: No match found for startterm.");
+		    stem = new Stem(this.getRuleAsArray(rules[i]));
+		    break; // danach kann abgebrochen werden
+		} else if (i == rules.length - 1) {
+		    // dieser Fall darf eigentlich nie eintreten
+		    Logger.getLog().writeln("ERROR: No match found for startterm.");
+		}
 	    }
-	}
 
+    }
+
+    private FunctionSymbol[] getRuleAsArray(IGeneralizedRule rule) {
+	// TODO: Wenn links und rechts nicht die selben VAR's haben
+	TRSTerm r = rule.getRight();
+	FunctionSymbol[] arr = new FunctionSymbol[r.getSize() - 1];
+	arr = r.getFunctionSymbols().toArray(arr);
+	return arr;
     }
 
     /**
@@ -322,21 +352,38 @@ public class GeoNonTermAnalysis {
 	int[] eigenvalues = loop.getUpdateMatrix().computeEigenvalues();
 
 	// +++++++++++++++++++++++++++++++++++++++++++++
-	// ISolver solver = SolverFactory.newDefault();
-	// solver.setTimeout(36000);
-	// solver.newVar(4);
-	// try {
-	// solver.addClause(new GNAVector(new int[] { 1, 2, 3, 4 }));
+	Z3ExtSolverFactory factory = new Z3ExtSolverFactory();
+	Z3Solver solver = factory.getSMTSolver(SMTLIBLogic.QF_LIA, AbortionFactory.create());
+	SMTFactory smt = new SMTFactory();
+	// ArrayList<PlainIntegerRelation> relations = new ArrayList<>();
+	// relations.add(new PlainIntegerRelation(IntegerRelationType.LE,
+	// smt.createVar("x"), smt.createConst(10)));
+	// relations.add(new PlainIntegerRelation(IntegerRelationType.GE,
+	// smt.createVar("x"),
+	// new PlainIntegerOperation(ArithmeticOperationType.ADD,
+	// smt.createConst(5), smt.createConst(2))));
 	//
-	// IProblem problem = solver;
-	//
-	// Logger.getLog().writeln("Problem: " + problem.toString());
-	// Logger.getLog().writeln("Result: " + problem.isSatisfiable());
-	// } catch (ContradictionException | TimeoutException e) {
-	// e.printStackTrace();
-	// }
-
+	// for (PlainIntegerRelation pir : relations)
+	// solver.addAssertion(pir.toSMTExp());
+	// Logger.getLog().writeln("TEST: " + solver.checkSAT().toString());
+	// Logger.getLog().writeln("TEST: " + solver.getModel().toString());
 	// +++++++++++++++++++++++++++++++++++++++++++++
+
+	GNAVariableVector varVec = new GNAVariableVector(new String[] { "10", "2", "s1", "s2" });
+	RPNNode[] nodes = loop.getIterationMatrix().mult(varVec);
+	// Logger.getLog().writeln("Test: " +
+	// smt.parseRPNTreeToSMTRule(nodes[0]));
+	FunctionalIntegerExpression exp;
+	for (int i = 0; i < nodes.length; i++) {
+	    exp = smt.parseRPNTreeToSMTRule(nodes[i]);
+	    solver.addAssertion(
+		    smt.createRule(IntegerRelationType.LE, exp, smt.createConst(loop.getIterationConstants().get(i)))
+			    .toSMTExp());
+	}
+
+	Logger.getLog().writeln("TEST: " + solver.checkSAT().toString());
+	Logger.getLog().writeln("TEST: " + solver.getModel().toString());
+
 	GeoNonTermArgument gna = new GeoNonTermArgument(stem,
 		new GNAVector[] { new GNAVector(new int[] { 12, 0 }), new GNAVector(new int[] { 10, 2 }) }, eigenvalues,
 		new int[] { 1 });
