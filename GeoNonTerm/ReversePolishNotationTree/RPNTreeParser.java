@@ -4,9 +4,7 @@ import aprove.DPFramework.BasicStructures.TRSCompoundTerm;
 import aprove.DPFramework.BasicStructures.TRSConstantTerm;
 import aprove.DPFramework.BasicStructures.TRSTerm;
 import aprove.DPFramework.BasicStructures.TRSVariable;
-import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.GeoNonTermAnalysis;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.Logger;
-import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.ArithmeticSymbol;
 
 /**
  * The RPNTreeParser provides a <code>static</code> method to parse a

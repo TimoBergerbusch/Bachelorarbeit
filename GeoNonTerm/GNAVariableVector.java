@@ -1,16 +1,12 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Map;
 
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.ArithmeticSymbol;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNConstant;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNFunctionSymbol;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNNode;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNVariable;
-import aprove.Framework.Utility.GenericStructures.Pair;
-import aprove.InputModules.Programs.diologic.ParseException;
 
 public class GNAVariableVector {
 
@@ -42,9 +38,35 @@ public class GNAVariableVector {
 	return Integer.parseInt(values[index]);
     }
 
+    /*
+     * public void push(String s) { String[] newValues = new
+     * String[values.length + 1]; System.arraycopy(values, 0, newValues, 0,
+     * values.length); values = newValues; }
+     * 
+     * public void pushAll(GNAVariableVector vec) {
+     * 
+     * for (int i = 0; i < vec.size(); i++) this.push(vec.getEntry(i)); }
+     * 
+     * 
+     * public void insertCompletely(GNAVector vec, int start) { assert
+     * values.length - start - vec.size() >= 0;
+     * 
+     * for (int i = 0; i < vec.size(); i++) this.values[i + start] = vec.get(i)
+     * + ""; }
+     */
+
     public boolean isInt(int index) {
 	try {
 	    Integer.parseInt(values[index]);
+	    return true;
+	} catch (Exception e) {
+	    return false;
+	}
+    }
+
+    public boolean isInt(String s) {
+	try {
+	    Integer.parseInt(s);
 	    return true;
 	} catch (Exception e) {
 	    return false;
@@ -148,12 +170,4 @@ public class GNAVariableVector {
 	}
     }
 
-    public boolean isInt(String s) {
-	try {
-	    Integer.parseInt(s);
-	    return true;
-	} catch (Exception e) {
-	    return false;
-	}
-    }
 }

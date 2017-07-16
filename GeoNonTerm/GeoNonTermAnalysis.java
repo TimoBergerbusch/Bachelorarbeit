@@ -1,12 +1,9 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Stack;
-
-import org.sat4j.minisat.SolverFactory;
 
 import aprove.DPFramework.BasicStructures.Position;
 import aprove.DPFramework.BasicStructures.TRSCompoundTerm;
@@ -18,9 +15,7 @@ import aprove.Framework.BasicStructures.FunctionSymbol;
 import aprove.Framework.BasicStructures.Arithmetic.ArithmeticOperationType;
 import aprove.Framework.BasicStructures.Arithmetic.Integer.FunctionalIntegerExpression;
 import aprove.Framework.BasicStructures.Arithmetic.Integer.IntegerRelationType;
-import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerConstant;
 import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerOperation;
-import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerRelation;
 import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerVariable;
 import aprove.Framework.IntTRS.IRSwTProblem;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNNode;
@@ -28,10 +23,9 @@ import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNT
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.UnsupportetArithmeticSymbolException;
 import aprove.Framework.Logic.YNM;
 import aprove.Framework.SMT.SMTLIBLogic;
-import aprove.Framework.SMT.Expressions.StaticBuilders.Ints;
 import aprove.Framework.SMT.Solver.Factories.Z3ExtSolverFactory;
+import aprove.Framework.SMT.Solver.SMTLIB.Model;
 import aprove.Framework.SMT.Solver.Z3.Z3Solver;
-import aprove.Framework.SMT.Solver.Z3.Z3SolverFactory;
 import aprove.Strategies.Abortions.AbortionFactory;
 
 /**
@@ -101,6 +95,8 @@ public class GeoNonTermAnalysis {
      * the LOOP of the loop program
      */
     private Loop loop;
+
+    private SMTFactory smt = new SMTFactory();
 
     /**
      * The constructor of the GeoNonTermAnalysis
@@ -355,68 +351,112 @@ public class GeoNonTermAnalysis {
 	// +++++++++++++++++++++++++++++++++++++++++++++
 	Z3ExtSolverFactory factory = new Z3ExtSolverFactory();
 	Z3Solver solver = factory.getSMTSolver(SMTLIBLogic.QF_NIA, AbortionFactory.create());
-	SMTFactory smt = new SMTFactory();
-	// ArrayList<PlainIntegerRelation> relations = new ArrayList<>();
-	// relations.add(new PlainIntegerRelation(IntegerRelationType.LE,
-	// smt.createVar("x"), smt.createConst(10)));
-	// relations.add(new PlainIntegerRelation(IntegerRelationType.GE,
-	// smt.createVar("x"),
-	// new PlainIntegerOperation(ArithmeticOperationType.ADD,
-	// smt.createConst(5), smt.createConst(2))));
-	//
-	// for (PlainIntegerRelation pir : relations)
-	// solver.addAssertion(pir.toSMTExp());
-	// Logger.getLog().writeln("TEST: " + solver.checkSAT().toString());
-	// Logger.getLog().writeln("TEST: " + solver.getModel().toString());
-	// +++++++++++++++++++++++++++++++++++++++++++++
 
 	// Das berechnen vom Point Kriterium
-	GNAVariableVector varVec = new GNAVariableVector(new String[] { "10", "2", "10+s1", "2+s2" });
-	RPNNode[] nodes = loop.getIterationMatrix().mult(varVec);
-	FunctionalIntegerExpression exp;
-	for (int i = 0; i < nodes.length; i++) {
-	    exp = smt.parseRPNTreeToSMTRule(nodes[i]);
+	solver = this.addAssertion(solver, smt.createPointCriteriaVector(stem), loop.getIterationConstants());
 
-	    solver.addAssertion(
-		    smt.createRule(IntegerRelationType.LE, exp, smt.createConst(loop.getIterationConstants().get(i)))
-			    .toSMTExp());
+	char last = 'a';
+	int size = stem.getStemVec().size();
+	for (int i = 0; i < eigenvalues.length; i++) {
+	    if (i == 0) {
+		solver = this.addAssertion(solver, smt.createRayCriteriaVec(size, eigenvalues[i], last));
+	    } else {
+		solver = this.addAssertion(solver,
+			smt.createRayCriteriaVec(size, eigenvalues[i], last, "x" + i, (char) (last - 1)));
+	    }
+
+	    last = (char) (last + 1);
 	}
 
-	GNAVariableVector pointCritVec1 = new GNAVariableVector(new String[] { "a", "b", "3*a", "3*b" });
-	RPNNode[] nodesCrit1 = loop.getIterationMatrix().mult(pointCritVec1);
-	FunctionalIntegerExpression expCrit1;
-	for (int i = 0; i < nodesCrit1.length; i++) {
-	    expCrit1 = smt.parseRPNTreeToSMTRule(nodesCrit1[i]);
-
-	    solver.addAssertion(smt.createRule(IntegerRelationType.LE, expCrit1, smt.createConst(0)).toSMTExp());
-	}
-
-	GNAVariableVector pointCritVec2 = new GNAVariableVector(new String[] { "c", "d", "2*c+x*a", "2*d+x*b" });
-	RPNNode[] nodesCrit2 = loop.getIterationMatrix().mult(pointCritVec2);
-	FunctionalIntegerExpression expCrit2;
-	for (int i = 0; i < nodesCrit2.length; i++) {
-	    expCrit2 = smt.parseRPNTreeToSMTRule(nodesCrit2[i]);
-
-	    solver.addAssertion(smt.createRule(IntegerRelationType.LE, expCrit2, smt.createConst(0)).toSMTExp());
-	}
-
-	solver.addAssertion(smt.createRule(IntegerRelationType.EQ,
-		smt.createOperation(ArithmeticOperationType.ADD, smt.createVar("a"), smt.createVar("c")),
-		smt.createVar("s1")).toSMTExp());
-	solver.addAssertion(smt.createRule(IntegerRelationType.EQ,
-		smt.createOperation(ArithmeticOperationType.ADD, smt.createVar("b"), smt.createVar("d")),
-		smt.createVar("s2")).toSMTExp());
-
+	// Addition
+	solver = this.addAdditionAssertion(solver, size, last);
+	// checking
 	Logger.getLog().writeln("SAT: " + solver.checkSAT().toString());
 	if (solver.checkSAT() == YNM.YES)
 	    Logger.getLog().writeln("MODEl: " + solver.getModel().toString());
 
+	// solver.getModel().getDeclarations()
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	GeoNonTermArgument gna = new GeoNonTermArgument(stem,
 		new GNAVector[] { new GNAVector(new int[] { 8, 0 }), new GNAVector(new int[] { 14, 2 }) }, eigenvalues,
 		new int[] { 2 });
 
 	return gna;
+    }
+
+    private Z3Solver addAssertion(Z3Solver solver, GNAVariableVector vec) {
+
+	// RPNNode[] nodes = loop.getIterationMatrix().mult(vec);
+	// FunctionalIntegerExpression exp;
+	// for (int i = 0; i < nodes.length; i++) {
+	// exp = smt.parseRPNTreeToSMTRule(nodes[i]);
+	//
+	// solver.addAssertion(
+	// smt.createRule(IntegerRelationType.LE, exp,
+	// smt.createConst(loop.getIterationConstants().get(i)))
+	// .toSMTExp());
+	// }
+
+	return this.addAssertion(solver, vec, new GNAVector(loop.getIterationConstants().size(), 0));
+    }
+
+    private Z3Solver addAssertion(Z3Solver solver, GNAVariableVector vec, GNAVector cons) {
+	RPNNode[] nodes = loop.getIterationMatrix().mult(vec);
+	FunctionalIntegerExpression exp;
+	for (int i = 0; i < nodes.length; i++) {
+	    exp = smt.parseRPNTreeToSMTRule(nodes[i]);
+	    solver.addAssertion(smt.createRule(IntegerRelationType.LE, exp, smt.createConst(cons.get(i))).toSMTExp());
+	}
+
+	return solver;
+    }
+
+    private Z3Solver addAdditionAssertion(Z3Solver solver, int size, char last) {
+
+	ArrayList<String> list = new ArrayList<>();
+	for (int i = 0; i < size; i++) {
+	    for (int j = (int) ('a'); j < (int) last; j++) {
+		// arr[i][j - (int) 'a'] = j + "" + i;
+		list.add(((char) j) + "" + i);
+	    }
+	    solver.addAssertion(
+		    smt.createRule(IntegerRelationType.EQ, this.recursiveAdd(list), smt.createVar("s" + i)).toSMTExp());
+	    // Logger.getLog().writeln(smt.createRule(IntegerRelationType.EQ,
+	    // this.recursiveAdd(list), smt.createVar("s" +
+	    // i)).toPrettyString());
+	    list.clear();
+	}
+
+	return solver;
+    }
+
+    private FunctionalIntegerExpression recursiveAdd(ArrayList<String> list) {
+	if (list.size() == 1)
+	    return smt.createVar(list.get(0));
+	else {
+	    String s = list.get(0);
+	    list.remove(0);
+	    return smt.createOperation(ArithmeticOperationType.ADD, smt.createVar(s), this.recursiveAdd(list));
+	}
+    }
+
+    private GNAVector[] createYFromModel(Model m) {
+	ArrayList<GNAVector> vectors = new ArrayList<>();
+
+	// TODO
+
+	return vectors.toArray(new GNAVector[vectors.size()]);
+    }
+
+    private int[] createMuFromModel(Model m) {
+	ArrayList<Integer> mu = new ArrayList<>();
+
+	// TODO
+
+	int[] finalMu = new int[mu.size()];
+	for (int i = 0; i < finalMu.length; i++)
+	    finalMu[i] = mu.get(i);
+	return finalMu;
     }
 
     /**
