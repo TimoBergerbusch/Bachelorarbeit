@@ -2,6 +2,7 @@ package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Stack;
 
@@ -23,7 +24,10 @@ import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNT
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.UnsupportetArithmeticSymbolException;
 import aprove.Framework.Logic.YNM;
 import aprove.Framework.SMT.SMTLIBLogic;
+import aprove.Framework.SMT.Expressions.SMTExpression;
+import aprove.Framework.SMT.Expressions.Symbols.Symbol;
 import aprove.Framework.SMT.Solver.Factories.Z3ExtSolverFactory;
+import aprove.Framework.SMT.Solver.SMTLIB.FunctionDefinition;
 import aprove.Framework.SMT.Solver.SMTLIB.Model;
 import aprove.Framework.SMT.Solver.Z3.Z3Solver;
 import aprove.Strategies.Abortions.AbortionFactory;
@@ -357,12 +361,13 @@ public class GeoNonTermAnalysis {
 
 	char last = 'a';
 	int size = stem.getStemVec().size();
+	int xCount = 0;
 	for (int i = 0; i < eigenvalues.length; i++) {
 	    if (i == 0) {
 		solver = this.addAssertion(solver, smt.createRayCriteriaVec(size, eigenvalues[i], last));
 	    } else {
 		solver = this.addAssertion(solver,
-			smt.createRayCriteriaVec(size, eigenvalues[i], last, "x" + i, (char) (last - 1)));
+			smt.createRayCriteriaVec(size, eigenvalues[i], last, "x" + xCount++, (char) (last - 1)));
 	    }
 
 	    last = (char) (last + 1);
@@ -370,16 +375,16 @@ public class GeoNonTermAnalysis {
 
 	// Addition
 	solver = this.addAdditionAssertion(solver, size, last);
+
 	// checking
 	Logger.getLog().writeln("SAT: " + solver.checkSAT().toString());
 	if (solver.checkSAT() == YNM.YES)
 	    Logger.getLog().writeln("MODEl: " + solver.getModel().toString());
 
-	// solver.getModel().getDeclarations()
+	int[] muArray = this.createMuFromModel(solver.getModel());
+	GNAVector[] Y = this.createYFromModel(solver.getModel(), last);
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	GeoNonTermArgument gna = new GeoNonTermArgument(stem,
-		new GNAVector[] { new GNAVector(new int[] { 8, 0 }), new GNAVector(new int[] { 14, 2 }) }, eigenvalues,
-		new int[] { 2 });
+	GeoNonTermArgument gna = new GeoNonTermArgument(stem, Y, eigenvalues, muArray);
 
 	return gna;
     }
@@ -440,10 +445,16 @@ public class GeoNonTermAnalysis {
 	}
     }
 
-    private GNAVector[] createYFromModel(Model m) {
+    private GNAVector[] createYFromModel(Model m, char last) {
 	ArrayList<GNAVector> vectors = new ArrayList<>();
 
-	// TODO
+	for (int i = (int) 'a'; i < (int) last; i++) {
+	    GNAVector vec = new GNAVector(stem.getStemVec().size(), 0);
+	    for (int j = 0; j < vec.size(); j++) {
+		vec.set(j, this.getValueOfVariable(m, (char) i + "" + j));
+	    }
+	    vectors.add(vec);
+	}
 
 	return vectors.toArray(new GNAVector[vectors.size()]);
     }
@@ -451,12 +462,31 @@ public class GeoNonTermAnalysis {
     private int[] createMuFromModel(Model m) {
 	ArrayList<Integer> mu = new ArrayList<>();
 
-	// TODO
+	for (int i = 0; i < this.countAppearance(m, "x"); i++) {
+	    Logger.getLog().writeln("x" + i + ": " + m.get((Symbol<?>) smt.createVar("x" + i).toSMTExp()));
+	    mu.add(this.getValueOfVariable(m, "x" + i));
+	}
 
 	int[] finalMu = new int[mu.size()];
 	for (int i = 0; i < finalMu.length; i++)
 	    finalMu[i] = mu.get(i);
 	return finalMu;
+    }
+
+    private int getValueOfVariable(Model m, String varName) {
+	SMTExpression<?> smtExpression = m.get((Symbol<?>) smt.createVar(varName).toSMTExp());
+	return Integer.parseInt(smtExpression.toString());
+    }
+
+    private int countAppearance(Model m, String s) {
+	int count = 0;
+
+	for (Entry<Symbol<?>, FunctionDefinition> entry : m.getDeclarations().entrySet()) {
+	    if (entry.getKey().toString().contains(s))
+		count++;
+	}
+
+	return count;
     }
 
     /**
