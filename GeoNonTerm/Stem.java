@@ -15,7 +15,7 @@ public class Stem {
 
     /**
      * a static boolean to determine if the information about the process should
-     * be printed using the {@link GeoNonTermAnalysis#LOG Logger}.
+     * be printed using the {@link Logger}.
      */
     private static boolean SHOULD_PRINT = false;
 

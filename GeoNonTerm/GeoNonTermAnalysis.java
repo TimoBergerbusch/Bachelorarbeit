@@ -353,32 +353,32 @@ public class GeoNonTermAnalysis {
 	int[] eigenvalues = loop.getUpdateMatrix().computeEigenvalues();
 
 	// +++++++++++++++++++++++++++++++++++++++++++++
-	Z3ExtSolverFactory factory = new Z3ExtSolverFactory();
-	Z3Solver solver = factory.getSMTSolver(SMTLIBLogic.QF_NIA, AbortionFactory.create());
+	Z3Solver solver = smt.createNewSolver();
 
 	// Das berechnen vom Point Kriterium
-	solver = this.addAssertion(solver, smt.createPointCriteriaVector(stem), loop.getIterationConstants());
+	smt.addAssertion(loop.getIterationMatrix(), smt.createPointCriteriaVector(stem), loop.getIterationConstants());
 
 	char last = 'a';
 	int size = stem.getStemVec().size();
 	int xCount = 0;
 	for (int i = 0; i < eigenvalues.length; i++) {
 	    if (i == 0) {
-		solver = this.addAssertion(solver, smt.createRayCriteriaVec(size, eigenvalues[i], last));
+		smt.addAssertion(smt.createRayCriteriaVec(size, eigenvalues[i], last), loop.getIterationMatrix());
 	    } else {
-		solver = this.addAssertion(solver,
-			smt.createRayCriteriaVec(size, eigenvalues[i], last, "x" + xCount++, (char) (last - 1)));
+		smt.addAssertion(
+			smt.createRayCriteriaVec(size, eigenvalues[i], last, "x" + xCount++, (char) (last - 1)),
+			loop.getIterationMatrix());
 	    }
 
 	    last = (char) (last + 1);
 	}
 
 	// Addition
-	solver = this.addAdditionAssertion(solver, size, last);
+	smt.addAdditionAssertion(size, last);
 
 	// checking
-	Logger.getLog().writeln("SAT: " + solver.checkSAT().toString());
-	if (solver.checkSAT() == YNM.YES)
+	Logger.getLog().writeln("SAT: " + smt.getSolver().checkSAT().toString());
+	if (smt.getSolver().checkSAT() == YNM.YES)
 	    Logger.getLog().writeln("MODEl: " + solver.getModel().toString());
 
 	int[] muArray = this.createMuFromModel(solver.getModel());
@@ -389,53 +389,7 @@ public class GeoNonTermAnalysis {
 	return gna;
     }
 
-    private Z3Solver addAssertion(Z3Solver solver, GNAVariableVector vec) {
-
-	// RPNNode[] nodes = loop.getIterationMatrix().mult(vec);
-	// FunctionalIntegerExpression exp;
-	// for (int i = 0; i < nodes.length; i++) {
-	// exp = smt.parseRPNTreeToSMTRule(nodes[i]);
-	//
-	// solver.addAssertion(
-	// smt.createRule(IntegerRelationType.LE, exp,
-	// smt.createConst(loop.getIterationConstants().get(i)))
-	// .toSMTExp());
-	// }
-
-	return this.addAssertion(solver, vec, new GNAVector(loop.getIterationConstants().size(), 0));
-    }
-
-    private Z3Solver addAssertion(Z3Solver solver, GNAVariableVector vec, GNAVector cons) {
-	RPNNode[] nodes = loop.getIterationMatrix().mult(vec);
-	FunctionalIntegerExpression exp;
-	for (int i = 0; i < nodes.length; i++) {
-	    exp = smt.parseRPNTreeToSMTRule(nodes[i]);
-	    solver.addAssertion(smt.createRule(IntegerRelationType.LE, exp, smt.createConst(cons.get(i))).toSMTExp());
-	}
-
-	return solver;
-    }
-
-    private Z3Solver addAdditionAssertion(Z3Solver solver, int size, char last) {
-
-	ArrayList<String> list = new ArrayList<>();
-	for (int i = 0; i < size; i++) {
-	    for (int j = (int) ('a'); j < (int) last; j++) {
-		// arr[i][j - (int) 'a'] = j + "" + i;
-		list.add(((char) j) + "" + i);
-	    }
-	    solver.addAssertion(
-		    smt.createRule(IntegerRelationType.EQ, this.recursiveAdd(list), smt.createVar("s" + i)).toSMTExp());
-	    // Logger.getLog().writeln(smt.createRule(IntegerRelationType.EQ,
-	    // this.recursiveAdd(list), smt.createVar("s" +
-	    // i)).toPrettyString());
-	    list.clear();
-	}
-
-	return solver;
-    }
-
-    private FunctionalIntegerExpression recursiveAdd(ArrayList<String> list) {
+    public FunctionalIntegerExpression recursiveAdd(ArrayList<String> list) {
 	if (list.size() == 1)
 	    return smt.createVar(list.get(0));
 	else {
@@ -451,7 +405,7 @@ public class GeoNonTermAnalysis {
 	for (int i = (int) 'a'; i < (int) last; i++) {
 	    GNAVector vec = new GNAVector(stem.getStemVec().size(), 0);
 	    for (int j = 0; j < vec.size(); j++) {
-		vec.set(j, this.getValueOfVariable(m, (char) i + "" + j));
+		vec.set(j, this.getValueOfVariableWithinModel(m, (char) i + "" + j));
 	    }
 	    vectors.add(vec);
 	}
@@ -463,8 +417,9 @@ public class GeoNonTermAnalysis {
 	ArrayList<Integer> mu = new ArrayList<>();
 
 	for (int i = 0; i < this.countAppearance(m, "x"); i++) {
-	    Logger.getLog().writeln("x" + i + ": " + m.get((Symbol<?>) smt.createVar("x" + i).toSMTExp()));
-	    mu.add(this.getValueOfVariable(m, "x" + i));
+	    // Logger.getLog().writeln("x" + i + ": " + m.get((Symbol<?>)
+	    // smt.createVar("x" + i).toSMTExp()));
+	    mu.add(this.getValueOfVariableWithinModel(m, "x" + i));
 	}
 
 	int[] finalMu = new int[mu.size()];
@@ -473,7 +428,7 @@ public class GeoNonTermAnalysis {
 	return finalMu;
     }
 
-    private int getValueOfVariable(Model m, String varName) {
+    private int getValueOfVariableWithinModel(Model m, String varName) {
 	SMTExpression<?> smtExpression = m.get((Symbol<?>) smt.createVar(varName).toSMTExp());
 	return Integer.parseInt(smtExpression.toString());
     }

@@ -134,11 +134,14 @@ public class GNAMatrix {
 	}
     }
 
-    public GNAMatrix negate() {
-	this.matrix = this.negatedMatrixCopy().matrix;
-	return this;
-    }
-
+    /**
+     * returns a matrix like this with every entry multiplied by -1. <br>
+     * NOTE: this method does <u>not</u> change this matrix's entry's!
+     * 
+     * @return a negated copy of this matrix
+     * 
+     * @see #negate()
+     */
     public GNAMatrix negatedMatrixCopy() {
 	GNAMatrix res = new GNAMatrix(this.rowSize(), this.columnSize());
 	for (int i = 0; i < res.rowSize(); i++)
@@ -147,6 +150,26 @@ public class GNAMatrix {
 	return res;
     }
 
+    /**
+     * negates every {@link #matrix} entry with -1. <br>
+     * NOTE: this method changes this {@link #matrix}'s entry's. <br>
+     * NOTE: the return <u>is</u> needed
+     * 
+     * @return this matrix after it gets negated
+     */
+    public GNAMatrix negate() {
+	this.matrix = this.negatedMatrixCopy().matrix;
+	return this;
+    }
+
+    /**
+     * multiplies this {@link GNAMatrix} with a given {@link GNAVector}
+     * 
+     * @param vec
+     *            the {@link GNAVector} this {@link GNAMatrix} should be
+     *            multiplicated with
+     * @return the resulting {@link GNAVector}
+     */
     public GNAVector mult(GNAVector vec) {
 	assert this.columnSize() == vec.size();
 
@@ -163,6 +186,29 @@ public class GNAMatrix {
 	return res;
     }
 
+    /**
+     * multiplies this {@link GNAMatrix} with a {@link GNAVariableVector} and
+     * generates a {@link RPNNode RPNTree} for every entry of the resulting
+     * {@link GNAVariableVector} of the multiplication. It does so by
+     * multiplying integer coefficients and rewrite formulas like <br>
+     * 
+     * <pre>
+     * <code>
+     *  c * (x_0 + x_1) &lt; = &gt; c*x_0 + c*x_1
+     * </code>
+     * </pre>
+     * 
+     * 
+     * using {@link GNAVariableVector#getTreeOfVector()}.
+     * 
+     * @param vec
+     *            the {@link GNAVariableVector}
+     * @return the resulting {@link GNAVariableVector} as {@link RPNNode
+     *         RPNTree} for every for every entry
+     * 
+     * @see GNAVariableVector#getTreeOfVector()
+     * @see RPNNode
+     */
     public RPNNode[] mult(GNAVariableVector vec) {
 	assert this.columnSize() == vec.size();
 
@@ -171,7 +217,6 @@ public class GNAMatrix {
 	GNAVariableVector tmp; // = new GNAVariableVector(vec.size());
 	ArrayList<String> list = new ArrayList<>();
 
-	// Logger.getLog().writeln("++++++++++++++++++++++++++++++++");
 	for (int i = 0; i < this.rowSize(); i++) {
 	    for (int j = 0; j < vec.size(); j++) {
 		if (vec.isInt(j))
@@ -184,12 +229,8 @@ public class GNAMatrix {
 	    }
 	    tmp = new GNAVariableVector(list.toArray(new String[] {}));
 	    list.clear();
-//	    Logger.getLog().writeln("Vector nummer " + i + ": " + tmp.toString());
 	    nodes[i] = tmp.getTreeOfVector();
-	    // Logger.getLog().writeln(nodes[i]);
-
 	}
-	// Logger.getLog().writeln("++++++++++++++++++++++++++++++++");
 	return nodes;
     }
 
@@ -254,6 +295,14 @@ public class GNAMatrix {
 	    sb.append("\n");
 	}
 	return sb.toString();
+    }
+
+    public RealMatrix getAsRealMatrix() {
+	double[][] doubleMatrix = new double[this.rowSize()][this.columnSize()];
+	for (int i = 0; i < this.rowSize(); i++)
+	    for (int j = 0; j < this.columnSize(); j++)
+		doubleMatrix[i][j] = matrix[i][j];
+	return new BlockRealMatrix(doubleMatrix);
     }
 
     // GETTER AND SETTER
@@ -389,14 +438,6 @@ public class GNAMatrix {
     public int columnSize() {
 	assert this.rowSize() >= 0;
 	return matrix[0].length;
-    }
-
-    public RealMatrix getAsRealMatrix() {
-	double[][] doubleMatrix = new double[this.rowSize()][this.columnSize()];
-	for (int i = 0; i < this.rowSize(); i++)
-	    for (int j = 0; j < this.columnSize(); j++)
-		doubleMatrix[i][j] = matrix[i][j];
-	return new BlockRealMatrix(doubleMatrix);
     }
 
 }

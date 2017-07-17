@@ -13,7 +13,7 @@ public class Loop {
 
     /**
      * a static boolean to determine if the information about the process should
-     * be printed using the {@link GeoNonTermAnalysis#LOG Logger}.
+     * be printed using the {@link Logger}.
      */
     private static boolean SHOULD_PRINT = false;
 
@@ -132,6 +132,12 @@ public class Loop {
      * returns the matrices in a simple-to-read way. It should be the typical
      * mathematical form.
      * 
+     * @param matrix
+     *            the matrix to multiplicate with
+     * @param names
+     *            the vectoritems to multiplicate with
+     * @param constant
+     *            the constant factor
      * @return the matrices in mathematical form
      */
     public static String getSystemAsString(GNAMatrix matrix, String[] names, GNAVector constant) {
@@ -168,6 +174,19 @@ public class Loop {
 
     }
 
+    /**
+     * returns the matrices in a simple-to-read way. It should be the typical
+     * mathematical form. Using
+     * {@link #getSystemAsString(GNAMatrix, String[], GNAVector)}.
+     * 
+     * @param matrix
+     *            the matrix to multiplicate with
+     * @param vec
+     *            the vector to multiplicate with
+     * @param constant
+     *            the constant factor
+     * @return the matrices in mathematical form
+     */
     public static String getSystemAsString(GNAMatrix matrix, GNAVector vec, GNAVector constant) {
 	return getSystemAsString(matrix, vec.toStringArray(), constant);
     }
