@@ -1,0 +1,103 @@
+== Planung fuers naechste AProVE Release ==
+
+* ein einziges JAR (inklusive aller TRS-Formate, QDPs, Prolog, Haskell, JBC)
+
+* JAR in ein Zip packen, in dem ausserdem noch ein paar Hilfreiche Dinge
+  liegen (siehe auch ant target "releasedist"):
+
+  - Shell script/batch file zum starten (was soll dieser koennen?)
+    (evtl. koennte man damit Standardaufrufszenarien verdeutlichen?)
+
+  - mehrere Beispielstrategien fuer verschiedene Rechnerarchitekturen
+
+  - Doku
+
+* Support fuer Zertifizierung?
+  Bislang werden fuer die Erzeugung eines zertifizierbaren Beweises
+  teilweise durch Variablen in GlobalSettings.java gewisse (vom
+  Zertifizierungs-Backend abhaengige) Features z.B. im DependencyGraphen
+  von der Kompilierung ausgenommen, und ein "normales" jar erzeugt
+  i.Allg. keine zertifizierbaren Beweise. Moegliche Handlungsweisen:
+
+  - AProVE-Release ohne Zertifizierung (unschoen, wir muessen das Problem
+    so oder so mal angehen)
+
+  - globale Variablen abhaengig vom durch den Benutzer aktuell
+    gewuenschten Ausgabeformat machen (dann ist AProVE nicht mehr
+    reentrant, was bei Server-Modus Probleme macht)
+
+  - speziell kompilierte zertifizierbare JARs im Package ausliefern
+    (auch nicht schoen)
+
+
+* neues Main schreiben (evaluieren inwieweit GenericMain funktioniert)
+
+  - ohne Angabe von Optionen ist erster Parameter die Eingabedatei,
+    ein evtl. zweiter Parameter ist das Timeout (sollte kompatibel
+    sein mit Parametern zum Aufruf beim Wettbewerb) und es wird
+    die Defaultstrategie mit Default-SAT-Solver und Default-SMT-Solver
+    geladen und verwendet
+
+  - zusaetzliche Optionen erlauben z.B. die Verwendung einer
+    beliebigen Strategiedatei ("--strategy")
+
+  - Starten als Server (z.B. mit "--server") bedeutet, dass keine
+    Parameter ausser optional dem Port (z.B. mit "--port") angegeben
+    werden duerfen (Defaultport: 5250)
+
+* Angabe "DEFAULT" statt eines bestimmten SAT-Solvers (automatische
+  Pruefung, ob ein bekannter SAT-Solver in der Naehe ist, im Zweifel
+  Fallback auf SAT4J) in die Strategiesprache einbauen (das ganze
+  aehnlich fuer Yices und SMT wiederholen)
+
+* Moeglichkeit eigenen SAT-Solver anzugeben ("--sat-solver=...").
+  Nur Fehlermeldung, wenn Executable nicht vorhanden oder nicht verstaendlich
+  (kein MiniSAT und haelt sich auch nicht an den Wettbewerbsstandard)
+
+* Fehlermeldungen ausgeben, wenn ein Defaultwert verwendet wird und dies
+  zu Problemen fuehren kann, u.a.
+  
+  - bei Fallback auf SAT4J wenn der (evtl. vom User mit "--sat-solver=..."
+    angegebene) externe SAT-Solver nicht gefunden werden konnte
+
+  - wenn nicht genuegend Platz auf dem Heap ist (zu kleiner Wert bei
+    -Xmx ...)
+
+  - bei Verwendung der Defaultstrategie wenn der Rechner eine zu kleine
+    Anzahl Cores hat (wie kann man das fesstellen?)
+
+  - bei Verwendung der Defaultstrategie wenn das Timeout unguenstig
+    gewaehlt ist
+
+* kein automatischer Fallback wenn Abhaengigkeiten fehlen, allerdings
+  GROSSE FEHLERMELDUNG mit Hinweis auf "--force" Option, die den Fallback aktiviert
+
+  - "This version should NOT be used for benchmarks, since the required
+     [minisat/blah/fasel...] solver was not found. A fallback using an
+     unsupported solver can be activated using the "--force" option. This
+     degrades the performance considerably and is not officially supported."
+
+* bessere Fehlermeldungen bei ungueltigen Dateien (keine Exception,
+  sondern eine lesbare Fehlermeldung)
+
+* Dokumentation wie AProVE aus Benutzersicht zu bedienen ist
+  (inklusive aller Optionen, aber gegliedert nach "Basic Use"
+  mit nur Angabe der Eingabedatei, timeout und evtl. "--force";
+  "Advanced Use" mit allen Optionen; "Server Use" mit nur
+  Option des Serverports und Information ueber Defaultport)
+  So muss der "Casual User" nicht seitenweise Doku lesen
+
+
+== Features uebernaechstes Release ==
+
+* Wahl einer angepassten Defaultstrategie in Abhaengigkeit
+  von Anzahl der vorhandenen Cores und des Timeouts
+
+* Anpassen einiger interner Timeouts in Abhaengigkeit vom
+  Gesamttimeout
+
+* Integration von Haskell
+
+* Sinnvolle Anzeige des Fortschritts auf der Kommandozeile
+  (Wer tut was und ruft wen auf?)
+

@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\newtheorem{definition}[figure]{Definition}
+\newtheorem{theorem}[figure]{Theorem}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\Q}{\mathcal{Q}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\N}{\mathbb{N}}
+\title{A transformation from DP problems to SRSs}
+\date{}
+\begin{document}
+\maketitle
+\ \\[-10ex]
+A string $w = acbd$ applied to a variable $x$ (denoted as $w(x)$) yields
+a term $a(c(b(d(x))))$.
+\begin{definition}[Pseudo-SRS DP Problem]
+Let $\Sigma$ be a signature with $\Sigma = \{F\} \uplus \Sigma_{1}$
+where $F$ is a binary function symbol and $\Sigma_{1} \neq \emptyset$ contains
+only unary function symbols.
+
+A DP problem $(\P,\Q,\emptyset,f)$ over the signature $\Sigma$ and the
+variables $\{x,y\}$ is a \emph{Pseudo-SRS DP problem} if, and only if,
+$\P = \P_{1} \uplus \P_{2}$ where
+\begin{itemize}
+\item $\P_{1} \subseteq \{ F(x, u(y)) \to F(v(x), y) \mid u,v \in \Sigma_{1}^{+} \}$
+\item $\P_{2} \subseteq \{ F(a(x), y) \to F(x, a(y)) \mid a \in \Sigma_{1} \}$
+\end{itemize}
+\end{definition}
+The reversal of a string from $\Sigma^{*}$ is defined inductively as $\varepsilon^{-1} = \varepsilon$
+and $(aw')^{-1} = w'^{-1}a$ for $a \in \Sigma$ and $w' \in \Sigma^{*}$.
+\begin{theorem}
+A Pseudo-SRS DP problem $(\P,\Q,\emptyset,f)$ with $P_{1} = \{F(x, u_{i}(y)) \to F(v_{i}(x), y) \mid 1 \leq i \leq n\}$
+is finite if the SRS $\S = \{u_{i} \to v_{i}^{-1} \mid 1 \leq i \leq n\}$ is strongly normalizing.
+\end{theorem}
+\begin{proof}
+We define a partial mapping $\tau : \T(\Sigma,\{x,y\}) \to \Sigma_{1}^{*}$ by $\tau(F(s(x),t(y))) = s^{-1}t$ for all $s,t \in \Sigma_{1}^{*}$ to map terms to strings.
+
+Let $s_{1} \to t_{1}, s_{2} \to t_{2}, \ldots$ be an infinite chain. Then, there is a substitution
+$\sigma$ such that $t_{i}\sigma = s_{i+1}\sigma$ for all $i \in \N$. W.l.o.g.\ we can assume
+that $\sigma(z) \in \T(\Sigma,\{x,y\})$ for all variables $z \in Dom(\sigma)$.
+
+Thus, there is an infinite reduction $s_{1}\sigma \to_{\P} s_{2}\sigma \to_{\P} \ldots$. We distinguish
+the following two cases:
+\begin{enumerate}
+\item \label{case1}$s_{i}\sigma \to_{F(a(x),y) \to F(x,a(y))} s_{i+1}\sigma$:\\[2ex]
+  Then there are $p_{i},r_{i} \in \Sigma_{1}^{*}$ such that $s_{i}\sigma = F(a(p_{i}(x)),r_{i}(y))$ and
+  $s_{i+1}\sigma = F(p_{i}(x),a(r_{i}(y)))$. Thus, $\tau(s_{i}\sigma) = (ap_{i})^{-1}r_{i} = p_{i}^{-1}ar_{i} = \tau(s_{i+1}\sigma)$.
+\item \label{case2}$s_{i}\sigma \to_{F(x,u(y)) \to F(v(x),y)} s_{i+1}\sigma$:\\[2ex]
+  Then there are $p_{i},r_{i} \in \Sigma_{1}^{*}$ such that $s_{i}\sigma = F(p_{i}(x),u(r_{i}(y)))$ and
+  $s_{i+1}\sigma = F(v(p_{i}(x)),r_{i}(y))$. Thus, $\tau(s_{i}\sigma) = p_{i}^{-1}ur_{i} \to_{u \to v^{-1}} p_{i}^{-1}v^{-1}r_{i} = (vp_{i})^{-1}r_{i} = \tau(s_{i+1}\sigma)$.
+\end{enumerate}
+The DP problem $(\P_{2}, \Q,\emptyset,f)$ is clearly finite, and, consequently, there is no
+infinite chain consisting just of dependency pairs from $\P_{2}$. Thus, our chain contains infinitely many
+dependency pairs from $\P_{1}$. By $\tau$ and Cases (\ref{case1}) and (\ref{case2}) we can
+map the chain to an infinite derivation w.r.t.\ $\S$. This implies that $\S$ is not strongly normalizing.
+\end{proof}
+\end{document}
