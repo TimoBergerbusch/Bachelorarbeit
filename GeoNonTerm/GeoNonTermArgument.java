@@ -18,7 +18,7 @@ package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
  * 
  */
 public class GeoNonTermArgument {
-
+    
     /**
      * the initial values/the starting point
      * 

@@ -13,24 +13,16 @@ import aprove.DPFramework.BasicStructures.TRSTerm;
 import aprove.DPFramework.BasicStructures.TRSVariable;
 import aprove.DPFramework.IDPProblem.IGeneralizedRule;
 import aprove.Framework.BasicStructures.FunctionSymbol;
-import aprove.Framework.BasicStructures.Arithmetic.ArithmeticOperationType;
-import aprove.Framework.BasicStructures.Arithmetic.Integer.FunctionalIntegerExpression;
-import aprove.Framework.BasicStructures.Arithmetic.Integer.IntegerRelationType;
-import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerOperation;
-import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerVariable;
 import aprove.Framework.IntTRS.IRSwTProblem;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNNode;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNTreeParser;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.UnsupportetArithmeticSymbolException;
 import aprove.Framework.Logic.YNM;
-import aprove.Framework.SMT.SMTLIBLogic;
 import aprove.Framework.SMT.Expressions.SMTExpression;
 import aprove.Framework.SMT.Expressions.Symbols.Symbol;
-import aprove.Framework.SMT.Solver.Factories.Z3ExtSolverFactory;
 import aprove.Framework.SMT.Solver.SMTLIB.FunctionDefinition;
 import aprove.Framework.SMT.Solver.SMTLIB.Model;
 import aprove.Framework.SMT.Solver.Z3.Z3Solver;
-import aprove.Strategies.Abortions.AbortionFactory;
 
 /**
  * The main class of the geometric non-termination analysis presented by Jan
@@ -125,7 +117,7 @@ public class GeoNonTermAnalysis {
     }
 
     /**
-     * derives the STEM part of the {@link #problem IRSwTProblem} using the
+     * Derives the STEM part of the {@link #problem IRSwTProblem} using the
      * {@link aprove.Framework.IntTRS.IRSwTProblem#getStartTerm() startterm}
      */
     private void deriveSTEM() {
@@ -157,6 +149,15 @@ public class GeoNonTermAnalysis {
 
     }
 
+    /**
+     * This method takes in a rule and returns the variables that are mentioned
+     * in the <u>right</u> side of the rule. Therefore it does not hold for
+     * rule's that have different var's within a rule.
+     * 
+     * @param rule
+     *            the rule to extract the variables from
+     * @return the extracted variables
+     */
     private FunctionSymbol[] getRuleAsArray(IGeneralizedRule rule) {
 	// TODO: Wenn links und rechts nicht die selben VAR's haben
 	TRSTerm r = rule.getRight();
@@ -349,10 +350,24 @@ public class GeoNonTermAnalysis {
 	// Logger.getLog().writeln("++++++++++");
     }
 
+    /**
+     * This method try's to derive a {@link GeoNonTermArgument} using a
+     * SMT-Solver. <br>
+     * It can only do so if before the {@link Stem} and {@link Loop} including
+     * {@link Loop#computeIterationMatrixAndConstants()} are computed. Otherwise
+     * it's most likely to throw a {@link NullPointerException}. <br>
+     * If a {@link GeoNonTermArgument} can be found it will be returned.
+     * Otherwise this method will return <code>null</code>.
+     * 
+     * @return a {@link GeoNonTermArgument} or <code>null</code>
+     * 
+     * @see Stem
+     * @see Loop
+     * @see SMTFactory
+     */
     private GeoNonTermArgument tryDerivingAGNA() {
 	int[] eigenvalues = loop.getUpdateMatrix().computeEigenvalues();
 
-	// +++++++++++++++++++++++++++++++++++++++++++++
 	Z3Solver solver = smt.createNewSolver();
 
 	// Das berechnen vom Point Kriterium
@@ -363,11 +378,10 @@ public class GeoNonTermAnalysis {
 	int xCount = 0;
 	for (int i = 0; i < eigenvalues.length; i++) {
 	    if (i == 0) {
-		smt.addAssertion(smt.createRayCriteriaVec(size, eigenvalues[i], last), loop.getIterationMatrix());
+		smt.addAssertion(loop.getIterationMatrix(), smt.createRayCriteriaVec(size, eigenvalues[i], last));
 	    } else {
-		smt.addAssertion(
-			smt.createRayCriteriaVec(size, eigenvalues[i], last, "x" + xCount++, (char) (last - 1)),
-			loop.getIterationMatrix());
+		smt.addAssertion(loop.getIterationMatrix(),
+			smt.createRayCriteriaVec(size, eigenvalues[i], last, "X" + xCount++, (char) (last - 1)));
 	    }
 
 	    last = (char) (last + 1);
@@ -378,34 +392,49 @@ public class GeoNonTermAnalysis {
 
 	// checking
 	Logger.getLog().writeln("SAT: " + smt.getSolver().checkSAT().toString());
-	if (smt.getSolver().checkSAT() == YNM.YES)
+	if (smt.getSolver().checkSAT() == YNM.YES) {
 	    Logger.getLog().writeln("MODEl: " + solver.getModel().toString());
 
-	int[] muArray = this.createMuFromModel(solver.getModel());
-	GNAVector[] Y = this.createYFromModel(solver.getModel(), last);
-	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	GeoNonTermArgument gna = new GeoNonTermArgument(stem, Y, eigenvalues, muArray);
+	    int[] muArray = this.createMuFromModel(solver.getModel());
+	    GNAVector[] Y = this.createYFromModel(solver.getModel(), last);
 
-	return gna;
+	    GeoNonTermArgument gna = new GeoNonTermArgument(stem, Y, eigenvalues, muArray);
+
+	    return gna;
+	} else
+	    return null;
     }
 
-    public FunctionalIntegerExpression recursiveAdd(ArrayList<String> list) {
-	if (list.size() == 1)
-	    return smt.createVar(list.get(0));
-	else {
-	    String s = list.get(0);
-	    list.remove(0);
-	    return smt.createOperation(ArithmeticOperationType.ADD, smt.createVar(s), this.recursiveAdd(list));
-	}
-    }
-
-    private GNAVector[] createYFromModel(Model m, char last) {
+    /**
+     * This method computes from a given {@link Model} the different
+     * {@link GNAVector} as columns of the Y-matrix of the
+     * {@link GeoNonTermAnalysis}. It does so by creating a vector for every
+     * char between 'a' and the given last used char. The char for example 'a'
+     * is afterwards used and gets indices to a max., which is the result of
+     * {@link #countAppearance(Model, String)} and computes the value using
+     * {@link #getValueOfVariableWithinModel(Model, String)}. The declarations
+     * within the model get sorted by the index. <br>
+     * 
+     * <pre>
+     * [(define-fun x0 2), (define-fun b1 2), (define-fun b0 14), (define-fun a1 0), (define-fun a0 8), (define-fun s1 2), (define-fun s0 22)]
+     *         8   14
+     * =&gt; [(0),( 2)]
+     * </pre>
+     * 
+     * @param model
+     *            the model of the SMT-Problem
+     * @param last
+     *            the last char used
+     * @return an array of {@link GNAVector GNAVectors} to represent the
+     *         variable assignment
+     */
+    private GNAVector[] createYFromModel(Model model, char last) {
 	ArrayList<GNAVector> vectors = new ArrayList<>();
 
 	for (int i = (int) 'a'; i < (int) last; i++) {
 	    GNAVector vec = new GNAVector(stem.getStemVec().size(), 0);
 	    for (int j = 0; j < vec.size(); j++) {
-		vec.set(j, this.getValueOfVariableWithinModel(m, (char) i + "" + j));
+		vec.set(j, this.getValueOfVariableWithinModel(model, (char) i + "" + j));
 	    }
 	    vectors.add(vec);
 	}
@@ -413,13 +442,33 @@ public class GeoNonTermAnalysis {
 	return vectors.toArray(new GNAVector[vectors.size()]);
     }
 
+    /**
+     * This method computes from a given {@link Model} the mu's assignments so
+     * that the ray criteria is fulfilled. It derives the assignments of the
+     * mu's ordered chronologically by the index using
+     * {@link #countAppearance(Model, String)} and
+     * {@link #getValueOfVariableWithinModel(Model, String)}. <br>
+     * Beispiel:
+     * 
+     * <pre>
+     * [(define-fun X0 2), (define-fun b1 2), (define-fun b0 14), (define-fun a1 0), (define-fun a0 8), (define-fun s1 2), (define-fun s0 22)]
+     * =&gt; [2]
+     * </pre>
+     * 
+     * The mu's are written as capital X so that the other variables can contain
+     * the lower capital letter 'x' .
+     * 
+     * @param m
+     *            the model of the SMT-Problem
+     * @return an <code>int</code>-array with the values of the mu's
+     */
     private int[] createMuFromModel(Model m) {
 	ArrayList<Integer> mu = new ArrayList<>();
 
-	for (int i = 0; i < this.countAppearance(m, "x"); i++) {
+	for (int i = 0; i < this.countAppearance(m, "X"); i++) {
 	    // Logger.getLog().writeln("x" + i + ": " + m.get((Symbol<?>)
 	    // smt.createVar("x" + i).toSMTExp()));
-	    mu.add(this.getValueOfVariableWithinModel(m, "x" + i));
+	    mu.add(this.getValueOfVariableWithinModel(m, "X" + i));
 	}
 
 	int[] finalMu = new int[mu.size()];
@@ -428,16 +477,38 @@ public class GeoNonTermAnalysis {
 	return finalMu;
     }
 
+    /**
+     * This method takes a {@link Model} and the name of a desired values
+     * variable and computes it's assignment within the model using
+     * {@link Model#get(Symbol)} and parsing into <code>int</code>.
+     * 
+     * @param m
+     *            the model of the SMT-Problem
+     * @param varName
+     *            the name of the variable (with index)
+     * @return the assigned value of the variable
+     */
     private int getValueOfVariableWithinModel(Model m, String varName) {
 	SMTExpression<?> smtExpression = m.get((Symbol<?>) smt.createVar(varName).toSMTExp());
 	return Integer.parseInt(smtExpression.toString());
     }
 
-    private int countAppearance(Model m, String s) {
+    /**
+     * This method iterates through the given model and count's the appearances
+     * of the given name. <br>
+     * NOTE: if the variables would be "aa" and "ab" would be a problem.
+     * 
+     * @param m
+     *            the model of the SMT-Problem
+     * @param varName
+     *            the name of the variable (without index)
+     * @return the number of appearances of the variable
+     */
+    private int countAppearance(Model m, String varName) {
 	int count = 0;
 
 	for (Entry<Symbol<?>, FunctionDefinition> entry : m.getDeclarations().entrySet()) {
-	    if (entry.getKey().toString().contains(s))
+	    if (entry.getKey().toString().contains(varName))
 		count++;
 	}
 
