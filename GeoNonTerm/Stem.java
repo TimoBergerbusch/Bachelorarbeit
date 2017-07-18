@@ -39,24 +39,24 @@ public class Stem {
      * Example: [f_99,3,10] -> {@link #startFunctionSymbol}=f_99 and
      * {@link #stemVec}={3,10}
      * 
-     * @param array
+     * @param symbols
      *            a {@link FunctionSymbol} array
      */
-    public Stem(FunctionSymbol[] array) {
-	if (array == null)
+    public Stem(FunctionSymbol[] symbols) {
+	if (symbols == null)
 	    return;
-	startFunctionSymbol = array[0];
+	startFunctionSymbol = symbols[0];
 	if (SHOULD_PRINT) {
 	    Logger.getLog().startClassOutput("Stem");
-	    Logger.getLog().writeln("Recieved: " + Logger.getLog().arrayToString(array));
-	    Logger.getLog().writeln("array[0]: " + array[0] + " saved in startFunctionSymbol");
+	    Logger.getLog().writeln("Recieved: " + Logger.getLog().arrayToString(symbols));
+	    Logger.getLog().writeln("array[0]: " + symbols[0] + " saved in startFunctionSymbol");
 	    Logger.getLog().writeln("Define Rest as STEM.");
 	}
 
-	int[] stem = new int[array.length - 1];
+	int[] stem = new int[symbols.length - 1];
 
 	for (int i = 0; i < stem.length; i++) {
-	    stem[i] = Integer.parseInt(array[i + 1].toString());
+	    stem[i] = Integer.parseInt(symbols[i + 1].toString());
 	}
 
 	stemVec = new GNAVector(stem);

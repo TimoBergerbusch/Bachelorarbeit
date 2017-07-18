@@ -4,12 +4,30 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The {@link Logger} is a utility class used to print debug or other
+ * information about the {@link GeoNonTermAnalysis} into a {@link #path}. <br>
+ * It's created matching a factory pattern to deny a second instance corrupting
+ * the same file.
+ * 
+ * @author Timo Bergerbusch
+ *
+ */
 public class Logger {
 
+    /**
+     * this method returns the only instance of the {@link Logger} so that
+     * classes can access it.
+     * 
+     * @return the {@link #LOG}
+     */
     public static Logger getLog() {
 	return LOG;
     }
 
+    /**
+     * the only instance of the {@link Logger} that exists
+     */
     private static Logger LOG = new Logger();
 
     /**

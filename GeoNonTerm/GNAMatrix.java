@@ -89,29 +89,6 @@ public class GNAMatrix {
 
     /**
      * creates a new {@link GNAMatrix}. <br>
-     * It sets the {@link #matrix} to the given dimensions, sets the
-     * {@link #columnNames} to the given parameter and initializes the
-     * {@link #rowNames} as a typical enumeration.
-     * 
-     * @param rowDimension
-     *            the row dimension
-     * @param columnDimension
-     *            the column dimension
-     * @param columnNames
-     *            the names of the columns
-     */
-    public GNAMatrix(int rowDimension, int columnDimension, String[] columnNames) {
-	assert columnDimension == columnNames.length;
-	this.columnNames = columnNames;
-	this.matrix = new int[rowDimension][columnDimension];
-
-	this.rowNames = new String[rowDimension];
-	for (int i = 0; i < rowDimension; i++)
-	    this.rowNames[i] = i + "";
-    }
-
-    /**
-     * creates a new {@link GNAMatrix}. <br>
      * It sets the {@link #matrix} to the given dimensions and initializes the
      * {@link #rowNames} and {@link #columnNames} to the corresponding numbers
      * of the rows/columns.
@@ -132,6 +109,29 @@ public class GNAMatrix {
 	for (int i = 0; i < columnDimension; i++) {
 	    this.columnNames[i] = i + "";
 	}
+    }
+
+    /**
+     * creates a new {@link GNAMatrix}. <br>
+     * It sets the {@link #matrix} to the given dimensions, sets the
+     * {@link #columnNames} to the given parameter and initializes the
+     * {@link #rowNames} as a typical enumeration.
+     * 
+     * @param rowDimension
+     *            the row dimension
+     * @param columnDimension
+     *            the column dimension
+     * @param columnNames
+     *            the names of the columns
+     */
+    public GNAMatrix(int rowDimension, int columnDimension, String[] columnNames) {
+	assert columnDimension == columnNames.length;
+	this.columnNames = columnNames;
+	this.matrix = new int[rowDimension][columnDimension];
+
+	this.rowNames = new String[rowDimension];
+	for (int i = 0; i < rowDimension; i++)
+	    this.rowNames[i] = i + "";
     }
 
     /**
@@ -254,6 +254,12 @@ public class GNAMatrix {
 	}
     }
 
+    /**
+     * computes the eigenvalues of the matrix using the apache.commons.math3
+     * package.
+     * 
+     * @return the eigenvalues of the matrix
+     */
     public int[] computeEigenvalues() {
 	EigenDecomposition ed = new EigenDecomposition(this.getAsRealMatrix());
 	double[] values = ed.getRealEigenvalues();
@@ -297,7 +303,12 @@ public class GNAMatrix {
 	return sb.toString();
     }
 
-    public RealMatrix getAsRealMatrix() {
+    /**
+     * converts this matrix into a BlockRealMatrix. <br>
+     * It's used to compute the eigenvalues
+     * @return
+     */
+    private RealMatrix getAsRealMatrix() {
 	double[][] doubleMatrix = new double[this.rowSize()][this.columnSize()];
 	for (int i = 0; i < this.rowSize(); i++)
 	    for (int j = 0; j < this.columnSize(); j++)

@@ -214,9 +214,9 @@ public class SMTFactory {
      *            the name this variable should have
      * @return a {@link GNAVariableVector} of the mentioned form
      * 
-     * @see #createRayCriteriaVec(int, int, char, String, char)
+     * @see #createRayCriteriaVector(int, int, char, String, char)
      */
-    public GNAVariableVector createRayCriteriaVec(int size, int lambda, char varName) {
+    public GNAVariableVector createRayCriteriaVector(int size, int lambda, char varName) {
 	GNAVariableVector vec = new GNAVariableVector(2 * size);
 
 	for (int i = 0; i < size; i++) {
@@ -246,7 +246,7 @@ public class SMTFactory {
      *            the name of the previous variable
      * @return a {@link GNAVariableVector} of the mentioned form
      */
-    public GNAVariableVector createRayCriteriaVec(int size, int lambda, char varName, String mu, char addVarName) {
+    public GNAVariableVector createRayCriteriaVector(int size, int lambda, char varName, String mu, char addVarName) {
 	GNAVariableVector vec = new GNAVariableVector(2 * size);
 
 	for (int i = 0; i < size; i++) {

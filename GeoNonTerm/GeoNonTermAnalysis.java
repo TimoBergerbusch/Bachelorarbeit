@@ -92,7 +92,17 @@ public class GeoNonTermAnalysis {
      */
     private Loop loop;
 
+    /**
+     * a {@link SMTFactory} to create the SMT-Problem, which results in a
+     * {@link GeoNonTermArgument} if one exists.
+     */
     private SMTFactory smt = new SMTFactory();
+
+    /**
+     * an already derived {@link GeoNonTermAnalysis} to safe, so that we would
+     * not compute it a second time.
+     */
+    private GeoNonTermArgument gna;
 
     /**
      * The constructor of the GeoNonTermAnalysis
@@ -366,6 +376,11 @@ public class GeoNonTermAnalysis {
      * @see SMTFactory
      */
     private GeoNonTermArgument tryDerivingAGNA() {
+
+	if (gna != null)
+	    if (gna.validate(loop.getIterationMatrix(), loop.getIterationConstants()))
+		return gna;
+
 	int[] eigenvalues = loop.getUpdateMatrix().computeEigenvalues();
 
 	Z3Solver solver = smt.createNewSolver();
@@ -378,10 +393,10 @@ public class GeoNonTermAnalysis {
 	int xCount = 0;
 	for (int i = 0; i < eigenvalues.length; i++) {
 	    if (i == 0) {
-		smt.addAssertion(loop.getIterationMatrix(), smt.createRayCriteriaVec(size, eigenvalues[i], last));
+		smt.addAssertion(loop.getIterationMatrix(), smt.createRayCriteriaVector(size, eigenvalues[i], last));
 	    } else {
 		smt.addAssertion(loop.getIterationMatrix(),
-			smt.createRayCriteriaVec(size, eigenvalues[i], last, "X" + xCount++, (char) (last - 1)));
+			smt.createRayCriteriaVector(size, eigenvalues[i], last, "X" + xCount++, (char) (last - 1)));
 	    }
 
 	    last = (char) (last + 1);
@@ -458,17 +473,17 @@ public class GeoNonTermAnalysis {
      * The mu's are written as capital X so that the other variables can contain
      * the lower capital letter 'x' .
      * 
-     * @param m
+     * @param model
      *            the model of the SMT-Problem
      * @return an <code>int</code>-array with the values of the mu's
      */
-    private int[] createMuFromModel(Model m) {
+    private int[] createMuFromModel(Model model) {
 	ArrayList<Integer> mu = new ArrayList<>();
 
-	for (int i = 0; i < this.countAppearance(m, "X"); i++) {
+	for (int i = 0; i < this.countAppearance(model, "X"); i++) {
 	    // Logger.getLog().writeln("x" + i + ": " + m.get((Symbol<?>)
 	    // smt.createVar("x" + i).toSMTExp()));
-	    mu.add(this.getValueOfVariableWithinModel(m, "X" + i));
+	    mu.add(this.getValueOfVariableWithinModel(model, "X" + i));
 	}
 
 	int[] finalMu = new int[mu.size()];
@@ -482,14 +497,14 @@ public class GeoNonTermAnalysis {
      * variable and computes it's assignment within the model using
      * {@link Model#get(Symbol)} and parsing into <code>int</code>.
      * 
-     * @param m
+     * @param model
      *            the model of the SMT-Problem
      * @param varName
      *            the name of the variable (with index)
      * @return the assigned value of the variable
      */
-    private int getValueOfVariableWithinModel(Model m, String varName) {
-	SMTExpression<?> smtExpression = m.get((Symbol<?>) smt.createVar(varName).toSMTExp());
+    private int getValueOfVariableWithinModel(Model model, String varName) {
+	SMTExpression<?> smtExpression = model.get((Symbol<?>) smt.createVar(varName).toSMTExp());
 	return Integer.parseInt(smtExpression.toString());
     }
 
@@ -498,16 +513,16 @@ public class GeoNonTermAnalysis {
      * of the given name. <br>
      * NOTE: if the variables would be "aa" and "ab" would be a problem.
      * 
-     * @param m
+     * @param model
      *            the model of the SMT-Problem
      * @param varName
      *            the name of the variable (without index)
      * @return the number of appearances of the variable
      */
-    private int countAppearance(Model m, String varName) {
+    private int countAppearance(Model model, String varName) {
 	int count = 0;
 
-	for (Entry<Symbol<?>, FunctionDefinition> entry : m.getDeclarations().entrySet()) {
+	for (Entry<Symbol<?>, FunctionDefinition> entry : model.getDeclarations().entrySet()) {
 	    if (entry.getKey().toString().contains(varName))
 		count++;
 	}
