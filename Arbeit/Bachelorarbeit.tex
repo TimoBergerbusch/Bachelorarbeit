@@ -1,0 +1,80 @@
+\documentclass[a4paper,11pt,twoside,openright]{report}
+
+\usepackage{tikz}
+% \definecolor{se_dark_blue}{RGB}{0,103,166} % powerpoint
+\definecolor{se_dark_blue}{RGB}{0,96,178} % website
+% \definecolor{se_light_blue}{RGB}{119,158,201} % powerpoint
+\definecolor{se_light_blue}{RGB}{129,160,225} % website
+
+\usepackage{pdfpages}
+\usepackage[strict]{changepage}
+
+\pdfoptionpdfminorversion=6
+
+%% setup listings
+\usepackage{listings}
+\lstset{
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    xleftmargin=11pt,
+    xrightmargin=4pt,
+    frame=single,
+    aboveskip=0pt,
+    belowskip=-6pt,
+    sensitive=true,
+    float=!t,
+    breaklines=false,
+    captionpos=b,
+    tabsize=2,
+    showstringspaces=false,
+    basicstyle=\small\ttfamily,
+    morecomment=[l]{//},
+    morecomment=[s][\itshape]{/**}{*/}
+}
+
+\begin{document}
+
+% Einrücken von Absätzen verhindern und 1.5 Zeilen Absatzabstand
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5ex plus0.5ex minus0.5ex}
+
+\input{src/tex/cover_en} % English cover
+
+\clearpage
+
+% Erklaerung
+
+\includepdf[pages={1},offset=-1in -1in]{Formular_Eidesstattliche_Versicherung_neu.pdf}
+% \includepdf[pages={1},offset=-1in -1in]{Statutory_Declaration_in_Lieu_of_an_Oath.pdf} % English 
+
+\clearpage
+
+\include{src/tex/ackowledgement}
+\include{src/tex/abstract}
+
+\tableofcontents
+
+\include{src/tex/introduction}
+\include{src/tex/Preliminaries}
+\include{src/tex/geometric-non-term}
+\include{src/tex/benchmarks}
+\include{src/tex/related-work}
+
+\tableofcontents
+
+\clearpage
+
+% Ab erstem Kapitel Seiten arabisch zählen
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\bibliographystyle{alpha}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\bibliography{src/bib/Literatur}
+
+% Begin Anhang
+\appendix
+%\input{src/tex/appendix_docu}
+
+\end{document}
