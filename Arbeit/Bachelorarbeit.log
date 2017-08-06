@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.27)  5 AUG 2017 09:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.27)  6 AUG 2017 12:09
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -344,68 +344,84 @@ File: pppdftex.def 2016/04/19 v0.5f Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count111
 \AM@templatesizebox=\box38
 )
+(E:\RWTHTools\MiKTeX\tex\latex\base\inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks29
+\inpenc@posthook=\toks30
+
+(E:\RWTHTools\MiKTeX\tex\latex\ucs\utf8x.def
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+))
+(E:\RWTHTools\MiKTeX\tex\latex\ucs\ucs.sty
+Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
+
+(E:\RWTHTools\MiKTeX\tex\latex\ucs\uni-global.def
+File: uni-global.def 2013/05/13 UCS: Unicode global data
+)
+\uc@secondtry=\count112
+\uc@combtoks=\toks31
+\uc@combtoksb=\toks32
+\uc@temptokena=\toks33
+)
 (E:\RWTHTools\MiKTeX\tex\latex\changepage\changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count112
-\cp@tempcnt=\count113
+\c@cp@cntr=\count113
+\cp@tempcnt=\count114
 )
 (E:\RWTHTools\MiKTeX\tex\latex\listings\listings.sty
-\lst@mode=\count114
+\lst@mode=\count115
 \lst@gtempboxa=\box39
-\lst@token=\toks29
-\lst@length=\count115
+\lst@token=\toks34
+\lst@length=\count116
 \lst@currlwidth=\dimen155
-\lst@column=\count116
-\lst@pos=\count117
+\lst@column=\count117
+\lst@pos=\count118
 \lst@lostspace=\dimen156
 \lst@width=\dimen157
-\lst@newlines=\count118
-\lst@lineno=\count119
+\lst@newlines=\count119
+\lst@lineno=\count120
 \lst@maxwidth=\dimen158
 
 (E:\RWTHTools\MiKTeX\tex\latex\listings\lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count120
-\lst@skipnumbers=\count121
+\c@lstnumber=\count121
+\lst@skipnumbers=\count122
 \lst@framebox=\box40
 )
 (E:\RWTHTools\MiKTeX\tex\latex\listings\listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
- (Bachelorarbeit.aux
-(src/tex/ackowledgement.aux) (src/tex/abstract.aux) (src/tex/introduction.aux)
-(src/tex/Preliminaries.aux) (src/tex/geometric-non-term.aux)
-(src/tex/benchmarks.aux) (src/tex/related-work.aux))
+ (Bachelorarbeit.aux)
 \openout1 = `Bachelorarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
 
 ABD: EveryShipout initializing macros
 (E:\RWTHTools\MiKTeX\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count122
+\scratchcounter=\count123
 \scratchdimen=\dimen159
 \scratchbox=\box41
-\nofMPsegments=\count123
-\nofMParguments=\count124
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count125
+\nofMPsegments=\count124
+\nofMParguments=\count125
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count126
 \MPscratchDim=\dimen160
-\MPnumerator=\count126
-\makeMPintoPDFobject=\count127
-\everyMPtoPDFconversion=\toks31
+\MPnumerator=\count127
+\makeMPintoPDFobject=\count128
+\everyMPtoPDFconversion=\toks36
 ) (E:\RWTHTools\MiKTeX\tex\generic\oberdiek\pdftexcmds.sty
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -461,14 +477,18 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 (E:\RWTHTools\MiKTeX\tex\generic\ifxetex\ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ))
-\c@lstlisting=\count128
+(E:\RWTHTools\MiKTeX\tex\latex\ucs\ucsencs.def
+File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
+)
+\c@lstlisting=\count129
  (src/tex/cover_en.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
 (Font)              using `OT1/cmr/bx/n' instead on input line 5.
 
-Missing character: There is no Ã in font cmbx12!
-Missing character: There is no ¤ in font cmbx12!
+(E:\RWTHTools\MiKTeX\tex\latex\ucs\uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 15.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -483,18 +503,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--24
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}])
+(src/tex/acknowledgement.tex
+Underfull \hbox (badness 10000) in paragraph at lines 1--2
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 4.
+(E:\RWTHTools\MiKTeX\tex\latex\base\omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 4.
+)
 <Formular_Eidesstattliche_Versicherung_neu.pdf, id=11, 597.45204pt x 845.1575pt
 >
 File: Formular_Eidesstattliche_Versicherung_neu.pdf Graphic file (type pdf)
  <use Formular_Eidesstattliche_Versicherung_neu.pdf>
 Package pdftex.def Info: Formular_Eidesstattliche_Versicherung_neu.pdf used on 
-input line 48.
+input line 61.
 (pdftex.def)             Requested size: 597.45058pt x 845.15544pt.
 File: Formular_Eidesstattliche_Versicherung_neu.pdf Graphic file (type pdf)
 
 <use Formular_Eidesstattliche_Versicherung_neu.pdf>
 Package pdftex.def Info: Formular_Eidesstattliche_Versicherung_neu.pdf used on 
-input line 48.
+input line 61.
 (pdftex.def)             Requested size: 597.45058pt x 845.15544pt.
 
 <Formular_Eidesstattliche_Versicherung_neu.pdf, id=14, page=1, 597.45204pt x 84
@@ -502,136 +534,92 @@ input line 48.
 File: Formular_Eidesstattliche_Versicherung_neu.pdf Graphic file (type pdf)
  <use Formular_Eidesstattliche_Versicherung_neu.pdf, page 1>
 Package pdftex.def Info: Formular_Eidesstattliche_Versicherung_neu.pdf, page1 u
-sed on input line 48.
+sed on input line 61.
 (pdftex.def)             Requested size: 597.45058pt x 845.15544pt.
 File: Formular_Eidesstattliche_Versicherung_neu.pdf Graphic file (type pdf)
 
 <use Formular_Eidesstattliche_Versicherung_neu.pdf, page 1>
 Package pdftex.def Info: Formular_Eidesstattliche_Versicherung_neu.pdf, page1 u
-sed on input line 48.
+sed on input line 61.
+(pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
+ [2]
+File: Formular_Eidesstattliche_Versicherung_neu.pdf Graphic file (type pdf)
+
+<use Formular_Eidesstattliche_Versicherung_neu.pdf, page 1>
+Package pdftex.def Info: Formular_Eidesstattliche_Versicherung_neu.pdf, page1 u
+sed on input line 61.
 (pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
 File: Formular_Eidesstattliche_Versicherung_neu.pdf Graphic file (type pdf)
 
 <use Formular_Eidesstattliche_Versicherung_neu.pdf, page 1>
 Package pdftex.def Info: Formular_Eidesstattliche_Versicherung_neu.pdf, page1 u
-sed on input line 48.
+sed on input line 61.
 (pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
 File: Formular_Eidesstattliche_Versicherung_neu.pdf Graphic file (type pdf)
 
 <use Formular_Eidesstattliche_Versicherung_neu.pdf, page 1>
 Package pdftex.def Info: Formular_Eidesstattliche_Versicherung_neu.pdf, page1 u
-sed on input line 48.
+sed on input line 61.
 (pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
-File: Formular_Eidesstattliche_Versicherung_neu.pdf Graphic file (type pdf)
+ [3 <./Formular_Eidesstattliche_Versicherung_neu.pdf>] (src/tex/abstract.tex
+Underfull \hbox (badness 10000) in paragraph at lines 1--2
 
-<use Formular_Eidesstattliche_Versicherung_neu.pdf, page 1>
-Package pdftex.def Info: Formular_Eidesstattliche_Versicherung_neu.pdf, page1 u
-sed on input line 48.
-(pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
- [2
+ []
 
- <./Formular_Eidesstattliche_Versicherung_neu.pdf>]
-\openout2 = `src/tex/ackowledgement.aux'.
-
-
-No file src/tex/ackowledgement.tex.
-\openout2 = `src/tex/abstract.aux'.
-
-(src/tex/abstract.tex
-Chapter 1.
-) [3
-
-
-
-
-
-] [4
-
-
-] (Bachelorarbeit.toc)
+) [4] (Bachelorarbeit.toc)
 \tf@toc=\write4
 \openout4 = `Bachelorarbeit.toc'.
 
- [5]
-\openout2 = `src/tex/introduction.aux'.
+ (src/tex/introduction.tex [1
 
- (src/tex/introduction.tex [6
+] [2
 
+]
+Chapter 1.
+) (src/tex/Preliminaries.tex [3] [4
 
 ]
 Chapter 2.
-) [7]
-\openout2 = `src/tex/Preliminaries.aux'.
-
- (src/tex/Preliminaries.tex [8
-
-
+) (src/tex/geometric-non-term.tex [5] [6
 
 ]
 Chapter 3.
-) [9]
-\openout2 = `src/tex/geometric-non-term.aux'.
-
- (src/tex/geometric-non-term.tex [10
-
-
+) (src/tex/benchmarks.tex [7] [8
 
 ]
 Chapter 4.
-) [11]
-\openout2 = `src/tex/benchmarks.aux'.
-
- (src/tex/benchmarks.tex [12
-
-
+) (src/tex/related-work.tex [9] [10
 
 ]
 Chapter 5.
-) [13]
-\openout2 = `src/tex/related-work.aux'.
-
- (src/tex/related-work.tex [14
-
-
-]) (Bachelorarbeit.toc)
-\tf@toc=\write5
-\openout5 = `Bachelorarbeit.toc'.
-
- [15
-
-
+) (Bachelorarbeit.bbl [11] [12
 
 ]
-(Bachelorarbeit.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [1
-
-
-] (Bachelorarbeit.aux (src/tex/ackowledgement.aux) (src/tex/abstract.aux)
-(src/tex/introduction.aux) (src/tex/Preliminaries.aux)
-(src/tex/geometric-non-term.aux) (src/tex/benchmarks.aux)
-(src/tex/related-work.aux))
+) [13] (Bachelorarbeit.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 13483 strings out of 493334
- 262694 string characters out of 3142680
- 302830 words of memory out of 3000000
- 16710 multiletter control sequences out of 15000+200000
- 9711 words of font info for 34 fonts, out of 3000000 for 9000
+ 14379 strings out of 493334
+ 273704 string characters out of 3142680
+ 318886 words of memory out of 3000000
+ 17610 multiletter control sequences out of 15000+200000
+ 10714 words of font info for 37 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,54p,449b,420s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,18n,54p,449b,610s stack positions out of 5000i,500n,10000p,200000b,50000s
 <E:/RWTHTools/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/RWTHTools/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/RWTHTools/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb><E:/RWTHTools/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmssbx10.pfb>
-Output written on Bachelorarbeit.pdf (16 pages, 75358 bytes).
+e1/public/amsfonts/cm/cmbxti10.pfb><E:/RWTHTools/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmr10.pfb><E:/RWTHTools/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.
+pfb><E:/RWTHTools/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/RWTHTool
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Bachelorarbeit.pdf (17 pages, 109983 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
+ 98 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

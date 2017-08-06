@@ -7,6 +7,7 @@
 \definecolor{se_light_blue}{RGB}{129,160,225} % website
 
 \usepackage{pdfpages}
+\usepackage[utf8x]{inputenc}
 \usepackage[strict]{changepage}
 
 \pdfoptionpdfminorversion=6
@@ -33,6 +34,18 @@
     morecomment=[s][\itshape]{/**}{*/}
 }
 
+\setlength{\voffset}{-1in}
+\setlength{\hoffset}{-1in}
+
+\setlength{\topmargin}{2.5cm}		   
+\setlength{\headheight}{0cm}		   
+\setlength{\headsep}{0cm}		   
+\setlength{\oddsidemargin}{3,3cm}  % innen ein wenig mehr Rand für die Klebebindung
+\setlength{\evensidemargin}{2,7cm} % dafür außen ein wenig weniger
+\setlength{\textwidth}{15cm}		   
+\setlength{\textheight}{23,5cm}		   
+\setlength{\parindent}{0cm}
+
 \begin{document}
 
 % Einrücken von Absätzen verhindern und 1.5 Zeilen Absatzabstand
@@ -41,33 +54,28 @@
 
 \input{src/tex/cover_en} % English cover
 
-\clearpage
+%\clearpage
+\input{src/tex/acknowledgement}
 
 % Erklaerung
-
 \includepdf[pages={1},offset=-1in -1in]{Formular_Eidesstattliche_Versicherung_neu.pdf}
 % \includepdf[pages={1},offset=-1in -1in]{Statutory_Declaration_in_Lieu_of_an_Oath.pdf} % English 
 
-\clearpage
-
-\include{src/tex/ackowledgement}
-\include{src/tex/abstract}
+%\clearpage
+\input{src/tex/abstract}
 
 \tableofcontents
-
-\include{src/tex/introduction}
-\include{src/tex/Preliminaries}
-\include{src/tex/geometric-non-term}
-\include{src/tex/benchmarks}
-\include{src/tex/related-work}
-
-\tableofcontents
-
-\clearpage
 
 % Ab erstem Kapitel Seiten arabisch zählen
 \setcounter{page}{1}
 \pagenumbering{arabic}
+
+\input{src/tex/introduction}
+\input{src/tex/Preliminaries}
+\input{src/tex/geometric-non-term}
+\input{src/tex/benchmarks}
+\input{src/tex/related-work}
+
 
 \bibliographystyle{alpha}
 \addcontentsline{toc}{chapter}{Literaturverzeichnis}
