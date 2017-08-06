@@ -1,3 +1,4 @@
+\contentsline {paragraph}{Erkl\IeC {\"a}rung}{2}
 \contentsline {chapter}{\numberline {1}Introduction}{3}
 \contentsline {chapter}{\numberline {2}Preliminaries}{5}
 \contentsline {section}{\numberline {2.1}Considered Programs}{5}
