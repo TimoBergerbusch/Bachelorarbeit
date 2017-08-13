@@ -1,7 +1,6 @@
 int main(){
-
-    int a = 3;
-    int b = 1;
+    int a;
+    int b =1;
 
     while(a+b>=4){
         a=3*a+b;

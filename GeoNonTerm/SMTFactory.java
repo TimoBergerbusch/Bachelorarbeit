@@ -46,7 +46,7 @@ public class SMTFactory {
      * 
      * @return new freshly generated {@link Z3Solver}
      */
-    public Z3Solver createNewSolver() {
+    private Z3Solver createNewSolver() {
 	return solver = new Z3ExtSolverFactory().getSMTSolver(SMTLIBLogic.QF_NIA, AbortionFactory.create());
     }
 
@@ -58,10 +58,10 @@ public class SMTFactory {
      * @return the (new) {@link Z3Solver}-instance
      */
     public Z3Solver getSolver() {
-	if (solver == null)
+//	if (solver == null)
 	    return this.createNewSolver();
-	else
-	    return solver;
+//	else
+//	    return solver;
     }
 
     /**

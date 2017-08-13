@@ -13,16 +13,21 @@ import aprove.DPFramework.BasicStructures.TRSTerm;
 import aprove.DPFramework.BasicStructures.TRSVariable;
 import aprove.DPFramework.IDPProblem.IGeneralizedRule;
 import aprove.Framework.BasicStructures.FunctionSymbol;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.FunctionalIntegerExpression;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.IntegerRelationType;
+import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerRelation;
 import aprove.Framework.IntTRS.IRSwTProblem;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNNode;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNTreeParser;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.UnsupportetArithmeticSymbolException;
 import aprove.Framework.Logic.YNM;
 import aprove.Framework.SMT.Expressions.SMTExpression;
+import aprove.Framework.SMT.Expressions.Sorts.SBool;
 import aprove.Framework.SMT.Expressions.Symbols.Symbol;
 import aprove.Framework.SMT.Solver.SMTLIB.FunctionDefinition;
 import aprove.Framework.SMT.Solver.SMTLIB.Model;
 import aprove.Framework.SMT.Solver.Z3.Z3Solver;
+import aprove.Framework.Utility.GenericStructures.Pair;
 
 /**
  * The main class of the geometric non-termination analysis presented by Jan
@@ -114,9 +119,14 @@ public class GeoNonTermAnalysis {
 	this.problem = problem;
 	rules = this.problem.getRules().toArray(new IGeneralizedRule[] {});
 
+	// Logger.getLog().writeln(problem.toString());
+
 	if (this.problem.getStartTerm() != null) {
 	    this.deriveSTEM();
+	    // Logger.getLog().writeln(stem);
 	    this.deriveLOOP();
+
+	    Logger.getLog().close();
 
 	    GeoNonTermArgument gna = this.tryDerivingAGNA();
 	    Logger.getLog()
@@ -170,9 +180,65 @@ public class GeoNonTermAnalysis {
      */
     private FunctionSymbol[] getRuleAsArray(IGeneralizedRule rule) {
 	// TODO: Wenn links und rechts nicht die selben VAR's haben
-	TRSTerm r = rule.getRight();
-	FunctionSymbol[] arr = new FunctionSymbol[r.getSize() - 1];
-	arr = r.getFunctionSymbols().toArray(arr);
+
+	assert ((TRSFunctionApplication) rule.getLeft()).getArity() == 0;
+
+	TRSFunctionApplication r = (TRSFunctionApplication) rule.getRight();
+	FunctionSymbol[] arr = new FunctionSymbol[r.getArity() + 1];
+	arr[0] = r.getFunctionSymbol();
+
+	if (r.getVariables().size() == 0) {
+	    for (int i = 0; i < r.getArity(); i++) {
+		TRSTerm arg = r.getArgument(i);
+		arr[i + 1] = ((TRSFunctionApplication) arg).getFunctionSymbol();
+	    }
+	} else {
+
+	    // Try deriving a sat. assignment for the STEM
+	    try {
+		Pair<GNAMatrix, GNAVector> pair = this.computeConditionMatrixAndConstants(rule);
+		GNAVariableVector vec = new GNAVariableVector(pair.getKey().getVarNames());
+
+		Z3Solver solver = smt.getSolver();
+
+		pair.getKey().negate();
+		for (int i = 0; i < pair.getValue().size(); i++)
+		    pair.getValue().set(i, pair.getValue().get(i) * -1 - 1);
+
+		smt.addAssertion(pair.getKey(), vec, pair.getValue());
+
+		for (int i = 0; i < r.getArity(); i++) {
+
+		    PlainIntegerRelation condRule = smt.createRule(IntegerRelationType.EQ, smt.createVar("GNAv" + i),
+			    smt.parseRPNTreeToSMTRule(RPNTreeParser.parseSetToTree(r.getArgument(i))));
+
+		    solver.addAssertion(condRule.toSMTExp());
+		}
+
+		if (solver.checkSAT() == YNM.YES) {
+		    if (SHOULD_PRINT)
+			Logger.getLog().writeln("Derived STEM-Values from the given StartSymbol");
+		    for (int i = 0; i < r.getArity(); i++) {
+			arr[i + 1] = FunctionSymbol
+				.create(this.getValueOfVariableWithinModel(solver.getModel(), "GNAv" + i) + "", 0);
+		    }
+
+		} else {
+		    Logger.getLog().writeln("There is no possible Startterm");
+		    Logger.getLog().close();
+		    assert false;
+		}
+	    } catch (UnsupportetArithmeticSymbolException e) {
+		// Create Startvalues 0 in case of unsuspected problem
+		for (int i = 0; i < r.getArity(); i++) {
+		    TRSTerm arg = r.getArgument(i);
+		    arr[i + 1] = FunctionSymbol.create("0", 0);
+		}
+		e.printStackTrace();
+	    }
+
+	}
+
 	return arr;
     }
 
@@ -259,23 +325,11 @@ public class GeoNonTermAnalysis {
 	// Herleiten der Update-Matrix Einträge
 	for (int i = 0; i < occuringVars.length; i++) {
 	    for (int j = 0; j < occuringVars.length; j++) {
-		// Logger.getLog().writeln("Does " + occuringVars[i] + " contain
-		// " +
-		// occuringVars[j] + "? "
-		// + variableUpdates[i].containsVar(occuringVars[j]) + " \t
-		// Value:"
-		// + variableUpdates[i].getFactorOfVar(occuringVars[j]));
 		updateMatrix.setEntry(occuringVars[i], occuringVars[j],
 			variableUpdates[i].getFactorOfVar(occuringVars[j]));
 	    }
-	    // Logger.getLog().writeln("Does Update of Var. " + i + " contain a
-	    // Constant
-	    // term? Term: "
-	    // + variableUpdates[i].getConstantTerm());
 	    updateConstants.set(i, variableUpdates[i].getConstantTerm());
 	}
-
-	// Logger.getLog().writeln(updateMatrix);
 	loop.setUpdateMatrix(updateMatrix);
 	loop.setUpdateConstants(updateConstants);
     }
@@ -291,9 +345,24 @@ public class GeoNonTermAnalysis {
      *            the rule containing the conditions
      */
     private void deriveGuardPart(IGeneralizedRule rule) {
-	// Logger.getLog().writeln("++++++++++");
-	// Logger.getLog().writeln("Cond Term: " + rule.getCondTerm());
-	// Logger.getLog().writeln("Cond Vars" + rule.getCondVariables());
+
+	Pair<GNAMatrix, GNAVector> pair = this.computeConditionMatrixAndConstants(rule);
+
+	GNAMatrix guardMatrix = pair.getKey();
+	GNAVector guardConstants = pair.getValue();
+
+	// alle > in < umdrehen, sodass die constante immer < da steht:
+	// ... < c
+	// UpdateMatrix.negateMatrix(guardMatrix);
+	guardMatrix.negate();
+	for (int i = 0; i < guardConstants.size(); i++)
+	    guardConstants.set(i, guardConstants.get(i) * -1 - 1);
+
+	loop.setGuardUpdates(guardMatrix);
+	loop.setGuardConstants(guardConstants);
+    }
+
+    private Pair<GNAMatrix, GNAVector> computeConditionMatrixAndConstants(IGeneralizedRule rule) {
 
 	ArrayList<TRSTerm> condTerms = new ArrayList<>();
 	Stack<TRSTerm> stack = new Stack<>();
@@ -322,8 +391,8 @@ public class GeoNonTermAnalysis {
 	condTerms = condTermsReverse;
 
 	// Die GuardMatrix für die versch. Bedingungen
-	GNAMatrix guardMatrix = new GNAMatrix(condTerms.size(), rule.getLeft().getVariables().size(),
-		GeoNonTermAnalysis.deriveVariablesAsStringArray(rule.getLeft().getVariables()));
+	GNAMatrix guardMatrix = new GNAMatrix(condTerms.size(), rule.getRight().getVariables().size(),
+		GeoNonTermAnalysis.deriveVariablesAsStringArray(rule.getRight().getVariables()));
 	// Die Constanten, welche erfüllt werden müssen
 	GNAVector guardConstants = new GNAVector(condTerms.size(), 0);
 
@@ -345,19 +414,10 @@ public class GeoNonTermAnalysis {
 	    } catch (UnsupportetArithmeticSymbolException e) {
 		e.printStackTrace();
 	    }
-	// alle > in < umdrehen, sodass die constante immer < da steht:
-	// ... < c
-	// UpdateMatrix.negateMatrix(guardMatrix);
-	guardMatrix.negate();
-	for (int i = 0; i < guardConstants.size(); i++)
-	    guardConstants.set(i, guardConstants.get(i) * -1 - 1);
 
-	loop.setGuardUpdates(guardMatrix);
-	loop.setGuardConstants(guardConstants);
+	Pair<GNAMatrix, GNAVector> pair = new Pair<GNAMatrix, GNAVector>(guardMatrix, guardConstants);
 
-	// Logger.getLog().writeln(guardMatrix);
-	// Logger.getLog().writeln(guardConstants);
-	// Logger.getLog().writeln("++++++++++");
+	return pair;
     }
 
     /**
@@ -383,7 +443,7 @@ public class GeoNonTermAnalysis {
 
 	int[] eigenvalues = loop.getUpdateMatrix().computeEigenvalues();
 
-	Z3Solver solver = smt.createNewSolver();
+	Z3Solver solver = smt.getSolver();
 
 	// Das berechnen vom Point Kriterium
 	smt.addAssertion(loop.getIterationMatrix(), smt.createPointCriteriaVector(stem), loop.getIterationConstants());
@@ -406,8 +466,8 @@ public class GeoNonTermAnalysis {
 	smt.addAdditionAssertion(size, last);
 
 	// checking
-	Logger.getLog().writeln("SAT: " + smt.getSolver().checkSAT().toString());
-	if (smt.getSolver().checkSAT() == YNM.YES) {
+	Logger.getLog().writeln("SAT: " + solver.checkSAT().toString());
+	if (solver.checkSAT() == YNM.YES) {
 	    Logger.getLog().writeln("MODEl: " + solver.getModel().toString());
 
 	    int[] muArray = this.createMuFromModel(solver.getModel());
@@ -506,6 +566,14 @@ public class GeoNonTermAnalysis {
     private int getValueOfVariableWithinModel(Model model, String varName) {
 	SMTExpression<?> smtExpression = model.get((Symbol<?>) smt.createVar(varName).toSMTExp());
 	return Integer.parseInt(smtExpression.toString());
+    }
+
+    /**
+     * @return The geometric nontermination argument if the analysis was
+     *         successful, null else.
+     */
+    public GeoNonTermArgument getNontermArgument() {
+	return this.gna;
     }
 
     /**
