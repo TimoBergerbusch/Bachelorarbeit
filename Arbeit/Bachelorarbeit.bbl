@@ -1,3 +1,29 @@
-\begin{thebibliography}{}
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{GAB{\etalchar{+}}17}
+
+\bibitem[GAB{\etalchar{+}}17]{giesl2017analyzing}
+J{\"u}rgen Giesl, Cornelius Aschermann, Marc Brockschmidt, Fabian Emmes,
+  Florian Frohn, Carsten Fuhs, Jera Hensel, Carsten Otto, Martin Pl{\"u}cker,
+  Peter Schneider-Kamp, et~al.
+\newblock Analyzing program termination and complexity automatically with
+  aprove.
+\newblock {\em Journal of Automated Reasoning}, 58(1):3--31, 2017.
+
+\bibitem[LH14]{leike2014geometric}
+Jan Leike and Matthias Heizmann.
+\newblock Geometric series as nontermination arguments for linear lasso
+  programs.
+\newblock {\em arXiv preprint arXiv:1405.4413}, 2014.
+
+\bibitem[VDDS93]{verschaetse1993automatic}
+Kristof Verschaetse, Stefaan Decorte, and Danny De~Schreye.
+\newblock Automatic termination analysis.
+\newblock In {\em Logic Program Synthesis and Transformation}, pages 168--183.
+  Springer, 1993.
+
+\bibitem[ZC09]{zhivich2009real}
+Michael Zhivich and Robert~K Cunningham.
+\newblock The real cost of software errors.
+\newblock {\em IEEE Security \& Privacy}, 7(2), 2009.
 
 \end{thebibliography}

@@ -1,0 +1,103 @@
+\chapter{Preliminaries}
+\label{ch:preliminaries}
+
+%\begin{itemize}
+%	\item what is the general form of the considered Programs
+%		\begin{itemize}
+%			\item single-loop
+%			\item linear updates
+%			\item (single guard)
+%			\item What is considered \emph{STEM}
+%			\item What is considered \emph{LOOP}
+%		\end{itemize}
+%	\item The different Matrices
+%	\item the theorem
+%	\item the Reverse-Polish-Notation-Tree
+%	\item SMT-Problem
+%\end{itemize}
+In order to be able to explain the solution approach we have to declare to, which programs are considered within the Geometric Nontermination. Furthermore we have to define a few structures we work on.
+
+\section{Geometric Nontermination Argument (GNA)}
+Adapted from Jan Leikes and Matthias Heizmanns paper \textit{Geometric Nontermination Arguments} \cite{leike2014geometric} I will define the considered programs, define the \stem and \loopt and finally state the definition of Geometric Nontermination Arguments.
+
+\subsection{Considered Programs}
+The considered programs in the Geometric Nontermination are not bound to a special programming language. The paper works on so called Linear-Lasso Programs, which in fact %TODO: really?
+are also used within \aprove to derive the so called (int-)TRS. Because of the, within the \hyperref[sec:aprove]{introduction} stated, conversion of the language into \textit{llvm}-code and further analysis the applicability of Geometric Nontermination Arguments are not bound to any program language. \newline %TODO: llvm? 
+In order to define the specific conditions under which we can use the approach, we take the language \tool{Java} as an example.
+\subsection{Structure}
+The structure of the considered programs is quite simple. They contain an optional declaration of the used variables and a \code{while}-loop. Even though \tool{Java} would not accept this the conversion to \tool{llvm} would still be sound. An example of a fulfilling \tool{Java} program is shown in \autoref{fig:structure-example-java}. 
+\begin{itemize}
+	\item The \stem: \newline
+		The initialization and optional declaration of variables used within the \code{while}-loop. In the example line 3 and 4 are considered the \stem. Also only $b$ is declared.
+	\item The guard: \newline
+		The guard of the \code{while}-loop is essential to restrict $a$  as we will see in %TODO: ref
+		. With the restriction of $a+b\ge 4 $ we can prove termination for $a < 3$ without further analysis, and also to prove termination assume that $a \ge 3$.
+	\item The linear Updates: \newline
+		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their value determine if the guard still holds. The approach works with only linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have a $f(v_i)=a_1*v_1+...+a_n*v_n$ with $n \in \mathbb{N}$. Note since we work on int-TRS it is sufficient for $n$ to be in $\mathbb{N}$. 	
+\end{itemize} 
+
+\begin{figure}[h]
+	\begin{lstlisting}[language = java, escapechar = !, linewidth=0.6\linewidth]
+	int main(){
+		
+		int a;!\tikz[remember picture] \node [] (a) {};!
+		int b=1;!\tikz[remember picture] \node [] (b) {};!
+		
+		while(a+b>=4){! \tikz[remember picture] \node [] (c) {}; !
+			a=3*a+b;!\tikz[remember picture] \node [] (d) {}; !
+			b=2*b;!\tikz[remember picture] \node [] (e) {}; !
+		}
+	}		
+	\end{lstlisting}
+	\begin{tikzpicture}[remember picture, overlay, 
+		every edge/.append style = { ->, thick, >=stealth, dashed, line width = 1pt },
+		every node/.append style = { align = center, minimum height = 10pt,	font = \bfseries, fill= green!20},
+	text width = 2.5cm ]
+		\node[above right = .2cm and 3.1 cm of a] (A) {the \textit{STEM}};
+		\draw[rounded corners=5pt] (A.west) edge (a.east);
+		\draw (A.west) edge (b.east);
+		
+		\node[below = of A, right = of c] (B) {the guard};
+		\draw (B.west) edge (c.east);
+		
+		\node[right = 4cm of d, below = of B] (C) {the linear update};
+		\draw (C.west) edge (d.east);
+		\draw (C.west) edge (e.east);
+	\end{tikzpicture}
+%	\lstinputlisting{src/listings/preliminaries-consideredPrograms-example-java.java}		
+	\caption{A \tool{Java} program fulfilling the conditions to be applicable}
+	\label{fig:structure-example-java}
+\end{figure}
+The guard and linear updates together form the so called \loopt. 
+
+After ...
+%TODO: was geschieht mit dem c programm normalerweise?
+%TODO: die 2 statt 1 erklären
+we finally receive the equivalent \tool{int-TRS} shown in \autoref{fig:structure-example-TRS}. As we can see the original program can be recognized quite easily. The first rule in line 1 denotes the \stem, while the second line equals the loop \loopt.
+
+\begin{figure}[H]
+	\begin{lstlisting}[linewidth=1.4\textwidth, escapechar = !]
+!$\overbrace{f_1	     -> f_2(1+3*c,2)   :|: c>2 \&\& 8<3*c}^{\text{\stem}}$!
+!$\underbrace{\underbrace{f_2(a,b) \rightarrow f_2(3*a+b,2*b)}_{\text{linear update}} :|: \underbrace{3*a>29 \& \& a+b>11 \& \& 31<3*a+b \& \& 3<2*b}_{\text{guards}}}_{\text{\loopt}}$!
+	\end{lstlisting}
+	\caption{The \tool{int-TRS} corresponding to the \tool{Java} program in \autoref{fig:structure-example-java}}
+	\label{fig:structure-example-TRS}
+\end{figure}
+ Neglecting the conditional terms for now the declaration of $b$ is set in line 1 obviously to 2, because of the one circle the GRAPH has to compute in order to find a loop. The definition of $a$ is more difficult and will be shown within REF %TODO: ref to derive STEM
+ . 
+Also the update within line 2 is the same as in \autoref{fig:structure-example-java} line 7 and 8. \newline
+
+\begin{definition}[Guard Matrix, Guard Constants]
+	Let $n \in \mathbb{N}$ be the number of distinct variables, $v_i$ $1 \le i \le n$ the $i$-th distinct variable name , $m \in \mathbb{N}$ be the number of guards, $r_i$ $1 \le i \le m$ the $i$-th guard, $a_{i,j} \in \mathbb{N}$ $1\le i \le n$, $1 \le j \le m$ the factor of $v_i$ in $g_j$ and $c_i$ be the constant term within $r_j$. \newline
+		
+	Then the \guardmatrix $G \in \mathbb{N}^{m\times n}$ is defined as $G_{i,j}=a_{i,j} $ and \guardconstants $g \in \mathbb{N}^m$ are defined as $g_i = c_i$.
+\end{definition}
+\begin{example}
+	The corresponding \guardmatrix to \autoref{fig:structure-example-TRS} is $G = \begin{pmatrix} 3 & 0 \\ 1 & 1 \\ 3 & 1 \\ 0 & 2 \end{pmatrix}$ and the \guardconstants is $g= \begin{pmatrix} 29 \\ 11 \\ 31 \\ 3 \end{pmatrix}$
+\end{example}
+
+
+
+\section{Reverse-Polish-Notation-Tree}
+
+\section{\emph{SMT}-Problem}

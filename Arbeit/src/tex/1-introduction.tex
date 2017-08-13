@@ -1,0 +1,10 @@
+\chapter{Introduction}
+
+\section{Motivation}
+The topic of verification and termination analysis of software increases in importance with the development of new programs. Even though that for Touring Complete programming languages the Halting-Problem is undecidable, and therefore no complete and sound method can exist, a verity of approaches to determine termination are researched and still being developed. These approaches can determine termination on programs, which match certain criteria in form of structure, composition or using only a closed set of operations for example only linear updates of variables. \newline
+Given a tool, which can provide a sound and in many scenarios applicable mechanism to prove termination, a optimized framework could analyse written code and find bugs before the actual release of the software \cite{verschaetse1993automatic}. Contemplating that automatic verification can be applied to termination proved software the estimated annual US Economy loses of \$60 billion each year in costs associated software could be reduced significantly \cite{zhivich2009real}. \newline
+
+\section{\emph{AProVE}}
+\label{sec:aprove}
+One promising approach is the tool \aprove (\underline{A}utomated \underline{Pro}gram \underline{V}erification \underline{E}nvironment) developed at the RWTH Aachen by the Lehr- und Forschungsgebiet Informatik 2. The \emph{AProVE}-tool (further only called \aprove) for a automatic termination and complexity proving works with different programming languages of major language paradigms like \tool{Java} (object oriented), \tool{Haskell} (functional), \tool{Prolog} (logical) as well as \tool{rewrite systems}. The conversion of these different languages into (integer) term rewrite systems ((int-)TRS) and subsequently applying various different approaches is what makes this tool strong in meanings of proofing \cite{giesl2017analyzing}.
+%TODO Write more
