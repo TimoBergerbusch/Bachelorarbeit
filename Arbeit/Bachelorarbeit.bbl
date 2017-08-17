@@ -1,6 +1,19 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
 \begin{thebibliography}{GAB{\etalchar{+}}17}
 
+\bibitem[Áb16]{sat2016}
+Prof. Dr.~Erika Ábrahám.
+\newblock Introduction to satisfiability checking.
+\newblock 2016.
+
+\bibitem[CKJ{\etalchar{+}}15]{corzilius2015smt}
+Florian Corzilius, Gereon Kremer, Sebastian Junges, Stefan Schupp, and Erika
+  {\'A}brah{\'a}m.
+\newblock Smt-rat: an open source c++ toolbox for strategic and parallel smt
+  solving.
+\newblock In {\em International Conference on Theory and Applications of
+  Satisfiability Testing}, pages 360--368. Springer, 2015.
+
 \bibitem[GAB{\etalchar{+}}17]{giesl2017analyzing}
 J{\"u}rgen Giesl, Cornelius Aschermann, Marc Brockschmidt, Fabian Emmes,
   Florian Frohn, Carsten Fuhs, Jera Hensel, Carsten Otto, Martin Pl{\"u}cker,
@@ -20,6 +33,11 @@ Kristof Verschaetse, Stefaan Decorte, and Danny De~Schreye.
 \newblock Automatic termination analysis.
 \newblock In {\em Logic Program Synthesis and Transformation}, pages 168--183.
   Springer, 1993.
+
+\bibitem[Wik17]{wikirpn}
+Wikipedia.
+\newblock Reverse polish notation --- {Wikipedia, The Free Encyclopedia}, 2017.
+\newblock [Online; accessed 17-August-2017].
 
 \bibitem[ZC09]{zhivich2009real}
 Michael Zhivich and Robert~K Cunningham.

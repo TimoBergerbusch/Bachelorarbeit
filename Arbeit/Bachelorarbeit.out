@@ -5,20 +5,23 @@
 \BOOKMARK [1][]{section.2.1}{Geometric Nontermination Argument \(GNA\)}{chapter.2}% 5
 \BOOKMARK [2][]{subsection.2.1.1}{Considered Programs}{section.2.1}% 6
 \BOOKMARK [2][]{subsection.2.1.2}{Structure}{section.2.1}% 7
-\BOOKMARK [1][]{section.2.2}{Reverse-Polish-Notation-Tree}{chapter.2}% 8
-\BOOKMARK [1][]{section.2.3}{SMT-Problem}{chapter.2}% 9
-\BOOKMARK [0][]{chapter.3}{Geometric Non-Termination}{}% 10
-\BOOKMARK [1][]{section.3.1}{Derivation of the STEM}{chapter.3}% 11
-\BOOKMARK [1][]{section.3.2}{Derivation of the LOOP}{chapter.3}% 12
-\BOOKMARK [2][]{subsection.3.2.1}{The Update Matrix}{section.3.2}% 13
-\BOOKMARK [2][]{subsection.3.2.2}{The Guard Matrix}{section.3.2}% 14
-\BOOKMARK [2][]{subsection.3.2.3}{The Iteration Matrix}{section.3.2}% 15
-\BOOKMARK [1][]{section.3.3}{Derivation of the SMT-Problem}{chapter.3}% 16
-\BOOKMARK [2][]{subsection.3.3.1}{The Domain Criteria}{section.3.3}% 17
-\BOOKMARK [2][]{subsection.3.3.2}{The Initiation Criteria}{section.3.3}% 18
-\BOOKMARK [2][]{subsection.3.3.3}{The Point Criteria}{section.3.3}% 19
-\BOOKMARK [2][]{subsection.3.3.4}{The Ray Criteria}{section.3.3}% 20
-\BOOKMARK [1][]{section.3.4}{Verification of the Geometric Non-Termination Argument}{chapter.3}% 21
-\BOOKMARK [0][]{chapter.4}{Benchmarks}{}% 22
-\BOOKMARK [0][]{chapter.5}{related work}{}% 23
-\BOOKMARK [0][]{chapter.5}{Literaturverzeichnis}{}% 24
+\BOOKMARK [2][]{subsection.2.1.3}{Necessary Definitions}{section.2.1}% 8
+\BOOKMARK [1][]{section.2.2}{Reverse-Polish-Notation-Tree}{chapter.2}% 9
+\BOOKMARK [1][]{section.2.3}{SMT-Problem}{chapter.2}% 10
+\BOOKMARK [0][]{chapter.3}{Geometric Non-Termination}{}% 11
+\BOOKMARK [1][]{section.3.1}{Derivation of the STEM}{chapter.3}% 12
+\BOOKMARK [2][]{subsection.3.1.1}{Constant STEM}{section.3.1}% 13
+\BOOKMARK [2][]{subsection.3.1.2}{Variable STEM}{section.3.1}% 14
+\BOOKMARK [1][]{section.3.2}{Derivation of the LOOP}{chapter.3}% 15
+\BOOKMARK [2][]{subsection.3.2.1}{The Update Matrix}{section.3.2}% 16
+\BOOKMARK [2][]{subsection.3.2.2}{The Guard Matrix}{section.3.2}% 17
+\BOOKMARK [2][]{subsection.3.2.3}{The Iteration Matrix}{section.3.2}% 18
+\BOOKMARK [1][]{section.3.3}{Derivation of the SMT-Problem}{chapter.3}% 19
+\BOOKMARK [2][]{subsection.3.3.1}{The Domain Criteria}{section.3.3}% 20
+\BOOKMARK [2][]{subsection.3.3.2}{The Initiation Criteria}{section.3.3}% 21
+\BOOKMARK [2][]{subsection.3.3.3}{The Point Criteria}{section.3.3}% 22
+\BOOKMARK [2][]{subsection.3.3.4}{The Ray Criteria}{section.3.3}% 23
+\BOOKMARK [1][]{section.3.4}{Verification of the Geometric Non-Termination Argument}{chapter.3}% 24
+\BOOKMARK [0][]{chapter.4}{Benchmarks}{}% 25
+\BOOKMARK [0][]{chapter.5}{related work}{}% 26
+\BOOKMARK [0][]{chapter.5}{Literaturverzeichnis}{}% 27

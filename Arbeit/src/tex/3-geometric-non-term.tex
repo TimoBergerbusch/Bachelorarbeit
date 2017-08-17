@@ -1,8 +1,64 @@
 \chapter{Geometric Non-Termination}
 
+Now that all preliminaries are stated we can start looking how the approach works within \aprove. To find a \gna and so prove nontermination we use \aprove to generate an \its of a given program. %TODO: write how? ref: prelim
+Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT}-Problem using \autoref{def:gna} and compute a \gna, which would be a prove of nontermination, or state that no \gna can exist, which does not infer termination nor nontermination.
+
 \section{Derivation of the \emph{STEM}}
+\label{sec:stem}
+The derivation of the \stem is the first step to do in order to derive a \gna. As described in \autoref{sec:structure} the \stem defines the variables before iterating through the \loopt.  Owned to the fact, that \aprove has to find the a loop within the generated symbolic execution graph %TODO: cite
+one iteration through the \loopt will be calculated. Obviously this does not falsify the result. If it does not terminate i will still not terminate after one iteration and if it terminates after $n$ iterations and we compute one it will still terminate after $n-1$ iterations. \newline
+Within the derivation of the \stem we distinguish between two cases discussed in the following sections.
+
+\subsection{Constant \stem}
+\label{sec:stem-const}
+
+\newsavebox{\stemexone}% Box to store smallmatrix content
+\savebox{\stemexone}{$\begin{pmatrix}10\\2\end{pmatrix}$}
+\begin{wrapfigure}{r}{0.6\textwidth}
+	\begin{lstlisting}[escapechar=!]
+	!$f_1 \rightarrow f_2(10,2) :|: TRUE $!
+	\end{lstlisting}	
+	\caption{An example of a constant \its rule to derive the \stem. The \stem in this case would be \usebox{\stemexone} }
+	\label{lst:stem-cons}
+\end{wrapfigure}
+
+The constant stem is the easiest case to derive the \stem from. It has the form: 
+%\vspace{-1em}
+\begin{figure}[H]
+	$f_x \rightarrow f_y(c_1,\dots c_n) :|: TRUE$
+\end{figure} 
+%\vspace{-2em}
+An example of a constant \stem is shown in \autoref{lst:stem-cons}. 
+The values of $x$ can be directly read from the right hand side and need no further calculations.
+
+\subsection{Variable \stem}
+\label{sec:stem-var}
+The more complex case is given if the start function symbol has the following form:
+\begin{figure}[H]
+	\hspace{2cm}
+	$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond$
+\end{figure}
+%\vspace{-1em}
+where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-const} \underline{or} a variable defined by the $cond$ term. An example for such a \stem is shown in \autoref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which we will explain in %TODO: ref
+, to create the assertions leading to either an assignment of $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment and therefore prove termination.
+%TODO: im code: wenn unsat dann termination
+
+\newsavebox{\stemextwo}% Box to store smallmatrix content
+\savebox{\stemextwo}{$\begin{pmatrix}1+3*3\\2\end{pmatrix}$}
+\newsavebox{\stemextwosecond}% Box to store smallmatrix content
+\savebox{\stemextwosecond}{$\begin{pmatrix}10\\2\end{pmatrix}$}
+\begin{figure}[H]
+	\begin{lstlisting}[escapechar=!]
+	!$f_1 \rightarrow f_2(1 + 3 * v, 2) :|: v > 2\text{ \&\& }8 < 3 * v $!
+	\end{lstlisting}	
+	\caption{An example of a variable \its rule to derive the \stem. In order to derive it an $v$ fulfilling the conditions need to be found using an \tool{SMT}-Solver. Since $v=3$ is the first number in $\mathbb{Z}$ that satisfies the guards the \stem would be \usebox{\stemextwo}$=$\usebox{\stemextwosecond} }
+	\label{lst:stem-var}
+\end{figure}
 
 \section{Derivation of the \emph{LOOP}}
+
+The derivation of the \loopt is pretty straight forward applying \autoref{def:guard}, \autoref{def:update} to a looping rule and then computing \iterationmatrix and \iterationconstants using \autoref{def:iteration}. \newline
+Let $f_x$ be the starting function symbol given by the \its and $r_i$ be a rule, with $f_x
 
 \subsection{The Update Matrix}
 
