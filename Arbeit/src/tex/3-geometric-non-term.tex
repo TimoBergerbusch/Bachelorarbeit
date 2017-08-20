@@ -244,13 +244,13 @@ The easiest way to retrieve the guards $g_i$ is by using \autoref{algo:decat-gua
 	\label{algo:decat-guards}
 \end{algorithm}
 
-So we get a set $G=\{ g \mid g \text{ is in standard guard form}\}$. Not only does the \seg normalize the guards to only use $<$, also it provides the guards $g:= \varphi < c \in G$ in the following form:\newline
+So we get a set $G=\{ g \mid g \text{ is in standard guard form}\}$. Not only does the \seg normalize the guards to only use $>$, also it provides the guards $g:= \varphi > c \in G$ in the following form:\newline
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		\node[objDia] (top) {
 			\textbf{f1}: RPNFunctionSymbol
-			\nodepart{second}arithmeticSymbol: $<$
+			\nodepart{second}arithmeticSymbol: $>$
 		};
 		\node[rectangle, draw=black, rounded corners, text centered, anchor=north, below left = of top] (left) {
 			$\varphi$
@@ -265,13 +265,40 @@ So we get a set $G=\{ g \mid g \text{ is in standard guard form}\}$. Not only do
 	\end{tikzpicture}
 \end{figure}
 
-So to derive the entry's of the \guardmatrix we can simply use \autoref{algo:coefficient} of $\varphi$ and to derive entry's of \guardconstants we have to simply get the \code{right}-child of the root-node.
-After doing that, we got for $m=|G|$ the \guardmatrix $G \in \mathbb{Z}^{m\times n}$ and \guardconstants $g \in \mathbb{Z}^m$, such that
+So to derive the entry's of the \guardmatrix we can simply use \autoref{algo:coefficient} of $\varphi$ and to derive entry's of \guardconstants we have to simply get the \code{right}-child of the root-node.\newline
+After doing that, we got for $m=|G|$ the \guardmatrix $G \in \mathbb{Z}^{m\times n}$ and \guardconstants $g \in \mathbb{Z}^m$. \newline
+In order to use it within the \iterationmatrix and \iterationconstants and further within the derivation of a \gna we transform it to the following:
+
 \begin{figure}[H]
 	\centering
-	$G \times \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} < g$
+	\begin{tabular}{rcll}
+		$G \times \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix}$ & $>$ & $g$ &  \\
+		$\begin{pmatrix} 
+			a_{1,1} & \dots & a_{1,n} \\
+			\vdots & \ddots & \vdots \\
+			a_{n,1} & \dots & a_{n,n} \\
+		\end{pmatrix} \times \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix}$&$ >$&$ \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}$ & $| *-1$ \\
+		$\begin{pmatrix} 
+		-a_{1,1} & \dots & -a_{1,n} \\
+		\vdots & \ddots & \vdots \\
+		-a_{n,1} & \dots & -a_{n,n} \\
+		\end{pmatrix} \times \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix}$&$ < $&$\begin{pmatrix} -c_1 \\ \vdots \\ -c_n \end{pmatrix}$ & $| reshape$ \\
+		$\underbrace{\begin{pmatrix} 
+		-a_{1,1} & \dots & -a_{1,n} \\
+		\vdots & \ddots & \vdots \\
+		-a_{n,1} & \dots & -a_{n,n} \\
+		\end{pmatrix}}_{G} \times \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} $&$\le$&$\underbrace{\begin{pmatrix} -c_1-1 \\ \vdots \\ -c_n-1 \end{pmatrix}}_{g}$ & \\
+	\end{tabular}
+	
 \end{figure}
 \subsection{The Iteration Matrix}
+The \iterationmatrix and \iterationconstants are a composition of the previously derived \textit{Iteration-} and \guardmatrix respectively \textit{Iteration- } and \guardconstants. \newline
+As stated in \autoref{def:iteration} the \iterationmatrix and \iterationconstants can be computed as
+\begin{figure}[H]
+	\centering
+	$A = \begin{pmatrix} G & \textbf{0} \\ M & -I \\ -M & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$ \cite{leike2014geometric}
+\end{figure}
+Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a matrix \textbf{0}$ \in \{0\}^m\times n$ and identity-matrix $I \in \{0,1\}^n\times n$, where $n$ is the number of distinct variables and $m$ the number of guards.
 
 \section{Derivation of the \emph{SMT}-Problem}
 
