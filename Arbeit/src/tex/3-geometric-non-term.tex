@@ -58,9 +58,91 @@ where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-
 \section{Derivation of the \emph{LOOP}}
 
 The derivation of the \loopt is pretty straight forward applying \autoref{def:guard}, \autoref{def:update} to a looping rule and then computing \iterationmatrix and \iterationconstants using \autoref{def:iteration}. \newline
-Let $f_x$ be the starting function symbol given by the \its and $r_i$ be a rule, with $f_x
+Let $f_x$ be the starting function symbol given by the \its and $r_i$ be a rule, with 
+\begin{lstlisting}[escapechar=!]
+	!$f_x \rightarrow f_y(v_1, \dots, v_n) :|: cond_1$!
+\end{lstlisting} 
+then we take the in lexicographical order first rule $r_l$ of the form 
+\begin{lstlisting}[escapechar=!]
+	!$f_y(v_1, \dots, v_n) \rightarrow f_y(v^\prime_1, \dots, v^\prime_n) :|: cond_2$!
+\end{lstlisting}
+and compute the \iterationmatrix and \iterationconstants according to $r_l$. 
 
 \subsection{The Update Matrix}
+The derivation of the \updatematrix and \updateconstants is relatively just applying the \autoref{def:update} to the given rule $r_l$. For that we create a matrix $U$ as the coefficient matrix. We do so by adding a column per occurring variable and rows per linear equation of every $v^\prime_i$. To derive the entry's of the matrix we use the \rpntree to build a tree of the given equation and simply perform recursive searching to derive the factor. 
+%Also we can use
+The procedure works like the following:
+\begin{algorithm}
+	\caption{Deriving a coefficient within the \rpntree}
+	\label{algo:coefficient}
+	\begin{algorithmic}[1]
+		\Procedure{getCoefficient}{$node, query$}
+			\If{node == query}\Comment{query is the tree}
+				\State \Return $1$
+			\ElsIf{node does \underline{not} contain query} \Comment{tree does not contain query}
+				\State \Return $0$
+			\EndIf
+			\State
+			\If{node represents PLUS} \Comment{Choose the subtree containing the query}
+				\If{left side contains $query$}
+					\State \Return getCoefficient$(node.left, query)$
+				\Else
+					\State \Return getCoefficient$(node.right, query)$
+				\EndIf
+			\EndIf
+			\If{node represents TIMES} \Comment{Retrieve value}
+				\If{node.right == query}
+					\State \Return node.left.value
+				\EndIf				
+			\EndIf
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+\begin{figure}
+	\tikzstyle{abstract}=[rectangle, draw=black, rounded corners, text centered, anchor=north, rectangle split, rectangle split parts=2]
+	\tikzstyle{myarrow}=[->, thick]
+	\tikzstyle{considered}=[myarrow, color = blue]
+	\tikzstyle{neglected} = [myarrow, color = red]
+	\tikzstyle{query} = [myarrow, color = green!50!black]
+	\begin{tikzpicture}
+		\node (Plus) at (0,0) [abstract] {
+				\textbf{f1}:RPNFunctionSymbol
+				\nodepart{second}arithmeticSymbol: PLUS
+			};
+		\node (Times1) at (-4, -2 ) [abstract] {
+				\textbf{f2}:RPNFunctionSymbol
+				\nodepart{second}arithmeticSymbol: TIMES	
+		};
+		\node (Times2) at (4, -2) [abstract] {
+			\textbf{f3}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: TIMES	
+		};
+		\node (cons1) at (-6, -4) [abstract] {
+			\textbf{c1}:RPNConstant
+			\nodepart{second}value: 2
+		};
+		\node (var1) at (-2, -4)[abstract] {
+			\textbf{v1}:RPNVariable
+			\nodepart{second}varName: x
+		};
+		\node (cons2) at (2, -4) [abstract] {
+			\textbf{c2}:RPNConstant
+			\nodepart{second}value: 4
+		};
+		\node (var2) at (6, -4) [abstract] {
+			\textbf{v2}:RPNVariable
+			\nodepart{second}varName: y
+		};
+		\draw[neglected] (Plus.south)  -- ++(0,-0.4) -| (Times1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[considered] (Plus.south)  -- ++(0,-0.4) -| (Times2.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\draw[myarrow] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[myarrow] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\draw[considered] (Times2.south)  -- ++(0,-0.5) -| (cons2.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[query] (Times2.south)  -- ++(0,-0.5) -| (var2.north) node [pos = 0.4, above, font=\footnotesize]{right};
+	\end{tikzpicture}
+	\caption{An example of deriving the coefficient of a given formula and a variable as query. Used the \autoref{ex:rpntree} and marked the way of deriving the coefficient.}
+	\label{ex:factor-derivation}
+\end{figure}
 
 \subsection{The Guard Matrix}
 

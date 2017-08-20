@@ -4,26 +4,28 @@
 \contentsline {section}{\numberline {1.1}Motivation}{3}{section.1.1}
 \contentsline {section}{\numberline {1.2}\emph {AProVE}}{3}{section.1.2}
 \contentsline {chapter}{\numberline {2}Preliminaries}{5}{chapter.2}
-\contentsline {section}{\numberline {2.1}Geometric Nontermination Argument (GNA)}{5}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Considered Programs}{5}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Structure}{5}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Necessary Definitions}{6}{subsection.2.1.3}
-\contentsline {section}{\numberline {2.2}Reverse-Polish-Notation-Tree}{8}{section.2.2}
-\contentsline {section}{\numberline {2.3}\textsf {SMT}-Problem}{10}{section.2.3}
+\contentsline {section}{\numberline {2.1}Integer Term Rewriting System(\textsf {int-TRS}\xspace )}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Geometric Nontermination Argument (GNA)}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Considered Programs}{5}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Structure}{5}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Necessary Definitions}{7}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Reverse-Polish-Notation-Tree}{8}{section.2.3}
+\contentsline {section}{\numberline {2.4}\textsf {SMT}-Problem}{10}{section.2.4}
 \contentsline {chapter}{\numberline {3}Geometric Non-Termination}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}Derivation of the \emph {STEM}}{11}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Constant \textit {STEM}\xspace }{11}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Variable \textit {STEM}\xspace }{12}{subsection.3.1.2}
 \contentsline {section}{\numberline {3.2}Derivation of the \emph {LOOP}}{12}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}The Update Matrix}{12}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}The Guard Matrix}{12}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}The Iteration Matrix}{12}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Derivation of the \emph {SMT}-Problem}{12}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}The Domain Criteria}{12}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}The Initiation Criteria}{12}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}The Point Criteria}{12}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}The Ray Criteria}{12}{subsection.3.3.4}
-\contentsline {section}{\numberline {3.4}Verification of the Geometric Non-Termination Argument}{12}{section.3.4}
-\contentsline {chapter}{\numberline {4}Benchmarks}{13}{chapter.4}
-\contentsline {chapter}{\numberline {5}related work}{15}{chapter.5}
-\contentsline {chapter}{Literaturverzeichnis}{15}{chapter.5}
+\contentsline {subsection}{\numberline {3.2.2}TEST}{12}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}The Guard Matrix}{12}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}The Iteration Matrix}{12}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}Derivation of the \emph {SMT}-Problem}{14}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}The Domain Criteria}{14}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}The Initiation Criteria}{14}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}The Point Criteria}{14}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}The Ray Criteria}{14}{subsection.3.3.4}
+\contentsline {section}{\numberline {3.4}Verification of the Geometric Non-Termination Argument}{14}{section.3.4}
+\contentsline {chapter}{\numberline {4}Benchmarks}{15}{chapter.4}
+\contentsline {chapter}{\numberline {5}related work}{17}{chapter.5}
+\contentsline {chapter}{Literaturverzeichnis}{17}{chapter.5}

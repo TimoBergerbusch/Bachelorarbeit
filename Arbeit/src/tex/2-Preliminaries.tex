@@ -1,21 +1,12 @@
 \chapter{Preliminaries}
 \label{ch:preliminaries}
 
-%\begin{itemize}
-%	\item what is the general form of the considered Programs
-%		\begin{itemize}
-%			\item single-loop
-%			\item linear updates
-%			\item (single guard)
-%			\item What is considered \emph{STEM}
-%			\item What is considered \emph{LOOP}
-%		\end{itemize}
-%	\item The different Matrices
-%	\item the theorem
-%	\item the Reverse-Polish-Notation-Tree
-%	\item SMT-Problem
-%\end{itemize}
 In order to be able to explain the solution approach we have to declare to, which programs are considered within the Geometric Nontermination. Furthermore we have to define a few structures we work on.
+
+\section{Integer Term Rewriting System(\its)}
+\label{sec:its}
+In order to apply the upcoming procedure we have to define what structure the approach works on.
+
 
 \section{Geometric Nontermination Argument (GNA)}
 Adapted from Jan Leikes and Matthias Heizmanns paper \textit{Geometric Nontermination Arguments} \cite{leike2014geometric} I will define the considered programs, define the \stem and \loopt and finally state the definition of Geometric Nontermination Arguments.
@@ -71,10 +62,7 @@ The structure of the considered programs is quite simple. They contain an option
 \end{figure}
 The guard and linear updates together form the so called \loopt. 
 
-After ...
-%TODO: was geschieht mit dem c programm normalerweise?
-%TODO: die 2 statt 1 erklären
-we finally receive the equivalent \its shown in \autoref{fig:structure-example-TRS}. As we can see the original program can be recognized quite easily. The first rule in line 1 denotes the \stem, while the second line equals the loop \loopt.
+Through the in \autoref{sec:its} described procedure we receive the to \autoref{fig:structure-example-java} equivalent \its shown in \autoref{fig:structure-example-TRS}. As we can see the original program can be recognized quite easily. The first rule in line 1 denotes the \stem, while the second line equals the loop \loopt.
 
 \begin{figure}[H]
 	\begin{lstlisting}[linewidth=1.4\textwidth, escapechar = !]
@@ -194,8 +182,8 @@ An example for the \rpntree is shown in \autoref{ex:rpntree}
 	\begin{tikzpicture}[
 			every edge/.append style = { ->, thick, >=stealth, dashed, line width = 1pt },
 			every node/.append style = {shape = rectangle, draw, rounded corners} ]
-		\node (L) at (0,5) {\begin{tabular}{cc} mathematical expression: \\ 2*(x+4) \end{tabular} };
-		\node (M) at (0,0) {\begin{tabular}{cc} reverse polish notation: \\ *2+x4 \end{tabular} };
+		\node (L) at (0,5) {\begin{tabular}{cc} mathematical expression: \\ 2*x+4*y \end{tabular} };
+		\node (M) at (0,0) {\begin{tabular}{cc} reverse polish notation: \\ +*x2*y4 \end{tabular} };
 		\node (R) at (10,2) {\includegraphics[width=.5\textwidth]{src/diagram/RPNExample.png}};
 		\draw (L.south) edge (M.north);
 		\draw (M.east) edge (R.west);

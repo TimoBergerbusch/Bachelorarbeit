@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  17 AUG 2017 17:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  20 AUG 2017 10:14
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -451,10 +451,6 @@ layer\tikz\libraries\tikzlibrarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibrarypositioning.code.tex"
-File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
-)
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
 layer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex"
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
 layer\tikz\libraries\tikzlibrarydecorations.code.tex"
@@ -473,7 +469,103 @@ pgfmoduledecorations.code.tex"
 )
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
 s\decorations\pgflibrarydecorations.pathreplacing.code.tex"))
-(D:\Tools\MikTex\tex\latex\tools\xspace.sty
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibrarypositioning.code.tex"
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryshapes.code.tex"
+File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryshapes.geometric.code.tex"
+File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
+s\shapes\pgflibraryshapes.geometric.code.tex"
+File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+
+))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryshapes.misc.code.tex"
+File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
+s\shapes\pgflibraryshapes.misc.code.tex"
+File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryshapes.symbols.code.tex"
+File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
+s\shapes\pgflibraryshapes.symbols.code.tex"
+File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryshapes.arrows.code.tex"
+File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
+s\shapes\pgflibraryshapes.arrows.code.tex"
+File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryshapes.callouts.code.tex"
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
+s\shapes\pgflibraryshapes.callouts.code.tex"))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryshapes.multipart.code.tex"
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
+s\shapes\pgflibraryshapes.multipart.code.tex"
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
+
+\pgfnodepartlowerbox=\box40
+\pgfnodeparttwobox=\box41
+\pgfnodepartthreebox=\box42
+\pgfnodepartfourbox=\box43
+\pgfnodeparttwentybox=\box44
+\pgfnodepartnineteenbox=\box45
+\pgfnodeparteighteenbox=\box46
+\pgfnodepartseventeenbox=\box47
+\pgfnodepartsixteenbox=\box48
+\pgfnodepartfifteenbox=\box49
+\pgfnodepartfourteenbox=\box50
+\pgfnodepartthirteenbox=\box51
+\pgfnodeparttwelvebox=\box52
+\pgfnodepartelevenbox=\box53
+\pgfnodeparttenbox=\box54
+\pgfnodepartninebox=\box55
+\pgfnodeparteightbox=\box56
+\pgfnodepartsevenbox=\box57
+\pgfnodepartsixbox=\box58
+\pgfnodepartfivebox=\box59
+)))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryshadows.code.tex"
+File: tikzlibraryshadows.code.tex 2008/01/13 v3.0.1a (rcs-revision 1.3)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryfadings.code.tex"
+File: tikzlibraryfadings.code.tex 2009/11/15 v3.0.1a (rcs-revision 1.2)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
+s\pgflibraryfadings.code.tex"
+File: pgflibraryfadings.code.tex 2008/02/07 v3.0.1a (rcs-revision 1.3)
+)))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
+layer\tikz\libraries\tikzlibraryarrows.code.tex"
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
+s\pgflibraryarrows.code.tex"
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+\arrowsize=\dimen167
+)) (D:\Tools\MikTex\tex\latex\tools\xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\koma-script\ty
@@ -591,24 +683,24 @@ s
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listi
 ngs.sty"
 \lst@mode=\count122
-\lst@gtempboxa=\box40
+\lst@gtempboxa=\box60
 \lst@token=\toks38
 \lst@length=\count123
-\lst@currlwidth=\dimen167
+\lst@currlwidth=\dimen168
 \lst@column=\count124
 \lst@pos=\count125
-\lst@lostspace=\dimen168
-\lst@width=\dimen169
+\lst@lostspace=\dimen169
+\lst@width=\dimen170
 \lst@newlines=\count126
 \lst@lineno=\count127
-\lst@maxwidth=\dimen170
+\lst@maxwidth=\dimen171
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmi
 sc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count128
 \lst@skipnumbers=\count129
-\lst@framebox=\box41
+\lst@framebox=\box61
 )
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listi
 ngs.cfg"
@@ -948,7 +1040,7 @@ Language: ngermanb 2016/11/02 v2.9 German support for babel (new orthography)
 (D:\Tools\MikTex\tex\generic\babel\babel.def
 File: babel.def 2016/04/23 3.9r Babel common definitions
 \babel@savecnt=\count130
-\U@D=\dimen171
+\U@D=\dimen172
 )
 Package babel Info: Making " an active character on input line 125.
 ))
@@ -974,14 +1066,14 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@cnth=\count131
 \Gm@cntv=\count132
 \c@Gm@tempcnt=\count133
-\Gm@bindingoffset=\dimen172
-\Gm@wd@mp=\dimen173
-\Gm@odd@mp=\dimen174
-\Gm@even@mp=\dimen175
-\Gm@layoutwidth=\dimen176
-\Gm@layoutheight=\dimen177
-\Gm@layouthoffset=\dimen178
-\Gm@layoutvoffset=\dimen179
+\Gm@bindingoffset=\dimen173
+\Gm@wd@mp=\dimen174
+\Gm@odd@mp=\dimen175
+\Gm@even@mp=\dimen176
+\Gm@layoutwidth=\dimen177
+\Gm@layoutheight=\dimen178
+\Gm@layouthoffset=\dimen179
+\Gm@layoutvoffset=\dimen180
 \Gm@dimlist=\toks41
 
 (D:\Tools\MikTex\tex\latex\geometry\geometry.cfg))
@@ -1193,7 +1285,7 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 (D:\Tools\MikTex\tex\latex\oberdiek\kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-\@linkdim=\dimen180
+\@linkdim=\dimen181
 \Hy@linkcounter=\count134
 \Hy@pagecounter=\count135
 
@@ -1223,10 +1315,10 @@ Package hyperref Info: Bookmarks ON on input line 4735.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5088.
-\XeTeXLinkMargin=\dimen181
+\XeTeXLinkMargin=\dimen182
 \Fld@menulength=\count138
-\Field@Width=\dimen182
-\Fld@charsize=\dimen183
+\Field@Width=\dimen183
+\Fld@charsize=\dimen184
 Package hyperref Info: Hyper figures OFF on input line 6342.
 Package hyperref Info: Link nesting OFF on input line 6347.
 Package hyperref Info: Hyper index ON on input line 6350.
@@ -1262,9 +1354,9 @@ nment
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count143
 \float@exts=\toks42
-\float@box=\box42
+\float@box=\box62
 \@float@everytoks=\toks43
-\@floatcapt=\box43
+\@floatcapt=\box63
 )
 (D:\Tools\MikTex\tex\latex\base\ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
@@ -1286,7 +1378,7 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 <2008/02/07> (tvz)
 \FV@CodeLineNo=\count145
 \FV@InFile=\read3
-\FV@TabBox=\box44
+\FV@TabBox=\box64
 \c@FancyVerbLine=\count146
 \FV@StepNumber=\count147
 \FV@OutFile=\write4
@@ -1324,50 +1416,50 @@ Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
 (D:\Tools\MikTex\tex\latex\tools\multicol.sty
 Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 \c@tracingmulticols=\count155
-\mult@box=\box45
-\multicol@leftmargin=\dimen184
+\mult@box=\box65
+\multicol@leftmargin=\dimen185
 \c@unbalance=\count156
 \c@collectmore=\count157
 \doublecol@number=\count158
 \multicoltolerance=\count159
 \multicolpretolerance=\count160
-\full@width=\dimen185
-\page@free=\dimen186
-\premulticols=\dimen187
-\postmulticols=\dimen188
+\full@width=\dimen186
+\page@free=\dimen187
+\premulticols=\dimen188
+\postmulticols=\dimen189
 \multicolsep=\skip67
 \multicolbaselineskip=\skip68
-\partial@page=\box46
-\last@line=\box47
-\maxbalancingoverflow=\dimen189
-\mult@rightbox=\box48
-\mult@grightbox=\box49
-\mult@gfirstbox=\box50
-\mult@firstbox=\box51
-\@tempa=\box52
-\@tempa=\box53
-\@tempa=\box54
-\@tempa=\box55
-\@tempa=\box56
-\@tempa=\box57
-\@tempa=\box58
-\@tempa=\box59
-\@tempa=\box60
-\@tempa=\box61
-\@tempa=\box62
-\@tempa=\box63
-\@tempa=\box64
-\@tempa=\box65
-\@tempa=\box66
-\@tempa=\box67
-\@tempa=\box68
+\partial@page=\box66
+\last@line=\box67
+\maxbalancingoverflow=\dimen190
+\mult@rightbox=\box68
+\mult@grightbox=\box69
+\mult@gfirstbox=\box70
+\mult@firstbox=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
 \c@columnbadness=\count161
 \c@finalcolumnbadness=\count162
-\last@try=\dimen190
-\multicolovershoot=\dimen191
-\multicolundershoot=\dimen192
-\mult@nat@firstbox=\box69
-\colbreak@box=\box70
+\last@try=\dimen191
+\multicolovershoot=\dimen192
+\multicolundershoot=\dimen193
+\mult@nat@firstbox=\box89
+\colbreak@box=\box90
 \mc@col@check@num=\count163
 )
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\mfnfss\oldgerm
@@ -1379,9 +1471,9 @@ igure.sty"
 Package: subfigure 2002/07/30 v2.1.4 subfigure package
 \subfigtopskip=\skip69
 \subfigcapskip=\skip70
-\subfigcaptopadj=\dimen193
+\subfigcaptopadj=\dimen194
 \subfigbottomskip=\skip71
-\subfigcapmargin=\dimen194
+\subfigcapmargin=\dimen195
 \subfiglabelskip=\skip72
 \c@subfigure=\count164
 \c@lofdepth=\count165
@@ -1401,87 +1493,6 @@ igure.cfg")
 ace.sty"
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibraryarrows.code.tex"
-File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
-s\pgflibraryarrows.code.tex"
-File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen195
-))
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibraryshapes.code.tex"
-File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibraryshapes.geometric.code.tex"
-File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
-)
-
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
-s\shapes\pgflibraryshapes.geometric.code.tex"
-File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
-
-))
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibraryshapes.misc.code.tex"
-File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
-s\shapes\pgflibraryshapes.misc.code.tex"
-File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
-))
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibraryshapes.symbols.code.tex"
-File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
-s\shapes\pgflibraryshapes.symbols.code.tex"
-File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
-))
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibraryshapes.arrows.code.tex"
-File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
-
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
-s\shapes\pgflibraryshapes.arrows.code.tex"
-File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
-))
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibraryshapes.callouts.code.tex"
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
-s\shapes\pgflibraryshapes.callouts.code.tex"))
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
-layer\tikz\libraries\tikzlibraryshapes.multipart.code.tex"
-File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
-)
-
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
-s\shapes\pgflibraryshapes.multipart.code.tex"
-File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
-
-\pgfnodepartlowerbox=\box71
-\pgfnodeparttwobox=\box72
-\pgfnodepartthreebox=\box73
-\pgfnodepartfourbox=\box74
-\pgfnodeparttwentybox=\box75
-\pgfnodepartnineteenbox=\box76
-\pgfnodeparteighteenbox=\box77
-\pgfnodepartseventeenbox=\box78
-\pgfnodepartsixteenbox=\box79
-\pgfnodepartfifteenbox=\box80
-\pgfnodepartfourteenbox=\box81
-\pgfnodepartthirteenbox=\box82
-\pgfnodeparttwelvebox=\box83
-\pgfnodepartelevenbox=\box84
-\pgfnodeparttenbox=\box85
-\pgfnodepartninebox=\box86
-\pgfnodeparteightbox=\box87
-\pgfnodepartsevenbox=\box88
-\pgfnodepartsixbox=\box89
-\pgfnodepartfivebox=\box90
-)))
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontend
 layer\tikz\libraries\tikzlibraryautomata.code.tex"
 File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
@@ -1832,28 +1843,28 @@ Package: placeins 2005/04/18  v 2.2
  (Bachelorarbeit.aux)
 \openout1 = `Bachelorarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 121.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 121.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 122.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 122.
 
  (D:\Tools\MikTex\tex\latex\base\ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 121.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 122.
 
 (D:\Tools\MikTex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1922,7 +1933,7 @@ G,.JBIG2,.JB2,.eps]
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box114
-Package hyperref Info: Link coloring OFF on input line 121.
+Package hyperref Info: Link coloring OFF on input line 122.
 (D:\Tools\MikTex\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1931,53 +1942,53 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count292
 )
-LaTeX Info: Redefining \ref on input line 121.
-LaTeX Info: Redefining \pageref on input line 121.
-LaTeX Info: Redefining \nameref on input line 121.
+LaTeX Info: Redefining \ref on input line 122.
+LaTeX Info: Redefining \pageref on input line 122.
+LaTeX Info: Redefining \nameref on input line 122.
  (Bachelorarbeit.out) (Bachelorarbeit.out)
 \@outlinefile=\write5
 \openout5 = `Bachelorarbeit.out'.
 
  (src/tex/0.1-cover_en.tex
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 42.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 44.
 
 (D:\Tools\MikTex\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 42.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 44.
 
 (D:\Tools\MikTex\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 42.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 44.
 
 
 (D:\Tools\MikTex\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 42.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 44.
 
 
 (D:\Tools\MikTex\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 42.
+(Font)              <12> on input line 44.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 42.
+(Font)              <8> on input line 44.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 42.
-LaTeX Font Info:    Try loading font information for U+msa on input line 42.
+(Font)              <6> on input line 44.
+LaTeX Font Info:    Try loading font information for U+msa on input line 44.
 
 (D:\Tools\MikTex\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 42.
+LaTeX Font Info:    Try loading font information for U+msb on input line 44.
 
 (D:\Tools\MikTex\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+stmry on input line 42.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 44.
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\stmaryrd\ustmr
 y.fd") [1
@@ -2011,7 +2022,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--15
  []
 
 ) [2] (src/tex/0.3-abstract.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--135
+Underfull \hbox (badness 10000) in paragraph at lines 1--136
 
  []
 
@@ -2020,7 +2031,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--135
 ] (Bachelorarbeit.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 4.
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 12.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 7.
  (D:\Tools\MikTex\tex\latex\lm\t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [5])
@@ -2061,31 +2072,24 @@ l.1 \chapter
 
 ]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 31.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 22.
 (D:\Tools\MikTex\tex\latex\lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.38 \end{itemize}
-                   [5]
+l.27 	\item T
+             he linear Updates: \newline [5]
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstla
 ng1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 41.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 32.
  (D:\Tools\MikTex\tex\latex\lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 87--90
-
- []
-
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 95.
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+Underfull \hbox (badness 10000) in paragraph at lines 75--78
 
  []
 
@@ -2094,38 +2098,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--101
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.101 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2.2}) has been already used, duplicate ignored
+l.81 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.101 
-      ]
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
+l.81 
+     ]
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 83.
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--138
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--126
 
  []
 
 [7] (src/diagram/RPNTree-classdiagram.tex
 \du=\skip155
 )
-Overfull \hbox (12.6484pt too wide) in paragraph at lines 490--189
+Overfull \hbox (12.6484pt too wide) in paragraph at lines 490--177
  [][] 
  []
 
-<src/diagram/RPNExample.png, id=256, 393.47pt x 357.335pt>
+<src/diagram/RPNExample.png, id=287, 511.9125pt x 339.2675pt>
 File: src/diagram/RPNExample.png Graphic file (type png)
 
 <use src/diagram/RPNExample.png>
-Package pdftex.def Info: src/diagram/RPNExample.png used on input line 199.
-(pdftex.def)             Requested size: 227.62206pt x 206.71465pt.
+Package pdftex.def Info: src/diagram/RPNExample.png used on input line 187.
+(pdftex.def)             Requested size: 227.62206pt x 150.8519pt.
 
-Overfull \hbox (17.24649pt too wide) in paragraph at lines 202--203
+Overfull \hbox (17.24649pt too wide) in paragraph at lines 190--191
 [][]
  []
 
@@ -2134,15 +2146,15 @@ Overfull \hbox (17.24649pt too wide) in paragraph at lines 202--203
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.208 \section
+l.196 \section
               {\tool{SMT}-Problem}pdfTeX warning (ext4): destination with the s
 ame identifier (name{figure.2.4}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.208 \section
+l.196 \section
               {\tool{SMT}-Problem} <./src/diagram/RPNExample.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 209--212
+Underfull \hbox (badness 10000) in paragraph at lines 197--200
 
  []
 
@@ -2160,40 +2172,57 @@ l.40 \end{figure}
                  ]
 \stemextwo=\box116
 \stemextwosecond=\box117
-) (src/tex/4-benchmarks.tex [12pdfTeX warning (ext4): destination with the same
- identifier (name{figure.3.2}) has been already used, duplicate ignored
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 76.
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.1 \chapter
-            {Benchmarks}]
-Chapter 4.
-) (src/tex/5-related-work.tex [13
+l.153 \section
+              {Derivation of the \emph{SMT}-Problem}] [13pdfTeX warning (ext4):
+ destination with the same identifier (name{figure.3.3}) has been already used,
+ duplicate ignored
 
-] [14
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.153 \section
+              {Derivation of the \emph{SMT}-Problem}])
+(src/tex/4-benchmarks.tex [14]
+Chapter 4.
+) (src/tex/5-related-work.tex [15
+
+] [16
 
 ]
 Chapter 5.
-) (Bachelorarbeit.bbl [15] [16
+) (Bachelorarbeit.bbl [17] [18
 
-]) [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 157.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 157.
+]) [19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 158.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 158.
  (Bachelorarbeit.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 157.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 157.
-Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 472CDDB8C06C1E5A842A30C40B5297B3;1797.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 157.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 158.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 158.
+
+
+Package rerunfilecheck Warning: File `Bachelorarbeit.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Bachelorarbeit.out':
+(rerunfilecheck)             Before: 3CEE67AA2A62277FB8C85D0B61E3598D;1884
+(rerunfilecheck)             After:  1397A5B5CC7B878FE32213280EFED5AB;1942.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 158.
  ) 
 Here is how much of TeX's memory you used:
- 34495 strings out of 493333
- 664397 string characters out of 3144357
- 770445 words of memory out of 3000000
- 37286 multiletter control sequences out of 15000+200000
- 111836 words of font info for 75 fonts, out of 3000000 for 9000
+ 34715 strings out of 493333
+ 669835 string characters out of 3144357
+ 774662 words of memory out of 3000000
+ 37486 multiletter control sequences out of 15000+200000
+ 114833 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,20n,69p,10435b,1363s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 48i,20n,82p,10435b,1363s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Tools/MikTex/fonts/enc/dvips/lm/lm-ec.enc}{D:/Tools/MikTex/fonts/enc/dvip
 s/lm/lm-mathsy.enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-mathex.enc}{D:/Tools/
 MikTex/fonts/enc/dvips/lm/lm-mathit.enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-
@@ -2205,16 +2234,17 @@ MikTex/fonts/type1/public/lm/lmmi10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/
 lmmi8.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmr10.pfb><D:/Tools/MikTex/fon
 ts/type1/public/lm/lmr12.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmr6.pfb><D
 :/Tools/MikTex/fonts/type1/public/lm/lmr8.pfb><D:/Tools/MikTex/fonts/type1/publ
-ic/lm/lmri10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmro10.pfb><D:/Tools/Mi
-kTex/fonts/type1/public/lm/lmss10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lm
-ssbx10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmsso10.pfb><D:/Tools/MikTex/
-fonts/type1/public/lm/lmsy10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmsy8.p
-fb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt10.pfb><D:/Tools/MikTex/fonts/typ
-e1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtti10.pfb><D:/T
-ools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (22 pages, 489895 bytes).
+ic/lm/lmr9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmri10.pfb><D:/Tools/MikT
+ex/fonts/type1/public/lm/lmro10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmss
+10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmssbx10.pfb><D:/Tools/MikTex/fon
+ts/type1/public/lm/lmsso10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmsy10.pf
+b><D:/Tools/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools/MikTex/fonts/type1
+/public/lm/lmtt10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt8.pfb><D:/Tool
+s/MikTex/fonts/type1/public/lm/lmtti10.pfb><D:/Tools/MikTex/fonts/type1/public/
+amsfonts/symbols/msbm10.pfb>
+Output written on Bachelorarbeit.pdf (24 pages, 536249 bytes).
 PDF statistics:
- 426 PDF objects out of 1000 (max. 8388607)
- 91 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 483 PDF objects out of 1000 (max. 8388607)
+ 101 named destinations out of 1000 (max. 500000)
+ 338 words of extra memory for PDF output out of 10000 (max. 10000000)
 
