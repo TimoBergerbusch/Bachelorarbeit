@@ -89,9 +89,10 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\definitionautorefname}{Definition}
-\newcommand{\exampleautorefname}{Example}
-\newcommand{\listingautorefname}{Figure}
+\newcommand{\definitionautorefname}{definition}
+\newcommand{\exampleautorefname}{example}
+\newcommand{\listingautorefname}{figure}
+\newcommand{\algorithmautorefname}{algorithm}
 
 \newcommand{\code}[1]{\textit{#1}}
 \newcommand{\tool}[1]{\textsf{#1}}
@@ -112,12 +113,21 @@
 \newcommand{\smtfactory}{\code{SMTFactory}}
 \newcommand{\its}{\tool{int-TRS}\xspace}
 \newcommand{\llvm}{\tool{llvm}\xspace}
+\newcommand{\nonterm}{\textit{non-termination}\xspace}
 
 \newtheorem{definition}{Definition}[section]
 \newtheorem{corollary}{Corollary}[section]
 \newtheorem{example}{Example}
 \newtheorem{satz}{Satz}[chapter]
 \newtheoremstyle{example}{5pt}{5pt}{}{}{\bfseries}{.}{0.5em}{}
+
+\tikzstyle{arrow} = [->]
+\tikzstyle{thickarrow}=[arrow, thick]
+\tikzstyle{dashedarrow} = [arrow, dashed]
+\tikzstyle{objDia}=[rectangle, draw=black, rounded corners, text centered, anchor=north, rectangle split, rectangle split parts=2]
+\tikzstyle{considered}=[thickarrow, color = blue]
+\tikzstyle{neglected} = [thickarrow, color = red]
+\tikzstyle{query} = [thickarrow, color = green!50!black]
 
 \begin{document}
 

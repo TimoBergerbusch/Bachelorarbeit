@@ -11,17 +11,6 @@ Within the derivation of the \stem we distinguish between two cases discussed in
 
 \subsection{Constant \stem}
 \label{sec:stem-const}
-
-\newsavebox{\stemexone}% Box to store smallmatrix content
-\savebox{\stemexone}{$\begin{pmatrix}10\\2\end{pmatrix}$}
-\begin{wrapfigure}{r}{0.6\textwidth}
-	\begin{lstlisting}[escapechar=!]
-	!$f_1 \rightarrow f_2(10,2) :|: TRUE $!
-	\end{lstlisting}	
-	\caption{An example of a constant \its rule to derive the \stem. The \stem in this case would be \usebox{\stemexone} }
-	\label{lst:stem-cons}
-\end{wrapfigure}
-
 The constant stem is the easiest case to derive the \stem from. It has the form: 
 %\vspace{-1em}
 \begin{figure}[H]
@@ -30,6 +19,15 @@ The constant stem is the easiest case to derive the \stem from. It has the form:
 %\vspace{-2em}
 An example of a constant \stem is shown in \autoref{lst:stem-cons}. 
 The values of $x$ can be directly read from the right hand side and need no further calculations.
+\newsavebox{\stemexone}% Box to store smallmatrix content
+\savebox{\stemexone}{$\begin{pmatrix}10\\2\end{pmatrix}$}
+\begin{figure}[H]
+	\begin{lstlisting}[escapechar=!]
+	!$f_1 \rightarrow f_2(10,2) :|: TRUE $!
+	\end{lstlisting}	
+	\caption{An example of a constant \its rule to derive the \stem. The \stem in this case would be \usebox{\stemexone} }
+	\label{lst:stem-cons}
+\end{figure}
 
 \subsection{Variable \stem}
 \label{sec:stem-var}
@@ -69,10 +67,10 @@ then we take the in lexicographical order first rule $r_l$ of the form
 and compute the \iterationmatrix and \iterationconstants according to $r_l$. 
 
 \subsection{The Update Matrix}
-The derivation of the \updatematrix and \updateconstants is relatively just applying the \autoref{def:update} to the given rule $r_l$. For that we create a matrix $U$ as the coefficient matrix. We do so by adding a column per occurring variable and rows per linear equation of every $v^\prime_i$. To derive the entry's of the matrix we use the \rpntree to build a tree of the given equation and simply perform recursive searching to derive the factor. 
+The derivation of the \updatematrix and \updateconstants is relatively just applying the \autoref{def:update} to the given rule $r_l$. For that we create a matrix $U$ as the coefficient matrix. We do so by adding a column per occurring variable and rows per linear equation of every $v^\prime_i$. To derive the entry's of the matrix we use the \rpntree of the given equation and simply perform recursive searching to derive the factor. 
 %Also we can use
 The procedure works like the following:
-\begin{algorithm}
+\begin{algorithm}[H]
 	\caption{Deriving a coefficient within the \rpntree}
 	\label{algo:coefficient}
 	\begin{algorithmic}[1]
@@ -98,49 +96,49 @@ The procedure works like the following:
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
-\begin{figure}
-	\tikzstyle{abstract}=[rectangle, draw=black, rounded corners, text centered, anchor=north, rectangle split, rectangle split parts=2]
-	\tikzstyle{myarrow}=[->, thick]
-	\tikzstyle{considered}=[myarrow, color = blue]
-	\tikzstyle{neglected} = [myarrow, color = red]
-	\tikzstyle{query} = [myarrow, color = green!50!black]
+
+We can rely on the usage of the standart integer structure described in \autoref{sec:its} and therefore we can neglect cases for example that the \textit{left}-child of a \textit{RPNFunctionSymbol} with \textit{arithmeticSymbol} \code{TIMES} is the \textit{RPNVariable} and the \textit{right}-child is the \textit{RPNConstant}.
+%TODO: Proof?
+An example derivation of a factor using \autoref{algo:coefficient} is shown in \autoref{ex:factor-derivation}.
+
+\begin{figure}[H]
 	\begin{tikzpicture}
-		\node (Plus) at (0,0) [abstract] {
+		\node (Plus) at (0,0) [objDia] {
 				\textbf{f1}:RPNFunctionSymbol
 				\nodepart{second}arithmeticSymbol: PLUS
 			};
-		\node (Times1) at (-4, -2 ) [abstract] {
+		\node (Times1) at (-4, -2 ) [objDia] {
 				\textbf{f2}:RPNFunctionSymbol
 				\nodepart{second}arithmeticSymbol: TIMES	
 		};
-		\node (Times2) at (4, -2) [abstract] {
+		\node (Times2) at (4, -2) [objDia] {
 			\textbf{f3}:RPNFunctionSymbol
 			\nodepart{second}arithmeticSymbol: TIMES	
 		};
-		\node (cons1) at (-6, -4) [abstract] {
+		\node (cons1) at (-6, -4) [objDia] {
 			\textbf{c1}:RPNConstant
 			\nodepart{second}value: 2
 		};
-		\node (var1) at (-2, -4)[abstract] {
+		\node (var1) at (-2, -4)[objDia] {
 			\textbf{v1}:RPNVariable
 			\nodepart{second}varName: x
 		};
-		\node (cons2) at (2, -4) [abstract] {
+		\node (cons2) at (2, -4) [objDia] {
 			\textbf{c2}:RPNConstant
 			\nodepart{second}value: 4
 		};
-		\node (var2) at (6, -4) [abstract] {
+		\node (var2) at (6, -4) [objDia] {
 			\textbf{v2}:RPNVariable
 			\nodepart{second}varName: y
 		};
 		\draw[neglected] (Plus.south)  -- ++(0,-0.4) -| (Times1.north) node [pos = 0.4, above, font=\footnotesize]{left};
 		\draw[considered] (Plus.south)  -- ++(0,-0.4) -| (Times2.north) node [pos = 0.4, above, font=\footnotesize]{right};
-		\draw[myarrow] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
-		\draw[myarrow] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
 		\draw[considered] (Times2.south)  -- ++(0,-0.5) -| (cons2.north) node [pos = 0.4, above, font=\footnotesize]{left};
 		\draw[query] (Times2.south)  -- ++(0,-0.5) -| (var2.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
-	\caption{An example of deriving the coefficient of a given formula and a variable as query. Used the \autoref{ex:rpntree} and marked the way of deriving the coefficient.}
+	\caption{An example of deriving the coefficient of a given formula and a variable as query. This example uses the \rpntree of \autoref{ex:rpntree} and $y$ as the query. }
 	\label{ex:factor-derivation}
 \end{figure}
 

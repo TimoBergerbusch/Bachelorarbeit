@@ -3,10 +3,50 @@
 
 In order to be able to explain the solution approach we have to declare to, which programs are considered within the Geometric Nontermination. Furthermore we have to define a few structures we work on.
 
-\section{Integer Term Rewriting System(\its)}
+\section{Integer Term Rewrite System(\its)}
 \label{sec:its}
 In order to apply the upcoming procedure we have to define what structure the approach works on.
+As stated in \autoref{sec:aprove} \aprove can handle programs of different languages. By transforming these into a \textit{Symbolic Execution Graph} one has a common form for all programs. %TODO: genaueres über die transformierung? Quelle zur äquivalenz?
+A \textit{Symbolic Execution Graph} can detect \nonterm under certain circumstances and otherwise can be further transformed to a so called \textit{Integer Term Rewrite System} (further only called \its), which we will focus on. A detailed mathematical definition can be found within \cite{fuhs2009proving}. Considering the following approach we will look at a \its in a more superficial way. The composition of a \its considered in this paper is shown in \autoref{fig:its-structure}.\newline
+\begin{figure}[H]
+	\vspace{3em}
+	%TODO: redo with braces
+	\begin{lstlisting}[escapechar=!]
+		!$f_x\tikz[remember picture] \node [] (sfs) {};\rightarrow f_y \tikz[remember picture] \node [] (fs) {};(v_1, \dots v_n) :|: cond_1$! !\tikz[remember picture] \node [] (cond1) {};!
+		!$f_y(v_1, \tikz[remember picture] \node [] (var1) {};\dots v_n) \rightarrow f_y(v^\prime_1, \tikz[remember picture] \node [] (var2) {}; \dots v^\prime_n)  :|: cond_2$\tikz[remember picture] \node [] (cond2) {};! !\tikz[remember picture] \node [] (lr) {};!
+	\end{lstlisting}
+	\begin{tikzpicture}[remember picture, overlay, 
+	every edge/.append style = { ->, thick, >=stealth, dashed, line width = 1pt },
+	every node/.append style = { align = center, font = \bfseries}]
+		\node [above = of sfs] (1) {(1)};
+		\node [above right = of fs] (2) {(2)};
+		\node [below = of var1] (3) {(3)};
+		\node [right = of lr] (4) {(4)};
+		
+		\draw (1.south) edge (sfs.north);
+		\draw (2.south) edge (fs.north);
+		\draw (3.north) edge (var1.south);
+		\draw (3.north) edge (var2.south);
+		\draw (4.west) edge (cond1.east);
+		\draw (4.west) edge (cond2.east);
+	\end{tikzpicture}
+	\vspace{1em}
+	\caption{The structure of a \its considered in this paper.}
+	\label{fig:its-structure}
+\end{figure}
+%TODO: Explanation in text or in figure?
 
+The considered program shown in \autoref{fig:its-structure} consists of a set of structure elements necessary to be defined:
+\begin{enumerate}[leftmargin=1]
+	\item[(1)] A function symbol consisting of no variables is a \textit{start function symbol} and is the first symbol to use. Further explanation in (line 1) and \autoref{fig:structure-example-TRS}.
+	\item[(2)] A function symbol denoting a current program-state
+	\item[(3)] The variables of a function symbol denoting the change of the variables by applying the term rewriting rule
+	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$ $m \in \mathbb{N}$, where $\text{(in)equation}_i$ contains only $v_j$ $1 \le j \le n$ and is in standard integer form.\footnote{The standard form has the following pattern: $ a_1*v_1 + \dots + a_n*v_n \circ c$, where $a_i , v_i, c \in \mathbb{Z}$ and $\circ \in \{<,>\}$. Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$}
+	\item[(line 1)] The first line is the rewriting rule the program starts with and can be seen as a declaration of initial values of some variables. An example is shown in \autoref{fig:structure-example-TRS}
+	\item[(line 2)] Such a rule is a self-looping rule considered within this approach to define further computations. Other looping rules will be presented in %TODO: REF related work.
+\end{enumerate} 
+
+In general a \its can have rules of other forms, like $f_x(v_1, \dots v_n) \rightarrow f_y(v^\prime_1, \dots v^\prime_k) :|: cond$ where $n \ne k$ can occur, but these rules are for now not considered.
 
 \section{Geometric Nontermination Argument (GNA)}
 Adapted from Jan Leikes and Matthias Heizmanns paper \textit{Geometric Nontermination Arguments} \cite{leike2014geometric} I will define the considered programs, define the \stem and \loopt and finally state the definition of Geometric Nontermination Arguments.
@@ -25,7 +65,7 @@ The structure of the considered programs is quite simple. They contain an option
 		The guard of the \code{while}-loop is essential to restrict $a$  as we will see in %TODO: ref
 		. With the restriction of $a+b\ge 4 $ we can prove termination for $a < 3$ without further analysis, and also to prove termination assume that $a \ge 3$.
 	\item The linear Updates: \newline
-		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their value determine if the guard still holds. The approach works with only linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have a $f(v_i)=a_1*v_1+...+a_n*v_n$ with $n \in \mathbb{N}$. Note since we work on int-TRS it is sufficient for $a_i$ to be in $\mathbb{Z}$. 	
+		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their value determine if the guard still holds. The approach works with only linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have a $v_i=a_1*v_1+...+a_n*v_n$ with $n \in \mathbb{N}$. Note since we work on int-TRS it is sufficient for $a_i$ to be in $\mathbb{Z}$. 	
 \end{itemize} 
 
 \begin{figure}[h]
@@ -62,11 +102,11 @@ The structure of the considered programs is quite simple. They contain an option
 \end{figure}
 The guard and linear updates together form the so called \loopt. 
 
-Through the in \autoref{sec:its} described procedure we receive the to \autoref{fig:structure-example-java} equivalent \its shown in \autoref{fig:structure-example-TRS}. As we can see the original program can be recognized quite easily. The first rule in line 1 denotes the \stem, while the second line equals the loop \loopt.
+Through the in \autoref{sec:its} described procedure and given structure we receive the to \autoref{fig:structure-example-java} equivalent \its shown in \autoref{fig:structure-example-TRS}. As we can see the original program can be recognized quite easily. The first rule in line 1 denotes the \stem, while the second line equals the loop \loopt.
 
 \begin{figure}[H]
 	\begin{lstlisting}[linewidth=1.4\textwidth, escapechar = !]
-!$\overbrace{f_1	     -> f_2(1+3*c,2)   :|: c>2 \text{ \&\& } 8<3*c}^{\text{\stem}}$!
+!$\overbrace{f_1	     \rightarrow f_2(1+3*c,2)   :|: c>2 \text{ \&\& } 8<3*c}^{\text{\stem}}$!
 !$\underbrace{\underbrace{f_2(a,b) \rightarrow f_2(3*a+b,2*b)}_{\text{linear update}} :|: \underbrace{3*a>29 \text{ \&\& } a+b>11 \text{ \&\& } 31<3*a+b \text{ \&\& } 3<2*b}_{\text{guards}}}_{\text{\loopt}}$!
 	\end{lstlisting}
 	\caption{The \its corresponding to the \tool{Java} program in \autoref{fig:structure-example-java}}
@@ -102,22 +142,23 @@ In order to be able to define the key element of this approach, the \gna, we hav
 \begin{example}
 	The corresponding \updatematrix to \autoref{fig:structure-example-TRS} is $U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ and the \updateconstants are $u = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$.
 \end{example}
-\begin{corollary}
-	In this approach we consider programs of the form 
-%	\begin{figure}[H]	
-		\begin{lstlisting}[escapechar=!]
-			!$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond_1 $!
-			!$f_y (v_1, \dots v_n) \rightarrow f_y(v^\prime_1, \dots v^\prime_n) :|: cond_2 $!
-		\end{lstlisting}
-%	\end{figure}
-	where line 1 is the \stem and line 2 is the \loopt consisting of one function symbol looping to itself. So the number of variables stays the same and $U \in \mathbb{Z}^{n\times n}$ with $n \in \mathbb{N}$ the number of variables. 
-	The $cond_i$ are conditions of rule $i$ of the form: 
-	\begin{figure}[H]
-		\centering
-		$\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$
-	\end{figure}
 
-\end{corollary}
+%\begin{corollary}
+%	In this approach we consider programs of the form 
+%	\begin{figure}[H]	
+%		\begin{lstlisting}[escapechar=!]
+%			!$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond_1 $!
+%			!$f_y (v_1, \dots v_n) \rightarrow f_y(v^\prime_1, \dots v^\prime_n) :|: cond_2 $!
+%		\end{lstlisting}
+%	\end{figure}
+%	where line 1 is the \stem and line 2 is the \loopt consisting of one function symbol looping to itself. So the number of variables stays the same and $U \in \mathbb{Z}^{n\times n}$ with $n \in \mathbb{N}$ the number of variables. 
+%	The $cond_i$ are conditions of rule $i$ of the form: 
+%	\begin{figure}[H]
+%		\centering
+%		$\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$
+%	\end{figure}
+
+%\end{corollary}
 
 \begin{definition}[Iteration Matrix, Iteration Constants]
 	\label{def:iteration}
@@ -178,13 +219,55 @@ An example for the \rpntree is shown in \autoref{ex:rpntree}
 	\label{dia:RPN-classdiagram}
 \end{figure}
 
+\newsavebox\mybox
+\begin{lrbox}{\mybox}
+	
+	\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+		\node (Plus) at (0,0) [objDia] {
+			\textbf{f1}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: PLUS
+		};
+		\node (Times1) at (-4, -2 ) [objDia] {
+			\textbf{f2}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: TIMES	
+		};
+		\node (Times2) at (4, -2) [objDia] {
+			\textbf{f3}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: TIMES	
+		};
+		\node (cons1) at (-6, -4) [objDia] {
+			\textbf{c1}:RPNConstant
+			\nodepart{second}value: 2
+		};
+		\node (var1) at (-2, -4)[objDia] {
+			\textbf{v1}:RPNVariable
+			\nodepart{second}varName: x
+		};
+		\node (cons2) at (2, -4) [objDia] {
+			\textbf{c2}:RPNConstant
+			\nodepart{second}value: 4
+		};
+		\node (var2) at (6, -4) [objDia] {
+			\textbf{v2}:RPNVariable
+			\nodepart{second}varName: y
+		};
+		\draw[thickarrow] (Plus.south)  -- ++(0,-0.4) -| (Times1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[thickarrow] (Plus.south)  -- ++(0,-0.4) -| (Times2.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\draw[thickarrow] (Times2.south)  -- ++(0,-0.5) -| (cons2.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[thickarrow] (Times2.south)  -- ++(0,-0.5) -| (var2.north) node [pos = 0.4, above, font=\footnotesize]{right};
+	\end{tikzpicture}
+\end{lrbox}
+
 \begin{figure}
 	\begin{tikzpicture}[
+			scale=0.6,
 			every edge/.append style = { ->, thick, >=stealth, dashed, line width = 1pt },
 			every node/.append style = {shape = rectangle, draw, rounded corners} ]
-		\node (L) at (0,5) {\begin{tabular}{cc} mathematical expression: \\ 2*x+4*y \end{tabular} };
-		\node (M) at (0,0) {\begin{tabular}{cc} reverse polish notation: \\ +*x2*y4 \end{tabular} };
-		\node (R) at (10,2) {\includegraphics[width=.5\textwidth]{src/diagram/RPNExample.png}};
+		\node (L) {\begin{tabular}{cc} mathematical expression: \\ 2*x+4*y \end{tabular} };
+		\node[below = of L] (M)  {\begin{tabular}{cc} reverse polish notation: \\ +*x2*y4 \end{tabular} };
+		\node[right = of M] (R) {\usebox\mybox};
 		\draw (L.south) edge (M.north);
 		\draw (M.east) edge (R.west);
 	\end{tikzpicture}

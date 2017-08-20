@@ -14,6 +14,13 @@ Florian Corzilius, Gereon Kremer, Sebastian Junges, Stefan Schupp, and Erika
 \newblock In {\em International Conference on Theory and Applications of
   Satisfiability Testing}, pages 360--368. Springer, 2015.
 
+\bibitem[FGP{\etalchar{+}}09]{fuhs2009proving}
+Carsten Fuhs, J{\"u}rgen Giesl, Martin Pl{\"u}cker, Peter Schneider-Kamp, and
+  Stephan Falke.
+\newblock Proving termination of integer term rewriting.
+\newblock In {\em International Conference on Rewriting Techniques and
+  Applications}, pages 32--47. Springer, 2009.
+
 \bibitem[GAB{\etalchar{+}}17]{giesl2017analyzing}
 J{\"u}rgen Giesl, Cornelius Aschermann, Marc Brockschmidt, Fabian Emmes,
   Florian Frohn, Carsten Fuhs, Jera Hensel, Carsten Otto, Martin Pl{\"u}cker,
