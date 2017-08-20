@@ -10,14 +10,14 @@
 \contentsline {subsection}{\numberline {2.2.2}Structure}{6}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Necessary Definitions}{7}{subsection.2.2.3}
 \contentsline {section}{\numberline {2.3}Reverse-Polish-Notation-Tree}{9}{section.2.3}
-\contentsline {section}{\numberline {2.4}\textsf {SMT}-Problem}{11}{section.2.4}
-\contentsline {chapter}{\numberline {3}Geometric Non-Termination}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}Derivation of the \emph {STEM}}{13}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Constant \textit {STEM}\xspace }{13}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Variable \textit {STEM}\xspace }{14}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Derivation of the \emph {LOOP}}{14}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}The Update Matrix}{14}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}The Guard Matrix}{16}{subsection.3.2.2}
+\contentsline {section}{\numberline {2.4}\textsf {SMT}-Problem}{10}{section.2.4}
+\contentsline {chapter}{\numberline {3}Geometric Non-Termination}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Derivation of the \emph {STEM}}{11}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Constant \textit {STEM}\xspace }{11}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Variable \textit {STEM}\xspace }{12}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Derivation of the \emph {LOOP}}{12}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}The \textit {Update Matrix}\xspace and \textit {Update Constants}\xspace }{12}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}The \textit {Guard Matrix}\xspace and \textit {Guard Constants}\xspace }{14}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}The Iteration Matrix}{16}{subsection.3.2.3}
 \contentsline {section}{\numberline {3.3}Derivation of the \emph {SMT}-Problem}{16}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}The Domain Criteria}{16}{subsection.3.3.1}

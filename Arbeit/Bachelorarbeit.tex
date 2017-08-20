@@ -114,6 +114,8 @@
 \newcommand{\its}{\tool{int-TRS}\xspace}
 \newcommand{\llvm}{\tool{llvm}\xspace}
 \newcommand{\nonterm}{\textit{non-termination}\xspace}
+\newcommand{\seg}{\textit{Symbolic Execution Graph}\xspace}
+\newcommand{\stdLinInt}{standard linear integer form\xspace}
 
 \newtheorem{definition}{Definition}[section]
 \newtheorem{corollary}{Corollary}[section]
@@ -123,8 +125,10 @@
 
 \tikzstyle{arrow} = [->]
 \tikzstyle{thickarrow}=[arrow, thick]
-\tikzstyle{dashedarrow} = [arrow, dashed]
+\tikzstyle{dashedarrow} = [thickarrow, >=stealth, dashed, line width = 1pt ]
+\tikzstyle{stdNode} = [shape = rectangle, draw, rounded corners]
 \tikzstyle{objDia}=[rectangle, draw=black, rounded corners, text centered, anchor=north, rectangle split, rectangle split parts=2]
+\tikzstyle{explNode} = [align = center, minimum height = 10pt,	font = \bfseries, fill= green!20]
 \tikzstyle{considered}=[thickarrow, color = blue]
 \tikzstyle{neglected} = [thickarrow, color = red]
 \tikzstyle{query} = [thickarrow, color = green!50!black]

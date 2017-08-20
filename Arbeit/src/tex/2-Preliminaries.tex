@@ -9,39 +9,22 @@ In order to apply the upcoming procedure we have to define what structure the ap
 As stated in \autoref{sec:aprove} \aprove can handle programs of different languages. By transforming these into a \textit{Symbolic Execution Graph} one has a common form for all programs. %TODO: genaueres über die transformierung? Quelle zur äquivalenz?
 A \textit{Symbolic Execution Graph} can detect \nonterm under certain circumstances and otherwise can be further transformed to a so called \textit{Integer Term Rewrite System} (further only called \its), which we will focus on. A detailed mathematical definition can be found within \cite{fuhs2009proving}. Considering the following approach we will look at a \its in a more superficial way. The composition of a \its considered in this paper is shown in \autoref{fig:its-structure}.\newline
 \begin{figure}[H]
-	\vspace{3em}
-	%TODO: redo with braces
 	\begin{lstlisting}[escapechar=!]
-		!$f_x\tikz[remember picture] \node [] (sfs) {};\rightarrow f_y \tikz[remember picture] \node [] (fs) {};(v_1, \dots v_n) :|: cond_1$! !\tikz[remember picture] \node [] (cond1) {};!
-		!$f_y(v_1, \tikz[remember picture] \node [] (var1) {};\dots v_n) \rightarrow f_y(v^\prime_1, \tikz[remember picture] \node [] (var2) {}; \dots v^\prime_n)  :|: cond_2$\tikz[remember picture] \node [] (cond2) {};! !\tikz[remember picture] \node [] (lr) {};!
+		!$\overbrace{f_x}^{(1)} \qquad\qquad \rightarrow \overbrace{f_y}^{(2)} (v_1, \dots v_n) :|: cond_1$!
+		!$f_y(\underbrace{v_1, \dots v_n}_{(3)}) \>\> \rightarrow \>\> f_y \>(\underbrace{v^\prime_1,\dots v^\prime_n}_{(3)})  :|: \underbrace{cond_2}_{(4)}$!
 	\end{lstlisting}
-	\begin{tikzpicture}[remember picture, overlay, 
-	every edge/.append style = { ->, thick, >=stealth, dashed, line width = 1pt },
-	every node/.append style = { align = center, font = \bfseries}]
-		\node [above = of sfs] (1) {(1)};
-		\node [above right = of fs] (2) {(2)};
-		\node [below = of var1] (3) {(3)};
-		\node [right = of lr] (4) {(4)};
-		
-		\draw (1.south) edge (sfs.north);
-		\draw (2.south) edge (fs.north);
-		\draw (3.north) edge (var1.south);
-		\draw (3.north) edge (var2.south);
-		\draw (4.west) edge (cond1.east);
-		\draw (4.west) edge (cond2.east);
-	\end{tikzpicture}
-	\vspace{1em}
 	\caption{The structure of a \its considered in this paper.}
 	\label{fig:its-structure}
 \end{figure}
-%TODO: Explanation in text or in figure?
+%QUESTION: Explanation in text or in figure?
 
 The considered program shown in \autoref{fig:its-structure} consists of a set of structure elements necessary to be defined:
 \begin{enumerate}[leftmargin=1]
 	\item[(1)] A function symbol consisting of no variables is a \textit{start function symbol} and is the first symbol to use. Further explanation in (line 1) and \autoref{fig:structure-example-TRS}.
 	\item[(2)] A function symbol denoting a current program-state
-	\item[(3)] The variables of a function symbol denoting the change of the variables by applying the term rewriting rule
-	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$ $m \in \mathbb{N}$, where $\text{(in)equation}_i$ contains only $v_j$ $1 \le j \le n$ and is in standard integer form.\footnote{The standard form has the following pattern: $ a_1*v_1 + \dots + a_n*v_n \circ c$, where $a_i , v_i, c \in \mathbb{Z}$ and $\circ \in \{<,>\}$. Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$}
+	\item[(3)] The variables of a function symbol denoting the change of the variables by applying the term rewriting rule. The value of $v^\prime_i$ is a linear update of the variables $v_j$ $1 \le j \le n$ in \stdLinInt. \footnote{The \stdLinInt has the following pattern: $ a_1*v_1 + \dots + a_n*v_n + c$, where $a_i , v_i, c \in \mathbb{Z}$, $1 \le i\le n$. 
+		Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$} 
+	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$ $m \in \mathbb{N}$, where $\text{(in)equation}_i$ contains only $v_j$ $1 \le j \le n$ defined further in \autoref{sec:derivation-guard}.
 	\item[(line 1)] The first line is the rewriting rule the program starts with and can be seen as a declaration of initial values of some variables. An example is shown in \autoref{fig:structure-example-TRS}
 	\item[(line 2)] Such a rule is a self-looping rule considered within this approach to define further computations. Other looping rules will be presented in %TODO: REF related work.
 \end{enumerate} 
@@ -82,8 +65,8 @@ The structure of the considered programs is quite simple. They contain an option
 	}		
 	\end{lstlisting}
 	\begin{tikzpicture}[remember picture, overlay, 
-		every edge/.append style = { ->, thick, >=stealth, dashed, line width = 1pt },
-		every node/.append style = { align = center, minimum height = 10pt,	font = \bfseries, fill= green!20},
+		every edge/.append style = {dashedarrow},
+		every node/.append style = {explNode},
 	text width = 2.5cm ]
 		\node[above right = .2cm and 3.1 cm of a] (A) {the \textit{STEM}};
 		\draw[rounded corners=5pt] (A.west) edge (a.east);
@@ -198,7 +181,7 @@ Now we can define the key element, which was originally defined for \tool{linear
 		\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
 	\end{itemize}
 %	\vspace{-2em}
-	Note that $y_0 = \mu_0 = 0$ is set for the ray instead of a case distinction. 
+	Note that $y_0 = \mu_0 = 0$ is set for the ray instead of a case distinction. \cite{leike2014geometric}
 \end{definition}
 
 %\begin{theorem}
@@ -212,7 +195,7 @@ Within the program of deriving a \gna it happens that we get a mathematical term
 As shown in \autoref{dia:RPN-classdiagram} we have an \code{abstract} root, subclasses for every occurring type of element within the \its, a \code{static} parsing of a given term and an exception for parsing exceptions.
 An example for the \rpntree is shown in \autoref{ex:rpntree}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering	
 	\input{src/diagram/RPNTree-classdiagram.tex}
 	\caption{The class diagram of the \rpntree within the \gnanal}	
@@ -263,8 +246,8 @@ An example for the \rpntree is shown in \autoref{ex:rpntree}
 \begin{figure}
 	\begin{tikzpicture}[
 			scale=0.6,
-			every edge/.append style = { ->, thick, >=stealth, dashed, line width = 1pt },
-			every node/.append style = {shape = rectangle, draw, rounded corners} ]
+			every edge/.append style = { dashedarrow },
+			every node/.append style = { stdNode} ]
 		\node (L) {\begin{tabular}{cc} mathematical expression: \\ 2*x+4*y \end{tabular} };
 		\node[below = of L] (M)  {\begin{tabular}{cc} reverse polish notation: \\ +*x2*y4 \end{tabular} };
 		\node[right = of M] (R) {\usebox\mybox};

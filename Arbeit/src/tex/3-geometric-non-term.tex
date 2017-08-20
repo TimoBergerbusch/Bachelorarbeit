@@ -5,7 +5,7 @@ Based on the calculated \its we derive the \stem, the \loopt and then generate a
 
 \section{Derivation of the \emph{STEM}}
 \label{sec:stem}
-The derivation of the \stem is the first step to do in order to derive a \gna. As described in \autoref{sec:structure} the \stem defines the variables before iterating through the \loopt.  Owned to the fact, that \aprove has to find the a loop within the generated symbolic execution graph %TODO: cite
+The derivation of the \stem is the first step to do in order to derive a \gna. As described in \autoref{sec:structure} the \stem defines the variables before iterating through the \loopt.  Owned to the fact, that \aprove has to find the a loop within the generated \seg %TODO: cite
 one iteration through the \loopt will be calculated. Obviously this does not falsify the result. If it does not terminate i will still not terminate after one iteration and if it terminates after $n$ iterations and we compute one it will still terminate after $n-1$ iterations. \newline
 Within the derivation of the \stem we distinguish between two cases discussed in the following sections.
 
@@ -66,15 +66,16 @@ then we take the in lexicographical order first rule $r_l$ of the form
 \end{lstlisting}
 and compute the \iterationmatrix and \iterationconstants according to $r_l$. 
 
-\subsection{The Update Matrix}
-The derivation of the \updatematrix and \updateconstants is relatively just applying the \autoref{def:update} to the given rule $r_l$. For that we create a matrix $U$ as the coefficient matrix. We do so by adding a column per occurring variable and rows per linear equation of every $v^\prime_i$. To derive the entry's of the matrix we use the \rpntree of the given equation and simply perform recursive searching to derive the factor. 
+\subsection{The \updatematrix and \updateconstants}
+\label{sec:derivation-update}
+The derivation of the \updatematrix and \updateconstants can be achieved by applying the \autoref{def:update} to the given rule $r_l$. For that we create $U$ as the coefficient matrix. The size of $U$ can be determined by adding a column per occurring variable and rows per linear equation of every $v^\prime_i$. To derive the entry's of the matrix we use the \rpntree of the given equation and simply perform recursive searching to derive the factor. 
 %Also we can use
 The procedure works like the following:
 \begin{algorithm}[H]
-	\caption{Deriving a coefficient within the \rpntree}
+	\caption{Derivation of a coefficient within an \rpntree}
 	\label{algo:coefficient}
 	\begin{algorithmic}[1]
-		\Procedure{getCoefficient}{$node, query$}
+		\Function{getCoefficient}{$query$}
 			\If{node == query}\Comment{query is the tree}
 				\State \Return $1$
 			\ElsIf{node does \underline{not} contain query} \Comment{tree does not contain query}
@@ -83,9 +84,9 @@ The procedure works like the following:
 			\State
 			\If{node represents PLUS} \Comment{Choose the subtree containing the query}
 				\If{left side contains $query$}
-					\State \Return getCoefficient$(node.left, query)$
+					\State \Return getCoefficient$(query)$
 				\Else
-					\State \Return getCoefficient$(node.right, query)$
+					\State \Return getCoefficient$(query)$
 				\EndIf
 			\EndIf
 			\If{node represents TIMES} \Comment{Retrieve value}
@@ -93,11 +94,11 @@ The procedure works like the following:
 					\State \Return node.left.value
 				\EndIf				
 			\EndIf
-		\EndProcedure
+		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-We can rely on the usage of the standart integer structure described in \autoref{sec:its} and therefore we can neglect cases for example that the \textit{left}-child of a \textit{RPNFunctionSymbol} with \textit{arithmeticSymbol} \code{TIMES} is the \textit{RPNVariable} and the \textit{right}-child is the \textit{RPNConstant}.
+Since we can rely on the usage of the \stdLinInt described in \autoref{sec:its} and therefore we can neglect cases for example that the \textit{left}-child of a \textit{RPNFunctionSymbol} with \textit{arithmeticSymbol} \code{TIMES} is the \textit{RPNVariable} and the \textit{right}-child is the \textit{RPNConstant}.
 %TODO: Proof?
 An example derivation of a factor using \autoref{algo:coefficient} is shown in \autoref{ex:factor-derivation}.
 
@@ -142,8 +143,134 @@ An example derivation of a factor using \autoref{algo:coefficient} is shown in \
 	\label{ex:factor-derivation}
 \end{figure}
 
-\subsection{The Guard Matrix}
+The \color{red}red\color{black}-arrow stands for the neglected left subtree of the root node, which can be neglected because the query is not contained. The \color{blue}blue\color{black}-arrows show the path to the subtree further investigated. The \color{green!50!black}green\color{black}-arrow determines, that the right child node is the query so the left child node has to be the coefficient. Since the underlying update is in \stdLinInt the left subtree has to be a \textit{RPNConstant}.
 
+The \updateconstants can be derived by an simplification of \autoref{algo:coefficient}, since we only have to retrieve the constant term within the tree. The corresponding derivation is given by \autoref{algo:constant-term}.
+
+\begin{algorithm}[H]
+	\begin{algorithmic}[1]
+		\Function{getConstantTerm}{}
+			\If{this is a constant}
+				\State \Return this.value
+			\EndIf
+			\State
+			\State $flip \gets 1$
+			\If{this represents MINUS}\Comment{flip result in case of prev. negation}
+				\State $flip \gets -1$
+			\EndIf
+			\If{this represents sth. $\ne$ TIMES}
+				\State $left \gets left.getConstantTerm()$ \Comment{recursive calls}
+				\State $right \gets right.getConstantTerm()*flip$
+				\State \Return $left+right$
+			\EndIf
+		\EndFunction
+	\end{algorithmic}
+	\caption{Derivation of a constant term within an \rpntree}
+	\label{algo:constant-term}
+\end{algorithm}
+Since a constant $c < 0$ can stored in a constellation shown in \autoref{ex:constant-term-minus} we consider a variable $flip$ to store a sign change occurring for a subtraction. Knowing that the \stdLinInt is used all occurs of a multiplication can be neglected.\newline %TODO: small Proof?
+Through the \stdLinInt one of the recursive calls has to be $0$ since only one constant term.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node (minus) [objDia]{
+			\textbf{f1}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: MINUS
+		};
+		\node[below left = of minus] (var) [objDia]{
+			\textbf{v1}:RPNVariable
+			\nodepart{second}varName: x
+		};
+		\node[below right = of minus] (cons) [objDia]{
+			\textbf{c1}:RPNConstant
+			\nodepart{second}value: 3
+		};
+		
+		\draw[thickarrow] (minus.south)  -- ++(0,-0.5) -| (var.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[thickarrow] (minus.south)  -- ++(0,-0.5) -| (cons.north) node [pos = 0.4, above, font=\footnotesize]{right};
+	\end{tikzpicture}
+	\caption{A scenario, where the $flip$ of \autoref{algo:constant-term} has to be used. This constellation can not be universally neglected.} %TODO: eigentlich schon, da die Methode parseToRPN auf Integer testet und mit PLUS verknüpft
+	\label{ex:constant-term-minus}
+\end{figure}
+
+Using \autoref{algo:coefficient} and \autoref{algo:constant-term} one can derive the \updatematrix $U \in \mathbb{Z}^{n\times n}$ and \updateconstants $u \in \mathbb{Z}^n$ for a rule $r_j$ of the form
+\begin{figure}[H]
+	\centering
+	$r_j:= f_y(v_1,\dots v_n) \rightarrow f_y(v^\prime_1,\dots v^\prime_n) :|: cond$
+\end{figure}  
+so that the following holds:
+\begin{figure}[H]
+	\centering
+	$U \times \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} + u = \begin{pmatrix} v^\prime_1 \\ \vdots \\ v^\prime_n \end{pmatrix}$
+\end{figure}
+
+\subsection{The \guardmatrix and \guardconstants}
+\label{sec:derivation-guard}
+The derivation of the \guardmatrix and \guardconstants, whose definition is stated in \autoref{def:guard}, is very similar to \autoref{sec:derivation-update}, but instead of applying the algorithms to the update of the variables the algorithms have to be applied to the guards. The guards are given from the \seg in a standardized form.
+\begin{definition}[standard guard form]
+	A guard $g$ is in standard guard form iff
+		$g := \varphi \circ c$, with
+	$\phi$ in \stdLinInt, $a_i,v_i,c \in \mathbb{Z}$, $1 \le i \le n$ and $\circ \in \{ <, >\}$. \newline
+	A condition to a rule $cond$ is in standard guard form iff 
+	\begin{figure}[H]
+		\centering
+		$cond = \{ g | g\text{ guard}, g\text{ is in standard guard form}\}$
+	\end{figure}
+\end{definition} 
+The conditions given be the \seg is one rule $r$ , which represents a set $G$  in standard guard form and 
+\begin{figure}[H]
+	\centering
+	$r = \&\&(g_1,( \&\& (\dots,(\&\&(g_{n-1},g_n) )\dots)))$
+\end{figure}
+The easiest way to retrieve the guards $g_i$ is by using \autoref{algo:decat-guards}.
+
+\begin{algorithm}
+	\begin{algorithmic}[1]
+		\Function{computeGuardSet}{Rule r} \Comment{r has to be a rule representing a $cond$-term}
+			\State Stack $stack \gets r$
+			\State Set $guards$
+			\While{$!stack.isEmpty()$}
+				\State $item \gets stack.pop$
+				\If{item is of the form $\&\&(x_1,x_2)$}
+					\State add $x_1$ and $x_2$ to $stack$
+				\Else
+					\State add $item$ to $guards$
+				\EndIf				
+			\EndWhile			
+		\EndFunction		
+	\end{algorithmic}
+	\caption{Retrieving a set of guards $G$ from a rule $r$ of the form stated in \autoref{sec:derivation-guard}}
+	\label{algo:decat-guards}
+\end{algorithm}
+
+So we get a set $G=\{ g \mid g \text{ is in standard guard form}\}$. Not only does the \seg normalize the guards to only use $<$, also it provides the guards $g:= \varphi < c \in G$ in the following form:\newline
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node[objDia] (top) {
+			\textbf{f1}: RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: $<$
+		};
+		\node[rectangle, draw=black, rounded corners, text centered, anchor=north, below left = of top] (left) {
+			$\varphi$
+		};
+		\node[objDia, below right = of top] (right) {
+			\textbf{c1}: RPNConstant
+			\nodepart{second}value: $c$
+		};
+	
+		\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (left.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (right.north) node [pos = 0.4, above, font=\footnotesize]{right};
+	\end{tikzpicture}
+\end{figure}
+
+So to derive the entry's of the \guardmatrix we can simply use \autoref{algo:coefficient} of $\varphi$ and to derive entry's of \guardconstants we have to simply get the \code{right}-child of the root-node.
+After doing that, we got for $m=|G|$ the \guardmatrix $G \in \mathbb{Z}^{m\times n}$ and \guardconstants $g \in \mathbb{Z}^m$, such that
+\begin{figure}[H]
+	\centering
+	$G \times \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} < g$
+\end{figure}
 \subsection{The Iteration Matrix}
 
 \section{Derivation of the \emph{SMT}-Problem}
