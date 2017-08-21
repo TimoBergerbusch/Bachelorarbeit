@@ -14,6 +14,7 @@ Within the derivation of the \stem we distinguish between two cases discussed in
 The constant stem is the easiest case to derive the \stem from. It has the form: 
 %\vspace{-1em}
 \begin{figure}[H]
+	\centering
 	$f_x \rightarrow f_y(c_1,\dots c_n) :|: TRUE$
 \end{figure} 
 %\vspace{-2em}
@@ -301,6 +302,9 @@ As stated in \autoref{def:iteration} the \iterationmatrix and \iterationconstant
 Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a matrix \textbf{0}$ \in \{0\}^m\times n$ and identity-matrix $I \in \{0,1\}^n\times n$, where $n$ is the number of distinct variables and $m$ the number of guards.
 
 \section{Derivation of the \emph{SMT}-Problem}
+The existence of a \gna is checked using an \tool{SMT} solver, which will either give us an argument satisfying the constraints or proof the non existence by given an unsatisfiable core. \newline
+The constraints the \tool{SMT} solver has to fulfil are the four criteria mentioned within \autoref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute it's eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently. \cite{leike2014geometric}.\newline
+So the next step in order to proof non termination is to compute the eigenvalues of the \updatematrix.
 
 \subsection{The Domain Criteria}
 
@@ -311,4 +315,5 @@ Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a
 \subsection{The Ray Criteria}
 
 \section{Verification of the Geometric Non-Termination Argument}
+\label{sec:verification-of-gna}
 	 

@@ -20,11 +20,11 @@
 \contentsline {subsection}{\numberline {3.2.2}The \textit {Guard Matrix}\xspace and \textit {Guard Constants}\xspace }{14}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}The Iteration Matrix}{16}{subsection.3.2.3}
 \contentsline {section}{\numberline {3.3}Derivation of the \emph {SMT}-Problem}{16}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}The Domain Criteria}{16}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}The Initiation Criteria}{16}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}The Point Criteria}{16}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}The Ray Criteria}{16}{subsection.3.3.4}
-\contentsline {section}{\numberline {3.4}Verification of the Geometric Non-Termination Argument}{16}{section.3.4}
-\contentsline {chapter}{\numberline {4}Benchmarks}{17}{chapter.4}
-\contentsline {chapter}{\numberline {5}related work}{19}{chapter.5}
-\contentsline {chapter}{Literaturverzeichnis}{19}{chapter.5}
+\contentsline {subsection}{\numberline {3.3.1}The Domain Criteria}{17}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}The Initiation Criteria}{17}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}The Point Criteria}{17}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}The Ray Criteria}{17}{subsection.3.3.4}
+\contentsline {section}{\numberline {3.4}Verification of the Geometric Non-Termination Argument}{17}{section.3.4}
+\contentsline {chapter}{\numberline {4}Benchmarks}{19}{chapter.4}
+\contentsline {chapter}{\numberline {5}related work}{21}{chapter.5}
+\contentsline {chapter}{Literaturverzeichnis}{21}{chapter.5}
