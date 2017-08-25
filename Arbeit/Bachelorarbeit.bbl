@@ -1,10 +1,20 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
 \begin{thebibliography}{GAB{\etalchar{+}}17}
 
+\bibitem[Apa]{ApacheMath3}
+Apache commons.math3.
+\newblock Accessed: 27-August-2017.
+
 \bibitem[Áb16]{sat2016}
 Prof. Dr.~Erika Ábrahám.
 \newblock Introduction to satisfiability checking.
 \newblock 2016.
+
+\bibitem[BDE{\etalchar{+}}14]{behrmann2014bit}
+Karsten Behrmann, Andrej Dyck, Fabian Emmes, Carsten Fuhs, J{\"u}rgen Giesl,
+  Patrick Kabasci, Peter Schneider-Kamp, and Ren{\'e} Thiemann.
+\newblock Bit-blasting for smt-nia with aprove.
+\newblock {\em Proc. SMT-COMP}, 14, 2014.
 
 \bibitem[CKJ{\etalchar{+}}15]{corzilius2015smt}
 Florian Corzilius, Gereon Kremer, Sebastian Junges, Stefan Schupp, and Erika
@@ -20,6 +30,14 @@ Carsten Fuhs, J{\"u}rgen Giesl, Martin Pl{\"u}cker, Peter Schneider-Kamp, and
 \newblock Proving termination of integer term rewriting.
 \newblock In {\em International Conference on Rewriting Techniques and
   Applications}, pages 32--47. Springer, 2009.
+
+\bibitem[GAB{\etalchar{+}}16]{giesl2016}
+J{\"u}rgen Giesl, Cornelius Aschermann, Marc Brockschmidt, Fabian Emmes,
+  Florian Frohn, Carsten Fuhs, Jera Hensel, Carsten Otto, Martin Pl{\"u}cker,
+  Peter Schneider-Kamp, Thomas Str{\"o}der, Stephanie Swiderski, and René
+  Thiemann.
+\newblock Semi-deciding qf nia with aprove via bit-blasting.
+\newblock 2016.
 
 \bibitem[GAB{\etalchar{+}}17]{giesl2017analyzing}
 J{\"u}rgen Giesl, Cornelius Aschermann, Marc Brockschmidt, Fabian Emmes,

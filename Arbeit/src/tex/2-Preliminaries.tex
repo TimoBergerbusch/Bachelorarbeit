@@ -261,8 +261,39 @@ An example for the \rpntree is shown in \autoref{ex:rpntree}
 
 
 \section{\tool{SMT}-Problem}
+\label{sec:smt-problem}
 Also we have to consider an \textit{Satisfiability Modulo Theorie}-Problem (\tool{SMT}-Problem, we have to solve to derive a \gna fulfilling all the criterias of \autoref{def:gna}. Since \tool{SMT}-Problem solving is a big research topic on it's own we only consider the very basic of \tool{SMT}-Solving necessary to understand how the program solves the problem. \newline
 %TODO: write it more mathematically
+Within this approach we use the so called \code{Basic Structures} defined within \aprove to add assertions to the \solver using the \smtfactory. An example of the structure of the assertions can be found in \autoref{ex:assertion-structure}. %MAYBE: Class-dia?
+
+\begin{figure}[H]
+	\begin{lstlisting}[escapechar = !]
+		!$\underbrace{
+			\underbrace{
+				\underbrace{\underbrace{3}_{(1)}*\underbrace{x_1}_{(2)}}_{(3)} \quad \underbrace{+}_{(4)} \quad ...
+			}_{(5)} 
+			\qquad
+			\underbrace{\le}_{(6)}
+			\qquad
+			\underbrace{3}_{(7)}
+		}_{(8)}$!
+	\end{lstlisting}
+	\caption{An example to show the structure of an assertion used for the \solver}
+	\label{ex:assertion-structure}
+\end{figure}
+
+Such an example assertion can be split into different parts: 
+\begin{enumerate}
+	\item[(1)] \code{PlainIntegerConstant}'s as coefficients
+	\item[(2)] \code{PlainIntegerVariables}'s as variables the \solver should derive values for such that all assertions are satisfied
+	\item[(3)] A coefficient multiplied with a variables is represented by an \code{PlainIntegerOperation} with \code{ArithmeticOperationType} \code{MUL}
+	\item[(4)] An \code{ArithmeticOperationType} of type \code{ADD}
+	\item[(5)] The left hand side is one big \code{PlainIntegerOperation} consisting of the addition(4) of the multiplication (3) of coefficient's (2) and variables (2).
+	\item[(6)] The \code{IntegerRelationType} defining the assertion. We only use the \textit{EQ (equal)} or \textit{LE (less than or equal)} relations.
+	\item[(7)] The right hand side is only \underline{one} \code{PlainIntegerConstant}
+	\item[(8)] The whole line is a \code{PlainIntegerRelation}, which can be transformed into the \code{SMTExpressionFormat} the \solver uses.
+\end{enumerate}
+
 We use a solver within \aprove to create a bunch of assertions restricting the possible solution space. Since we operate in integer arithmetic and use linear equations we can restrict the solver to only use \textit{quantifier free linear integer arithmetic}. In order to solve the problem given by the assertions the solver tries to derive a model satisfying all of them or derive an unsatisfiable core. \cite{sat2016}\newline
 
 \begin{example}
