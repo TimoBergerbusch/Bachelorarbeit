@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  24 AUG 2017 16:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  26 AUG 2017 16:46
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -1843,28 +1843,28 @@ Package: placeins 2005/04/18  v 2.2
  (Bachelorarbeit.aux)
 \openout1 = `Bachelorarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 143.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 145.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 145.
 
  (D:\Tools\MikTex\tex\latex\base\ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 143.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 145.
 
 (D:\Tools\MikTex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1933,7 +1933,7 @@ G,.JBIG2,.JB2,.eps]
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box114
-Package hyperref Info: Link coloring OFF on input line 143.
+Package hyperref Info: Link coloring OFF on input line 145.
 (D:\Tools\MikTex\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1942,9 +1942,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count292
 )
-LaTeX Info: Redefining \ref on input line 143.
-LaTeX Info: Redefining \pageref on input line 143.
-LaTeX Info: Redefining \nameref on input line 143.
+LaTeX Info: Redefining \ref on input line 145.
+LaTeX Info: Redefining \pageref on input line 145.
+LaTeX Info: Redefining \nameref on input line 145.
  (Bachelorarbeit.out) (Bachelorarbeit.out)
 \@outlinefile=\write5
 \openout5 = `Bachelorarbeit.out'.
@@ -2022,7 +2022,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--15
  []
 
 ) [2] (src/tex/0.3-abstract.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--157
+Underfull \hbox (badness 10000) in paragraph at lines 1--159
 
  []
 
@@ -2031,7 +2031,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--157
 ] (Bachelorarbeit.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 4.
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 7.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 8.
  (D:\Tools\MikTex\tex\latex\lm\t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [5])
@@ -2068,37 +2068,37 @@ l.1 \chapter
 <to be read again> 
                    \relax 
 l.1 \chapter
-            {Preliminaries} [4
-
-]
+            {Preliminaries} [4]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 12.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 15.
 (D:\Tools\MikTex\tex\latex\lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 8--18
+Underfull \hbox (badness 10000) in paragraph at lines 13--21
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 26.
+(Font)              <9> on input line 29.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 26.
+(Font)              <5> on input line 29.
 pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 	\item[(line 1)]
+l.31 	\item[(line 1)]
                       The first line is the rewriting rule the program start...
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}
-) has been already used, duplicate ignored
+[5
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
+has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.28 	\item[(line 1)]
+l.31 	\item[(line 1)]
                       The first line is the rewriting rule the program start...
 ]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 45.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 48.
  (D:\Tools\MikTex\tex\latex\lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [6]
@@ -2106,14 +2106,14 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ng1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 98--101
+Underfull \hbox (badness 10000) in paragraph at lines 100--102
 
  []
 
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 106.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 107.
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
@@ -2122,25 +2122,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 111--112
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.112 
+l.113 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.112 
+l.113 
       ]
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Underfull \hbox (badness 10000) in paragraph at lines 122--123
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--150
+Underfull \hbox (badness 10000) in paragraph at lines 149--151
 
  []
 
 [8] (src/diagram/RPNTree-classdiagram.tex
 \du=\skip155
+Missing character: There is no m in font nullfont!
 )
 \mybox=\box115
  [9pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4
@@ -2148,22 +2149,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 148--150
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.263 \section
+l.264 \section
               {\tool{SMT}-Problem}] [10pdfTeX warning (ext4): destination with 
 the same identifier (name{figure.2.5}) has been already used, duplicate ignored
 
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.295 \end{enumerate}
+l.296 \end{enumerate}
                      pdfTeX warning (ext4): destination with the same identifie
 r (name{figure.2.6}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.295 \end{enumerate}
+l.296 \end{enumerate}
                      ]
-Underfull \hbox (badness 10000) in paragraph at lines 297--298
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 
  []
 
@@ -2182,28 +2183,28 @@ l.39 \end{figure}
 \stemextwo=\box117
 \stemextwosecond=\box118
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 76.
+put line 75.
  [14pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.101 
+l.100 
       ] [15pdfTeX warning (ext4): destination with the same identifier (name{fi
 gure.3.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.172 S
+l.171 S
        ince a constant $c < 0$ can stored in a constellation shown in \autor...
 ] [16pdfTeX warning (ext4): destination with the same identifier (name{figure.3
 .4}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.212 \begin{definition}[standard guard form]
+l.211 \begin{definition}[standard guard form]
                                              ]
-Underfull \hbox (badness 10000) in paragraph at lines 248--267
+Underfull \hbox (badness 10000) in paragraph at lines 247--266
 
  []
 
@@ -2212,51 +2213,59 @@ Underfull \hbox (badness 10000) in paragraph at lines 346--349
 
  []
 
-[19]
-
-LaTeX Warning: Reference `sec:additional-assertions' on page 20 undefined on in
-put line 405.
-
-[20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 446--451
+[19] [20] [21]
+Underfull \hbox (badness 10000) in paragraph at lines 446--452
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 446--451
+Underfull \hbox (badness 10000) in paragraph at lines 446--452
 
  []
 
 ) (src/tex/4-benchmarks.tex [22]
 Chapter 4.
-) (src/tex/5-related-work.tex [23
 
-] [24
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+[23
+
+]) (src/tex/5-related-work.tex [24]
+Chapter 5.
+) (Bachelorarbeit.bbl [25
+
+] [26
 
 ]
-Chapter 5.
-) (Bachelorarbeit.bbl [25] [26
+Underfull \hbox (badness 10000) in paragraph at lines 5--9
+[]\T1/lmr/m/n/10.95 Apache com-mons.math3.  http://commons.apache.org/proper/co
+mmons-
+ []
 
-]) [27]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 179.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 179.
+
+Overfull \hbox (22.15797pt too wide) in paragraph at lines 5--9
+\T1/lmr/m/n/10.95 math/javadocs/api-3.6/org/apache/commons/math3/linear/EigenDe
+composition.html.
+ []
+
+[27]) [28]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 181.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 181.
  (Bachelorarbeit.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 179.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 179.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 181.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 181.
 Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 550BFA51148A777020BAE9A67AFA46EA;2011.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 179.
+(rerunfilecheck)             Checksum: E74D341DF52992A40295E75821D40942;2434.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 181.
  ) 
 Here is how much of TeX's memory you used:
- 34837 strings out of 493333
- 671474 string characters out of 3144357
- 782700 words of memory out of 3000000
- 37579 multiletter control sequences out of 15000+200000
- 123254 words of font info for 88 fonts, out of 3000000 for 9000
+ 34879 strings out of 493333
+ 672105 string characters out of 3144357
+ 783189 words of memory out of 3000000
+ 37597 multiletter control sequences out of 15000+200000
+ 126341 words of font info for 90 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,32n,85p,10435b,1351s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Tools/MikTex/fonts/enc/dvips/lm/lm-ec.enc}{D:/Tools/MikTex/fonts/enc/dvip
@@ -2278,11 +2287,11 @@ D:/Tools/MikTex/fonts/type1/public/lm/lmsso10.pfb><D:/Tools/MikTex/fonts/type1/
 public/lm/lmsy10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools
 /MikTex/fonts/type1/public/lm/lmsy9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/
 lmtt10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fo
-nts/type1/public/lm/lmtti10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/sy
-mbols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (32 pages, 607067 bytes).
+nts/type1/public/lm/lmtt9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtti10.pf
+b><D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Bachelorarbeit.pdf (33 pages, 651674 bytes).
 PDF statistics:
- 603 PDF objects out of 1000 (max. 8388607)
- 122 named destinations out of 1000 (max. 500000)
- 341 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 682 PDF objects out of 1000 (max. 8388607)
+ 145 named destinations out of 1000 (max. 500000)
+ 389 words of extra memory for PDF output out of 10000 (max. 10000000)
 

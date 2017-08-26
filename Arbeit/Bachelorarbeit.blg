@@ -1,7 +1,11 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Bachelorarbeit.aux
 The style file: alpha.bst
 Database file #1: src/bib/Literatur.bib
+Warning--entry type for "aproveWebsite" isn't style-file defined
+--line 90 of file src/bib/Literatur.bib
+Warning--entry type for "wiki2017termComp" isn't style-file defined
+--line 97 of file src/bib/Literatur.bib
 Warning--to sort, need author or key in ApacheMath3
 Warning--empty note in sat2016
 Warning--empty journal in giesl2016
-(There were 3 warnings)
+(There were 5 warnings)

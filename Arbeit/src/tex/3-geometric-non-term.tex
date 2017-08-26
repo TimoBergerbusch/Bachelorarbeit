@@ -1,5 +1,5 @@
 \chapter{Geometric Non-Termination}
-
+\label{chapter:geo-non-term}
 Now that all preliminaries are stated we can start looking how the approach works within \aprove. To find a \gna and so prove nontermination we use \aprove to generate an \its of a given program. %TODO: write how? ref: prelim
 Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT}-Problem using \autoref{def:gna} and compute a \gna, which would be a prove of nontermination, or state that no \gna can exist, which does not infer termination nor nontermination.
 
@@ -38,8 +38,7 @@ The more complex case is given if the start function symbol has the following fo
 	$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond$
 \end{figure}
 %\vspace{-1em}
-where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-const} \underline{or} a variable defined by the $cond$ term. An example for such a \stem is shown in \autoref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which we will explain in %TODO: ref
-, to create the assertions leading to either an assignment of $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment and therefore prove termination.
+where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-const} \underline{or} a variable defined by the $cond$ term. An example for such a \stem is shown in \autoref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \autoref{sec:smt-problem}, to create the assertions leading to either an assignment of $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment and therefore prove termination.
 %TODO: im code: wenn unsat dann termination
 
 \newsavebox{\stemextwo}% Box to store smallmatrix content
@@ -55,7 +54,7 @@ where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-
 \end{figure}
 
 \section{Derivation of the \emph{LOOP}}
-
+\label{sec:loop}
 The derivation of the \loopt is pretty straight forward applying \autoref{def:guard}, \autoref{def:update} to a looping rule and then computing \iterationmatrix and \iterationconstants using \autoref{def:iteration}. \newline
 Let $f_x$ be the starting function symbol given by the \its and $r_i$ be a rule, with 
 \begin{lstlisting}[escapechar=!]
@@ -191,7 +190,7 @@ Through the \stdLinInt one of the recursive calls has to be $0$ since only one c
 		\draw[thickarrow] (minus.south)  -- ++(0,-0.5) -| (var.north) node [pos = 0.4, above, font=\footnotesize]{left};
 		\draw[thickarrow] (minus.south)  -- ++(0,-0.5) -| (cons.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
-	\caption{A scenario, where the $flip$ of \autoref{algo:constant-term} has to be used. This constellation can not be universally neglected.} %TODO: eigentlich schon, da die Methode parseToRPN auf Integer testet und mit PLUS verknüpft
+	\caption{A scenario, where the $flip$ of \autoref{algo:constant-term} has to be used. This constellation can not be universally neglected.}
 	\label{ex:constant-term-minus}
 \end{figure}
 
@@ -302,6 +301,7 @@ As stated in \autoref{def:iteration} the \iterationmatrix and \iterationconstant
 Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a matrix \textbf{0}$ \in \{0\}^m\times n$ and identity-matrix $I \in \{0,1\}^n\times n$, where $n$ is the number of distinct variables and $m$ the number of guards.
 
 \section{Derivation of the \emph{SMT}-Problem}
+\label{sec:derivation-smt}
 The existence of a \gna is checked using an \tool{SMT} solver, presented in \autoref{sec:smt-problem}, which will either give us a model satisfying the constraints or proof the non existence by giving an unsatisfiable core. \newline
 The constraints the \tool{SMT} solver has to fulfil are the four criteria mentioned within \autoref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute it's eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently. \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
 \newline
@@ -402,7 +402,7 @@ Then the \pointc can be rewritten to:
 \end{figure}
 So using the \smtfactory we create such variables $s_i$ and add the $n$ assertions determined above.\newline
 Since variable vectors are represented as a \rpntree we can use a symbol method to calculate the multiplication, normalize the outcome and parse the \rpntree into an assertion all featured by the \smtfactory. \newline
-The assertion ensuring that the new variables $s_i$ are the sum of the $i$-th value of the $y_j$ is added within \autoref{sec:additional-assertions}.
+The assertion ensuring that the new variables $s_i$ are the sum of the $i$-th value of the $y_j$ is added within \autoref{sec:additional-assertion}.
 
 
 \subsection{The Ray Criteria}
@@ -447,9 +447,11 @@ This ensures that the values of $y$ sum up to the values determined in the \poin
 \\
 \\
 \\
-After the adding the \addass from \autoref{sec:additional-assertion} the \solver contains all the restrictions to compute a \gna or an unsatisfiable core for the given program.
+After the adding the \addass from \autoref{sec:additional-assertion} the \solver contains all the restrictions to compute a \gna or an unsatisfiable core for the given program.\newline
+If a \gna is found it is stored as an instance of the corresponding class and given to \aprove as a proof.
 
 \section{Verification of the Geometric Non-Termination Argument}
 \label{sec:verification-of-gna}
 %TODO: soll das?
+An instance of a \gna can be rechecked giving the \iterationmatrix and \iterationconstants if all of the four criteria of \autoref{def:gna} by simply computing and checking if the conditions hold.
 	 

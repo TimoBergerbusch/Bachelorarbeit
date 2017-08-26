@@ -1,8 +1,10 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
-\begin{thebibliography}{GAB{\etalchar{+}}17}
+\begin{thebibliography}{GTSKF03}
 
 \bibitem[Apa]{ApacheMath3}
 Apache commons.math3.
+\newblock
+  http://commons.apache.org/proper/commons-math/javadocs/api-3.6/org/apache/commons/math3/linear/EigenDecomposition.html.
 \newblock Accessed: 27-August-2017.
 
 \bibitem[Áb16]{sat2016}
@@ -47,6 +49,25 @@ J{\"u}rgen Giesl, Cornelius Aschermann, Marc Brockschmidt, Fabian Emmes,
   aprove.
 \newblock {\em Journal of Automated Reasoning}, 58(1):3--31, 2017.
 
+\bibitem[Gie]{aproveWebsite}
+J{\"u}rgen Giesl.
+\newblock Aprove.
+\newblock http://aprove.informatik.rwth-aachen.de/.
+\newblock Accessed: 26-08-2017.
+
+\bibitem[GSKT06]{giesl2006aprove}
+J{\"u}rgen Giesl, Peter Schneider-Kamp, and Ren{\'e} Thiemann.
+\newblock Aprove 1.2: Automatic termination proofs in the dependency pair
+  framework.
+\newblock In {\em International Joint Conference on Automated Reasoning}, pages
+  281--286. Springer, 2006.
+
+\bibitem[GTSKF03]{giesl2003aprove}
+J{\"u}rgen Giesl, Ren{\'e} Thiemann, Peter Schneider-Kamp, and Stephan Falke.
+\newblock Aprove: A system for proving termination.
+\newblock In {\em Extended Abstracts of the 6th International Workshop on
+  Termination, WST}, volume~3, pages 68--70, 2003.
+
 \bibitem[LH14]{leike2014geometric}
 Jan Leike and Matthias Heizmann.
 \newblock Geometric series as nontermination arguments for linear lasso
@@ -59,10 +80,16 @@ Kristof Verschaetse, Stefaan Decorte, and Danny De~Schreye.
 \newblock In {\em Logic Program Synthesis and Transformation}, pages 168--183.
   Springer, 1993.
 
-\bibitem[Wik17]{wikirpn}
+\bibitem[Wik17a]{wikirpn}
 Wikipedia.
 \newblock Reverse polish notation --- {Wikipedia, The Free Encyclopedia}, 2017.
-\newblock [Online; accessed 17-August-2017].
+\newblock [Accessed: 17-August-2017].
+
+\bibitem[Wik17b]{wiki2017termComp}
+Wikipedia.
+\newblock Termination competiton 2017 --- {Wikipedia, The Free Encyclopedia},
+  2017.
+\newblock [Accessed: 17-August-2017].
 
 \bibitem[ZC09]{zhivich2009real}
 Michael Zhivich and Robert~K Cunningham.

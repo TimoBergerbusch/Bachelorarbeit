@@ -1,5 +1,5 @@
 \chapter{Preliminaries}
-\label{ch:preliminaries}
+\label{chapter:preliminaries}
 
 In order to be able to explain the solution approach we have to declare to, which programs are considered within the Geometric Nontermination. Furthermore we have to define a few structures we work on.
 
@@ -7,6 +7,9 @@ In order to be able to explain the solution approach we have to declare to, whic
 \label{sec:its}
 In order to apply the upcoming procedure we have to define what structure the approach works on.
 As stated in \autoref{sec:aprove} \aprove can handle programs of different languages. By transforming these into a \textit{Symbolic Execution Graph} one has a common form for all programs. %TODO: genaueres über die transformierung? Quelle zur äquivalenz?
+
+
+
 A \textit{Symbolic Execution Graph} can detect \nonterm under certain circumstances and otherwise can be further transformed to a so called \textit{Integer Term Rewrite System} (further only called \its), which we will focus on. A detailed mathematical definition can be found within \cite{fuhs2009proving}. Considering the following approach we will look at a \its in a more superficial way. The composition of a \its considered in this paper is shown in \autoref{fig:its-structure}.\newline
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
@@ -26,7 +29,7 @@ The considered program shown in \autoref{fig:its-structure} consists of a set of
 		Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$} 
 	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$ $m \in \mathbb{N}$, where $\text{(in)equation}_i$ contains only $v_j$ $1 \le j \le n$ defined further in \autoref{sec:derivation-guard}.
 	\item[(line 1)] The first line is the rewriting rule the program starts with and can be seen as a declaration of initial values of some variables. An example is shown in \autoref{fig:structure-example-TRS}
-	\item[(line 2)] Such a rule is a self-looping rule considered within this approach to define further computations. Other looping rules will be presented in %TODO: REF related work.
+	\item[(line 2)] Such a rule is a self-looping rule considered within this approach to define further computations. Other looping rules will be presented in \autoref{sec:structure-improvement}.
 \end{enumerate} 
 
 In general a \its can have rules of other forms, like $f_x(v_1, \dots v_n) \rightarrow f_y(v^\prime_1, \dots v^\prime_k) :|: cond$ where $n \ne k$ can occur, but these rules are for now not considered.
@@ -36,7 +39,7 @@ Adapted from Jan Leikes and Matthias Heizmanns paper \textit{Geometric Nontermin
 
 \subsection{Considered Programs}
 The considered programs in the Geometric Nontermination are not bound to a special programming language. The paper works on so called Linear-Lasso Programs, which in fact %TODO: really?
-are also used within \aprove to derive the so called (int-)TRS. Because of the, within the \hyperref[sec:aprove]{introduction} stated, conversion of the language into \textit{llvm}-code and further analysis the applicability of Geometric Nontermination Arguments are not bound to any program language. \newline %TODO: llvm? 
+are also used within \aprove to derive the so called (int-)TRS. Because of the, within \autoref{sec:aprove} stated, conversion of the language into a \seg and further analysis the applicability of Geometric Nontermination Arguments are not bound to any program language. \newline
 In order to define the specific conditions under which we can use the approach, we take the language \tool{Java} as an example.
 \subsection{Structure}
 \label{sec:structure}
@@ -45,8 +48,7 @@ The structure of the considered programs is quite simple. They contain an option
 	\item The \stem: \newline
 		The initialization and optional declaration of variables used within the \code{while}-loop. In the example line 3 and 4 are considered the \stem. Also only $b$ is declared.
 	\item The guard: \newline
-		The guard of the \code{while}-loop is essential to restrict $a$  as we will see in %TODO: ref
-		. With the restriction of $a+b\ge 4 $ we can prove termination for $a < 3$ without further analysis, and also to prove termination assume that $a \ge 3$.
+		The guard of the \code{while}-loop is essential to restrict $a$  as we will see in \autoref{sec:stem-var}. With the restriction of $a+b\ge 4 $ we can prove termination for $a < 3$ without further analysis, and also to prove termination assume that $a \ge 3$.
 	\item The linear Updates: \newline
 		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their value determine if the guard still holds. The approach works with only linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have a $v_i=a_1*v_1+...+a_n*v_n$ with $n \in \mathbb{N}$. Note since we work on int-TRS it is sufficient for $a_i$ to be in $\mathbb{Z}$. 	
 \end{itemize} 
@@ -95,8 +97,7 @@ Through the in \autoref{sec:its} described procedure and given structure we rece
 	\caption{The \its corresponding to the \tool{Java} program in \autoref{fig:structure-example-java}}
 	\label{fig:structure-example-TRS}
 \end{figure}
- Neglecting the conditional terms for now the declaration of $b$ is set in line 1 obviously to 2, because of the one circle the GRAPH has to compute in order to find a loop. The definition of $a$ is more difficult and will be shown within REF %TODO: ref to derive STEM
- . 
+ Neglecting the conditional terms for now the declaration of $b$ is set in line 1 obviously to 2, because of the one circle the \seg has to compute in order to find a loop. The definition of $a$ is more difficult and will be shown within REF \autoref{sec:stem}. 
 Also the update within line 2 is the same as in \autoref{fig:structure-example-java} line 7 and 8. \newline
 
 \subsection{Necessary Definitions}
@@ -156,7 +157,7 @@ In order to be able to define the key element of this approach, the \gna, we hav
 \end{definition}
 
 \begin{definition}[LOOP]
-	The \loopt is defined as a tuple $(A, b)$, where $A$ is the \iterationmatrix and $b$ the \iterationconstants of an \its. %TODO: REF TO LOOP
+	The \loopt is defined as a tuple $(A, b)$, where $A$ is the \iterationmatrix and $b$ the \iterationconstants of an \its. (See: \autoref{sec:loop})
 \end{definition}
 
 Now we can define the key element, which was originally defined for \tool{linear lasso programs}. 
