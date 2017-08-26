@@ -3,14 +3,14 @@
 
 In order to be able to explain the solution approach we have to declare to, which programs are considered within the Geometric Nontermination. Furthermore we have to define a few structures we work on.
 
+\section{Non-Termination}
+The definition of non-termination is the most essential considering a technique proving it. Non-termination can be defined as a specific input to a program $p$, such that $p$ runs in an infinite loop.
+Proving termination is much harder than proving non-termination, since we only have to determine one case, which fit's the condition of running into an infinite loop. \newline
+Non-termination is obviously still undecidable, since otherwise the halting problem would be decidable, nevertheless there are a large variety of possibilities to prove non-termination as we will see in this paper.
+
 \section{Integer Term Rewrite System(\its)}
 \label{sec:its}
-In order to apply the upcoming procedure we have to define what structure the approach works on.
-As stated in \autoref{sec:aprove} \aprove can handle programs of different languages. By transforming these into a \textit{Symbolic Execution Graph} one has a common form for all programs. %TODO: genaueres über die transformierung? Quelle zur äquivalenz?
-
-
-
-A \textit{Symbolic Execution Graph} can detect \nonterm under certain circumstances and otherwise can be further transformed to a so called \textit{Integer Term Rewrite System} (further only called \its), which we will focus on. A detailed mathematical definition can be found within \cite{fuhs2009proving}. Considering the following approach we will look at a \its in a more superficial way. The composition of a \its considered in this paper is shown in \autoref{fig:its-structure}.\newline
+In order to apply the upcoming procedure we have to define what structure the approach works on. The derivation of an \its from source code is described in \autoref{sec:aprove}. Considering the following approach we will look at a \its in a more superficial way. The composition of a \its considered in this paper is shown in \autoref{fig:its-structure}.\newline
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
 		!$\overbrace{f_x}^{(1)} \qquad\qquad \rightarrow \overbrace{f_y}^{(2)} (v_1, \dots v_n) :|: cond_1$!

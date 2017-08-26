@@ -68,6 +68,14 @@ J{\"u}rgen Giesl, Ren{\'e} Thiemann, Peter Schneider-Kamp, and Stephan Falke.
 \newblock In {\em Extended Abstracts of the 6th International Workshop on
   Termination, WST}, volume~3, pages 68--70, 2003.
 
+\bibitem[HEF{\etalchar{+}}17]{hensel2017aprove}
+Jera Hensel, Frank Emrich, Florian Frohn, Thomas Str{\"o}der, and J{\"u}rgen
+  Giesl.
+\newblock Aprove: Proving and disproving termination of memory-manipulating c
+  programs.
+\newblock In {\em International Conference on Tools and Algorithms for the
+  Construction and Analysis of Systems}, pages 350--354. Springer, 2017.
+
 \bibitem[LH14]{leike2014geometric}
 Jan Leike and Matthias Heizmann.
 \newblock Geometric series as nontermination arguments for linear lasso
