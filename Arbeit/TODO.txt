@@ -3,12 +3,10 @@ Q - Question
 R - Research
 
 1 Introduction:
-- T: write more about aprove
+
 2 Preliminaries:
-- T: transformation of programms to its'
 - Q: explanation as text (like now) or within figure?
-- R: aprove uses llvm?
-- T: rewrite SMT-Problem introduction more mathmatically
+- T: rewrite SMT-Problem introduction more mathematically
 - Q: Class-diagram of the used classes?
 3 Geometric Non-termination:
 - T: ref to 2 for the graph or write it here

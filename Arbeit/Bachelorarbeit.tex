@@ -36,7 +36,7 @@
 
 \usepackage{mdframed}
 \usepackage[section]{placeins}
-%\usepackage{tikz-uml}
+\usetikzlibrary{patterns,snakes}
 
 \allowdisplaybreaks
 
@@ -129,13 +129,14 @@
 \newtheorem{definition}{Definition}[section]
 \newtheorem{corollary}{Corollary}[section]
 \newtheorem{example}{Example}
-\newtheorem{satz}{Satz}[chapter]
+\newtheorem{satz}{Sentence}[chapter]
 \newtheoremstyle{example}{5pt}{5pt}{}{}{\bfseries}{.}{0.5em}{}
 
 \tikzstyle{arrow} = [->]
 \tikzstyle{thickarrow}=[arrow, thick]
 \tikzstyle{dashedarrow} = [thickarrow, >=stealth, dashed, line width = 1pt ]
 \tikzstyle{stdNode} = [shape = rectangle, draw, rounded corners]
+\tikzstyle{aproveNode} = [shape = rectangle, draw, rounded corners, minimum width = 2cm]
 \tikzstyle{objDia}=[rectangle, draw=black, rounded corners, text centered, anchor=north, rectangle split, rectangle split parts=2]
 \tikzstyle{class}=[rectangle, draw=black, rounded corners, text centered, anchor=north, rectangle split, rectangle split parts=3]
 \tikzstyle{explNode} = [align = center, minimum height = 10pt,	font = \bfseries, fill= green!20]

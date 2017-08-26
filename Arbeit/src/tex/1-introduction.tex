@@ -6,7 +6,41 @@ Given a tool, which can provide a sound and in many scenarios applicable mechani
 
 \section{\emph{AProVE}}
 \label{sec:aprove}
-One promising approach is the tool \aprove (\underline{A}utomated \underline{Pro}gram \underline{V}erification \underline{E}nvironment) developed at the RWTH Aachen by the Lehr- und Forschungsgebiet Informatik 2. The \emph{AProVE}-tool (further only called \aprove) for automatic termination and complexity proving works with different programming languages of major language paradigms like \tool{Java} (object oriented), \tool{Haskell} (functional), \tool{Prolog} (logical) as well as \tool{rewrite systems}. \newline
+One promising approach is the tool \aprove (\underline{A}utomated \underline{Pro}gram \underline{V}erification \underline{E}nvironment) developed at the RWTH Aachen by the Lehr- und Forschungsgebiet Informatik 2. The \emph{AProVE}-tool (further only called \aprove) for automatic termination and complexity proving works with different programming languages of major language paradigms like \tool{Java} (object oriented), \tool{Haskell} (functional), \tool{Prolog} (logical) as well as \tool{rewrite systems}.
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node[aproveNode] at (0,0) (java) {Java};
+		\node[aproveNode]at (0,-.75) (c) {C};
+		\node[aproveNode] at (0,-1.5) (haskell) {Haskell};
+		\node[aproveNode] at (0,-2.25) (prolog) {Prolog};
+		\node[shape = circle, draw,align = center] at (3, -1.125) (seg) {Symbolic\\ Execution\\ Tree};
+		\node[stdNode] at (6,-.75) (its) {\its};
+		\node[stdNode, minimum width = 3cm] at (10,-.25) (comp) {Complexity};
+		\node[stdNode, minimum width = 3cm] at (10,-1) (term) {Termination};
+		\node[stdNode, minimum width = 3cm] at (10,-1.75) (nterm) {Non-Termination};
+		
+		\draw[thickarrow] (java) edge (seg);
+		\draw[thickarrow] (c) edge (seg);
+		\draw[thickarrow] (haskell) edge (seg);
+		\draw[thickarrow] (prolog) edge (seg);
+		
+		\draw[thickarrow] (seg) edge (its);
+		\draw[thickarrow] (seg) edge (nterm.west);
+		
+		\draw[thickarrow] (its) edge (term);
+		\draw[thickarrow] (its) edge (comp);
+		\draw[thickarrow] (its) edge (nterm);
+		
+		\draw [thick,decoration={brace,mirror},decorate] (-1,-2.75) -- (3.9,-2.75) 
+		node [pos=0.5,anchor=north,yshift=-0.3cm] {\footnotesize Frontends}; 
+		
+		\draw [thick,decoration={brace,mirror},decorate] (5.2,-2.75) -- (11.5,-2.75) 
+		node [pos=0.5,anchor=north,yshift=-0.3cm] {\footnotesize Backend}; 
+	\end{tikzpicture}
+	\caption{Schematic partition of the derivation process of \aprove adapted from \cite{giesl2017analyzing}}
+	\label{fig:aprove-graph}
+\end{figure}
 \aprove is able to unify different languages into one structure by converting programs of specific languages like \tool{C} into \textit{Low Level Virtual Machine(\llvm)}-code using the tool \tool{Clang} \footnote{further information: \url{https://clang.llvm.org/}}. Among others these \llvm-programs can be converted into a so called \seg. If this graph contains \lasso's, which are strongly connected components (SCC) and the corresponding path from the root to the SCC, \aprove derives so called (integer) term rewrite systems (further only called \its)\footnote{a mathematical definition can be found within \cite{fuhs2009proving}}. By adding conditions to the \its rules the solution space gets restricted and therefore the \its under-approximates. From that it is proven that the non-termination of (at least) one \its implies non-termination of the program. A more detailed description of the process is stated in \cite{hensel2017aprove} \newline
 The conversion of different languages into \its and subsequently applying various different approaches is what makes this tool strong in meanings of proofing \cite{giesl2017analyzing}.
 

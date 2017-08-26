@@ -38,8 +38,7 @@ In general a \its can have rules of other forms, like $f_x(v_1, \dots v_n) \righ
 Adapted from Jan Leikes and Matthias Heizmanns paper \textit{Geometric Nontermination Arguments} \cite{leike2014geometric} I will define the considered programs, define the \stem and \loopt and finally state the definition of Geometric Nontermination Arguments.
 
 \subsection{Considered Programs}
-The considered programs in the Geometric Nontermination are not bound to a special programming language. The paper works on so called Linear-Lasso Programs, which in fact %TODO: really?
-are also used within \aprove to derive the so called (int-)TRS. Because of the, within \autoref{sec:aprove} stated, conversion of the language into a \seg and further analysis the applicability of Geometric Nontermination Arguments are not bound to any program language. \newline
+The considered programs in the Geometric Nontermination are not bound to a special programming language. The paper works on so called Linear-Lasso Programs, which in fact are also used within \aprove to derive the so called (int-)TRS, stated in \autoref{sec:aprove}. Because of the also stated conversion of the language into a \seg and further analysis the applicability of \gna's are not bound to any programming language. \newline
 In order to define the specific conditions under which we can use the approach, we take the language \tool{Java} as an example.
 \subsection{Structure}
 \label{sec:structure}
@@ -127,23 +126,6 @@ In order to be able to define the key element of this approach, the \gna, we hav
 	The corresponding \updatematrix to \autoref{fig:structure-example-TRS} is $U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ and the \updateconstants are $u = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$.
 \end{example}
 
-%\begin{corollary}
-%	In this approach we consider programs of the form 
-%	\begin{figure}[H]	
-%		\begin{lstlisting}[escapechar=!]
-%			!$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond_1 $!
-%			!$f_y (v_1, \dots v_n) \rightarrow f_y(v^\prime_1, \dots v^\prime_n) :|: cond_2 $!
-%		\end{lstlisting}
-%	\end{figure}
-%	where line 1 is the \stem and line 2 is the \loopt consisting of one function symbol looping to itself. So the number of variables stays the same and $U \in \mathbb{Z}^{n\times n}$ with $n \in \mathbb{N}$ the number of variables. 
-%	The $cond_i$ are conditions of rule $i$ of the form: 
-%	\begin{figure}[H]
-%		\centering
-%		$\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$
-%	\end{figure}
-
-%\end{corollary}
-
 \begin{definition}[Iteration Matrix, Iteration Constants]
 	\label{def:iteration}
 	Let $G$ be the \guardmatrix, $g$ the \guardconstants, $U$ the \updatematrix, $u$ the \updateconstants, $n\in \mathbb{N}$ the number of variables and $m \in \mathbb{N}$ the number of conditional terms. \newline
@@ -165,29 +147,27 @@ Now we can define the key element, which was originally defined for \tool{linear
 \begin{definition}[Geometric Non Termination Argument]
 	\label{def:gna}
 	A tuple of the form:
-%	\vspace{-1em}
 	\begin{figure}[H]
 		\centering
 		$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$
 	\end{figure}  
 	\vspace{-1em}
 	is called a \gna for a program = $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
-%	\vspace{-1em}
 	\begin{itemize}
 		\setlength{\itemindent}{1in}
-%		\item test
 		\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
 		\item[(init)] x represents the \startterm (\stem)
 		\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
 		\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
 	\end{itemize}
-%	\vspace{-2em}
 	Note that $y_0 = \mu_0 = 0$ is set for the ray instead of a case distinction. \cite{leike2014geometric}
 \end{definition}
 
-%\begin{theorem}
-%	If such a \gna $a$ for a program $p$ exists, then $p$ does not terminate. \cite{leike2014geometric} 
-%\end{theorem}
+The usage of such a \gna is justified by the following sentence:
+\begin{satz}
+	\label{sen:gna-nonterm}
+	If a \gna $a$ for a program $p$ exists, then $p$ does not terminate. \cite{leike2014geometric} 
+\end{satz}
 
 \section{Reverse-Polish-Notation-Tree}
 \label{sec:rpntree}
