@@ -1,5 +1,6 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
+import aprove.DPFramework.IDPProblem.IGeneralizedRule;
 import aprove.Framework.BasicStructures.FunctionSymbol;
 
 /**
@@ -30,6 +31,8 @@ public class Stem {
      */
     private FunctionSymbol startFunctionSymbol;
 
+    private int index;
+
     /**
      * initializing a new STEM by taking an array of {@link FunctionSymbol} and
      * extract the preset/STEM values. <br>
@@ -42,9 +45,9 @@ public class Stem {
      * @param symbols
      *            a {@link FunctionSymbol} array
      */
-    public Stem(FunctionSymbol[] symbols) {
-	if (symbols == null)
-	    return;
+    public Stem(FunctionSymbol[] symbols, int index) {
+	assert symbols.length > 0;
+	this.index = index;
 	startFunctionSymbol = symbols[0];
 	if (SHOULD_PRINT) {
 	    Logger.getLog().startClassOutput("Stem");
@@ -106,5 +109,23 @@ public class Stem {
     public FunctionSymbol getStartFunctionSymbol() {
 	return this.startFunctionSymbol;
     }
-
+    /*
+     * public void createUpdated(String[] strings, String[] varNames) {
+     * Logger.getLog().writeln("strings: " +
+     * Logger.getLog().arrayToString(strings));
+     * Logger.getLog().writeln("varnames: " +
+     * Logger.getLog().arrayToString(varNames)); Logger.getLog().close();
+     * GNAVector vec = new GNAVector(varNames.length, 0); for (int i = 0; i <
+     * varNames.length; i++) { int occ = this.getIndexOfName(varNames,
+     * strings[i]); if (occ != -1) vec.set(occ, stemVec.get(i)); } stemVec =
+     * vec;
+     * 
+     * }
+     * 
+     * private int getIndexOfName(String[] strings, String name) { for (int i =
+     * 0; i < strings.length; i++) if (strings[i].equals(name)) return i; return
+     * -1; }
+     * 
+     * public int getIndex() { return this.index; }
+     */
 }

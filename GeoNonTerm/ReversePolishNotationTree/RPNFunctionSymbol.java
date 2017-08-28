@@ -1,6 +1,7 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree;
 
 import aprove.DPFramework.BasicStructures.TRSCompoundTerm;
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.Logger;
 
 /**
  * The RPNFunctionSymbol represents a {@link TRSCompoundTerm} within the RPNTree
@@ -96,5 +97,51 @@ public class RPNFunctionSymbol extends RPNNode {
      */
     public void setRight(RPNNode right) {
 	this.right = right;
+    }
+
+    public RPNNode remove(RPNNode rem) {
+	if (this.getLeft() == rem)
+	    return this.right;
+	else if (this.getRight() == rem)
+	    return this.left;
+	else
+	    return new RPNFunctionSymbol(arithmeticSymbol, left.remove(rem), right.remove(rem));
+    }
+
+    public RPNConstant getConstantNode() {
+	// WARNING MAY NOT BE CORRECT
+	if (arithmeticSymbol == ArithmeticSymbol.TIMES)
+	    return null;
+	RPNConstant node1 = left.getConstantNode();
+	RPNConstant node2 = right.getConstantNode();
+	assert node1 == null || node2 == null;
+	if (node1 != null)
+	    return node1;
+	return node2;
+    }
+
+    public RPNNode negate() {
+	if (this.arithmeticSymbol == ArithmeticSymbol.TIMES) {
+	    this.left = this.left.negate();
+	} else if (this.arithmeticSymbol == ArithmeticSymbol.PLUS) {
+	    this.left = this.left.negate();
+	    this.right = this.right.negate();
+	} else {
+	    Logger.getLog().writeln("NICHT GUT");
+	}
+	return this;
+    }
+
+    public RPNNode clone() {
+	return new RPNFunctionSymbol(arithmeticSymbol, this.left.clone(), this.right.clone());
+    }
+
+    public RPNNode applySubstitution(RPNVariable var, RPNNode sub) {
+	if (left.containsVar(var.getValue()))
+	    this.left = this.left.applySubstitution(var, sub);
+	if (right.containsVar(var.getValue()))
+	    this.right = this.right.applySubstitution(var, sub);
+
+	return this;
     }
 }

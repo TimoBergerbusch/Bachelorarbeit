@@ -56,7 +56,8 @@ public abstract class RPNNode {
 		return 1;
 	} else if (this instanceof RPNConstant) {
 	    // Bei einem Konstanten Wert ist der eintrag immer 0
-	    return ((RPNConstant) this).getValue();
+	    // return ((RPNConstant) this).getValue();
+	    return 0;
 	} else if (this instanceof RPNFunctionSymbol) {
 	    RPNFunctionSymbol func = ((RPNFunctionSymbol) this);
 
@@ -80,7 +81,9 @@ public abstract class RPNNode {
 		}
 
 	    } else if (func.getFunctionSymbol() == ArithmeticSymbol.LESS_THAN
-		    || func.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN) {
+		    || func.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN
+		    || func.getFunctionSymbol() == ArithmeticSymbol.LESS_THAN_OR_EQUAL
+		    || func.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN_OR_EQUAL) {
 		if (func.getRight().containsVar(varName))
 		    return func.getRight().getFactorOfVar(varName);
 		else
@@ -101,6 +104,9 @@ public abstract class RPNNode {
 		    return func.getLeft().getFactorOfVar(varName) * flipvalue;
 		else
 		    return func.getRight().getFactorOfVar(varName) * flipvalue;
+	    } else if (func.getFunctionSymbol() == ArithmeticSymbol.EQUALS) {
+		// TEST
+		return func.left.getFactorOfVar(varName) + func.right.getFactorOfVar(varName);
 	    }
 	}
 
@@ -215,4 +221,83 @@ public abstract class RPNNode {
 
 	return "ERROR";
     }
+
+    public boolean containsEquality() {
+	if (this instanceof RPNFunctionSymbol) {
+	    RPNFunctionSymbol s = ((RPNFunctionSymbol) this);
+	    if (s.getFunctionSymbol() == ArithmeticSymbol.EQUALS)
+		return true;
+	    else if (s.getFunctionSymbol() == ArithmeticSymbol.LESS_THAN
+		    || s.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN)
+		return false;
+	    else {
+		return s.getLeft().containsEquality() || s.getRight().containsEquality();
+	    }
+	} else
+	    return false;
+    }
+
+    public RPNNode normalize() {
+	if (this instanceof RPNVariable || this instanceof RPNConstant)
+	    return this;
+	else if (this instanceof RPNFunctionSymbol) {
+	    RPNFunctionSymbol f = (RPNFunctionSymbol) this;
+
+	    if (f.getFunctionSymbol() == ArithmeticSymbol.LESS_THAN
+		    || f.getFunctionSymbol() == ArithmeticSymbol.LESS_THAN_OR_EQUAL
+		    || f.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN
+		    || f.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN_OR_EQUAL) {
+
+		if (f.getRight() instanceof RPNFunctionSymbol) {
+		    f.setLeft(new RPNFunctionSymbol(ArithmeticSymbol.PLUS, f.getLeft(), f.getRight().negate()));
+		    f.setRight(new RPNConstant(0));
+		}
+
+		// wenn rechts die const direkt steht
+		if (f.getLeft().getConstantTerm() != 0 && f.getRight().getClass() == RPNConstant.class) {
+		    RPNNode cons = f.getLeft().getConstantNode();
+		    f.setLeft(f.getLeft().remove(cons));
+		    ((RPNConstant) f.getRight())
+			    .setValue(((RPNConstant) f.getRight()).getValue() - ((RPNConstant) cons).getValue());
+		}
+
+		//drehen von less_than zu greater_than
+		if (f.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN
+			|| f.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN_OR_EQUAL) {
+		    if (f.getFunctionSymbol() == ArithmeticSymbol.GREATER_THAN)
+			f.setFunctionSymbol(ArithmeticSymbol.LESS_THAN);
+		    else
+			f.setFunctionSymbol(ArithmeticSymbol.LESS_THAN_OR_EQUAL);
+
+		    f.setLeft(f.getLeft().negate());
+		    f.setRight(f.getRight().negate());
+		}
+
+		//bringen auf die greater_than_or_equal form
+		if(f.getFunctionSymbol() == ArithmeticSymbol.LESS_THAN){
+		    f.getRight().getConstantNode().setValue(f.getRight().getConstantNode().getValue()-1);
+		    f.setFunctionSymbol(ArithmeticSymbol.LESS_THAN_OR_EQUAL);
+		}
+	    }
+
+	}
+
+	return this;
+    }
+
+    public RPNNode negate() {
+	return this;
+    }
+
+    public RPNNode remove(RPNNode rem) {
+	return this;
+    }
+
+    public RPNConstant getConstantNode() {
+	return null;
+    }
+
+    public abstract RPNNode clone();
+    
+    public abstract RPNNode applySubstitution(RPNVariable var, RPNNode sub);
 }

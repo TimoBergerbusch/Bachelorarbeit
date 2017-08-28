@@ -124,6 +124,12 @@ public class Loop {
 	    Logger.getLog().writeln(iterationMatrix);
 	    Logger.getLog().writeln(iterationConstants);
 	}
+	
+//	Logger.getLog().writeln("????????????????????????");
+//	Logger.getLog().writeln("iterationmatrix: " +iterationMatrix.rowSize()+"x"+iterationMatrix.columnSize());
+//	Logger.getLog().writeln("iterationconstants: " +iterationConstants.size());
+//	Logger.getLog().writeln("????????????????????????");
+//	Logger.getLog().close();
     }
 
     // print OR toString METHODS

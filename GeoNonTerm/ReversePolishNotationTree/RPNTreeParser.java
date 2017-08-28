@@ -77,6 +77,8 @@ public class RPNTreeParser {
 		symbol = ArithmeticSymbol.LESS_THAN;
 	    else if (compountTerm.getFunctionSymbol().toString().equals(">_2"))
 		symbol = ArithmeticSymbol.GREATER_THAN;
+	    else if (compountTerm.getFunctionSymbol().toString().equals("=_2"))
+		symbol = ArithmeticSymbol.EQUALS;
 	    else
 		throw new UnsupportetArithmeticSymbolException(compountTerm.getFunctionSymbol().toString());
 

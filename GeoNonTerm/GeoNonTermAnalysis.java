@@ -13,21 +13,26 @@ import aprove.DPFramework.BasicStructures.TRSTerm;
 import aprove.DPFramework.BasicStructures.TRSVariable;
 import aprove.DPFramework.IDPProblem.IGeneralizedRule;
 import aprove.Framework.BasicStructures.FunctionSymbol;
-import aprove.Framework.BasicStructures.Arithmetic.Integer.FunctionalIntegerExpression;
 import aprove.Framework.BasicStructures.Arithmetic.Integer.IntegerRelationType;
 import aprove.Framework.BasicStructures.Arithmetic.Integer.PlainIntegerRelation;
 import aprove.Framework.IntTRS.IRSwTProblem;
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.ArithmeticSymbol;
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNConstant;
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNFunctionSymbol;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNNode;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNTreeParser;
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.RPNVariable;
 import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree.UnsupportetArithmeticSymbolException;
 import aprove.Framework.Logic.YNM;
+import aprove.Framework.SMT.Expressions.IntConstant;
 import aprove.Framework.SMT.Expressions.SMTExpression;
-import aprove.Framework.SMT.Expressions.Sorts.SBool;
+import aprove.Framework.SMT.Expressions.Calls.Call1;
 import aprove.Framework.SMT.Expressions.Symbols.Symbol;
 import aprove.Framework.SMT.Solver.SMTLIB.FunctionDefinition;
 import aprove.Framework.SMT.Solver.SMTLIB.Model;
 import aprove.Framework.SMT.Solver.Z3.Z3Solver;
 import aprove.Framework.Utility.GenericStructures.Pair;
+import jdk.internal.dynalink.linker.GuardingDynamicLinker;
 
 /**
  * The main class of the geometric non-termination analysis presented by Jan
@@ -47,6 +52,8 @@ import aprove.Framework.Utility.GenericStructures.Pair;
  */
 public class GeoNonTermAnalysis {
 
+    private ArrayList<Pair<RPNVariable, RPNNode>> substitutions = new ArrayList<>();
+
     /**
      * converts a {@link Set} of {@link TRSVariable TRSVariable's} into a
      * <code>String</code> array of the same size only storing their names given
@@ -64,7 +71,6 @@ public class GeoNonTermAnalysis {
 	    names[i] = iterator.next().toString();
 	    i++;
 	}
-
 	return names;
     }
 
@@ -119,18 +125,17 @@ public class GeoNonTermAnalysis {
 	this.problem = problem;
 	rules = this.problem.getRules().toArray(new IGeneralizedRule[] {});
 
-	// Logger.getLog().writeln(problem.toString());
+	Logger.getLog().writeln(problem.toString());
 
 	if (this.problem.getStartTerm() != null) {
 	    this.deriveSTEM();
-	    // Logger.getLog().writeln(stem);
+
 	    this.deriveLOOP();
 
-	    Logger.getLog().close();
-
 	    GeoNonTermArgument gna = this.tryDerivingAGNA();
-	    Logger.getLog()
-		    .writeln("GNA-Test: " + gna.validate(loop.getIterationMatrix(), loop.getIterationConstants()));
+	    if (gna != null)
+		Logger.getLog()
+			.writeln("GNA-Test: " + gna.validate(loop.getIterationMatrix(), loop.getIterationConstants()));
 	}
 
 	Logger.getLog().close();
@@ -159,7 +164,7 @@ public class GeoNonTermAnalysis {
 		    if (SHOULD_PRINT)
 			Logger.getLog().writeln("First rule match:" + rules[i].toString());
 
-		    stem = new Stem(this.getRuleAsArray(rules[i]));
+		    stem = new Stem(this.getRuleAsArray(rules[i]), i);
 		    break; // danach kann abgebrochen werden
 		} else if (i == rules.length - 1) {
 		    // dieser Fall darf eigentlich nie eintreten
@@ -205,6 +210,9 @@ public class GeoNonTermAnalysis {
 		for (int i = 0; i < pair.getValue().size(); i++)
 		    pair.getValue().set(i, pair.getValue().get(i) * -1 - 1);
 
+		// Logger.getLog().writeln(pair.getKey().toString());
+		// Logger.getLog().writeln(pair.getValue().toString());
+
 		smt.addAssertion(pair.getKey(), vec, pair.getValue());
 
 		for (int i = 0; i < r.getArity(); i++) {
@@ -225,15 +233,14 @@ public class GeoNonTermAnalysis {
 
 		} else {
 		    Logger.getLog().writeln("There is no possible Startterm");
+		    // TODO:can return false if checkSAT() == YNM.NO
 		    Logger.getLog().close();
 		    assert false;
 		}
 	    } catch (UnsupportetArithmeticSymbolException e) {
 		// Create Startvalues 0 in case of unsuspected problem
-		for (int i = 0; i < r.getArity(); i++) {
-		    TRSTerm arg = r.getArgument(i);
+		for (int i = 0; i < r.getArity(); i++)
 		    arr[i + 1] = FunctionSymbol.create("0", 0);
-		}
 		e.printStackTrace();
 	    }
 
@@ -269,22 +276,42 @@ public class GeoNonTermAnalysis {
 		Logger.getLog().writeln("Rule " + index + " is of the Form: f_x -> f_x :|: cond");
 	    }
 
-	    // loop.setDimensions(leftSide.getVariables().size(),
-	    // rules[index].getCondTerm().toString().split("&&").length);
-
-	    // Suche aus dem rechten Teil die Updates raus
-	    this.deriveUpdatePart(leftSide, rightSide);
-
 	    // suche aus den conditions the Regeln raus
 	    this.deriveGuardPart(rules[index]);
 
+	    // Suche aus dem rechten Teil die Updates raus
+	    this.deriveUpdatePart(rules[index]);
+
+	    // Update das STEM bzgl. Reihenfolge und unbekannte Variablen
+	    // this.stem.createUpdated(
+	    // GeoNonTermAnalysis.deriveVariablesAsStringArray(rules[stem.getIndex()].getAllVariables()),
+	    // loop.getGuardUpdates().getVarNames());
+
+	    // Logger.getLog().writeln("????????????????????????");
+	    // Logger.getLog().writeln(loop.getUpdateMatrix());
+	    // Logger.getLog().writeln(loop.getUpdateConstants());
+	    // Logger.getLog().writeln("????????????????????????");
+	    
+	    // Logger.getLog().writeln("????????????????????????");
+	    // Logger.getLog().writeln(loop.getGuardUpdates());
+	    // Logger.getLog().writeln(loop.getGuardConstants());
+	    // Logger.getLog().writeln("????????????????????????");
+
+	    // Logger.getLog().close();
+
 	    loop.computeIterationMatrixAndConstants();
+
+	    // Logger.getLog().writeln("????????????????????????");
+	    // Logger.getLog().writeln(loop.getIterationMatrix());
+	    // Logger.getLog().writeln(loop.getIterationConstants());
+	    // Logger.getLog().writeln("????????????????????????");
 
 	    if (SHOULD_PRINT) {
 		Logger.getLog().writeln(Loop.getSystemAsString(loop.getIterationMatrix(),
 			new String[] { "x0_0", "x0_1", "x1_0", "x1_1" }, loop.getIterationConstants()));
-	    }
-	    // Logger.getLog().writeln(rightSide.getSubterm(Position.create(0)).toString());
+	    } //
+	      // Logger.getLog().writeln(rightSide.getSubterm(Position.create(0)).toString());
+
 	} else {
 	    // die Regel hat die Form f_x -> f_y :|: cond
 	    if (SHOULD_PRINT)
@@ -304,11 +331,19 @@ public class GeoNonTermAnalysis {
      * @param rightSide
      *            the right side of the rule.
      */
-    private void deriveUpdatePart(TRSTerm leftSide, TRSTerm rightSide) {
-	String[] occuringVars = GeoNonTermAnalysis.deriveVariablesAsStringArray(leftSide.getVariables());
-
+    private void deriveUpdatePart(IGeneralizedRule rule) {
+	TRSTerm leftSide = rule.getLeft();
+	TRSTerm rightSide = rule.getRight();
+	Set<TRSVariable> names = rule.getAllVariables();
+	// String[] occuringVars =
+	// GeoNonTermAnalysis.deriveVariablesAsStringArray(names);
+	String[] occuringVars = GeoNonTermAnalysis.deriveVariablesAsStringArray(rule.getLeft().getVariables());
+	// Logger.getLog().writeln("names: "+names);
 	// Es wird versucht die rechte Seite in ein RPNTree zu parsen
+	// RPNNode[] variableUpdates = new
+	// RPNNode[rightSide.getVariables().size()];
 	RPNNode[] variableUpdates = new RPNNode[leftSide.getVariables().size()];
+
 	try {
 	    for (int i = 0; i < variableUpdates.length; i++)
 		variableUpdates[i] = RPNTreeParser.parseSetToTree(rightSide.getSubterm(Position.create(i)));
@@ -322,8 +357,20 @@ public class GeoNonTermAnalysis {
 	GNAMatrix updateMatrix = new GNAMatrix(occuringVars);
 	GNAVector updateConstants = new GNAVector(occuringVars.length, 0);
 
+	for (int i = 0; i < variableUpdates.length; i++) {
+	    for (Pair<RPNVariable, RPNNode> p : substitutions) {
+		if (variableUpdates[i].containsVar(p.getKey().getValue())) {
+		    // Logger.getLog().writeln(
+		    // variableUpdates[i] + " contains " + p.getKey() + " so we
+		    // subst. it with " + p.getValue());
+		    variableUpdates[i] = variableUpdates[i].applySubstitution(p.getKey(), p.getValue());
+		}
+	    }
+	}
+	Logger.getLog().writeln(Logger.getLog().arrayToString(variableUpdates));
+
 	// Herleiten der Update-Matrix Einträge
-	for (int i = 0; i < occuringVars.length; i++) {
+	for (int i = 0; i < variableUpdates.length; i++) {
 	    for (int j = 0; j < occuringVars.length; j++) {
 		updateMatrix.setEntry(occuringVars[i], occuringVars[j],
 			variableUpdates[i].getFactorOfVar(occuringVars[j]));
@@ -346,28 +393,151 @@ public class GeoNonTermAnalysis {
      */
     private void deriveGuardPart(IGeneralizedRule rule) {
 
-	Pair<GNAMatrix, GNAVector> pair = this.computeConditionMatrixAndConstants(rule);
+	ArrayList<TRSTerm> guards = this.getGuardConditions(rule);
+	Logger.getLog().writeln("All plain guards:");
+	Logger.getLog().writeln(Logger.getLog().arrayToString(guards.toArray(new TRSTerm[0])));
+	// Logger.getLog().writeln(guards.toArray(new TRSTerm[0]).length);
 
-	GNAMatrix guardMatrix = pair.getKey();
-	GNAVector guardConstants = pair.getValue();
+	ArrayList<RPNNode> guardsWithoutEQ = this.filterEqualities(guards, rule);
+	Logger.getLog().writeln("After filtering Equalities:");
+	Logger.getLog().writeln(Logger.getLog().arrayToString(guardsWithoutEQ.toArray(new RPNNode[0])));
+	// Logger.getLog().writeln(guardsWithoutEQ.toArray(new
+	// RPNNode[0]).length);
 
-	// alle > in < umdrehen, sodass die constante immer < da steht:
-	// ... < c
-	// UpdateMatrix.negateMatrix(guardMatrix);
-	guardMatrix.negate();
-	for (int i = 0; i < guardConstants.size(); i++)
-	    guardConstants.set(i, guardConstants.get(i) * -1 - 1);
+	ArrayList<RPNNode> normalizedGuards = this.normalize(guardsWithoutEQ);
+	Logger.getLog().writeln("After normalizing:");
+	Logger.getLog().writeln(Logger.getLog().arrayToString(normalizedGuards.toArray(new RPNNode[0])));
+	// Logger.getLog().writeln(normalizedGuards.toArray(new
+	// RPNNode[0]).length);
+
+	TRSVariable[] vars = rule.getAllVariables().toArray(new TRSVariable[0]);
+	GNAMatrix guardMatrix = new GNAMatrix(normalizedGuards.size(), rule.getLeft().getVariables().size(),
+		GeoNonTermAnalysis.deriveVariablesAsStringArray(rule.getLeft().getVariables()));
+	GNAVector guardConstants = new GNAVector(normalizedGuards.size(), 0);
+	for (int i = 0; i < normalizedGuards.size(); i++) {
+	    // Logger.getLog().writeln("Investigating: " +
+	    // normalizedGuards.get(i));
+	    for (int j = 0; j < vars.length; j++) {
+		if (normalizedGuards.get(i).containsVar(vars[j].getName())) {
+		    int factor = normalizedGuards.get(i).getFactorOfVar(vars[j].getName());
+		    // Logger.getLog().writeln("-> contains " +
+		    // vars[j].getName() + " with factor " + factor);
+		    guardMatrix.setEntry(i, vars[j].getName(), factor);
+		}
+	    }
+	    guardConstants.set(i, normalizedGuards.get(i).getConstantTerm());
+	}
 
 	loop.setGuardUpdates(guardMatrix);
 	loop.setGuardConstants(guardConstants);
     }
 
-    private Pair<GNAMatrix, GNAVector> computeConditionMatrixAndConstants(IGeneralizedRule rule) {
-
+    private ArrayList<TRSTerm> getGuardConditions(IGeneralizedRule rule) {
+	// Logger.getLog().writeln("+++++++++++++++++++++++++++");
 	ArrayList<TRSTerm> condTerms = new ArrayList<>();
 	Stack<TRSTerm> stack = new Stack<>();
 	stack.push(rule.getCondTerm());
+	// Logger.getLog().writeln(rule.getCondTerm().toString());
+	// Logger.getLog().writeln(rule.getCondTerm().toPrettyString());
+	TRSTerm curr;
+	while (!stack.isEmpty()) {
+	    curr = stack.pop();
+	    // Logger.getLog().writeln("investigating: " + curr.toString());
+	    if (curr instanceof TRSCompoundTerm) {
+		if (((TRSCompoundTerm) curr).getFunctionSymbol().toString().equals("&&_2")) {
+		    stack.push(((TRSCompoundTerm) curr).getArgument(0));
+		    stack.push(((TRSCompoundTerm) curr).getArgument(1));
+		    // Logger.getLog().writeln("TRSCompoundTerm");
+		} else {
+		    condTerms.add(curr);
+		    // Logger.getLog().writeln("Not TRSCompoundTerm");
+		}
+	    }
+	}
+	// Logger.getLog().writeln("+++++++++++++++++++++++++++");
+	return condTerms;
+    }
 
+    private ArrayList<RPNNode> filterEqualities(ArrayList<TRSTerm> list, IGeneralizedRule rule) {
+	ArrayList<RPNNode> guards = new ArrayList<>();
+
+	// TODO:
+	ArrayList<String> set = new ArrayList<>();
+	set.add("v103:0");
+
+	for (TRSTerm t : list) {
+	    try {
+		RPNNode root = RPNTreeParser.parseSetToTree(t);
+		if (root.containsEquality()) {
+		    Logger.getLog().writeln("Term: " + t + " contains equality.");
+		    // ASSUMING = IS TOP LEVEL SYMBOL
+		    RPNFunctionSymbol f = ((RPNFunctionSymbol) root);
+		    assert f.getFunctionSymbol() == ArithmeticSymbol.EQUALS;
+
+		    // WORKS IF THE "NEW" VAR DOESNT HAVE A COEFFICIENT
+		    if (f.getLeft().containsVar(set.get(0)) || f.getRight().containsVar(set.get(0))) {
+			Logger.getLog().writeln(set.get(0) + " is defined within this term.");
+
+			if (f.getLeft().containsVar(set.get(0))) {
+			    RPNConstant consLeft = f.getLeft().getConstantNode();
+			    RPNConstant consRight = f.getRight().getConstantNode();
+			    if (consLeft != null && consRight != null)
+				consRight.setValue(consRight.getValue() - consLeft.getValue());
+			    else if (consLeft != null) {
+				f.setRight(new RPNFunctionSymbol(ArithmeticSymbol.PLUS, f.getRight(),
+					new RPNConstant(-consLeft.getValue())));
+			    }
+
+			    substitutions
+				    .add(new Pair<RPNVariable, RPNNode>(new RPNVariable(set.get(0)), f.getRight()));
+			    Logger.getLog().writeln("Try to subst. " + set.get(0) + " everywhere by " + f.getRight());
+			}
+		    }
+		} else {
+		    guards.add(root);
+		}
+	    } catch (UnsupportetArithmeticSymbolException e) {
+		e.printStackTrace();
+		assert false;
+	    }
+	}
+
+	// APPLY SUBSTITUTIONS
+	ArrayList<RPNNode> finalguards = new ArrayList<>();
+	boolean change = false;
+	for (RPNNode root : guards) {
+	    for (Pair<RPNVariable, RPNNode> p : substitutions) {
+		change = false;
+		if (root.containsVar(p.getKey().getValue())) {
+		    Logger.getLog().writeln(root + " contains " + p.getKey() + " so we subst. it with " + p.getValue());
+		    finalguards.add(root.applySubstitution(p.getKey(), p.getValue()));
+		    change = true;
+		}
+	    }
+	    if (!change)
+		finalguards.add(root);
+	}
+
+	return finalguards;
+    }
+
+    private ArrayList<RPNNode> normalize(ArrayList<RPNNode> nodes) {
+	ArrayList<RPNNode> normalizedNodes = new ArrayList<>();
+	for (RPNNode node : nodes) {
+	    normalizedNodes.add(node.normalize());
+	}
+
+	return normalizedNodes;
+    }
+
+    private Pair<GNAMatrix, GNAVector> computeConditionMatrixAndConstants(IGeneralizedRule rule) {
+
+	// Logger.getLog().writeln("+++++++++++++++++++++++++++");
+	ArrayList<TRSTerm> condTerms = new ArrayList<>();
+	Stack<TRSTerm> stack = new Stack<>();
+	stack.push(rule.getCondTerm());
+	// Logger.getLog().writeln(rule.getCondTerm().toString());
+	Logger.getLog().writeln(rule.getCondTerm().toPrettyString());
 	TRSTerm curr;
 	while (!stack.isEmpty()) {
 	    curr = stack.pop();
@@ -384,6 +554,10 @@ public class GeoNonTermAnalysis {
 	    }
 	}
 
+	// Logger.getLog().writeln(Logger.getLog().arrayToString(condTerms.toArray()));
+
+	// Logger.getLog().writeln("+++++++++++++++++++++++++++");
+
 	ArrayList<TRSTerm> condTermsReverse = new ArrayList<>();
 	for (int i = condTerms.size() - 1; i >= 0; i--) {
 	    condTermsReverse.add(condTerms.get(i));
@@ -391,8 +565,8 @@ public class GeoNonTermAnalysis {
 	condTerms = condTermsReverse;
 
 	// Die GuardMatrix für die versch. Bedingungen
-	GNAMatrix guardMatrix = new GNAMatrix(condTerms.size(), rule.getRight().getVariables().size(),
-		GeoNonTermAnalysis.deriveVariablesAsStringArray(rule.getRight().getVariables()));
+	GNAMatrix guardMatrix = new GNAMatrix(condTerms.size(), rule.getAllVariables().size(),
+		GeoNonTermAnalysis.deriveVariablesAsStringArray(rule.getAllVariables()));
 	// Die Constanten, welche erfüllt werden müssen
 	GNAVector guardConstants = new GNAVector(condTerms.size(), 0);
 
@@ -402,6 +576,8 @@ public class GeoNonTermAnalysis {
 		RPNNode root = RPNTreeParser.parseSetToTree(condTerms.get(i));
 		if (SHOULD_PRINT)
 		    Logger.getLog().writeln("Überprüfe: " + root.toString());
+		// if (root.getConstantTerm() != 0)
+		// Logger.getLog().writeln("CONSTANT TERM!");
 		for (TRSVariable var : condTerms.get(i).getVariables()) {
 		    if (root.containsVar(var.toString())) {
 			if (SHOULD_PRINT)
@@ -448,6 +624,7 @@ public class GeoNonTermAnalysis {
 	// Das berechnen vom Point Kriterium
 	smt.addAssertion(loop.getIterationMatrix(), smt.createPointCriteriaVector(stem), loop.getIterationConstants());
 
+	// berechnen des ray Kriterium
 	char last = 'a';
 	int size = stem.getStemVec().size();
 	int xCount = 0;
@@ -564,8 +741,15 @@ public class GeoNonTermAnalysis {
      * @return the assigned value of the variable
      */
     private int getValueOfVariableWithinModel(Model model, String varName) {
+	// Logger.getLog().writeln(model);
+	// Logger.getLog().writeln(varName);
+
 	SMTExpression<?> smtExpression = model.get((Symbol<?>) smt.createVar(varName).toSMTExp());
-	return Integer.parseInt(smtExpression.toString());
+
+	if (smtExpression instanceof Call1)
+	    return Integer.parseInt("-" + ((Call1) smtExpression).getA0());
+	else
+	    return Integer.parseInt(smtExpression.toString().trim());
     }
 
     /**

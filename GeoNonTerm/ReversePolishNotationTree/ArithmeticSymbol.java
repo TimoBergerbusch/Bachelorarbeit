@@ -40,7 +40,7 @@ public enum ArithmeticSymbol {
      * </tr>
      * </table>
      */
-    PLUS, MINUS, TIMES, LESS_THAN, GREATER_THAN;
+    PLUS, MINUS, TIMES, LESS_THAN, GREATER_THAN, EQUALS, LESS_THAN_OR_EQUAL, GREATER_THAN_OR_EQUAL;
 
     /**
      * gives the arithmetic operator as it's representing
@@ -65,6 +65,12 @@ public enum ArithmeticSymbol {
 	    return " < ";
 	case GREATER_THAN:
 	    return " > ";
+	case EQUALS:
+	    return " = ";
+	case LESS_THAN_OR_EQUAL:
+	    return " <= ";
+	case GREATER_THAN_OR_EQUAL:
+	    return " >= ";
 	default:
 	    return "ENUM toString() Error";
 	}

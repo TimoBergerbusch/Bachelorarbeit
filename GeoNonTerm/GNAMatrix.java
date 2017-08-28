@@ -121,12 +121,12 @@ public class GNAMatrix {
      *            the row dimension
      * @param columnDimension
      *            the column dimension
-     * @param columnNames
+     * @param newColumnNames
      *            the names of the columns
      */
-    public GNAMatrix(int rowDimension, int columnDimension, String[] columnNames) {
-	assert columnDimension == columnNames.length;
-	this.columnNames = columnNames;
+    public GNAMatrix(int rowDimension, int columnDimension, String[] newColumnNames) {
+	assert columnDimension == newColumnNames.length;
+	this.columnNames = newColumnNames;
 	this.matrix = new int[rowDimension][columnDimension];
 
 	this.rowNames = new String[rowDimension];
@@ -376,9 +376,11 @@ public class GNAMatrix {
 		columnIndex = i;
 	}
 
-	if (columnIndex == -1)
-	    assert false;
-	else
+	if (columnIndex == -1){
+	    Logger.getLog().writeln("no column for: "+varName);
+	    Logger.getLog().close();
+	    assert false;   
+	}else
 	    this.setEntry(rowNumber, columnIndex, value);
     }
 

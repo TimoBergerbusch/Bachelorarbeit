@@ -22,7 +22,8 @@ public class RPNConstant extends RPNNode {
      * creates a new {@link RPNConstant} and sets the {@link #value} accordingly
      * to the parameter
      * 
-     * @param value the initial {@link #value}
+     * @param value
+     *            the initial {@link #value}
      */
     public RPNConstant(int value) {
 	this.setValue(value);
@@ -47,4 +48,21 @@ public class RPNConstant extends RPNNode {
 	this.value = value;
     }
 
+    public RPNConstant getConstantNode() {
+	return this;
+    }
+
+    public RPNNode negate() {
+	this.value = -this.value;
+	return this;
+    }
+
+    public RPNNode clone() {
+	return new RPNConstant(this.value);
+    }
+
+    @Override
+    public RPNNode applySubstitution(RPNVariable var, RPNNode sub) {
+	return this;
+    }
 }

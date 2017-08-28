@@ -1,6 +1,7 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm.ReversePolishNotationTree;
 
 import aprove.DPFramework.BasicStructures.TRSVariable;
+import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.Logger;
 
 /**
  * A RPNVariable represents a {@link TRSVariable} within the RPNTree (reverse
@@ -39,9 +40,28 @@ public class RPNVariable extends RPNNode {
     /**
      * setter for {@link #varName}
      * 
-     * @param varName  the value to set {@link #varName} to
+     * @param varName
+     *            the value to set {@link #varName} to
      */
     public void setValue(String varName) {
 	this.varName = varName;
     }
+
+    public RPNNode clone() {
+	return new RPNVariable(this.varName);
+    }
+
+    public RPNNode negate() {
+	return new RPNFunctionSymbol(ArithmeticSymbol.TIMES, new RPNConstant(-1), this);
+    }
+
+    @Override
+    public RPNNode applySubstitution(RPNVariable var, RPNNode sub) {
+	if (var.getValue().equals(this.getValue())){
+	    Logger.getLog().writeln("SUB THE VAR");
+	    return sub.clone();
+	}else
+	    return this;
+    }
+
 }
