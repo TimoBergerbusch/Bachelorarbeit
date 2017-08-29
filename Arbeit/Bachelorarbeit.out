@@ -16,8 +16,8 @@
 \BOOKMARK [2][]{subsection.3.1.1}{Constant STEM}{section.3.1}% 16
 \BOOKMARK [2][]{subsection.3.1.2}{Variable STEM}{section.3.1}% 17
 \BOOKMARK [1][]{section.3.2}{Derivation of the LOOP}{chapter.3}% 18
-\BOOKMARK [2][]{subsection.3.2.1}{The Update Matrix and Update Constants}{section.3.2}% 19
-\BOOKMARK [2][]{subsection.3.2.2}{The Guard Matrix and Guard Constants}{section.3.2}% 20
+\BOOKMARK [2][]{subsection.3.2.1}{The Guard Matrix and Guard Constants}{section.3.2}% 19
+\BOOKMARK [2][]{subsection.3.2.2}{The Update Matrix and Update Constants}{section.3.2}% 20
 \BOOKMARK [2][]{subsection.3.2.3}{The Iteration Matrix}{section.3.2}% 21
 \BOOKMARK [1][]{section.3.3}{Derivation of the SMT-Problem}{chapter.3}% 22
 \BOOKMARK [2][]{subsection.3.3.1}{The Domain Criteria}{section.3.3}% 23
