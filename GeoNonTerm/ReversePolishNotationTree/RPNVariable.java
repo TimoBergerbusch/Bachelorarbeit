@@ -14,6 +14,8 @@ import aprove.Framework.IntTRS.Nonterm.GeoNonTerm.Logger;
  */
 public class RPNVariable extends RPNNode {
 
+	private boolean timo = false;
+	
     /**
      * the name of the {@link TRSVariable}
      */
@@ -58,7 +60,7 @@ public class RPNVariable extends RPNNode {
     @Override
     public RPNNode applySubstitution(RPNVariable var, RPNNode sub) {
 	if (var.getValue().equals(this.getValue())){
-	    Logger.getLog().writeln("SUB THE VAR");
+	if (timo) Logger.getLog().writeln("SUB THE VAR");
 	    return sub.clone();
 	}else
 	    return this;

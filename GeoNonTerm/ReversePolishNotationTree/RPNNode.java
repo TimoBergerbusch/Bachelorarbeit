@@ -99,7 +99,8 @@ public abstract class RPNNode {
 		int flipvalue = 1;
 
 		if (func.getFunctionSymbol() == ArithmeticSymbol.MINUS)
-		    flipvalue = -1;
+//		    flipvalue = -1;
+		    Logger.getLog().writeln("MINUS");
 		if (func.getLeft().containsVar(varName))
 		    return func.getLeft().getFactorOfVar(varName) * flipvalue;
 		else
