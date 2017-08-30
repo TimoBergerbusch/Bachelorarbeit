@@ -34,7 +34,7 @@
 \contentsline {section}{\numberline {4.1}Evaluation of the approach}{25}{section.4.1}
 \contentsline {section}{\numberline {4.2}Benchmarks}{25}{section.4.2}
 \contentsline {section}{\numberline {4.3}Possible Improvement of the Implementation}{25}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}\textit {SMT}-\textit {solver}\xspace logic}{25}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.1}\textit {SMT}-\textit {solver}\xspace logic}{26}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}\textsf {int-TRS}\xspace program structure}{26}{subsection.4.3.2}
-\contentsline {chapter}{\numberline {5}related work}{27}{chapter.5}
-\contentsline {chapter}{Literaturverzeichnis}{27}{chapter.5}
+\contentsline {chapter}{\numberline {5}Related Work}{29}{chapter.5}
+\contentsline {chapter}{Literaturverzeichnis}{29}{chapter.5}

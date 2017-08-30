@@ -9,6 +9,10 @@ The approach provides a sound and complete solution to specific type of programs
 
 \section{Benchmarks}
 
+
+STEHT NOCH AUS
+
+
 \section{Possible Improvement of the Implementation}
 The implementation of the approach is fully functional under the circumstances mentioned, like for example the defined structure in \autoref{sec:structure}. Nevertheless also this implementation has certain cases in, which it does not perform as efficient as it could.
 So here we state the possible improvements of the implementation to make it universally more useful and therefore stronger or more efficient.
@@ -30,7 +34,7 @@ As stated in \autoref{sec:structure} we restrict this implementation to the form
 which obviously is a restriction, because \its's of the form
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
-	!$f_x \qquad\qquad \>\ \rightarrow f_y (v_1, \dots v_n) \> :|: cond_1$!
+	!$f_x \qquad\qquad \>\ \rightarrow f_y (v_1, \dots v_n) \>\>\> :|: cond_1$!
 	!$f_{y_1}(v_1, \dots v_n) \> \rightarrow  f_{y_2} \>(v^\prime_1,\dots v^\prime_n)  :|: cond_2$!
 			!$\vdots$!
 	!$f_{y_k}(v_1, \dots v_n) \> \rightarrow  f_{y_1} \>(v^\prime_1,\dots v^\prime_n)  :|: cond_{k+1}$!
@@ -41,9 +45,9 @@ could possibly considered using the method $k$ times. Analysing such \its would 
 An other possible variation of the considered \its could be like the following
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
-	!$f_x \qquad\qquad \>\>\>\> \rightarrow f_y (v_1, \dots v_n) \> :|: cond_1$!
-	!$f_{y_1}(v_1, \dots v_n) \> \rightarrow  f_{y_2} \>(v^\prime_1,\dots v^\prime_m)  :|: cond_2$!
-	!$f_{y_2}(v_1, \dots v_m)  \rightarrow  f_{y_1} \>(v^\prime_1,\dots v^\prime_n)  :|: cond_3$!
+	!$f_x \qquad\qquad \>\>\>\> \rightarrow f_y (v_1, \dots v_n) \>\> :|: cond_1$!
+	!$f_{y_1}(v_1, \dots v_n) \> \rightarrow  f_{y_2} (v^\prime_1,\dots v^\prime_m)  :|: cond_2$!
+	!$f_{y_2}(v_1, \dots v_m)  \rightarrow  f_{y_1} (v^\prime_1,\dots v^\prime_n) \> :|: cond_3$!
 	\end{lstlisting}
 \end{figure}
 where $m \ne n$, but the values $v^\prime_i$ $1 \le i \le m$ is computed as a linear update of the values $v_j$ $1 \le j \le n$.

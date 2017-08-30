@@ -19,8 +19,3 @@ R - Research
 4 Benchmarks:
 
 5 related work:
-
-Code:
-- wenn der LOOP-Schritt eine weitere Var. einführt durch = bekommt der code probleme
-- schaue welche vars rechts und nicht links sind und löse nach ihnen auf
-- dann muss die UpdateMatrix analog mit der Substitution berechnet werden

@@ -26,6 +26,12 @@ Florian Corzilius, Gereon Kremer, Sebastian Junges, Stefan Schupp, and Erika
 \newblock In {\em International Conference on Theory and Applications of
   Satisfiability Testing}, pages 360--368. Springer, 2015.
 
+\bibitem[DKL15]{david2015unrestricted}
+Cristina David, Daniel Kroening, and Matt Lewis.
+\newblock Unrestricted termination and non-termination arguments for bit-vector
+  programs.
+\newblock In {\em ESOP}, pages 183--204, 2015.
+
 \bibitem[FGP{\etalchar{+}}09]{fuhs2009proving}
 Carsten Fuhs, J{\"u}rgen Giesl, Martin Pl{\"u}cker, Peter Schneider-Kamp, and
   Stephan Falke.
@@ -76,11 +82,32 @@ Jera Hensel, Frank Emrich, Florian Frohn, Thomas Str{\"o}der, and J{\"u}rgen
 \newblock In {\em International Conference on Tools and Algorithms for the
   Construction and Analysis of Systems}, pages 350--354. Springer, 2017.
 
+\bibitem[Las]{LassoRanker}
+Ultimate - lassoranker.
+\newblock Accessed: 30-August-2017.
+
 \bibitem[LH14]{leike2014geometric}
 Jan Leike and Matthias Heizmann.
 \newblock Geometric series as nontermination arguments for linear lasso
   programs.
 \newblock {\em arXiv preprint arXiv:1405.4413}, 2014.
+
+\bibitem[OPW14]{ouaknine2014termination}
+Jo{\"e}l Ouaknine, Jo{\~a}o~Sousa Pinto, and James Worrell.
+\newblock On termination of integer linear loops.
+\newblock In {\em Proceedings of the Twenty-Sixth Annual ACM-SIAM Symposium on
+  Discrete Algorithms}, pages 957--969. SIAM, 2014.
+
+\bibitem[RMM14]{rebiha2014characterization}
+Rachid Rebiha, N~Matringe, and AV~Moura.
+\newblock Characterization of termination for linear homogeneous programs.
+\newblock Technical report, Technical Report IC-14-08, Institute of Computing,
+  University of Campinas (March 2014), 2014.
+
+\bibitem[Tiw04]{tiwari2004termination}
+Ashish Tiwari.
+\newblock Termination of linear programs.
+\newblock In {\em CAV}, volume~4, pages 70--82. Springer, 2004.
 
 \bibitem[VDDS93]{verschaetse1993automatic}
 Kristof Verschaetse, Stefaan Decorte, and Danny De~Schreye.
