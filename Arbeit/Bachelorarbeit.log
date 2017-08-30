@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  30 AUG 2017 20:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  30 AUG 2017 21:41
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -2047,26 +2047,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--15
 
  []
 
-) [2] (src/tex/0.3-abstract.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--166
+) [2] (src/tex/0.3-abstract.tex
+Underfull \hbox (badness 10000) in paragraph at lines 1--2
 
  []
 
-[3] [4
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 6.
+(D:\Tools\MikTex\tex\latex\lm\t1lmss.fd
+File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 4--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--15
+
+ []
+
+) [3] [4
 
 ] (Bachelorarbeit.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 4.
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 9.
- (D:\Tools\MikTex\tex\latex\lm\t1lmss.fd
-File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [5])
+ [5])
 \tf@toc=\write6
 \openout6 = `Bachelorarbeit.toc'.
 
-
-(src/tex/1-introduction.texpdfTeX warning (ext4): destination with the same ide
-ntifier (name{page.1}) has been already used, duplicate ignored
+ (src/tex/1-introduction.texpdfTeX warning (ext4): destination with the same id
+entifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1 \chapter
@@ -2288,11 +2302,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 549--555
 
 ) (src/tex/4-benchmarks.tex [24]
 Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
-
- []
-
 [25
 
 ]) (src/tex/5-related-work.tex [26] [27] [28
@@ -2352,9 +2361,9 @@ public/lm/lmsy10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools
 lmtt10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fo
 nts/type1/public/lm/lmtt9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtti10.pf
 b><D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (37 pages, 687095 bytes).
+Output written on Bachelorarbeit.pdf (37 pages, 689984 bytes).
 PDF statistics:
- 756 PDF objects out of 1000 (max. 8388607)
+ 757 PDF objects out of 1000 (max. 8388607)
  167 named destinations out of 1000 (max. 500000)
  397 words of extra memory for PDF output out of 10000 (max. 10000000)
 

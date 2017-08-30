@@ -1,11 +1,12 @@
 \chapter{Evaluation and Benchmark}
 \label{chapter:eval}
 In this chapter we want to take a look at the implementation and evaluate, if the approach itself is useful in terms of applicable cases or if the approach works only on very exotic and uncommon preconditions. \newline
-Also we want to take a look at the benchmarks of the implementation, in terms of storage and computational efficiency.\newline
+Also we want to take a look at the benchmarks of the implementation, in terms of storage and computational efficiency. \newline
 Further we want to outline improvement possibilities of the implementation and problems within, where an efficient solution is not quite obvious.
 
 \section{Evaluation of the approach}
 The approach provides a sound and complete solution to specific type of programs. Given a tool like \aprove, which provides a normalized and shortened \its the further computation that has to be done can be solved quite efficient. Using an state of the art \solver and the definition of $\lambda_i$ to be the $i$-th eigenvalue the problem can also be resolved efficiently for given $\mu$'s. If the $\mu$'s are not given the problem is undecidable, which makes it still useful within \aprove, but not as strong as before. \newline
+Since the paper itself does not mention equalities within the guards the substitution of newly introduced variables as handled within \autoref{sec:derivation-guard} is necessary in order to apply the definition. Such a substitution is very costly in computation time and also highly 
 
 \section{Benchmarks}
 
