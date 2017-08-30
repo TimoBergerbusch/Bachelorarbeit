@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  29 AUG 2017 17:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  30 AUG 2017 19:25
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -2182,12 +2182,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--147
 
 [8] (src/diagram/RPNTree-classdiagram.tex
 \du=\skip155
-Missing character: There is no m in font nullfont!
-) [9]
+)
+Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--198
+ [][] 
+ []
+
+[9]
 \mybox=\box115
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [10pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 5}) has been already used, duplicate ignored
 
@@ -2323,10 +2324,10 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 188.
  ) 
 Here is how much of TeX's memory you used:
- 35298 strings out of 493333
- 686352 string characters out of 3144357
+ 35299 strings out of 493333
+ 686373 string characters out of 3144357
  800095 words of memory out of 3000000
- 37980 multiletter control sequences out of 15000+200000
+ 37981 multiletter control sequences out of 15000+200000
  126341 words of font info for 90 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,32n,85p,10435b,1351s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2351,7 +2352,7 @@ public/lm/lmsy10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools
 lmtt10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fo
 nts/type1/public/lm/lmtt9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtti10.pf
 b><D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (35 pages, 677972 bytes).
+Output written on Bachelorarbeit.pdf (35 pages, 678709 bytes).
 PDF statistics:
  729 PDF objects out of 1000 (max. 8388607)
  160 named destinations out of 1000 (max. 500000)
