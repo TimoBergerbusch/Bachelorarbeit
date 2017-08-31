@@ -355,6 +355,7 @@ public class SMTFactory {
 	FunctionalIntegerExpression exp;
 	for (int i = 0; i < nodes.length; i++) {
 	    exp = this.parseRPNTreeToSMTRule(nodes[i]);
+//	    Logger.getLog().writeln("////////// created rule:"+ nodes[i] +"<= "+ cons.get(i));
 	    solver.addAssertion(this.createRule(IntegerRelationType.LE, exp, this.createConst(cons.get(i))).toSMTExp());
 	}
     }

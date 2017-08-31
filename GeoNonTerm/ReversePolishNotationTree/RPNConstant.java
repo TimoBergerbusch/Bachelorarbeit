@@ -52,6 +52,10 @@ public class RPNConstant extends RPNNode {
 	return this;
     }
 
+    public RPNNode remove(RPNNode rem){
+	return null;
+    }
+    
     public RPNNode negate() {
 	this.value = -this.value;
 	return this;

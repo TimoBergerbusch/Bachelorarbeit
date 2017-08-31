@@ -96,15 +96,17 @@ public abstract class RPNNode {
 		 * 
 		 * flipvalue setzt den Wert bei z.B. x3 - x8 auf -1 statt 1
 		 */
-		int flipvalue = 1;
+		int flipvalue = 1,value=0;
 
 		if (func.getFunctionSymbol() == ArithmeticSymbol.MINUS)
 //		    flipvalue = -1;
 		    Logger.getLog().writeln("MINUS");
 		if (func.getLeft().containsVar(varName))
-		    return func.getLeft().getFactorOfVar(varName) * flipvalue;
-		else
-		    return func.getRight().getFactorOfVar(varName) * flipvalue;
+		    value+= func.getLeft().getFactorOfVar(varName);
+		if (func.getRight().containsVar(varName))
+		    value+= func.getRight().getFactorOfVar(varName) * flipvalue;
+		
+		return value;
 	    } else if (func.getFunctionSymbol() == ArithmeticSymbol.EQUALS) {
 		// TEST
 		return func.left.getFactorOfVar(varName) + func.right.getFactorOfVar(varName);
@@ -286,9 +288,7 @@ public abstract class RPNNode {
 	return this;
     }
 
-    public RPNNode negate() {
-	return this;
-    }
+    public abstract RPNNode negate();
 
     public RPNNode remove(RPNNode rem) {
 	return this;

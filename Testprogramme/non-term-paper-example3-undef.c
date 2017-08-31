@@ -1,7 +1,7 @@
 int main(){
 
-    int a;
-    int b =1;
+    int a = __VERIFIER_nondet_int();;
+    int b = 1;
 
     while(a+b>=4){
         a=3*a+b;

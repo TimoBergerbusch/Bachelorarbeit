@@ -3,6 +3,6 @@ int main(){
 
     while(a+b>=3){
         a=3*a+1;
-        b=null;
+        b=__VERIFIER_nondet_int();
     }
 }
