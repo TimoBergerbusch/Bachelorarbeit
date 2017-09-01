@@ -15,7 +15,7 @@ public class Loop {
      * a static boolean to determine if the information about the process should
      * be printed using the {@link Logger}.
      */
-    private static boolean SHOULD_PRINT = false;
+//    private static boolean SHOULD_PRINT = false;
 
     /**
      * the guards depending on the variables. <br>
@@ -119,17 +119,6 @@ public class Loop {
 	iterationMatrix.insert(GNAMatrix.IdentityMatrix(n).negate(), m, n);
 	// Setzen von I
 	iterationMatrix.insert(GNAMatrix.IdentityMatrix(n), m + n, n);
-
-	if (SHOULD_PRINT) {
-	    Logger.getLog().writeln(iterationMatrix);
-	    Logger.getLog().writeln(iterationConstants);
-	}
-	
-//	Logger.getLog().writeln("????????????????????????");
-//	Logger.getLog().writeln("iterationmatrix: " +iterationMatrix.rowSize()+"x"+iterationMatrix.columnSize());
-//	Logger.getLog().writeln("iterationconstants: " +iterationConstants.size());
-//	Logger.getLog().writeln("????????????????????????");
-//	Logger.getLog().close();
     }
 
     // print OR toString METHODS

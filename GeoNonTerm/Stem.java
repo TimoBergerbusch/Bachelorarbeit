@@ -1,6 +1,5 @@
 package aprove.Framework.IntTRS.Nonterm.GeoNonTerm;
 
-import aprove.DPFramework.IDPProblem.IGeneralizedRule;
 import aprove.Framework.BasicStructures.FunctionSymbol;
 
 /**
@@ -15,12 +14,6 @@ import aprove.Framework.BasicStructures.FunctionSymbol;
 public class Stem {
 
     /**
-     * a static boolean to determine if the information about the process should
-     * be printed using the {@link Logger}.
-     */
-    private static boolean SHOULD_PRINT = false;
-
-    /**
      * the STEM vector to calculate for example the geometric series
      */
     private GNAVector stemVec;
@@ -31,7 +24,7 @@ public class Stem {
      */
     private FunctionSymbol startFunctionSymbol;
 
-    private int index;
+    // private int SHOULD_PRINT = 0;
 
     /**
      * initializing a new STEM by taking an array of {@link FunctionSymbol} and
@@ -45,12 +38,10 @@ public class Stem {
      * @param symbols
      *            a {@link FunctionSymbol} array
      */
-    public Stem(FunctionSymbol[] symbols, int index) {
+    public Stem(FunctionSymbol[] symbols, int printPriority) {
 	assert symbols.length > 0;
-	this.index = index;
 	startFunctionSymbol = symbols[0];
-	if (SHOULD_PRINT) {
-	    Logger.getLog().startClassOutput("Stem");
+	if (printPriority >= 3) {
 	    Logger.getLog().writeln("Recieved: " + Logger.getLog().arrayToString(symbols));
 	    Logger.getLog().writeln("array[0]: " + symbols[0] + " saved in startFunctionSymbol");
 	    Logger.getLog().writeln("Define Rest as STEM.");
@@ -63,8 +54,9 @@ public class Stem {
 	}
 
 	stemVec = new GNAVector(stem);
-	if (SHOULD_PRINT) {
-	    Logger.getLog().endClassOutput("Stem");
+
+	if (printPriority >= 1) {
+	    Logger.getLog().writeln("Final STEM: " + this.toString());
 	}
     }
 
@@ -109,23 +101,5 @@ public class Stem {
     public FunctionSymbol getStartFunctionSymbol() {
 	return this.startFunctionSymbol;
     }
-    /*
-     * public void createUpdated(String[] strings, String[] varNames) {
-     * Logger.getLog().writeln("strings: " +
-     * Logger.getLog().arrayToString(strings));
-     * Logger.getLog().writeln("varnames: " +
-     * Logger.getLog().arrayToString(varNames)); Logger.getLog().close();
-     * GNAVector vec = new GNAVector(varNames.length, 0); for (int i = 0; i <
-     * varNames.length; i++) { int occ = this.getIndexOfName(varNames,
-     * strings[i]); if (occ != -1) vec.set(occ, stemVec.get(i)); } stemVec =
-     * vec;
-     * 
-     * }
-     * 
-     * private int getIndexOfName(String[] strings, String name) { for (int i =
-     * 0; i < strings.length; i++) if (strings[i].equals(name)) return i; return
-     * -1; }
-     * 
-     * public int getIndex() { return this.index; }
-     */
+
 }
