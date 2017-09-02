@@ -6,12 +6,9 @@ R - Research
 
 2 Preliminaries:
 - Q: explanation as text (like now) or within figure?
-- T: rewrite SMT-Problem introduction more mathematically
 - Q: Class-diagram of the used classes?
 3 Geometric Non-termination:
-- T: ref to 2 for the graph or write it here
 - R: paper with computation of circle within seg
-- T: wenn unsat core für stem ex. term das program instant
 - Q: proof of "flip" usage?
 - T: show why eigenvalues simplify it/ why eigenvalues are the right choice
 - Q: roughly describe eigenvalue computation?
@@ -19,3 +16,7 @@ R - Research
 4 Benchmarks:
 
 5 related work:
+
+code:
+- Add nondet check
+- subs: maybe sth like 3*2*v?

@@ -38,7 +38,8 @@ The more complex case is given if the start function symbol has the following fo
 	$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond$
 \end{figure}
 %\vspace{-1em}
-where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-const} \underline{or} a variable defined by the $cond$ term. An example for such a \stem is shown in \autoref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \autoref{sec:smt-problem}, to create the assertions leading to either an assignment of $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment and therefore prove termination.
+where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-const} \underline{or} a variable defined by the $cond$ term. An example for such a \stem is shown in \autoref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \autoref{sec:smt-problem}, to create the assertions leading to either an assignment of $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment and therefore prove termination. \newline
+The handling of equations within the guard term is described within \autoref{sec:derivation-guard} and underlies the same procedure regarding the stem.
 %TODO: im code: wenn unsat dann termination
 
 \newsavebox{\stemextwo}% Box to store smallmatrix content
