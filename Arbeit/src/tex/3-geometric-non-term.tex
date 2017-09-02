@@ -1,12 +1,11 @@
 \chapter{Geometric Non-Termination}
 \label{chapter:geo-non-term}
-Now that all preliminaries are stated we can start looking how the approach works within \aprove. To find a \gna and so prove nontermination we use \aprove to generate an \its of a given program. %TODO: write how? ref: prelim
-Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT}-Problem using \autoref{def:gna} and compute a \gna, which would be a prove of nontermination, or state that no \gna can exist, which does not infer termination nor nontermination.
+Now that all preliminaries are stated we can start to take a look at how the approach works within \aprove. To find a \gna and so prove nontermination we use \aprove to generate an \its of a given program, which is defined within \autoref{sec:aprove}.
+Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT}-Problem using \autoref{def:gna} and compute a \gna, which would be a prove of nontermination, or state that no \gna can exist, which does \underline{not} infer termination nor nontermination.
 
 \section{Derivation of the \emph{STEM}}
 \label{sec:stem}
-The derivation of the \stem is the first step to do in order to derive a \gna. As described in \autoref{sec:structure} the \stem defines the variables before iterating through the \loopt.  Owned to the fact, that \aprove has to find the a loop within the generated \seg %TODO: cite
-one iteration through the \loopt will be calculated. Obviously this does not falsify the result. If it does not terminate i will still not terminate after one iteration and if it terminates after $n$ iterations and we compute one it will still terminate after $n-1$ iterations. \newline
+The derivation of the \stem is the first step in order to derive a \gna. As described in \autoref{sec:structure} the \stem defines the variables before iterating through the \loopt.  Owed to the fact, that \aprove has to find the lasso to derive an \its within the generated \seg one iteration through the \loopt will be calculated. Obviously this does not falsify the result. If it does not terminate i will still not terminate after one iteration and if it terminates after $n$ iterations and we compute one it will still terminate after $n-1$ iterations. \newline
 Within the derivation of the \stem we distinguish between two cases discussed in the following sections.
 
 \subsection{Constant \stem}
@@ -18,6 +17,7 @@ The constant stem is the easiest case to derive the \stem from. It has the form:
 	$f_x \rightarrow f_y(c_1,\dots c_n) :|: TRUE$
 \end{figure} 
 %\vspace{-2em}
+Here the $c_1,\dots c_n \in \mathbb{Z}$ denote constant numbers. \newline
 An example of a constant \stem is shown in \autoref{lst:stem-cons}. 
 The values of $x$ can be directly read from the right hand side and need no further calculations.
 \newsavebox{\stemexone}% Box to store smallmatrix content
@@ -34,11 +34,12 @@ The values of $x$ can be directly read from the right hand side and need no furt
 \label{sec:stem-var}
 The more complex case is given if the start function symbol has the following form:
 \begin{figure}[H]
-	\hspace{2cm}
+%	\hspace{2cm}
+	\centering
 	$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond$
 \end{figure}
 %\vspace{-1em}
-where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-const} \underline{or} a variable defined by the $cond$ term. An example for such a \stem is shown in \autoref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \autoref{sec:smt-problem}, to create the assertions leading to either an assignment of $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment and therefore prove termination. \newline
+where $v_i$ $1 \le i \le n$ is either a constant term like in \autoref{sec:stem-const} \underline{or} a linear update defined by the $cond$ term. An example for such a \stem is shown in \autoref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \autoref{sec:smt-problem}, to create the assertions leading to either an assignment of the \stem $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment. If such a constellation entails termination or if it just does not entail nontermination needs further observance not provided in this paper. \newline
 The handling of equations within the guard term is described within \autoref{sec:derivation-guard} and underlies the same procedure regarding the stem.
 %TODO: im code: wenn unsat dann termination
 
@@ -50,13 +51,13 @@ The handling of equations within the guard term is described within \autoref{sec
 	\begin{lstlisting}[escapechar=!]
 	!$f_1 \rightarrow f_2(1 + 3 * v, 2) :|: v > 2\text{ \&\& }8 < 3 * v $!
 	\end{lstlisting}	
-	\caption{An example of a variable \its rule to derive the \stem. In order to derive it an $v$ fulfilling the conditions need to be found using an \tool{SMT}-Solver. Since $v=3$ is the first number in $\mathbb{Z}$ that satisfies the guards the \stem would be \usebox{\stemextwo}$=$\usebox{\stemextwosecond} }
+	\caption{An example of a variable \its rule to derive the \stem from. In order to derive the \stem, an $v$ fulfilling the conditions need to be found using an \tool{SMT}-Solver. Since $v=3$ is the first number provided by the \solver in $\mathbb{Z}$ that satisfies the guards the \stem would be \usebox{\stemextwo}$=$\usebox{\stemextwosecond}. Note that $v=4$ would be equally permissible.}
 	\label{lst:stem-var}
 \end{figure}
 
 \section{Derivation of the \emph{LOOP}}
 \label{sec:loop}
-The derivation of the \loopt is pretty straight forward applying \autoref{def:guard}, \autoref{def:update} to a looping rule and then computing \iterationmatrix and \iterationconstants using \autoref{def:iteration}. \newline
+The derivation of the \loopt is pretty straight forward applying \autoref{def:guard}, \autoref{def:update} to a looping rule and then computing \iterationmatrix and \iterationconstants using \autoref{def:iteration}, if no guards with equalities ("=") occur. Then we have to perform previous steps to apply the mentioned definitions. \newline
 Let $f_x$ be the starting function symbol given by the \its and $r_i$ be a rule, with 
 \begin{lstlisting}[escapechar=!]
 	!$f_x \rightarrow f_y(v_1, \dots, v_n) :|: cond_1$!
@@ -65,23 +66,23 @@ then we take the in lexicographical order first rule $r_l$ of the form
 \begin{lstlisting}[escapechar=!]
 	!$f_y(v_1, \dots, v_n) \rightarrow f_y(v^\prime_1, \dots, v^\prime_n) :|: cond_2$!
 \end{lstlisting}
-and compute the \iterationmatrix and \iterationconstants according to $r_l$. 
+and compute the \iterationmatrix and \iterationconstants according to $r_l$. If we observe, that a second rule that could possibly chosen exists we encounter non-determinism, which is not supported so far.
 
 \subsection{The \guardmatrix and \guardconstants}
 \label{sec:derivation-guard}
-The derivation of the \guardmatrix and \guardconstants can be achieved by applying the \autoref{def:guard} to the guards of the given rule $r_l$. For that we create $G$ as the coefficient matrix. The size of $G$ is determined by the arity of the function symbol of $r_l$ and the number of guards not containing $=$. In \autoref{sec:derivation-guard} we show the dealing with guards containing $=$ with \autoref{ex:derivation-guard} as an example. The first step is to define the desired form of the guards. For that we introduce the \textit{standard guard form} the guards are given from the \seg and the desired \textit{strict guards form}.
+The derivation of the \guardmatrix and \guardconstants can be achieved by applying the \autoref{def:guard} to the guards of the given rule $r_l$. For that we create $G$ as the coefficient matrix. The size of $G$ is determined by the arity of the function symbol of $r_l$ and the number of guards not containing "$=$". In \autoref{sec:derivation-guard} we show the dealing with guards containing "$=$" with \autoref{ex:derivation-guard} as an example. The first step is to define the desired form of the guards. For that we introduce the \textit{standard guard form}, the guards are given from the \seg, and the desired \textit{strict guards form}.
 \begin{definition}[standard guard form]
 	A guard $g$ is in standard guard form iff\newline
 	$g := \varphi \circ c$, with
 	$\varphi$ in \stdLinInt and $\circ \in \{ <, >, \le, \ge, = \}$.\newline
-	If $\varphi$ contains a constant $c_\varphi$ the constant $c$ gets subtracted by $c_\varphi$. \newline
+%	If $\varphi$ contains a constant $c_\varphi$ the constant $c$ gets subtracted by $c_\varphi$. \newline
 	A condition to a rule $cond$ is in standard guard form iff 
 	\begin{figure}[H]
 		\centering
 		$cond = \{ g | g\text{ guard}, g\text{ is in standard guard form}\}$
 	\end{figure}
 \end{definition} 
-The condition given be the \seg is one rule $r$ , which represents a set $G$  in standard guard form and 
+The condition given be the \seg is one rule $r$ , which represents a set $G$  in standard guard form as 
 \begin{center}
 	$r = \&\&(g_1,( \&\& (\dots,(\&\&(g_{n-1},g_n) )\dots)))$,
 \end{center}
@@ -100,7 +101,8 @@ The easiest way to retrieve the guards $g_i$ is by using \autoref{algo:decat-gua
 				\Else
 					\State add $item$ to $guards$	\Comment{if it is no concatenation it is a single guard}
 				\EndIf				
-			\EndWhile			
+			\EndWhile	
+			\State \Return $guards$
 		\EndFunction		
 	\end{algorithmic}
 	\caption{Retrieving a set of guards $G$ from a rule $r$ of the form stated in \autoref{sec:derivation-guard}}
@@ -113,13 +115,13 @@ So we get a set $G=\{ g \mid g \text{ is in standard guard form}\}$. Now we want
 	\label{def:strict-guard-form}
 	A guard $g$ is in strict guard form iff\newline
 	$g := \varphi \le c$, with
-	$\varphi$ in \stdLinInt and $c \in \mathbb{Z}$ subtracted by a possible constant $c_\varphi$ inherited from $\varphi$
+	$\varphi$ in \stdLinInt and $c \in \mathbb{Z}$ subtracted by a possible constant $c_\varphi$ previously included by $\varphi$
 \end{definition}
 
 To transfer a guard from \stdG to \strG we have to apply the two following steps:
 \begin{enumerate}
 	\item \textbf{rewrite equations} \newline
-		If the guards contain a guard with the symbol $=$ we have to rewrite the "new" variable. To define, which are new and substitute these we perform the following algorithm:
+		If the guards contain a guard with the symbol "$=$" we have to rewrite the "new" variable. To define, which are new variables and substitute these, we perform the following algorithm:
 		\begin{algorithm}[H]
 			\caption{The algorithm to handle equalities that introduce new variables within the guards.}
 			\label{algo:filter-equalities}
@@ -195,19 +197,19 @@ So the constant term can simply be read off from the right child-node of the \co
 	\label{ex:derivation-guard}
 	This example is based in the \its  from \autoref{fig:structure-example-TRS}.
 	Regarding the \its we have the guard-term:\newline
-	\hspace*{1cm}$v_1 + v_2 > 3 \>\&\&\> v_1 > 6 \>\&\&\> 3 * v_1 > 20 \>\&\&\> 5 + v_3 = 2 * v_2 \>\&\&\> v_3 < -10$\newline
-	which lead to the set $G$:\newline
-	\hspace*{1cm}$\{v_1 + v_2 > 3\text{, } v_1 > 6 \text{, } 3 * v_1 > 20 \text{, } 5 + v_3 = 2 * v_2 \text{, } v_3 < -10\}$\newline	
+	\hspace*{2cm}$v_1 + v_2 > 3 \>\&\&\> v_1 > 6 \>\&\&\> 3 * v_1 > 20 \>\&\&\> 5 + v_3 = 2 * v_2 \>\&\&\> v_3 < -10$\newline
+	which lead to the set $G$ using \autoref{algo:decat-guards}:\newline
+	\hspace*{2cm}$\{v_1 + v_2 > 3\text{, } v_1 > 6 \text{, } 3 * v_1 > 20 \text{, } 5 + v_3 = 2 * v_2 \text{, } v_3 < -10\}$\newline	
 	
 	Starting with \autoref{algo:filter-equalities} to handle equalities:
 	\begin{enumerate}
 		\setlength{\itemindent}{1in}
 		\item[(line 2-4)] We compute $V_{left}=\{v_1, v_2\}$, $V_{right}=\{v_1,v_2,v_3\}$ so $V_{sub}=\{v_3\}$
 		\item[(line 5)] begin with $\theta=\{\}$ 
-		\item[(line 7,8)] Since obviously $V_{sub} \neq \emptyset$  we select $s=v_3$ and select $g_s = 5+v_3=2*v_2$
+		\item[(line 7,8)] Since obviously $V_{sub} \neq \emptyset$  we select $s=v_3$ and select $g_s \Leftrightarrow 5+v_3=2*v_2$
 		\item[(line 9,10)] $g_s$ rewritten to the form $s=\psi$ then follows with $v_3=2*v_2-5$
 		\item[(line 11)] $\theta = \theta\{s/2*v_2-5\} = \{s/2*v_2-5\}$
-		\item[(line 12-15)] $G=\{v_1 + v_2 > 3 \>\&\&\> v_1 > 6 \>\&\&\> 3 * v_1 > 20 \>\&\&\> 2*v_2-5 < -10\}$
+		\item[(line 12-15)] $G=\{v_1 + v_2 > 3$, $ v_1 > 6 $, $ 3 * v_1 > 20 $, $ 2*v_2-5 < -10\}$
 		\item[(end)] Since $V_{sub}=\emptyset$ return $G$
 	\end{enumerate}
 	
@@ -221,14 +223,14 @@ So the constant term can simply be read off from the right child-node of the \co
 
 \subsection{The \updatematrix and \updateconstants}
 \label{sec:derivation-update}
-The \updatematrix and \updateconstants can be derived quite easily. The updates within the function symbol neither contain an equation nor an inequation sign. Therefore no new variables can be initialized. Since it is still possible, that some of the within the guard part instantiated variables appear within the update we have to apply the final set of substitutions $\theta$ from \autoref{algo:filter-equalities} to the linear update. 
+The \updatematrix and \updateconstants can be derived quite easily. The updates within the function symbol neither contain an equation nor an inequation sign. Therefore no new variables can be initialized. Since it is still possible, that some of the, within the guard part instantiated, variables appear within the update we have to apply the final set of substitutions $\theta$ from \autoref{algo:filter-equalities} to the linear update. 
 
 \begin{example}
 	\label{ex:derivation-update-sub}
-	This example is based in the \its  from \autoref{fig:structure-example-TRS} in combination with the \autoref{ex:derivation-guard} providing $V_{sub}$. \newline
-	Since the set of substitutions $\theta={v_3/2*v_2-5}$ is not empty and within the update given by\newline
+	This example is based in the \its  from \autoref{fig:structure-example-TRS} in combination with the \autoref{ex:derivation-guard} providing $V_{sub}$ and $\theta$. \newline
+	Since the set of substitutions $\theta=\{v_3/2*v_2-5\}$ is not empty and within the update given by\newline
 	\hspace*{1cm}$(3*v_1+v_2\text{, } v_3)$\newline
-	contains $v_3$ we have to apply the substitution and receive:\newline
+	contains $v_3 \in V_{sub}$ we have to apply the substitution and receive:\newline
 	\hspace*{1cm}$(3*v_1+v_2\text{, }2*v_2-5)$
 \end{example}
 
@@ -292,11 +294,11 @@ An example derivation of a factor using \autoref{algo:coefficient} is shown in \
 		\draw[considered] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
 		\draw[query] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
-	\caption{An example of deriving the coefficient of a given formula and a variable as query. This example uses the \rpntree of \autoref{ex:rpntree} and $y$ as the query. }
+	\caption{An example of deriving the coefficient of a given formula and a variable as query. This example uses the \rpntree of \autoref{ex:rpntree} and variable $v_1$ as the query. }
 	\label{ex:factor-derivation}
 \end{figure}
 
-The \color{red}red\color{black}-arrow stands for the neglected left subtree of the root node, which can be neglected because the query is not contained. The \color{blue}blue\color{black}-arrows show the path to the subtree further investigated. The \color{green!50!black}green\color{black}-arrow determines, that the right child node is the query so the left child node has to be the coefficient. Since the underlying update is in \stdLinInt the left subtree has to be a \textit{RPNConstant}.
+The \color{red}red\color{black}-arrow stands for the neglected right subtree of the root node, which can be neglected because the query is not contained. The \color{blue}blue\color{black}-arrows show the path to the subtree further investigated. The \color{green!50!black}green\color{black}-arrow determines, that the right child node is the query so the left child node has to be the coefficient. Since the underlying update is in \stdLinInt the left subtree has to be a \textit{RPNConstant}.
 
 The \updateconstants can be derived by an simplification of \autoref{algo:coefficient}, since we only have to retrieve the constant term within the tree. The corresponding derivation is given by \autoref{algo:constant-term}.
 
@@ -324,7 +326,7 @@ The \updateconstants can be derived by an simplification of \autoref{algo:coeffi
 
 An example of a constant term using \autoref{algo:constant-term} can be found in \autoref{ex:constant-term}.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
 	\node (Plus) at (0,0) [objDia] {
@@ -348,7 +350,7 @@ An example of a constant term using \autoref{algo:constant-term} can be found in
 		\nodepart{second}value: -5
 	};
 	\draw[considered] (Plus.south)  -- ++(0,-0.4) -| (Times1.north) node [pos = 0.4, above, font=\footnotesize]{left};
-	\draw[query] (Plus.south)  -- ++(0,-0.4) -| (var2.north) node [pos = 0.4, above, font=\footnotesize]{right};
+	\draw[query] (Plus.south)  -- ++(0,-0.4) -| (cons2.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\draw[neglected] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
 	\draw[neglected] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
@@ -357,7 +359,7 @@ An example of a constant term using \autoref{algo:constant-term} can be found in
 \end{figure}
 
 Since a constant $c < 0$ can stored in a constellation shown in \autoref{ex:constant-term-minus} we consider a variable $flip$ to store a sign change occurring for a subtraction. Knowing that the \stdLinInt is used all occurs of a multiplication can be neglected.\newline %TODO: small Proof?
-Through the \stdLinInt one of the recursive calls has to be $0$ since only one constant term.
+Through the \stdLinInt one of the recursive calls has to be $0$ since only one constant term exists.
 
 \begin{figure}
 	\centering
@@ -402,7 +404,7 @@ As stated in \autoref{def:iteration} the \iterationmatrix and \iterationconstant
 	\centering
 	$A = \begin{pmatrix} G & \textbf{0} \\ M & -I \\ -M & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$ \cite{leike2014geometric}
 \end{figure}
-Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a matrix \textbf{0}$ \in \{0\}^m\times n$ and identity-matrix $I \in \{0,1\}^n\times n$, where $n$ is the number of distinct variables and $m$ the number of guards.
+Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a matrix \textbf{0}$ \in \{0\}^{m\times n}$ and identity-matrix $I \in \{0,1\}^{n\times n}$, where $n$ is the number of distinct not newly introduced variables and $m$ the number of guards without equations.
 
 \section{Derivation of the \emph{SMT}-Problem}
 \label{sec:derivation-smt}
@@ -410,13 +412,13 @@ The existence of a \gna is checked using an \tool{SMT} solver, presented in \aut
 The constraints the \tool{SMT} solver has to fulfil are the four criteria mentioned within \autoref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute it's eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently. \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
 \newline
 So the next step in order to proof non termination is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \footnote{the mentioned method can be found under \cite{ApacheMath3}}  because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
-After computing the eigenvalues, we have set values for $x$ and $\lambda_1, \dots \lambda_k$ as constant values.
+After computing the eigenvalues, we have set values for the \stem $x$ and $\lambda_1, \dots \lambda_k$ as constant values.
 \newline
 Using the \smtfactory, which offers methods to create the within \autoref{sec:smt-problem} and \autoref{ex:assertion-structure} stated structure, we are able to create assertions and add them to the \solver, such that the following holds:
 \begin{figure}[H]
 	\centering
 	If the \solver, with assertions $a^p_1, \dots a^p_n$ created from program $p$,has a model $m$ \newline
-	then $m$ defines variables $y_1, \dots, y_k$ and $\mu_1, \mu_{k-1}$ within $\mathbb{Z}$ such that \newline
+	then $m$ defines variables $y_1, \dots, y_k$ and $\mu_1, \mu_{k-1}$ within $\mathbb{N}$ such that \newline
 	$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$ is a \gna.
 \end{figure}
 
@@ -427,7 +429,7 @@ Using the \smtfactory, which offers methods to create the within \autoref{sec:sm
 	\item[] (see: \autoref{def:gna})
 \end{itemize}
 The \domc for $x$ and $y_1, \dots y_k$ are trivial, because at no point of computation we would consider a vector $v\in\mathbb{C}$.
-The arity of $x$ is set within the derivation of the \stem (see: \autoref{sec:stem}) and set's the starting values for the $n$-variables. The arity of every $y_i$ is determined within the assertions of the \pointc and the \rayc.\newline
+The arity of $x$ is set within the derivation of the \stem (see: \autoref{sec:stem}) and sets the starting values for the $n$-variables. The arity of every $y_i$ is determined within the assertions of the \pointc and the \rayc.\newline
 Therefore this criteria adds no further assertions towards the \solver.
 \subsection{The Initiation Criteria}
 \begin{itemize}
@@ -448,7 +450,7 @@ So this criteria also adds no further assertions towards the \solver.
 \end{itemize}
 
 The \pointc is the first criteria to add assertions towards the \solver.\newline
-The point criteria has a special role within the derivation. Since within the \iterationmatrix $A$ the \updatematrix is contained twice with different sign the \iterationmatrix creates through the \pointc exactly opposite signed rules for the last $2n$ rows.
+Since within the \iterationmatrix $A$ the \updatematrix $U$ is contained twice with a different sign the \iterationmatrix creates ,through the \pointc exactly, opposite signed rules for the last $2n$ rows.
 This means that, even though within the \pointc the relation is $\le$, the last $2n$ have to fulfil the equality of the rows.\newline
 
 Let $s\in \mathbb{R}^n$ for $1 \le i \le n$ be $s_i=x_i+\sum_{j} (y_j)_i$, where $(y_j)_i$ denotes the $i$-th entry of $y_j$.
@@ -467,7 +469,8 @@ Then the \pointc can be rewritten to:
 		\vdots   & \ddots 	& \vdots	& \vdots & \ddots & \vdots \\
 		-a_{n,1} & \dots 	& -a_{n,n}	& 0 	 & \dots  & 1 \\
 	\end{pmatrix} \begin{pmatrix} x1 \\ \vdots \\ x_n \\ s_1 \\ \vdots \\ s_n\end{pmatrix} \le \begin{pmatrix} g \\ -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$\\ %\newline
-	$\Rightarrow Gx\le g$, which means that the guards have to hold, and \newline
+	\vspace*{1em}
+	$\Rightarrow Gx\le g$, which means that the guards have to hold. Note that $s_1$ to $s_n$ get multiplied with 0 so don't need to be considered. Also the following has to hold: \newline
 	\vspace*{1em}
 	\hspace*{1em}
 	$\begin{pmatrix}
@@ -504,9 +507,9 @@ Then the \pointc can be rewritten to:
 		$l^{\text{left}}_i = l^{\text{right}}_i$
 	\end{figure}	
 \end{figure}
-So using the \smtfactory we create such variables $s_i$ and add the $n$ assertions determined above.\newline
-Since variable vectors are represented as a \rpntree we can use a symbol method to calculate the multiplication, normalize the outcome and parse the \rpntree into an assertion all featured by the \smtfactory. \newline
-The assertion ensuring that the new variables $s_i$ are the sum of the $i$-th value of the $y_j$ is added within \autoref{sec:additional-assertion}.
+So using the \smtfactory we create such variables $s_i$ and add the $n$ assertions determined above. The guards can be neglected, since if they are constant there are no guards and if there are, we derive the \stem to fulfil these, so adding them would not give any advantage.\newline
+Since variable vectors are represented as a \rpntree we can use an implemented method to calculate the multiplication, normalize the outcome and parse the \rpntree into an assertion all featured by the \smtfactory. \newline
+The assertion ensuring that the new variables $s_i$ are the sum of the $i$-th value of the $y$'s is added within \autoref{sec:additional-assertion}.
 
 
 \subsection{The Ray Criteria}
@@ -519,16 +522,16 @@ The assertion ensuring that the new variables $s_i$ are the sum of the $i$-th va
 The \rayc is the hardest criteria in terms of asserting, because of it's way of computation. \newline
 The computation can be split into two parts on it's own.
 \subsubsection{$i=0$:}
-For $i=0$ the second addend $\mu_{i-1}y_{i-1}$ is equal to $0$, because of \autoref{def:gna}, that $y_0 = \mu_0 = 0$. So with $\lambda_1$ being the first eigenvalue of the \updatematrix we get that $A\begin{pmatrix} y_1 \\ \lambda_1 y_1 \end{pmatrix} \le 0$. \newline
-Through $A$ and the \domc we know, that every $y_i\in \mathbb{R}^n$ so we add $n$ new variables $y_{1,i}$, such that $y_1 = \begin{pmatrix} y_{1,1} \\ \vdots \\ y_{1,n}\end{pmatrix}$, multiply the \updatematrix $A$ with the new vector regarding the substitution and and create an assertion per row using the \smtfactory, the \code{IntegerRelationType} \code{LE} and as the right hand side constant a 0.
+For $i=0$ the second addend $\mu_{i-1}y_{i-1}$ is equal to $0$, because of \autoref{def:gna} that $y_0 = \mu_0 = 0$. So with $\lambda_1$ being the first eigenvalue of the \updatematrix we get that $A\begin{pmatrix} y_1 \\ \lambda_1 y_1 \end{pmatrix} \le 0$. \newline
+Through $A$ and the \domc we know, that every $y_i\in \mathbb{R}^n$ so we add $n$ new variables $y_{1,i}$, such that $y_1 = \begin{pmatrix} y_{1,1} \\ \vdots \\ y_{1,n}\end{pmatrix}$, multiply the \updatematrix $A$ with the new vector regarding the substitution and create an assertion per row using the \smtfactory, the \code{IntegerRelationType} \code{LE} (denotes: less than or equal) and as the right hand side constant a 0.
 
 \subsubsection{$i \ne 0$:}
 Since we don't have any concrete values for any $y_i$ or $\mu_i$ so far the solving of the problem with the term $\mu_{i-1}y_{i-1}$ is not linear and therefore the computation has to be either performed in \textit{quantifier free non-linear integer arithmetic} or iterated over possible entry's for the $\mu$'s.\newline
-In the implemented approach the \textit{quantifier free non-linear integer arithmetic}. Even if it's generally undecidable there are implementations over finite domains semi-deciding the problems. \cite{behrmann2014bit} \cite{giesl2016} \newline
+In the implemented approach the \textit{quantifier free non-linear integer arithmetic} is used. Even if it's generally undecidable there are implementations over finite domains semi-deciding the problems. \cite{behrmann2014bit} \cite{giesl2016} \newline
 Further comment about the usage of QF\_NIA can be found within \autoref{chapter:eval}.
 \\
 With $\lambda_i$ being the $i$-th eigenvalue of the \updatematrix we can compute the result of the multiplication as in the $i=0$ case, but have to normalize the outcome using the basic distributive property in order to handle it within an \rpntree and correctly generate an assertion from it.\newline
-So for every step $i > 0$ we add $n$ new variables $y_{i,n}$ such that $y_i = \begin{pmatrix} y_{i,1} \\ \vdots \\ y_{i,n}\end{pmatrix}$ and a new variable $\mu_{i-1}$ such that 
+So for every step $i > 1$ we add $n$ new variables $y_{i,n}$ such that $y_i = \begin{pmatrix} y_{i,1} \\ \vdots \\ y_{i,n}\end{pmatrix}$ and a new variable $\mu_{i-1}$ such that 
 \begin{figure}[H]
 	\centering
 	$\lambda_i y_i+\mu_{i-1}y_{i-1} \Leftrightarrow \lambda_i \begin{pmatrix} y_{i,1} \\ \vdots \\ y_{i,n}\end{pmatrix} + \mu_{i-1} \begin{pmatrix} y_{i-1,1} \\ \vdots \\ y_{i-1,n}\end{pmatrix} \Leftrightarrow \begin{pmatrix}
@@ -537,15 +540,15 @@ So for every step $i > 0$ we add $n$ new variables $y_{i,n}$ such that $y_i = \b
 \end{figure}
 
 As in the other case we can simply compute the multiplication with the \updatematrix $A$ , normalize the outcome and analogously create an assertion per row with the \smtfactory. \newline
-Note that $y_{i-1,n}$ represent the values of the previous step and therefore not only already exist, but also create a lattice of restrictions for the $y_{i,j}$ since the values depend highly on the previous values. At this point the relation of rewriting the problem as a geometric series, like it is done in the underlying paper \cite{leike2014geometric}, is quite obvious.
+Note that $y_{i-1,n}$ represent the values of the previous step and therefore not only already exist, but also create a lattice of restrictions for the $y_{i,j}$ since the values depend highly on the previous values. At this point the relation of rewriting the problem as a geometric series, like it is done in the underlying paper \cite{leike2014geometric}, is quite comprehensibly.
 
 \subsection{Additional assertion}
 \label{sec:additional-assertion}
-The final step of asserting need to be done, because of the restriction of the variables from the \rayc in \autoref{sec:ray-criteria} to the sum from the \pointc in \autoref{sec:point-criteria}.\newline
+The final step of asserting needs to be done, because of the restriction of the variables from the \rayc in \autoref{sec:ray-criteria} to the sum from the \pointc in \autoref{sec:point-criteria}.\newline
 The assertion, that needs to be added has the following form:
 \begin{figure}[H]
 	\centering
-	$s_i = y_{i,1}+ \dots + y_{i,n}$
+	$s_i = y_{1,i}+ \dots + y_{n,i}$
 \end{figure}
 This ensures that the values of $y$ sum up to the values determined in the \pointc.
 \\
