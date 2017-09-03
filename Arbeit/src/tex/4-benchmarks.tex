@@ -6,7 +6,7 @@ Further we want to outline improvement possibilities of the implementation and p
 
 \section{Evaluation of the approach}
 The approach provides a sound and complete solution to specific type of programs. Given a tool like \aprove, which provides an \its the further computation that has to be done can be solved quite efficient. Using an state of the art \solver and the definition of $\lambda_i$ to be the $i$-th eigenvalue the problem can also be resolved efficiently for given $\mu$'s. If the $\mu$'s are not given the problem is undecidable, which makes it still useful within \aprove, but not as strong as before. \newline
-Since the paper itself does not mention equalities within the guards the substitution of newly introduced variables as handled within \autoref{sec:derivation-guard} is necessary in order to apply the definition. Such a substitution is very costly in computation time and also highly error prone.
+Since the paper itself does not mention equalities within the guards the substitution of newly introduced variables as handled within \Cref{sec:derivation-guard} is necessary in order to apply the definition. Such a substitution is very costly in computation time and also highly error prone.
 
 \section{Benchmarks}
 
@@ -15,17 +15,17 @@ STEHT NOCH AUS
 
 
 \section{Possible Improvement of the Implementation}
-The implementation of the approach is fully functional under the circumstances mentioned, like for example the defined structure in \autoref{sec:structure}. Nevertheless also this implementation has certain cases in, which it does not perform as efficient as it could, or where it can be improved in terms of applicability.
+The implementation of the approach is fully functional under the circumstances mentioned, like for example the defined structure in \Cref{sec:structure}. Nevertheless also this implementation has certain cases in, which it does not perform as efficient as it could, or where it can be improved in terms of applicability.
 So here we state the possible improvements of the implementation to make it universally more useful and therefore stronger or more efficient.
 \subsection{\solver logic}
-As already stated in \autoref{sec:derivation-smt} the problematic of the $\mu$'s can lead to a shift into undecidability, since the solvating of variable multiplication on integers (\qfnia) is undecidable. Also mentioned in \autoref{sec:derivation-smt} there are a bunch of approaches, which lead to semi-decidability and therefore to the possibility to still use the variable multiplication within the problem if the $\mu$'s can be restricted to a finite domain.\newline
+As already stated in \Cref{sec:derivation-smt} the problematic of the $\mu$'s can lead to a shift into undecidability, since the solvating of variable multiplication on integers (\qfnia) is undecidable. Also mentioned in \Cref{sec:derivation-smt} there are a bunch of approaches, which lead to semi-decidability and therefore to the possibility to still use the variable multiplication within the problem if the $\mu$'s can be restricted to a finite domain.\newline
 A possible improvement could be an iteration over different values of the $\mu$'s. The number of problems, that have to be solved would be blow up, but the problem itself would always be decidable.\newline
 A reliable case-study of a large set of examples could underline the necessity of the iteration, since we wouldn't be able to derive a \gna using the \qfnia. It could also lead to the overhead of computational cost using the iterative method, which can be useful if the problem does not have any time restrictions of the deciding process, but is not suitable within the competitions \aprove participates, like the \textit{International Competition of Termination Tools} \footnote{ further information: \url{http://termination-portal.org/wiki/Termination_Competition} } or \textit{International Competition on Software Verification} \footnote{further information: \url{https://sv-comp.sosy-lab.org/2017/}}. \cite{aproveWebsite} \newline
 The \textit{Termination Competition 2017}, which is organized by the \textit{International Competition of Termination Tools}, for example has a time limit of 300 seconds and only allows 4 core usage, which makes an iterative method very costly. \cite{wiki2017termComp}
 
 \subsection{\its program structure}
 \label{sec:structure-improvement}
-As stated in \autoref{sec:structure} we restrict this implementation to the form 
+As stated in \Cref{sec:structure} we restrict this implementation to the form 
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
 	!$f_x \qquad\qquad \>\> \rightarrow f_y (v_1, \dots v_n) \> :|: cond_1$!
@@ -56,7 +56,7 @@ where $m \ne n$, but the values $v^\prime_i$ $1 \le i \le m$ is computed as a li
 These are only two alternations of the considered structure, which would be also recommended to implement in order to create a more universal applicable method.
 
 \subsection{\rpntree}
-Within \autoref{sec:rpntree} we defined the \rpntree, on which we base the arithmetic computations and statements. \aprove also has a tree structure it handles such statements in. The \rpntree structure exists mainly because of two reasons:
+Within \Cref{sec:rpntree} we defined the \rpntree, on which we base the arithmetic computations and statements. \aprove also has a tree structure it handles such statements in. The \rpntree structure exists mainly because of two reasons:
 \begin{enumerate}
 	\item the structure \aprove bases these statements on is much more complex, but also much more powerful, which made programming a lot more difficult. Parsing it into a tree, which can only contain elements expected to be in such expressions not only works equivalently it also prevents errors if \aprove's structure gets extended or changed. The \code{RPNTreeParse} handles the conversion and therefore can be seen as an adapter, which filters every \its that must not occur in \textit{Geometric Nontermination Analysis} as stated in this thesis.
 	\item many algorithms are difficult to encode if not programmed recursively. Since coding in the already stated classes was no option, and inheritance would not work because of accessing problems, creating my own structure was a simple work-around.
