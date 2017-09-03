@@ -26,12 +26,16 @@
 \BOOKMARK [2][]{subsection.3.3.4}{The Ray Criteria}{section.3.3}% 26
 \BOOKMARK [2][]{subsection.3.3.5}{Additional assertion}{section.3.3}% 27
 \BOOKMARK [1][]{section.3.4}{Verification of the Geometric Non-Termination Argument}{chapter.3}% 28
-\BOOKMARK [0][]{chapter.4}{Evaluation and Benchmark}{}% 29
-\BOOKMARK [1][]{section.4.1}{Evaluation of the approach}{chapter.4}% 30
-\BOOKMARK [1][]{section.4.2}{Benchmarks}{chapter.4}% 31
-\BOOKMARK [1][]{section.4.3}{Possible Improvement of the Implementation}{chapter.4}% 32
-\BOOKMARK [2][]{subsection.4.3.1}{SMT-solver logic}{section.4.3}% 33
-\BOOKMARK [2][]{subsection.4.3.2}{int-TRS program structure}{section.4.3}% 34
-\BOOKMARK [2][]{subsection.4.3.3}{Reverse Polish Notation Tree}{section.4.3}% 35
-\BOOKMARK [0][]{chapter.5}{Related Work}{}% 36
-\BOOKMARK [0][]{chapter.5}{Literaturverzeichnis}{}% 37
+\BOOKMARK [2][]{subsection.3.4.1}{Verifying: domain-criteria}{section.3.4}% 29
+\BOOKMARK [2][]{subsection.3.4.2}{Verifying: init-criteria}{section.3.4}% 30
+\BOOKMARK [2][]{subsection.3.4.3}{Verifying: point-criteria}{section.3.4}% 31
+\BOOKMARK [2][]{subsection.3.4.4}{Verifying: ray-criteria}{section.3.4}% 32
+\BOOKMARK [0][]{chapter.4}{Evaluation and Benchmark}{}% 33
+\BOOKMARK [1][]{section.4.1}{Evaluation of the approach}{chapter.4}% 34
+\BOOKMARK [1][]{section.4.2}{Benchmarks}{chapter.4}% 35
+\BOOKMARK [1][]{section.4.3}{Possible Improvement of the Implementation}{chapter.4}% 36
+\BOOKMARK [2][]{subsection.4.3.1}{SMT-solver logic}{section.4.3}% 37
+\BOOKMARK [2][]{subsection.4.3.2}{int-TRS program structure}{section.4.3}% 38
+\BOOKMARK [2][]{subsection.4.3.3}{Reverse Polish Notation Tree}{section.4.3}% 39
+\BOOKMARK [0][]{chapter.5}{Related Work}{}% 40
+\BOOKMARK [0][]{chapter.5}{Literaturverzeichnis}{}% 41

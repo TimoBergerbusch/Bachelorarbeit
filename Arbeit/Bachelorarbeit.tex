@@ -16,6 +16,7 @@
 \usepackage[inner=3cm,outer=2cm,top=3cm,bottom=2.5cm]{geometry}
 \usepackage{textcomp}
 \usepackage[hyperfootnotes=false,bookmarksopen=true]{hyperref}
+\usepackage{cleveref}
 \usepackage{algorithm}
 \usepackage{verbatim}
 \usepackage{fancyvrb}
@@ -90,11 +91,6 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\definitionautorefname}{Definition}
-\newcommand{\exampleautorefname}{Example}
-\newcommand{\listingautorefname}{Figure}
-\newcommand{\algorithmautorefname}{Algorithm}
-
 \newcommand{\labelname}[1]{% \labelname{<stuff>}
 	\def\@currentlabelname{#1}}%
 
@@ -148,6 +144,12 @@
 \tikzstyle{considered}=[thickarrow, color = blue]
 \tikzstyle{neglected} = [thickarrow, color = red]
 \tikzstyle{query} = [thickarrow, color = green!50!black]
+
+\newcommand{\definitionautorefname}{definition}
+\newcommand{\exampleautorefname}{example}
+\newcommand{\listingautorefname}{figure}
+\newcommand{\algorithmautorefname}{algorithm}
+\renewcommand{\sectionautorefname}{Section}
 
 \begin{document}
 
