@@ -1,0 +1,103 @@
+\documentclass{beamer}
+\usetheme{Warsaw}  %% Themenwahl
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning,automata}
+\usepackage{listings}
+\usepackage{xspace}
+
+\title{Geometric Nontermination Arguments}
+\author{Timo Bergerbusch}
+\date{\today}
+
+
+\lstset{
+	backgroundcolor=\color{white},	% choose the background color
+	basicstyle=\ttfamily,			% the size of the fonts that are used for the code
+	breakatwhitespace=false,		% sets if automatic breaks should only happen at whitespace
+	breaklines=true,				% sets automatic line breaking
+	captionpos=b,					% sets the caption-position to bottom
+	commentstyle=\color{green!60!black},% comment style
+	deletekeywords={...},			% if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},			% if you want to add LaTeX within your code
+	frame=none,					% adds a frame around the code
+	keepspaces=false,				% keeps spaces in text, useful for keeping indentation of code
+	% (possibly needs columns=flexible)
+	keywordstyle=\color{blue},		% keyword style
+	lineskip=0.1pt,
+	%linewidth=0.7\linewidth,
+	frame=lines,
+	morekeywords={*,...},			% if you want to add more keywords to the set
+	numbers=left,				% where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,				% how far the line-numbers are from the code
+	numberstyle=\tiny\color{gray},		% the style that is used for the line-numbers
+	rulecolor=\color{black},			% if not set, the frame-color may change on line-breaks within not-black text
+	showspaces=false,				% show spaces using underscores; overrides 'showstringspaces'
+	showstringspaces=false,			% underline spaces within strings only
+	showtabs=false,				% show tabs within strings adding particular underscores
+	stepnumber=1,				% the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},		% string literal style
+	tabsize=2,					% sets default tabsize to 2 spaces
+	%title=\lstname	,				% show the filename of files included with \lstinputlisting; also try caption instead of title
+} 
+
+\tikzstyle{arrow} = [->]
+\tikzstyle{thickarrow}=[arrow, thick]
+\tikzstyle{dashedarrow} = [thickarrow, >=stealth, dashed, line width = 1pt ]
+\tikzstyle{stdNode} = [shape = rectangle, draw, rounded corners]
+\tikzstyle{aproveNode} = [shape = rectangle, draw, rounded corners, minimum width = 2cm]
+\tikzstyle{objDia}=[rectangle, draw=black, rounded corners, text centered, anchor=north, rectangle split, rectangle split parts=2]
+\tikzstyle{class}=[rectangle, draw=black, rounded corners, text centered, anchor=north, rectangle split, rectangle split parts=3]
+\tikzstyle{explNode} = [align = center, minimum height = 10pt,	font = \bfseries, fill= green!20]
+\tikzstyle{considered}=[thickarrow, color = blue]
+\tikzstyle{neglected} = [thickarrow, color = red]
+\tikzstyle{query} = [thickarrow, color = green!50!black]
+
+\newcommand{\code}[1]{\textit{#1}}
+\newcommand{\tool}[1]{\textsf{#1}}
+\newcommand{\aprove}{\tool{AProVE}\xspace}
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\stem}{\textit{STEM}\xspace}
+\newcommand{\loopt}{\textit{LOOP}\xspace}
+\newcommand{\guardmatrix}{\textit{Guard Matrix}\xspace}
+\newcommand{\guardconstants}{\textit{Guard Constants}\xspace}
+\newcommand{\updatematrix}{\textit{Update Matrix}\xspace}
+\newcommand{\updateconstants}{\textit{Update Constants}\xspace}
+\newcommand{\iterationmatrix}{\textit{Iteration Matrix}\xspace}
+\newcommand{\iterationconstants}{\textit{Iteration Constants}\xspace}
+\newcommand{\startterm}{\textit{start term}\xspace}
+\newcommand{\gna}{\textit{geometric nontermination argument}\xspace}
+\newcommand{\gnanal}{\textit{geometric nontermination analysis}\xspace}
+\newcommand{\rpntree}{\textit{Reverse Polish Notation Tree}\xspace}
+\newcommand{\smtfactory}{\code{SMTFactory}\xspace}
+\newcommand{\its}{\tool{int-TRS}\xspace}
+\newcommand{\llvm}{\tool{llvm}\xspace}
+\newcommand{\nonterm}{\textit{non-termination}\xspace}
+\newcommand{\seg}{\textit{Symbolic Execution Graph}\xspace}
+\newcommand{\stdLinInt}{standard linear integer form\xspace}
+\newcommand{\stdG}{standard guard form\xspace}
+\newcommand{\strG}{strict guard form\xspace}
+\newcommand{\solver}{\textit{SMT}-\textit{solver}\xspace}
+\newcommand{\domc}{\textit{Domain Criteria}\xspace}
+\newcommand{\initc}{\textit{Initiation Criteria}\xspace}
+\newcommand{\pointc}{\textit{Point Criteria}\xspace}
+\newcommand{\rayc}{\textit{Ray Criteria}\xspace}
+\newcommand{\addass}{\textit{Additional assertion}\xspace}
+\newcommand{\qfnia}{\textit{quantifier free non-linear integer arithmetic}\xspace}
+\newcommand{\lasso}{\tool{lasso}\xspace}
+
+\newenvironment{variableblock}[3]{%
+	\setbeamercolor{block body}{#2}
+	\setbeamercolor{block title}{#3}
+	\begin{block}{#1}}{\end{block}}
+
+\begin{document}
+\maketitle
+\frame{\tableofcontents[currentsection]}
+
+\include{src/tex/introduction}
+\include{src/tex/example}
+\include{src/tex/preliminaries}
+\include{src/tex/geometric-nonterm}
+\end{document}

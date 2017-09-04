@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Example}{4}{0}{2}
+\beamer@sectionintoc {3}{Preliminaries}{5}{0}{3}
+\beamer@subsectionintoc {3}{1}{Integer Term Rewrite Systems (int-TRS) }{5}{0}{3}
+\beamer@subsectionintoc {3}{2}{Geometric Nontermination Argument (GNA)}{6}{0}{3}
+\beamer@subsectionintoc {3}{3}{Definitions}{9}{0}{3}
+\beamer@sectionintoc {4}{Geometric Nontermination}{13}{0}{4}

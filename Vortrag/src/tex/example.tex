@@ -1,0 +1,44 @@
+\section{Example}
+
+\begin{frame}[fragile] %%Eine Folie
+  \frametitle{Example \tool{C}-program} %%Folientitel
+  \begin{columns}
+  	\begin{column}{6cm}
+  		\begin{lstlisting}[language = java,escapechar = !]
+int main(){
+  		
+	int a;!\tikz[remember picture] \node [] (a) {};!
+	int b=1;!\tikz[remember picture] \node [] (b) {};!
+  		
+	while(a+b>=4){! \tikz[remember picture] \node [] (c) {}; !
+    a=3*a+b;!\tikz[remember picture] \node [] (d) {}; !
+    b=2*b-5;!\tikz[remember picture] \node [] (e) {}; !
+	}
+}		
+  		\end{lstlisting}
+%  		\begin{tikzpicture}[remember picture, overlay, 
+%  		every edge/.append style = {dashedarrow},
+%  		every node/.append style = {explNode},
+%  		text width = 2cm ]
+%  		\node[above right = .2cm and 2.5 cm of a] (A) {the \textit{STEM}};
+%  		\draw[rounded corners=5pt] (A.west) edge (a.east);
+%  		\draw (A.west) edge (b.east);
+%  		
+%  		\node[below = 1.5cm of A] (B) {the guard};
+%  		\draw (B.west) edge (c.east);
+%  		
+%  		\node[below = .8cm of B] (C) {the linear update};
+%  		\draw (C.west) edge (d.east);
+%  		\draw (C.west) edge (e.east);
+%  		\end{tikzpicture}
+  	\end{column}
+	\begin{column}{5cm}
+		\begin{itemize}			
+			\item very basic \tool{C}-program
+			\item does it terminate?
+			\item[] $\Rightarrow$ \color{red}No!\color{black}
+			\item[] how can we prove this?
+		\end{itemize}
+	\end{column}
+  \end{columns}
+\end{frame}

@@ -1,0 +1,83 @@
+\section{Preliminaries}
+
+\subsection{Integer Term Rewrite Systems (int-TRS) }
+\begin{frame}[fragile] %%Eine Folie
+	\frametitle{Integer Term Rewrite Systems (int-TRS)}
+	\its considered:
+	\begin{lstlisting}[escapechar=!]
+	!$\overbrace{f_x}^{(1)} \qquad\quad\>\>\>\> \rightarrow \overbrace{f_y}^{(2)} (v_1, \dots v_n) :|: cond_1$!
+	!$\>\>f_y(\underbrace{v_1, \dots v_n}_{(3)}) \> \rightarrow \>\> f_y \>\>\>(\underbrace{v^\prime_1,\dots v^\prime_n}_{(3)})  :|: \underbrace{cond_2}_{(4)}$!
+	\end{lstlisting}
+	
+	\begin{tabular}{ll}
+		\parbox{5cm}{
+		\begin{enumerate}
+			\item[(1)] function symbol (no variables $\Rightarrow$ start)
+			\item[(3)] variables $v^\prime_i$ as linear updates of the variables $v_j$
+		\end{enumerate}}
+		&
+		\parbox{5cm}{
+			\begin{enumerate}
+				\item[(2)] function symbol
+				\item[(4)] a set of (in)-equations mentioning $v_j$ and $v^\prime_i$
+		\end{enumerate}}
+	\end{tabular}
+
+	Reading: "rewrite $f_y(v_1,\dots,v_n)$ as $f_y(v^\prime_1,\dots,v^\prime_n)$ if \textit{cond} holds"
+\end{frame}
+
+\subsection{Geometric Nontermination Argument (GNA)}
+\begin{frame}[fragile]
+	\frametitle{Geometric Nontermination Argument (GNA)}
+	\begin{itemize}
+		\item Idea: Split program into two parts:
+			\begin{itemize}
+				\item \stem: variable initialization and declaration
+					\begin{lstlisting}[language = java]
+	int a;
+	int b=1;
+					\end{lstlisting}
+				\item \loopt: linear updates and \code{while}-guard
+				\begin{lstlisting}[language = java]
+	while(a+b>=4){
+		a=3*a+b;
+		b=2*b-5;
+	}
+				\end{lstlisting}
+			\end{itemize}
+		\item apply the definition of a \gna by J. Leike and M. Heizmann 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{definition}[Geometric Non Termination Argument]
+		\label{def:gna}
+		A tuple of the form:
+		\vspace{-1em}
+		\begin{figure}
+			\centering
+			$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$
+		\end{figure}  
+		\vspace{-1em}
+		is called a \gna of size $k$ for a program = $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
+		\begin{itemize}
+			\setlength{\itemindent}{1in}
+			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
+			\item[(init)] x represents the \startterm (\stem)
+			\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
+			\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
+		\end{itemize}
+		Note: $y_0 = \mu_0 = 0$ instead of case distinction
+	\end{definition}
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{example}
+		The \its of the example program would be: \newline
+		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
+!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
+!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& }$! 
+		!$v_1 > 6 \text{ \&\& } 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
+		\end{lstlisting}
+	\end{example}
+\end{frame}
