@@ -1,8 +1,221 @@
 \section{Geometric Nontermination}
 
+\frame{\tableofcontents[currentsection]}
+
 \begin{frame} %%Eine Folie
-  \frametitle{Geometric Nontermination} %%Folientitel
-%  \begin{Definition} %%Definition
-%    Eine Definition
-%  \end{Definition}
+  \frametitle{Geometric Nontermination} 
+  Necessary steps for the derivation of a GNA:
+  \begin{enumerate}
+  	\item derive the \stem
+  	\item derive the \guardmatrix/\textit{Constants}
+  	\item derive the \updatematrix/\textit{Constants}
+  	\item compute the \iterationmatrix/\textit{Constants}
+  	\item add the criteria of a GNA as assertions to an \solver
+  	\item read of GNA (if exists)
+  \end{enumerate}
 \end{frame}
+
+\subsection{Derivation: STEM}
+
+
+\begin{frame}[fragile]
+	\frametitle{Derivation: \stem}
+	Consider \color{blue}two\color{black}\xspace different possibilities:
+	\begin{tabular}{rl}
+		\blue{constant stem}: & $f_x \rightarrow f_y(c_1,\dots,c_n) :|: TRUE$ \\
+							  & $\Rightarrow$ read of values \\
+	\end{tabular}
+	\begin{example}
+		\centering
+		$f_1 \rightarrow f_2(10,-3)$
+		$\Rightarrow$ \stem = $ (10, -3)^T$
+	\end{example}
+
+	\begin{tabular}{rl}
+		\blue{variable stem}: & $f_x \rightarrow f_y(c_1+\sum_{i=1}^{n}a_{1,i}v_i, \dots, c_n+\sum_{i=1}^{n}a_{n,i}v_i) :|: $ \\
+							  & $\bigwedge_{\text{guard }g} \sum_{i=1}^{n}g_{n,i}v_i \le c_m$ \\
+							  & $\Rightarrow$ create assertions and derive a model \\
+	\end{tabular}
+	\begin{example}
+		\centering
+		$f_1 \rightarrow f_2(1 + 3v_1, -3) :|: v_1 > 2\text{ \&\& }8 < 3v_1 $ \newline
+		$\Rightarrow$ model $m_1=\{v=3\}$ $\Rightarrow$\stem = $ (10, -3)^T$
+	\end{example}
+\end{frame}
+
+
+\subsection{Derivation: Guard Matrix/Constants}
+\begin{frame}
+	\frametitle{Derivation: Guard Matrix/Constants}
+	conditional term given by the \seg \newline
+	\hspace*{1.5cm}$r = \&\&(g_1,( \&\& (\dots,(\&\&(g_{n-1},g_n) )\dots)))$
+	\begin{algorithm}[H]
+		\begin{algorithmic}[1]
+			\Function{computeGuardSet}{Rule r}
+			\State Stack $stack \gets r$
+			\State Set $guards$
+			\While{$!stack.isEmpty()$}
+			\State $item \gets stack.pop$
+			\If{item is of the form $\&\&(x_1,x_2)$}
+			\State add $x_1$ and $x_2$ to $stack$
+			\Else
+			\State add $item$ to $guards$
+			\EndIf				
+			\EndWhile	
+			\State \Return $guards$
+			\EndFunction
+		\end{algorithmic}
+		\caption{derive set of guards}
+	\end{algorithm}
+\end{frame}	
+	
+\begin{frame}
+	\begin{itemize}
+		\item now we have $G=\{g \mid g \text{ is a guard}\}$
+		\item \red{Problem}: $g$ could not be in the desired $\varphi \le c$ form.
+		\item \red{Even worse}: $g$ could declare new variables using "$=$"
+		\item \green{Solution}: bring every $g$ in the desired form, by: 
+			\begin{tabular}{cll}
+				1. & filter equalities   & by substituting "new" variables \\
+				2. & normalizing ($\le$) & rewrite $<,>,\ge$ to $\le$ \\
+				3. & normalizing ($c$)   & transfer only constant term to r.h.s.\\
+			\end{tabular}
+	\end{itemize}	
+\end{frame}
+
+\begin{frame} % filter eq
+	\vspace*{-.25cm}
+	\begin{algorithm}[H]
+		\begin{algorithmic}[1]
+			\Function{filterEqualities}{$G$}
+			\State $V_{left} = \{v \mid $the left hand side of the rule contains $ v\}$
+			\State $V_{right} = \{v \mid $the right hand side of the rule contains $ v\}$
+			\State $V_{sub} = V_{right} - V_{left}$
+			\State define substitution $\theta=\{\}$
+			\While{$V_{sub} \neq \emptyset}$
+			\State select $ s \in V_{sub}$
+			\State select $g_s \in \{g \in G\mid g \text{ contains } "=" \}$
+			\State remove $g_s$ from $G$
+			\State rewrite $g_s$ to the form $s = \psi$
+			\State $\theta=\theta\{s/\psi\}$
+			\ForAll{$g\in G$}
+			\State $g = \theta g$
+			\EndFor	
+			\State remove $s$ from $V_{sub}$
+			\EndWhile
+			\State \Return $G$
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+\end{frame}
+
+\begin{frame} % bsp: filter eq.
+	\begin{example}
+		From the example \its we get using the decat. algorithm:\newline
+		$\{v_1 + v_2 > 3\text{, } v_1 > 6 \text{, } 3 * v_1 > 20 \text{, } 5 + v_3 = 2 * v_2 \text{, } v_3 < -10\}$
+		\begin{enumerate}
+%			\setlength{\itemindent}{1cm}
+			\item We compute $V_{left}=\{v_1, v_2\}$, $V_{right}=\{v_1,v_2,v_3\}$ so $V_{sub}=\{v_3\}$
+			\item Begin with $\theta=\{\}$ 
+			\item Since obviously $V_{sub} \neq \emptyset$  we select $s=v_3$ and select $g_s \Leftrightarrow 5+v_3=2*v_2$
+			\item $g_s$ rewritten to the form $s=\psi$ then follows with $v_3=2*v_2-5$
+			\item $\theta = \theta\{s/2*v_2-5\} = \{s/2*v_2-5\}$
+			\item $G=\{v_1 + v_2 > 3$, $ v_1 > 6 $, $ 3 * v_1 > 20 $, $ 2*v_2-5 < -10\}$
+			\item Since $V_{sub}=\emptyset$ return $G$
+		\end{enumerate}
+	\end{example}
+\end{frame}
+
+\begin{frame} % normal. <=
+	\frametitle{normalization ($\le$)}
+	rewrite a guard $g_i$ of the form $g_i \Leftrightarrow \psi + c_{\psi} \circ c$, where $\circ \in \{<,>,\le,\ge\}$ to the form $ \eta*\psi + \eta*c_{\psi} \le \eta*c-\tau$ depending on $\circ$.\newline
+	\begin{figure}[H]
+		\vspace*{-1cm}
+		\centering
+		\begin{tabular}{|l|r|l|l|}
+			\hline
+			$\circ$ 	& $\eta$ 	& $\tau$ 	&  $ \eta*\psi + \eta*c_{\psi} \le \eta*c-\tau$ \\ 
+			\hline \hline
+			$<$ 		& $1$ 		&  $1$ 		& $\psi + c_{\psi} \le c - 1$ \\ \hline
+			$>$ 		& $-1$		&  1 		& $-\psi - c_{\psi} \le -c -1 $ \\ \hline
+			$\le$ 		& $1$ 		&  0 		& $\psi + c_{\psi} \le c$ \\ \hline
+			$\ge$ 		& $-1$ 		&  0 		& $-\psi - c_{\psi} \le -c$ \\ \hline
+		\end{tabular}
+	\end{figure}
+	\footnotesize
+	$\eta$ is the indicator of inverting the guard to convert $\ge$ ($>$) to $\le$ ($<$)\newline
+	$\tau$ is the possible subtraction of 1 to receive the $\le$ instead of a $<$.
+\end{frame}
+
+\begin{frame} % normal. c
+	\frametitle{normalization ($c$)}
+	Subtract the term $\eta*c_\psi$ on both sides: \newline
+	final form:  $\eta*\psi \le \underbrace{\eta*c -\tau -1*\eta*c_{\psi}}_{\text{constant term}}$
+	
+	\begin{variableblock}{Reminder: \its structure}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		Can derive constant factors very simple using the stated structure property:
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+			\node[objDia] (top) {
+				\textbf{f1}: RPNFunctionSymbol
+				\nodepart{second}arithmeticSymbol: $\circ$
+			};
+			\node[rectangle, draw=black, rounded corners, text centered, anchor=north, below left = of top] (left) {
+				$\eta*\psi$
+			};
+			\node[objDia, below right = of top] (right) {
+				\textbf{c1}: RPNConstant
+				\nodepart{second}value: $\eta*c -\tau -1*\eta*c_{\psi}$
+			};
+			
+			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (left.north) node [pos = 0.4, above, font=\footnotesize]{left};
+			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (right.north) node [pos = 0.4, above, font=\footnotesize]{right};
+			\end{tikzpicture}
+		\end{figure}
+	\end{variableblock}
+\end{frame}
+
+\begin{frame} % bsp: norm
+	\begin{example}
+		Normalizing the guard $g \Leftrightarrow 3*v_1>20 \Leftrightarrow \underbrace{3*v_1}_{\psi}+\underbrace{0}_{c_\psi} > \underbrace{20}_{c}$ \vspace*{-1em}\newline
+		
+		Looking up the row for $\circ \Leftrightarrow >$: 
+		\begin{tabular}{|l|r|l|l|}
+			\hline
+			$\circ$ 	& $\eta$ 	& $\tau$ 	&  $ \eta*\psi + \eta*c_{\psi} \le \eta*c-\tau$ \\ 
+			\hline \hline
+			\vdots 		& \vdots 	&  \vdots 		& \vdots \\ \hline
+			$>$ 		& $-1$		&  1 		& $-\psi - c_{\psi} \le -c -1 $ \\ \hline
+		\end{tabular} \newline
+	
+		Result with $\eta=-1$, $\tau = 1$ in: $-(3*v_1)-(0)\le-20-1 \Leftrightarrow -3*v_1 \le -21$
+	\end{example}
+\end{frame}
+
+\begin{frame} % conclus
+	\begin{itemize}
+		\item now every guard has the form $\varphi \le c$
+		\item deriving \guardconstants is very simple
+		\item deriving \guardmatrix is read off the coefficients.
+		\hspace*{1.5cm}(more detailed within the \updatematrix)
+		\item[$\Rightarrow$] \updatematrix/\textit{Constants} derived \checkmark
+	\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

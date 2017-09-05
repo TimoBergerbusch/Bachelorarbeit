@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  4 SEP 2017 19:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  5 SEP 2017 15:57
 entering extended mode
 **./Vortrag.tex
 (Vortrag.tex
@@ -888,26 +888,49 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 layer\tikz\libraries\tikzlibraryautomata.code.tex"
 File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
 )
+(D:\Tools\MikTex\tex\generic\babel\babel.sty
+Package: babel 2016/04/23 3.9r The Babel package
+
+(D:\Tools\MikTex\tex\latex\babel-german\ngerman.ldf
+Language: ngerman 2016/11/02 v2.9 German support for babel (new orthography)
+
+(D:\Tools\MikTex\tex\latex\babel-german\ngermanb.ldf
+Language: ngermanb 2016/11/02 v2.9 German support for babel (new orthography)
+
+(D:\Tools\MikTex\tex\generic\babel\babel.def
+File: babel.def 2016/04/23 3.9r Babel common definitions
+\babel@savecnt=\count163
+\U@D=\dimen256
+LaTeX Info: Redefining \textlatin on input line 1448.
+)
+Package babel Info: Making " an active character on input line 125.
+))
+(D:\Tools\MikTex\tex\latex\babel-english\english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listi
 ngs.sty"
-\lst@mode=\count163
+\lst@mode=\count164
 \lst@gtempboxa=\box78
 \lst@token=\toks45
-\lst@length=\count164
-\lst@currlwidth=\dimen256
-\lst@column=\count165
-\lst@pos=\count166
-\lst@lostspace=\dimen257
-\lst@width=\dimen258
-\lst@newlines=\count167
-\lst@lineno=\count168
-\lst@maxwidth=\dimen259
+\lst@length=\count165
+\lst@currlwidth=\dimen257
+\lst@column=\count166
+\lst@pos=\count167
+\lst@lostspace=\dimen258
+\lst@width=\dimen259
+\lst@newlines=\count168
+\lst@lineno=\count169
+\lst@maxwidth=\dimen260
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmi
 sc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count169
-\lst@skipnumbers=\count170
+\c@lstnumber=\count170
+\lst@skipnumbers=\count171
 \lst@framebox=\box79
 )
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listi
@@ -917,25 +940,120 @@ File: listings.cfg 2015/06/04 1.6 listings configuration
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
  (D:\Tools\MikTex\tex\latex\tools\xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
-) (Vortrag.aux
-(src/tex/introduction.aux) (src/tex/example.aux) (src/tex/preliminaries.aux)
-(src/tex/geometric-nonterm.aux))
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\mathtools\math
+tools.sty"
+Package: mathtools 2017/05/24 v1.19 mathematical typesetting tools
+ (D:\Tools\MikTex\tex\latex\tools\calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count172
+\calc@Bcount=\count173
+\calc@Adimen=\dimen261
+\calc@Bdimen=\dimen262
+\calc@Askip=\skip57
+\calc@Bskip=\skip58
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count174
+\calc@Cskip=\skip59
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\mathtools\mhse
+tup.sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+
+LaTeX Warning: You have requested, on input line 116, version
+               `2016/11/05' of package amsmath,
+               but only version
+               `2016/06/28 v2.15d AMS math features'
+               is available.
+
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count175
+\l_MT_multwidth_dim=\dimen263
+\origjot=\skip60
+\l_MT_shortvdotswithinadjustabove_dim=\dimen264
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen265
+\l_MT_above_intertext_sep=\dimen266
+\l_MT_below_intertext_sep=\dimen267
+\l_MT_above_shortintertext_sep=\dimen268
+\l_MT_below_shortintertext_sep=\dimen269
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\makecell\makec
+ell.sty"
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+ (D:\Tools\MikTex\tex\latex\tools\array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen270
+\extrarowheight=\dimen271
+\NC@list=\toks46
+\extratabsurround=\skip61
+\backup@length=\skip62
+)
+\rotheadsize=\dimen272
+\c@nlinenum=\count176
+\TeXr@lab=\toks47
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithms\alg
+orithm.sty"
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+ (D:\Tools\MikTex\tex\latex\float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count177
+\float@exts=\toks48
+\float@box=\box80
+\@float@everytoks=\toks49
+\@floatcapt=\box81
+)
+(D:\Tools\MikTex\tex\latex\base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks50
+\c@algorithm=\count178
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\a
+lgpseudocode.sty"
+Package: algpseudocode 
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\a
+lgorithmicx.sty"
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count179
+\c@ALG@rem=\count180
+\c@ALG@nested=\count181
+\ALG@tlm=\skip63
+\ALG@thistlm=\skip64
+\c@ALG@Lnr=\count182
+\c@ALG@blocknr=\count183
+\c@ALG@storecount=\count184
+\c@ALG@tmpcounter=\count185
+\ALG@tmplength=\skip65
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (Vortrag.aux (src/tex/introduction.aux) (src/tex/example.aux)
+(src/tex/preliminaries.aux) (src/tex/geometric-nonterm.aux))
 \openout1 = `Vortrag.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -975,17 +1093,17 @@ LaTeX Font Info:    ... okay on input line 95.
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pd
 f.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count171
-\scratchdimen=\dimen260
-\scratchbox=\box80
-\nofMPsegments=\count172
-\nofMParguments=\count173
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count174
-\MPscratchDim=\dimen261
-\MPnumerator=\count175
-\makeMPintoPDFobject=\count176
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count186
+\scratchdimen=\dimen273
+\scratchbox=\box82
+\nofMPsegments=\count187
+\nofMParguments=\count188
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count189
+\MPscratchDim=\dimen274
+\MPnumerator=\count190
+\makeMPintoPDFobject=\count191
+\everyMPtoPDFconversion=\toks52
 ) (D:\Tools\MikTex\tex\latex\oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1000,8 +1118,8 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box81
-Package hyperref Info: Link coloring OFF on input line 95.
+\AtBeginShipoutBox=\box83
+Package hyperref Info: Link coloring OFF on input line 105.
 
 (D:\Tools\MikTex\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1009,68 +1127,68 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (D:\Tools\MikTex\tex\generic\oberdiek\gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count177
+\c@section@level=\count192
 )
-LaTeX Info: Redefining \ref on input line 95.
-LaTeX Info: Redefining \pageref on input line 95.
-LaTeX Info: Redefining \nameref on input line 95.
+LaTeX Info: Redefining \ref on input line 105.
+LaTeX Info: Redefining \pageref on input line 105.
+LaTeX Info: Redefining \nameref on input line 105.
  (Vortrag.out)
 (Vortrag.out)
 \@outlinefile=\write5
 \openout5 = `Vortrag.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 95.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 105.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 95.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 105.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 95.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 105.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 95.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 95.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 95.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 105.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 95.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 95.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 95.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 105.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 95.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 95.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 95.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 105.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 95.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 95.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 105.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 95.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 105.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 95.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 95.
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 95.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 95.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 95.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 105.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 95.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 95.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 105.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 105.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 9
-5.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 1
+05.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 
-95.
+105.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 95.
+ut line 105.
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\transla
 tor\dicts\translator-basic-dictionary\translator-basic-dictionary-English.dict"
@@ -1101,12 +1219,12 @@ tor\dicts\translator-theorem-dictionary\translator-theorem-dictionary-English.d
 ict"
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 95.
-\c@lstlisting=\count178
+LaTeX Info: Redefining \includegraphics on input line 105.
+\c@lstlisting=\count193
  (Vortrag.nav)
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 96.
+(Font)              size <5> substituted on input line 106.
 
 [1{C:/Users/Timo Bergerbusch/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
@@ -1115,17 +1233,23 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 ]
 \openout2 = `src/tex/introduction.aux'.
 
- (src/tex/introduction.tex [3
+ (src/tex/introduction.tex (Vortrag.toc) [3
 
+
+] [4
 
 ])
 \openout2 = `src/tex/example.aux'.
 
- (src/tex/example.tex
+
+(src/tex/example.tex (Vortrag.toc) [5
+
+
+
+]
 \openout4 = `Vortrag.vrb'.
 
-
-(Vortrag.vrb
+ (Vortrag.vrb
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstla
 ng1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
@@ -1146,58 +1270,115 @@ line 31.
 \ot1mathkerncmss.fd"
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-)) [4
-
-
+)) [6
 
 ])
 \openout2 = `src/tex/preliminaries.aux'.
 
- (src/tex/preliminaries.tex
+ (src/tex/preliminaries.tex (Vortrag.toc) [7
+
+
+
+]
 \openout4 = `Vortrag.vrb'.
 
- (Vortrag.vrb
+
+(Vortrag.vrb
 Overfull \hbox (1.23772pt too wide) in paragraph at lines 8--21
 [][]  
  []
 
-) [5
-
-
+) [8
 
 ]
 \openout4 = `Vortrag.vrb'.
 
- (Vortrag.vrb) [6
-
-]
-\openout4 = `Vortrag.vrb'.
-
- (Vortrag.vrb) [7
-
-] [8
-
-] [9
+ (Vortrag.vrb) [9
 
 ]
 \openout4 = `Vortrag.vrb'.
 
  (Vortrag.vrb) [10
 
+] [11
+
+] [12
+
+]
+\openout4 = `Vortrag.vrb'.
+
+ (Vortrag.vrb) [13
+
 ]
 \openout4 = `Vortrag.vrb'.
 
 
-(Vortrag.vrb) [11
+(Vortrag.vrb) [14
 
-] [12
+] [15
+
+]
+\openout4 = `Vortrag.vrb'.
+
+ (Vortrag.vrb
+\mybox=\box84
+) [16
+
+]
+Overfull \vbox (1.98804pt too high) detected at line 231
+ []
+
+[17
+
+] [18
 
 ])
 \openout2 = `src/tex/geometric-nonterm.aux'.
 
- (src/tex/geometric-nonterm.tex [13
+ (src/tex/geometric-nonterm.tex (Vortrag.toc) [19
 
 
+
+] [20
+
+]
+\openout4 = `Vortrag.vrb'.
+
+ (Vortrag.vrb
+Overfull \hbox (13.93666pt too wide) in paragraph at lines 13--18
+[][]  
+ []
+
+) [21
+
+]
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 70.
+
+
+Overfull \vbox (10.15575pt too high) detected at line 70
+ []
+
+[22
+
+] [23
+
+]
+Overfull \vbox (7.88893pt too high) detected at line 110
+ []
+
+[24
+
+] [25
+
+] [26
+
+] [27
+
+] [28
+
+] [29
 
 ])
 \tf@nav=\write6
@@ -1209,15 +1390,15 @@ Overfull \hbox (1.23772pt too wide) in paragraph at lines 8--21
 \tf@snm=\write8
 \openout8 = `Vortrag.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 103.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 103.
- (Vortrag.aux
-(src/tex/introduction.aux) (src/tex/example.aux) (src/tex/preliminaries.aux)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 113.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 113.
+ (Vortrag.aux (src/tex/introduction.aux)
+(src/tex/example.aux) (src/tex/preliminaries.aux)
 (src/tex/geometric-nonterm.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 103.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 103.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 113.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 113.
 Package rerunfilecheck Info: File `Vortrag.out' has not changed.
-(rerunfilecheck)             Checksum: 0F8C39C0AB571309D6A493E4AA8B6EEA;443.
+(rerunfilecheck)             Checksum: D4D2E77096A38561E596C18642070187;767.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1225,26 +1406,32 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 24103 strings out of 493333
- 500300 string characters out of 3144357
- 626011 words of memory out of 3000000
- 27027 multiletter control sequences out of 15000+200000
- 13663 words of font info for 50 fonts, out of 3000000 for 9000
+ 26147 strings out of 493333
+ 530535 string characters out of 3144357
+ 666987 words of memory out of 3000000
+ 28960 multiletter control sequences out of 15000+200000
+ 21817 words of font info for 79 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,19n,73p,807b,1423s stack positions out of 5000i,500n,10000p,200000b,50000s
-<D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Tools/MikTex/f
-onts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Tools/MikTex/fonts/type1/public/am
-sfonts/cm/cmmi8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmss10.pfb>
-<D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmss12.pfb><D:/Tools/MikTex/fon
-ts/type1/public/amsfonts/cm/cmss8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfo
-nts/cm/cmssbx10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmssi10.pfb
-><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmssi8.pfb><D:/Tools/MikTex/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Tools/MikTex/fonts/type1/public/ams
-fonts/cm/cmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
-D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Vortrag.pdf (13 pages, 243057 bytes).
+ 71i,19n,97p,807b,1428s stack positions out of 5000i,500n,10000p,200000b,50000s
+<D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><D:/Tools/MikTex/
+fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Tools/MikTex/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/Tools/MikTex/fon
+ts/type1/public/amsfonts/cm/cmmi9.pfb><D:/Tools/MikTex/fonts/type1/public/amsfo
+nts/cm/cmss10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmss12.pfb><D
+:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmss8.pfb><D:/Tools/MikTex/fonts/
+type1/public/amsfonts/cm/cmss9.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts
+/cm/cmssbx10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmssi10.pfb><D
+:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmssi12.pfb><D:/Tools/MikTex/font
+s/type1/public/amsfonts/cm/cmssi8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:
+/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy9.pfb><D:/Tools/MikTex/fonts/t
+ype1/public/amsfonts/cm/cmtt10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts
+/symbols/msam10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10
+.pfb>
+Output written on Vortrag.pdf (29 pages, 465380 bytes).
 PDF statistics:
- 559 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1207 PDF objects out of 1440 (max. 8388607)
+ 71 named destinations out of 1000 (max. 500000)
+ 215 words of extra memory for PDF output out of 10000 (max. 10000000)
 

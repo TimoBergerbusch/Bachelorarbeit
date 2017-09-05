@@ -21,10 +21,10 @@ Here the $c_1,\dots c_n \in \mathbb{Z}$ denote constant numbers. \newline
 An example of a constant \stem is shown in \Cref{lst:stem-cons}. 
 The values of $x$ can be directly read from the right hand side and need no further calculations.
 \newsavebox{\stemexone}% Box to store smallmatrix content
-\savebox{\stemexone}{$\begin{pmatrix}10\\2\end{pmatrix}$}
+\savebox{\stemexone}{$\begin{pmatrix}10\\-3\end{pmatrix}$}
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
-	!$f_1 \rightarrow f_2(10,2) :|: TRUE $!
+	!$f_1 \rightarrow f_2(10,-3) :|: TRUE $!
 	\end{lstlisting}	
 	\caption{An example of a constant \its rule to derive the \stem. The \stem in this case would be \usebox{\stemexone} }
 	\label{lst:stem-cons}
@@ -44,12 +44,12 @@ The handling of equations within the guard term is described within \Cref{sec:de
 %TODO: im code: wenn unsat dann termination
 
 \newsavebox{\stemextwo}% Box to store smallmatrix content
-\savebox{\stemextwo}{$\begin{pmatrix}1+3*3\\2\end{pmatrix}$}
+\savebox{\stemextwo}{$\begin{pmatrix}1+3*3\\-3\end{pmatrix}$}
 \newsavebox{\stemextwosecond}% Box to store smallmatrix content
-\savebox{\stemextwosecond}{$\begin{pmatrix}10\\2\end{pmatrix}$}
+\savebox{\stemextwosecond}{$\begin{pmatrix}10\\-3\end{pmatrix}$}
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
-	!$f_1 \rightarrow f_2(1 + 3 * v, 2) :|: v > 2\text{ \&\& }8 < 3 * v $!
+	!$f_1 \rightarrow f_2(1 + 3 * v, -3) :|: v > 2\text{ \&\& }8 < 3 * v $!
 	\end{lstlisting}	
 	\caption{An example of a variable \its rule to derive the \stem from. In order to derive the \stem, an $v$ fulfilling the conditions need to be found using an \tool{SMT}-Solver. Since $v=3$ is the first number provided by the \solver in $\mathbb{Z}$ that satisfies the guards the \stem would be \usebox{\stemextwo}$=$\usebox{\stemextwosecond}. Note that $v=4$ would be equally permissible.}
 	\label{lst:stem-var}
@@ -205,7 +205,7 @@ So the constant term can simply be read off from the right child-node of the \co
 	\begin{enumerate}
 		\setlength{\itemindent}{1in}
 		\item[(line 2-4)] We compute $V_{left}=\{v_1, v_2\}$, $V_{right}=\{v_1,v_2,v_3\}$ so $V_{sub}=\{v_3\}$
-		\item[(line 5)] begin with $\theta=\{\}$ 
+		\item[(line 5)] Begin with $\theta=\{\}$ 
 		\item[(line 7,8)] Since obviously $V_{sub} \neq \emptyset$  we select $s=v_3$ and select $g_s \Leftrightarrow 5+v_3=2*v_2$
 		\item[(line 9,10)] $g_s$ rewritten to the form $s=\psi$ then follows with $v_3=2*v_2-5$
 		\item[(line 11)] $\theta = \theta\{s/2*v_2-5\} = \{s/2*v_2-5\}$

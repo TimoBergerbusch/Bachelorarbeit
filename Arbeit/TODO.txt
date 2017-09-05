@@ -8,6 +8,7 @@ R - Research
 - Q: explanation as text (like now) or within figure?
 - Q: Class-diagram of the used classes?
 3 Geometric Non-termination:
+- T: rewrite stem-derivation with general def.
 - R: paper with computation of circle within seg
 - Q: proof of "flip" usage?
 - T: show why eigenvalues simplify it/ why eigenvalues are the right choice

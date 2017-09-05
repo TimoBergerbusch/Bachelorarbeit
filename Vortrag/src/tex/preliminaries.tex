@@ -1,6 +1,7 @@
 \section{Preliminaries}
 
 \subsection{Integer Term Rewrite Systems (int-TRS) }
+\frame{\tableofcontents[currentsection]}
 \begin{frame}[fragile] %%Eine Folie
 	\frametitle{Integer Term Rewrite Systems (int-TRS)}
 	\its considered:
@@ -100,7 +101,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\begin{variableblock}{Reminder: \its}{bg=orange!75!black,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Reminder: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
 		!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
 		!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& }$! 
@@ -117,7 +118,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\begin{variableblock}{Reminder: \its}{bg=orange!75!black,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Reminder: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
 		!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
 		!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& }$! 
@@ -144,3 +145,114 @@
 	\end{definition}
 \end{frame}
 
+\subsection{Reverse Polish Notation Tree (RPNTree)}
+
+\begin{frame}[fragile]
+	\frametitle{\rpntree (RPNTree)}
+	\begin{itemize}
+		\item simple tree structure to handle \underline{only} considered terms 
+		\item classes for variables, constants and arith. operations
+	\end{itemize}
+	
+	\newsavebox\mybox
+	\begin{lrbox}{\mybox}
+		
+		\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+		\node (Plus) at (0,0) [objDia] {
+			\textbf{f1}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: PLUS
+		};
+		\node (Times1) at (-4, -2 ) [objDia] {
+			\textbf{f2}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: TIMES	
+		};
+		\node (cons1) at (-6, -4) [objDia] {
+			\textbf{c1}:RPNConstant
+			\nodepart{second}value: 3
+		};
+		\node (var1) at (-2, -4)[objDia] {
+			\textbf{v1}:RPNVariable
+			\nodepart{second}varName: $v_1$
+		};
+		\node (var2) at (4, -2) [objDia] {
+			\textbf{v2}:RPNVariable
+			\nodepart{second}value: $v_2$
+		};
+		\draw[thickarrow] (Plus.south)  -- ++(0,-0.4) -| (Times1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[thickarrow] (Plus.south)  -- ++(0,-0.4) -| (var2.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\end{tikzpicture}
+	\end{lrbox}
+	\begin{example}
+		\centering
+		\begin{tikzpicture}[
+			scale=0.4,
+			every edge/.append style = { dashedarrow },
+			every node/.append style = { stdNode, scale = 0.75} ]
+			\node (L) {\begin{tabular}{cc} mathematical expression: \\ $3*v_1+v_2$ \end{tabular} };
+			\node[below = of L] (M)  {\begin{tabular}{cc} reverse polish notation: \\ $+(*(3, v_1),v_2)$ \end{tabular} };
+			\node[right = of M] (R) {\usebox\mybox};
+			\draw (L.south) edge (M.north);
+			\draw (M.east) edge (R.west);
+		\end{tikzpicture}
+	\end{example}
+\end{frame}
+
+
+\subsection{Sat. Modulo Theorie (SMT)}
+
+\begin{frame}
+	\frametitle{Sat. Modulo Theorie (SMT)}
+	
+	\begin{itemize}
+		\item Basic idea: 
+			\begin{itemize}
+				\item[] set of assertions: (in)-equations with variables
+				\item[] \qquad$\>\>$ $\xrightarrow{\text{\solver}}$ a sat. model \underline{or} unsat. core
+			\end{itemize}		
+		\item \color{blue}sat. model\color{black}: a value for every variable s.t. all assertions hold
+		\item \color{blue}unsat. core\color{black}: a (minimal) set of assertions that can't hold simultaneously
+	\end{itemize}
+	\begin{example}
+		Considering the following assertions:
+		\vspace*{-1em}
+		\begin{figure}[H]
+			\centering
+			\begin{tabular}{cccc}
+				$x \le y$ &	$x > 5 $ &	$ x+ y \le 20$ &$y \neq 10$ \\
+			\end{tabular}
+		\end{figure}
+		\vspace*{-1em}
+		 A possible model would be $m_1 = \{x=6, y=6\}$.\newline \newline
+		 changing the third assertion to $x+y\le10$:\newline
+		 no possible solution with unsat. core $\{x \le y$, $x > 5$, $x+ y \le 10 \}$
+	\end{example}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item assertions can be generated using \color{blue}\smtfactory\color{black}
+		\item if generated it ensures the following property:
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+			\node[objDia] (top) {
+				\textbf{f1}: RPNFunctionSymbol
+				\nodepart{second}arithmeticSymbol: $\circ$
+			};
+			\node[rectangle, draw=black, rounded corners, text centered, anchor=north, below left = of top] (left) {
+				$\psi$
+			};
+			\node[objDia, below right = of top] (right) {
+				\textbf{c1}: RPNConstant
+				\nodepart{second}value: $c$
+			};
+			
+			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (left.north) node [pos = 0.4, above, font=\footnotesize]{left};
+			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (right.north) node [pos = 0.4, above, font=\footnotesize]{right};
+			\end{tikzpicture}
+		\end{figure}
+		where $\circ \in \{\le, = \}$, $cons\in \mathbb{Z}$ and a linear update $\psi= \sum_{i=1}^{n}a_{i,j}v_i$ for variables $v_i$
+	\end{itemize}
+\end{frame}
