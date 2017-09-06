@@ -3,7 +3,7 @@
 
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{tikz}
-\usetikzlibrary{arrows,shapes,positioning,automata}
+\usetikzlibrary{arrows,shapes,positioning,automata,matrix}
 \usepackage[ngerman, english]{babel}
 \usepackage{listings}
 \usepackage{xspace}
@@ -11,6 +11,7 @@
 \usepackage{makecell}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+\usepackage{multirow}
 
 
 \title{Geometric Nontermination Arguments}
@@ -96,6 +97,10 @@
 \newcommand{\blue}[1]{\color{blue}#1\color{black}\xspace}
 \newcommand{\red}[1]{\color{red}#1\color{black}\xspace}
 \newcommand{\green}[1]{\color{green!50!black}#1\color{black}\xspace}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
 
 \newenvironment{variableblock}[3]{%
 	\setbeamercolor{block body}{#2}

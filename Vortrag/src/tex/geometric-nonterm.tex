@@ -203,16 +203,326 @@
 	\end{itemize}
 \end{frame}
 
+\subsection{Derivation: Update Matrix/Constants}
+\begin{frame}
+	\frametitle{Derivation: Update Matrix/Constants}
+	\begin{itemize}
+		\item do \underline{not} contain any (in-)equalities
+		\item follow the form: $c+\sum_{i=1}^{n}a_i v_i$ (\underline{not} $v_i a_i$)
+		\item \red{Problem}: can still contain new variables from the guards
+		\item[] \green{Solution}: apply substitutions to the updates
+		\item \red{Problem}: constant term can occur anywhere
+		\item[] \green{Solution}: perform recursive search under certainty of two aspects:
+			\begin{enumerate}
+				\item at most one constant term exists
+				\item the constant term is \underline{not} multiplied
+			\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\begin{frame} % algo: coefficient deriv.
+	\begin{algorithm}[H]
+		\caption{Derivation of a coefficient}
+		\begin{algorithmic}[1]
+			\Function{getCoefficient}{$query$}
+			\If{this == query}
+			\State \Return $1$
+			\ElsIf{this does \underline{not} contain query}
+			\State \Return $0$
+			\EndIf
+			\State
+			\If{this represents PLUS}
+			\If{left side contains $query$}
+			\State \Return getCoefficient$(query)$
+			\Else
+			\State \Return getCoefficient$(query)$
+			\EndIf
+			\EndIf
+			\If{this represents TIMES}
+			\If{this.right == query}
+			\State \Return this.left.value
+			\EndIf				
+			\EndIf
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+\end{frame}
+
+%\begin{frame}
+%	code of constant derivation
+%\end{frame}
+
+\begin{frame}
+	\begin{example}
+		An example of coefficient derivation for query $v_1$:
+		\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+		\node (Plus) at (0,0) [objDia] {
+			\textbf{f1}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: PLUS
+		};
+		\node (Times1) at (-4, -2 ) [objDia] {
+			\textbf{f2}:RPNFunctionSymbol
+			\nodepart{second}arithmeticSymbol: TIMES	
+		};
+		\node (cons1) at (-6, -4) [objDia] {
+			\textbf{c1}:RPNConstant
+			\nodepart{second}value: 3
+		};
+		\node (var1) at (-2, -4)[objDia] {
+			\textbf{v1}:RPNVariable
+			\nodepart{second}varName: $v_1$
+		};
+		\node (var2) at (4, -2) [objDia] {
+			\textbf{v2}:RPNVariable
+			\nodepart{second}varName: $v_2$
+		};
+		\draw[considered] (Plus.south)  -- ++(0,-0.4) -| (Times1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[neglected] (Plus.south)  -- ++(0,-0.4) -| (var2.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\draw[considered] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
+		\draw[query] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
+		\end{tikzpicture}
+	\end{example}
+\end{frame}
 
 
+\subsection{Derivation: Iteration Matrix/Constants}
+\begin{frame} % iterationmatrix
+	\frametitle{\updatematrix/\textit{Constants} \& \iterationmatrix/\textit{Constants}}
+	\begin{itemize}
+		\item derived a coefficient for every variable and constant per update
+		\item[$\Rightarrow$] \iterationmatrix/\textit{Constants} \checkmark
+		\item \iterationmatrix/\textit{Constants} given by: 
+			\begin{figure}[H]
+				\centering
+				$A = \begin{pmatrix} G & \textbf{0} \\ M & -I \\ -M & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
+			\end{figure}
+		 can be computed
+		 \item[$\Rightarrow$] \iterationmatrix/\textit{Constants} \checkmark
+	\end{itemize}
+\end{frame}
+
+\subsection{Derivation: SMT-Problem}
+\begin{frame}
+	\frametitle{SMT-Problem}
+	\begin{itemize}
+		\item given $A$ and $b$ use a \solver to dis-/prove existence of a GNA
+		\item \red{Problem}: $\lambda_i*y_i$ is non-linear
+		\item[] \green{Solution}: compute $\lambda_i$ as the $i$-th eigenvalue of $U$
+		\item \red{Problem}: $\mu_i*y_i$ is non-linear
+		\item[] can approach this problem in 2 ways:
+			\begin{enumerate}
+				\item use \qfnia
+				\item iterate over all $\mu$'s
+			\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+%	\frametitle{\color{white}Domain \& Initiation Criteria}
+	\begin{variableblock}{Reminder: Domain Criteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		\begin{itemize}
+			\setlength{\itemindent}{1cm}
+			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
+%			\item[(init)] x represents the \startterm (\stem)
+%			\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
+%			\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
+		\end{itemize}
+	\end{variableblock}
+	$\Rightarrow$ adds no assertions
+	\begin{variableblock}{Reminder: Initiation Criteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		\begin{itemize}
+			\setlength{\itemindent}{1cm}
+%			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
+			\item[(init)] x represents the \startterm (\stem)
+%			\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
+%			\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
+		\end{itemize}
+	\end{variableblock}
+	$\Rightarrow$ adds no assertions
+\end{frame}
+
+\begin{frame}
+	\begin{variableblock}{Reminder: Point Criteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		\begin{itemize}
+			\setlength{\itemindent}{1cm}
+%			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
+%			\item[(init)] x represents the \startterm (\stem)
+			\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
+			%			\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
+		\end{itemize}
+	\end{variableblock}
+	\begin{itemize}
+		\item $y_i$ unknown $\Rightarrow$ create $s_i=x_i+\sum_{j=1}^n y_{i,j}$
+		\item $A\begin{pmatrix} x \\ s \end{pmatrix} \le b$ \newline
+	\end{itemize}
+	$\Leftrightarrow \begin{pmatrix}
+	& G 		& 			& 0 	 & \dots  & 0 \\
+	a_{1,1}  & \dots 	& a_{1,n}	& -1 	 & \dots  & 0 \\
+	\vdots   & \ddots 	& \vdots	& \vdots & \ddots & \vdots \\
+	a_{n,1}  & \dots 	& a_{n,n}	& 0 	 & \dots  & -1 \\
+	-a_{1,1} & \dots 	& -a_{1,n}	& 1 	 & \dots  & 0 \\
+	\vdots   & \ddots 	& \vdots	& \vdots & \ddots & \vdots \\
+	-a_{n,1} & \dots 	& -a_{n,n}	& 0 	 & \dots  & 1 \\
+	\end{pmatrix} \begin{pmatrix} x1 \\ \vdots \\ x_n \\ s_1 \\ \vdots \\ s_n\end{pmatrix} \le \begin{pmatrix} g \\ -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$\\ %\newline
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{itemize}
+		\item $y_i$ unknown $\Rightarrow$ create $s_i=x_i+\sum_{j=1}^n y_{i,j}$
+		\vspace*{-1em} \item[] \hspace*{-1cm} 
+			\begin{tikzpicture}
+				\matrix [matrix of math nodes,left delimiter=(,right delimiter=)] (m)
+				{
+					a_{1,1}*x_1  & \dots 	& a_{1,n}*x_n	& -1*s_1 & \dots  & 0*s_n \\
+					\vdots   	 & \ddots 	& \vdots		& \vdots & \ddots & \vdots \\
+					a_{n,1}*x_1  & \dots 	& a_{n,n}*x_n	& 0*s_1	 & \dots  & -1*s_n \\
+					-a_{1,1}*x_1 & \dots 	& -a_{1,n}*x_n	& 1*s_1	 & \dots  & 0*s_n \\
+					\vdots   	 & \ddots 	& \vdots		& \vdots & \ddots & \vdots \\
+					-a_{n,1}*x_1 & \dots 	& -a_{n,n}*x_n	& 0*s_1	 & \dots  & 1*s_n \\           
+				};  
+				\node[right = 0.25 cm of m] (le) {$\le$}; 
+				\matrix [right = 0.25cm of le, matrix of math nodes,left delimiter=(,right delimiter=)] (c)
+				{
+					-u_1 \\ 
+					\vdots\\ 
+					-u_n \\ 
+					u_1 \\ 
+					\vdots \\ 
+					u_n \\           
+				};
+				\draw[color=red, thick] (m-1-1.north west) -- (m-1-6.north east) -- (m-1-6.south east) -- (m-1-1.south west) -- (m-1-1.north west);	
+				\draw[color=red, thick] (m-4-1.north west) -- (m-4-6.north east) -- (m-4-6.south east) -- (m-4-1.south west) -- (m-4-1.north west);
+				\draw[color=red, thick] (c-1-1.north west) -- (c-1-1.north east) -- (c-1-1.south east) -- (c-1-1.south west) -- (c-1-1.north west);
+				\draw[color=red, thick] (c-4-1.north west) -- (c-4-1.north east) -- (c-4-1.south east) -- (c-4-1.south west) -- (c-4-1.north west);
+			\end{tikzpicture}
+		\item[$\Rightarrow$] add guard assertion, $n$ assertions of equality 
+		\item[] and addition assertion for every $s_i$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{variableblock}{Reminder: Ray Criteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		\begin{itemize}
+			\setlength{\itemindent}{1cm}
+			%			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
+			%			\item[(init)] x represents the \startterm (\stem)
+%			\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
+			\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
+		\end{itemize}
+	\end{variableblock}
+	\begin{itemize}
+		\setlength{\itemindent}{1cm}
+		\item[$i=1$:] $\Rightarrow \mu_{i-1}y_{i-1}=0 \Rightarrow $ $A\begin{pmatrix} y_1 \\ \lambda_1 y_1 \end{pmatrix} \le 0$
+		\item[]	add assertion with $y_{1,j}$ $1\le j \le n$ as new variables
+		\item[$i>1$:] with $\lambda_i$ as the $i$-th eigenvalue 
+		\item[] add assertion with $y_{i,j}$ $1 \le j \le n$ and $\mu_i$ as new variables
+		\item[]
+		\item[] $\Rightarrow$ all necessary assertions stated \checkmark
+		\item[] let \solver derive a GNA (if exists)
+	\end{itemize}	
+\end{frame}
 
 
+\begin{frame}
+	\begin{variableblock}{Reminder: Derived matrices and values}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		\begin{tabular}{llc}
+			\multirow{2}{*}{$A=\begin{pmatrix}
+				-1 		& -1 		&  0		& 0		 \\
+				-1 		& 0 		&  0		& 0		 \\
+				-3 		& 0 		&  0		& 0		 \\
+				0 		& 2 		&  0		& 0		 \\
+				3 		& 1 		&  -1		& 0		 \\
+				0 		& 2 		&  0		& -1	 \\
+				-3 		& -1 		&  1		& 0		 \\
+				0 		& -2 		&  0		& 1	 	 \\
+				\end{pmatrix}$}&\multirow{2}{*}{$ b=\begin{pmatrix}
+				-4 \\ -7 \\ -21 \\ -6 \\ 0 \\ 5 \\ 0 \\ -5
+				\end{pmatrix} $}& $\lambda_1 = 3,$ \\
+			& &  $\lambda_2 = 2$\\
+			& & $x=(10, -3)^T$ \\
+			& & \\
+			& & \\
+			& & \\
+			& & \\
+			& & \\
+		\end{tabular}
+	\end{variableblock}
+	\begin{example}[Assertions \rom{1}: Point Crit.]
+		\begin{itemize}
+%			\setlength{\itemindent}{1.5cm}
+			\item add guards. I.e.: $-10-(-3)\le-4$
+			\item		  add sum rules. I.e.: $30-3-s_1=0$
+			\item       add $s_1= y_{1,1}+y_{2,1}$ and $s_2=y_{1,2}+y_{2,2}$
+		\end{itemize}
+	\end{example}	
+\end{frame}
 
+\begin{frame}
+	\begin{variableblock}{Reminder: Derived matrices and values}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		\begin{tabular}{llc}
+			\multirow{2}{*}{$A=\begin{pmatrix}
+				-1 		& -1 		&  0		& 0		 \\
+				-1 		& 0 		&  0		& 0		 \\
+				-3 		& 0 		&  0		& 0		 \\
+				0 		& 2 		&  0		& 0		 \\
+				3 		& 1 		&  -1		& 0		 \\
+				0 		& 2 		&  0		& -1	 \\
+				-3 		& -1 		&  1		& 0		 \\
+				0 		& -2 		&  0		& 1	 	 \\
+				\end{pmatrix}$}&\multirow{2}{*}{$ b=\begin{pmatrix}
+				-4 \\ -7 \\ -21 \\ -6 \\ 0 \\ 5 \\ 0 \\ -5
+				\end{pmatrix} $}& $\lambda_1 = 3,$ \\
+			& &  $\lambda_2 = 2$\\
+			& & $x=(10, -3)^T$ \\
+			& & \\
+			& & \\
+			& & \\
+			& & \\
+			& & \\
+		\end{tabular}
+	\end{variableblock}
+	\begin{example}[Assertions \rom{2}: Ray Crit.]
+		\begin{itemize}
+			\setlength{\itemindent}{0.25cm}
+			\item[i=1:] add for instance $-y_{1,1}-y_{1,2}\le 4$, $3*y_{1,1}+y_{1,2}-3*y_{1,1}\le0$
+			\item[i$>$1:] add for instance $-y_{2,1}-y_{2,2}\le 4$, 
+			\item[] $3*y_{2,1}+y_{2,2}-1*(2*y_{2,1}+\mu*y_{1,1})\le0$
+		\end{itemize}
+	\end{example}
+\end{frame}
 
+\section{Verification of a GNA}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}
+	\frametitle{\color{white}Verification of a GNA}
+	\begin{itemize}
+		\item received a GNA form the \solver
+		\item want to verify the correctness of the \solver's model
+		\item[$\Rightarrow$] recalculating of a GNA with the matrices and given values
+	\end{itemize}
+	\begin{example}[Validating a GNA \rom{1}]
+		The \solver gave us: $y_1=\begin{pmatrix} 9 \\ 0 \end{pmatrix}$, $y_2=\begin{pmatrix} 8 \\ -8 \end{pmatrix}$, $\mu_1=0$\newline
+		\begin{itemize}
+			\setlength{\itemindent}{1.5cm}
+			\item[(domain)] obviously true \checkmark
+			\item[(init)] checked against the \stem \checkmark
+			\item[(point)]  $A\begin{pmatrix} 10 \\ -3 \\ 10+9+8 \\ -3 + 0 + (-8) \end{pmatrix} \le b \Leftrightarrow A\begin{pmatrix} 10 \\ -3 \\ 27 \\ -11 \end{pmatrix} \le b$ \checkmark
+		\end{itemize}
+	\end{example}
+\end{frame}
 
-
-
-
+\begin{frame}
+	\begin{example}[Validating a GNA \rom{2}]
+		The \solver gave us: $y_1=\begin{pmatrix} 9 \\ 0 \end{pmatrix}$, $y_2=\begin{pmatrix} 8 \\ -8 \end{pmatrix}$, $\mu_1=0$\newline
+		\begin{itemize}
+			\setlength{\itemindent}{0.5cm}
+			\item[(ray)]
+			\item[$i=1$:]  $A\begin{pmatrix} 9 \\ 0 \\ 3*9 \\ 3*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 9 \\ 0 \\ 27 \\ 0 \end{pmatrix} \le 0$ \checkmark
+			\item[$i>1$:] $A\begin{pmatrix} 8 \\ -8 \\ 2*8+0*9 \\ 2*(-8)+0*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 16 \\ -16 \end{pmatrix} \le 0$ \checkmark
+		\end{itemize}
+		$\Rightarrow$ the derived GNA is applicable $\Rightarrow$ nontermination is proven
+	\end{example}
+\end{frame}
 
 
 

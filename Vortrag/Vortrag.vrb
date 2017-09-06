@@ -1,22 +1,31 @@
-\frametitle{Derivation: \stem}
-	Consider \color{blue}two\color{black}\xspace different possibilities:
-	\begin{tabular}{rl}
-		\blue{constant stem}: & $f_x \rightarrow f_y(c_1,\dots,c_n) :|: TRUE$ \\
-							  & $\Rightarrow$ read of values \\
-	\end{tabular}
-	\begin{example}
-		\centering
-		$f_1 \rightarrow f_2(10,-3)$
-		$\Rightarrow$ \stem = $ (10, -3)^T$
-	\end{example}
-
-	\begin{tabular}{rl}
-		\blue{variable stem}: & $f_x \rightarrow f_y(c_1+\sum_{i=1}^{n}a_{1,i}v_i, \dots, c_n+\sum_{i=1}^{n}a_{n,i}v_i) :|: $ \\
-							  & $\bigwedge_{\text{guard }g} \sum_{i=1}^{n}g_{n,i}v_i \le c_m$ \\
-							  & $\Rightarrow$ create assertions and derive a model \\
-	\end{tabular}
-	\begin{example}
-		\centering
-		$f_1 \rightarrow f_2(1 + 3v_1, -3) :|: v_1 > 2\text{ \&\& }8 < 3v_1 $ \newline
-		$\Rightarrow$ model $m_1=\{v=3\}$ $\Rightarrow$\stem = $ (10, -3)^T$
-	\end{example}
+\begin{itemize}
+		\item $y_i$ unknown $\Rightarrow$ create $s_i=x_i+\sum_{j=1}^n y_{i,j}$
+		\vspace*{-1em} \item[] \hspace*{-1cm}
+			\begin{tikzpicture}
+				\matrix [matrix of math nodes,left delimiter=(,right delimiter=)] (m)
+				{
+					a_{1,1}*x_1  & \dots 	& a_{1,n}*x_n	& -1*s_1 & \dots  & 0*s_n \\
+					\vdots   	 & \ddots 	& \vdots		& \vdots & \ddots & \vdots \\
+					a_{n,1}*x_1  & \dots 	& a_{n,n}*x_n	& 0*s_1	 & \dots  & -1*s_n \\
+					-a_{1,1}*x_1 & \dots 	& -a_{1,n}*x_n	& 1*s_1	 & \dots  & 0*s_n \\
+					\vdots   	 & \ddots 	& \vdots		& \vdots & \ddots & \vdots \\
+					-a_{n,1}*x_1 & \dots 	& -a_{n,n}*x_n	& 0*s_1	 & \dots  & 1*s_n \\
+				};
+				\node[right = 0.25 cm of m] (le) {$\le$};
+				\matrix [right = 0.25cm of le, matrix of math nodes,left delimiter=(,right delimiter=)] (c)
+				{
+					-u_1 \\
+					\vdots\\
+					-u_n \\
+					u_1 \\
+					\vdots \\
+					u_n \\
+				};
+				\draw[color=red, thick] (m-1-1.north west) -- (m-1-6.north east) -- (m-1-6.south east) -- (m-1-1.south west) -- (m-1-1.north west);
+				\draw[color=red, thick] (m-4-1.north west) -- (m-4-6.north east) -- (m-4-6.south east) -- (m-4-1.south west) -- (m-4-1.north west);
+				\draw[color=red, thick] (c-1-1.north west) -- (c-1-1.north east) -- (c-1-1.south east) -- (c-1-1.south west) -- (c-1-1.north west);
+				\draw[color=red, thick] (c-4-1.north west) -- (c-4-1.north east) -- (c-4-1.south east) -- (c-4-1.south west) -- (c-4-1.north west);
+			\end{tikzpicture}
+		\item[$\Rightarrow$] add guard assertion, $n$ assertions of equality
+		\item[] and addition assertion for every $s_i$
+	\end{itemize}

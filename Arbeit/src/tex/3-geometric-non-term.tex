@@ -240,22 +240,22 @@ After restraining the updates to only mention the desired variables we can intro
 	\label{algo:coefficient}
 	\begin{algorithmic}[1]
 		\Function{getCoefficient}{$query$}
-			\If{node == query}\Comment{query is a variable name}
+			\If{this == query}\Comment{query is a variable name}
 				\State \Return $1$
-			\ElsIf{node does \underline{not} contain query} \Comment{tree does not contain query}
+			\ElsIf{this does \underline{not} contain query} \Comment{tree does not contain query}
 				\State \Return $0$
 			\EndIf
 			\State
-			\If{node represents PLUS} \Comment{Choose the subtree containing the query}
+			\If{this represents PLUS} \Comment{Choose the subtree containing the query}
 				\If{left side contains $query$}
 					\State \Return getCoefficient$(query)$
 				\Else
 					\State \Return getCoefficient$(query)$
 				\EndIf
 			\EndIf
-			\If{node represents TIMES} \Comment{Retrieve value}
-				\If{node.right == query}
-					\State \Return node.left.value
+			\If{this represents TIMES} \Comment{Retrieve value}
+				\If{this.right == query}
+					\State \Return this.left.value
 				\EndIf				
 			\EndIf
 		\EndFunction
@@ -318,6 +318,7 @@ The \updateconstants can be derived by an simplification of \Cref{algo:coefficie
 				\State $right \gets right.getConstantTerm()*flip$
 				\State \Return $left+right$
 			\EndIf
+			\State \Return $0$
 		\EndFunction
 	\end{algorithmic}
 	\caption{Derivation of a constant term within an \rpntree}
