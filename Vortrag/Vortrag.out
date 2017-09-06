@@ -1,15 +1,15 @@
 \BOOKMARK [2][]{Outline0.1}{Introduction}{}% 1
 \BOOKMARK [2][]{Outline0.2}{Example}{}% 2
 \BOOKMARK [2][]{Outline0.3}{Preliminaries}{}% 3
-\BOOKMARK [3][]{Outline0.3.1.7}{Integer Term Rewrite Systems \(int-TRS\) }{Outline0.3}% 4
-\BOOKMARK [3][]{Outline0.3.2.9}{Geometric Nontermination Argument \(GNA\)}{Outline0.3}% 5
-\BOOKMARK [3][]{Outline0.3.3.12}{Definitions}{Outline0.3}% 6
-\BOOKMARK [3][]{Outline0.3.4.16}{Reverse Polish Notation Tree \(RPNTree\)}{Outline0.3}% 7
-\BOOKMARK [3][]{Outline0.3.5.17}{Sat. Modulo Theorie \(SMT\)}{Outline0.3}% 8
+\BOOKMARK [3][]{Outline0.3.1.9}{Integer Term Rewrite Systems \(int-TRS\) }{Outline0.3}% 4
+\BOOKMARK [3][]{Outline0.3.2.11}{Geometric Nontermination Argument \(GNA\)}{Outline0.3}% 5
+\BOOKMARK [3][]{Outline0.3.3.14}{Definitions}{Outline0.3}% 6
+\BOOKMARK [3][]{Outline0.3.4.20}{Reverse Polish Notation Tree \(RPNTree\)}{Outline0.3}% 7
+\BOOKMARK [3][]{Outline0.3.5.21}{Sat. Modulo Theorie \(SMT\)}{Outline0.3}% 8
 \BOOKMARK [2][]{Outline0.4}{Geometric Nontermination}{}% 9
-\BOOKMARK [3][]{Outline0.4.1.21}{Derivation: STEM}{Outline0.4}% 10
-\BOOKMARK [3][]{Outline0.4.2.22}{Derivation: Guard Matrix/Constants}{Outline0.4}% 11
-\BOOKMARK [3][]{Outline0.4.3.30}{Derivation: Update Matrix/Constants}{Outline0.4}% 12
-\BOOKMARK [3][]{Outline0.4.4.33}{Derivation: Iteration Matrix/Constants}{Outline0.4}% 13
-\BOOKMARK [3][]{Outline0.4.5.34}{Derivation: SMT-Problem}{Outline0.4}% 14
+\BOOKMARK [3][]{Outline0.4.1.24}{Derivation: STEM}{Outline0.4}% 10
+\BOOKMARK [3][]{Outline0.4.2.25}{Derivation: Guard Matrix/Constants}{Outline0.4}% 11
+\BOOKMARK [3][]{Outline0.4.3.33}{Derivation: Update Matrix/Constants}{Outline0.4}% 12
+\BOOKMARK [3][]{Outline0.4.4.36}{Derivation: Iteration Matrix/Constants}{Outline0.4}% 13
+\BOOKMARK [3][]{Outline0.4.5.37}{Derivation: SMT-Problem}{Outline0.4}% 14
 \BOOKMARK [2][]{Outline0.5}{Verification of a GNA}{}% 15

@@ -4,6 +4,7 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,positioning,automata,matrix}
+\usetikzlibrary{decorations.pathreplacing}
 \usepackage[ngerman, english]{babel}
 \usepackage{listings}
 \usepackage{xspace}
@@ -60,6 +61,14 @@
 \tikzstyle{considered}=[thickarrow, color = blue]
 \tikzstyle{neglected} = [thickarrow, color = red]
 \tikzstyle{query} = [thickarrow, color = green!50!black]
+
+\tikzset{
+	invisible/.style={opacity=0},
+	visible on/.style={alt={#1{}{invisible}}},
+	alt/.code args={<#1>#2#3}{%
+		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+	},
+}
 
 \newcommand{\code}[1]{\textit{#1}}
 \newcommand{\tool}[1]{\textsf{#1}}

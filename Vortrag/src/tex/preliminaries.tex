@@ -10,19 +10,12 @@
 	!$\>\>f_y(\underbrace{v_1, \dots v_n}_{(3)}) \> \rightarrow \>\> f_y \>\>\>(\underbrace{v^\prime_1,\dots v^\prime_n}_{(3)})  :|: \underbrace{cond_2}_{(4)}$!
 	\end{lstlisting}
 	
-	\begin{tabular}{ll}
-		\parbox{5cm}{
-		\begin{enumerate}
-			\item[(1)] function symbol (no variables $\Rightarrow$ start)
-			\item[(3)] variables $v^\prime_i$ as linear updates of the variables $v_j$
-		\end{enumerate}}
-		&
-		\parbox{5cm}{
-			\begin{enumerate}
-				\item[(2)] function symbol
-				\item[(4)] a set of (in)-equations mentioning $v_j$ and $v^\prime_i$
-		\end{enumerate}}
-	\end{tabular}
+	\begin{enumerate}
+		\item[(1)] function symbol (no variables $\Rightarrow$ start)
+		\item[(3)] variables $v^\prime_i$ as linear updates of the variables $v_j$
+			\item[(2)] function symbol
+			\item[(4)] a set of (in)-equations mentioning $v_j$ and $v^\prime_i$
+	\end{enumerate}
 
 	Reading: "rewrite $f_y(v_1,\dots,v_n)$ as $f_y(v^\prime_1,\dots,v^\prime_n)$ if \textit{cond} holds"
 \end{frame}
@@ -91,11 +84,11 @@
 	\frametitle{Definitons: Matrices}
 %	For all definitions we take a rule to be specified as $r \Leftrightarrow f_x(v_1,\dots,v_n)\rightarrow f_y(c_1+\sum_{i=1}^{n}g_{1,i}v_i, \dots, c_n+\sum_{i=1}^{n}g_{n,i}v_i) :|: $\newline 
 %	\hspace*{1.5cm}$\bigwedge_{\text{guard }g} \sum_{i=1}^{n}g_{n,i}v_i \le c_m$
-	\begin{definition}[\guardmatrix, \guardconstants]
+	\begin{definition}[\guardmatrix, \guardconstants]<1->
 		For $1\le i,j\le n$ and $m$ the number of guards not containing "=":\newline
 		The \guardmatrix $G\in \mathbb{Z}^{m\times n}$ is the matrix of coefficients $a_{i,j}$ of a variable $v_i$ within the $j$-th guard. The \guardconstants $g \in \mathbb{Z}^{m}$ are the constant terms $c_j$ within the $j$-th guard.
 	\end{definition}
-	\begin{definition}[\updatematrix, \updateconstants]
+	\begin{definition}[\updatematrix, \updateconstants]<2->
 		The \updatematrix $U \in \mathbb{Z}^{n \times n}$ and \updateconstants $u \in \mathbb{Z}^n$ are analogously to the \guardmatrix and \guardconstants , considering the updates (right hand side) instead of the guards.
 	\end{definition}
 \end{frame}
@@ -135,14 +128,14 @@
 \end{frame}
 
 \begin{frame}
-	\begin{definition}[\iterationmatrix, \iterationconstants]
+	\begin{definition}[\iterationmatrix, \iterationconstants]<1->
 		Let \textbf{0} be a matrix of the size of $G$ with only entry's 0 and $I$ denote the identity matrix having the same dimension as $U$. Then are the \iterationmatrix $A$ and \iterationconstants $b$ defined as:
 		\begin{figure}[H]
 			\centering
 			$A = \begin{pmatrix} G & \textbf{0} \\ U & -I \\ -U & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
 		\end{figure}
 	\end{definition}
-	\begin{variableblock}{Sentence}{bg=blue!10!white,fg=black}{bg=blue, fg=white}
+	\begin{variableblock}{Sentence}{bg=blue!10!white,fg=black}{bg=blue, fg=white}<2->
 		If a geometric nontermination argument $a$ for a program $p$ exists, then $p$ does
 		not terminate.
 	\end{variableblock}
@@ -153,12 +146,12 @@
 \begin{frame}[fragile]
 	\frametitle{\rpntree (RPNTree)}
 	\begin{itemize}
-		\item simple tree structure to handle \underline{only} considered terms 
-		\item classes for variables, constants and arith. operations
+		\item<1-> simple tree structure to handle \underline{only} considered terms 
+		\item<1-> classes for variables, constants and arith. operations
 	\end{itemize}
 	
-	\newsavebox\mybox
-	\begin{lrbox}{\mybox}
+	\newsavebox\testboxEX
+	\begin{lrbox}{\testboxEX}
 		
 		\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 		\node (Plus) at (0,0) [objDia] {
@@ -195,7 +188,7 @@
 			every node/.append style = { stdNode, scale = 0.75} ]
 			\node (L) {\begin{tabular}{cc} mathematical expression: \\ $3*v_1+v_2$ \end{tabular} };
 			\node[below = of L] (M)  {\begin{tabular}{cc} reverse polish notation: \\ $+(*(3, v_1),v_2)$ \end{tabular} };
-			\node[right = of M] (R) {\usebox\mybox};
+			\node[right = of M] (R) {\usebox\testboxEX};
 			\draw (L.south) edge (M.north);
 			\draw (M.east) edge (R.west);
 		\end{tikzpicture}
@@ -233,29 +226,29 @@
 	\end{example}
 \end{frame}
 
-\begin{frame}
-	\begin{itemize}
-		\item assertions can be generated using \color{blue}\smtfactory\color{black}
-		\item if generated it ensures the following property:
-		\begin{figure}[H]
-			\centering
-			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
-			\node[objDia] (top) {
-				\textbf{f1}: RPNFunctionSymbol
-				\nodepart{second}arithmeticSymbol: $\circ$
-			};
-			\node[rectangle, draw=black, rounded corners, text centered, anchor=north, below left = of top] (left) {
-				$\psi$
-			};
-			\node[objDia, below right = of top] (right) {
-				\textbf{c1}: RPNConstant
-				\nodepart{second}value: $c$
-			};
-			
-			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (left.north) node [pos = 0.4, above, font=\footnotesize]{left};
-			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (right.north) node [pos = 0.4, above, font=\footnotesize]{right};
-			\end{tikzpicture}
-		\end{figure}
-		where $\circ \in \{\le, = \}$, $cons\in \mathbb{Z}$ and a linear update $\psi= \sum_{i=1}^{n}a_{i,j}v_i$ for variables $v_i$
-	\end{itemize}
-\end{frame}
+%\begin{frame}
+%	\begin{itemize}
+%		\item assertions can be generated using \color{blue}\smtfactory\color{black}
+%		\item if generated it ensures the following property:
+%		\begin{figure}[H]
+%			\centering
+%			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+%			\node[objDia] (top) {
+%				\textbf{f1}: RPNFunctionSymbol
+%				\nodepart{second}arithmeticSymbol: $\circ$
+%			};
+%			\node[rectangle, draw=black, rounded corners, text centered, anchor=north, below left = of top] (left) {
+%				$\psi$
+%			};
+%			\node[objDia, below right = of top] (right) {
+%				\textbf{c1}: RPNConstant
+%				\nodepart{second}value: $c$
+%			};
+%			
+%			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (left.north) node [pos = 0.4, above, font=\footnotesize]{left};
+%			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (right.north) node [pos = 0.4, above, font=\footnotesize]{right};
+%			\end{tikzpicture}
+%		\end{figure}
+%		where $\circ \in \{\le, = \}$, $cons\in \mathbb{Z}$ and a linear update $\psi= \sum_{i=1}^{n}a_{i,j}v_i$ for variables $v_i$
+%	\end{itemize}
+%\end{frame}

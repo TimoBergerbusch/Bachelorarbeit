@@ -1,5 +1,5 @@
 \begin{itemize}
-		\item $y_i$ unknown $\Rightarrow$ create $s_i=x_i+\sum_{j=1}^n y_{i,j}$
+%		\item $y_i$ unknown $\Rightarrow$ create $s_i=x_i+\sum_{j=1}^n y_{j,i}$
 		\vspace*{-1em} \item[] \hspace*{-1cm}
 			\begin{tikzpicture}
 				\matrix [matrix of math nodes,left delimiter=(,right delimiter=)] (m)
