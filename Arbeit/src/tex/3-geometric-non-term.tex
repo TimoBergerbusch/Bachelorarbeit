@@ -3,7 +3,7 @@
 Now that all preliminaries are stated we can start to take a look at how the approach works within \aprove. To find a \gna and so prove nontermination we use \aprove to generate an \its of a given program, which is defined within \Cref{sec:aprove}.
 Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT}-Problem using \Cref{def:gna} and compute a \gna, which would be a prove of nontermination, or state that no \gna can exist, which does \underline{not} infer termination nor nontermination.
 
-\section{Derivation of the \emph{STEM}}
+\section{Derivation of the STEM}
 \label{sec:stem}
 The derivation of the \stem is the first step in order to derive a \gna. As described in \Cref{sec:structure} the \stem defines the variables before iterating through the \loopt.  Owed to the fact, that \aprove has to find the lasso to derive an \its within the generated \seg one iteration through the \loopt will be calculated. Obviously this does not falsify the result. If it does not terminate i will still not terminate after one iteration and if it terminates after $n$ iterations and we compute one it will still terminate after $n-1$ iterations. \newline
 Within the derivation of the \stem we distinguish between two cases discussed in the following sections.
@@ -55,7 +55,7 @@ The handling of equations within the guard term is described within \Cref{sec:de
 	\label{lst:stem-var}
 \end{figure}
 
-\section{Derivation of the \emph{LOOP}}
+\section{Derivation of the LOOP}
 \label{sec:loop}
 The derivation of the \loopt is pretty straight forward applying \Cref{def:guard}, \Cref{def:update} to a looping rule and then computing \iterationmatrix and \iterationconstants using \Cref{def:iteration}, if no guards with equalities ("=") occur. Then we have to perform previous steps to apply the mentioned definitions. \newline
 Let $f_x$ be the starting function symbol given by the \its and $r_i$ be a rule, with 
@@ -407,7 +407,7 @@ As stated in \Cref{def:iteration} the \iterationmatrix and \iterationconstants c
 \end{figure}
 Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a matrix \textbf{0}$ \in \{0\}^{m\times n}$ and identity-matrix $I \in \{0,1\}^{n\times n}$, where $n$ is the number of distinct not newly introduced variables and $m$ the number of guards without equations.
 
-\section{Derivation of the \emph{SMT}-Problem}
+\section{Derivation of the SMT-Problem}
 \label{sec:derivation-smt}
 The existence of a \gna is checked using an \tool{SMT} solver, presented in \Cref{sec:smt-problem}, which will either give us a model satisfying the constraints or proof the non existence by giving an unsatisfiable core. \newline
 The constraints the \tool{SMT} solver has to fulfil are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute it's eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently. \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it

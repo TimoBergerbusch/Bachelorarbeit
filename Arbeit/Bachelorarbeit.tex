@@ -34,6 +34,7 @@
 \usepackage{multirow}
 \usepackage{todonotes}
 \usepackage{wrapfig}
+\usepackage{datetime}
 
 \usepackage{mdframed}
 \usepackage[section]{placeins}
@@ -98,34 +99,36 @@
 \newcommand{\tool}[1]{\textsf{#1}}
 \newcommand{\aprove}{\tool{AProVE}\xspace}
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
-\newcommand{\stem}{\textit{STEM}\xspace}
-\newcommand{\loopt}{\textit{LOOP}\xspace}
-\newcommand{\guardmatrix}{\textit{Guard Matrix}\xspace}
-\newcommand{\guardconstants}{\textit{Guard Constants}\xspace}
-\newcommand{\updatematrix}{\textit{Update Matrix}\xspace}
-\newcommand{\updateconstants}{\textit{Update Constants}\xspace}
-\newcommand{\iterationmatrix}{\textit{Iteration Matrix}\xspace}
-\newcommand{\iterationconstants}{\textit{Iteration Constants}\xspace}
+\newcommand{\stem}{STEM\xspace}
+\newcommand{\loopt}{LOOP\xspace}
+\newcommand{\guardmatrix}{Guard Matrix\xspace}
+\newcommand{\guardconstants}{Guard Constants\xspace}
+\newcommand{\updatematrix}{Update Matrix\xspace}
+\newcommand{\updateconstants}{Update Constants\xspace}
+\newcommand{\iterationmatrix}{Iteration Matrix\xspace}
+\newcommand{\iterationconstants}{Iteration Constants\xspace}
 \newcommand{\startterm}{\textit{start term}\xspace}
-\newcommand{\gna}{\textit{geometric nontermination argument}\xspace}
-\newcommand{\gnanal}{\textit{geometric nontermination analysis}\xspace}
-\newcommand{\rpntree}{\textit{Reverse Polish Notation Tree}\xspace}
+\newcommand{\gna}{geometric nontermination argument\xspace}
+\newcommand{\gnas}{geometric nontermination arguments\xspace}
+\newcommand{\gnanal}{geometric nontermination analysis\xspace}
+\newcommand{\rpntree}{Reverse Polish Notation Tree\xspace}
 \newcommand{\smtfactory}{\code{SMTFactory}\xspace}
-\newcommand{\its}{\tool{int-TRS}\xspace}
-\newcommand{\llvm}{\tool{llvm}\xspace}
-\newcommand{\nonterm}{\textit{non-termination}\xspace}
+\newcommand{\its}{\tool{ITS}\xspace}
+\newcommand{\itss}{\tool{ITSs}\xspace}
+\newcommand{\llvm}{\tool{LLVM}\xspace}
+\newcommand{\nonterm}{nontermination\xspace}
 \newcommand{\seg}{\textit{Symbolic Execution Graph}\xspace}
 \newcommand{\stdLinInt}{standard linear integer form\xspace}
 \newcommand{\stdG}{standard guard form\xspace}
 \newcommand{\strG}{strict guard form\xspace}
-\newcommand{\solver}{\textit{SMT}-\textit{solver}\xspace}
-\newcommand{\domc}{\textit{Domain Criteria}\xspace}
-\newcommand{\initc}{\textit{Initiation Criteria}\xspace}
-\newcommand{\pointc}{\textit{Point Criteria}\xspace}
-\newcommand{\rayc}{\textit{Ray Criteria}\xspace}
-\newcommand{\addass}{\textit{Additional assertion}\xspace}
+\newcommand{\solver}{SMT-solver\xspace}
+\newcommand{\domc}{Domain Criteria\xspace}
+\newcommand{\initc}{Initiation Criteria\xspace}
+\newcommand{\pointc}{Point Criteria\xspace}
+\newcommand{\rayc}{Ray Criteria\xspace}
+\newcommand{\addass}{Additional assertion\xspace}
 \newcommand{\qfnia}{\textit{quantifier free non-linear integer arithmetic}\xspace}
-\newcommand{\lasso}{\tool{lasso}\xspace}
+\newcommand{\lasso}{lasso}
 
 \newtheorem{definition}{Definition}[section]
 \newtheorem{corollary}{Corollary}[section]
@@ -150,6 +153,8 @@
 \newcommand{\listingautorefname}{figure}
 \newcommand{\algorithmautorefname}{algorithm}
 \renewcommand{\sectionautorefname}{Section}
+
+\newdateformat{myformat}{\THEDAY{. }\monthname[\THEMONTH], \THEYEAR}
 
 \begin{document}
 

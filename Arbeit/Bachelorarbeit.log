@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  5 SEP 2017 18:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  7 SEP 2017 16:08
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -1599,6 +1599,90 @@ g.sty"
 \WF@everypar=\toks52
 Package: wrapfig 2003/01/31  v 3.6
 )
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\datetime\datet
+ime.sty"
+Package: datetime 2015/03/20 v2.60 Date Time Package
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\etoolbox\etool
+box.sty"
+Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count180
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\fmtcount\fmtco
+unt.sty"
+Package: fmtcount 2017/07/21 v3.03
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\fmtcount\fcpre
+fix.sty"
+Package: fcprefix 2012/09/28
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\fmtcount\fcnum
+parser.sty"
+Package: fcnumparser 2017/06/15
+\fc@digit@counter=\count181
+))
+\c@padzeroesN=\count182
+\fc@tmpcatcode=\count183
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\fmtcount\fc-en
+glish.def"
+File: fc-english.def 2016/01/12
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\fmtcount\fc-ng
+erman.def"
+File: fc-ngerman.def 2012/06/18
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\fmtcount\fc-ge
+rman.def"
+File: fc-german.def 2016/01/12
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\fmtcount\fc-ge
+rmanb.def"
+File: fc-germanb.def 2013/08/17
+))
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\fmtcount\fc-ng
+ermanb.def"
+File: fc-ngermanb.def 2013/08/17
+))
+\@DT@modctr=\count184
+\@ordinalctr=\count185
+\@orgargctr=\count186
+\@strctr=\count187
+\@tmpstrctr=\count188
+\@DT@loopN=\count189
+\@DT@X=\count190
+)
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\datetime\datet
+ime-defaults.sty"
+Package: datetime-defaults 2013/09/10
+)
+\@day=\count191
+\@month=\count192
+\@year=\count193
+\c@HOUR=\count194
+\c@HOURXII=\count195
+\c@MINUTE=\count196
+\c@TOHOUR=\count197
+\c@TOMINUTE=\count198
+\c@SECOND=\count199
+\currenthour=\count266
+\currentminute=\count267
+\currentsecond=\count268
+Package datetime Info: No datetime.cfg file found, using default settings on in
+put line 308.
+\@dtctr=\count269
+\dayofyear=\count270
+\dayofweek=\count271
+LaTeX Info: Redefining \today on input line 736.
+
+("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\datetime\dt-ng
+erman.def"
+File: dt-ngerman.def 2013/09/10
+LaTeX Info: Redefining \datengerman on input line 86.
+)
+\dt@a=\toks53
+\dt@b=\toks54
+)
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\mdframed\mdfra
 med.sty"
 Package: mdframed 2013/07/01 1.9b: mdframed
@@ -1620,24 +1704,24 @@ L3 Module: l3tl 2016/08/19 v6692 L3 Token lists
 L3 Module: l3str 2016/08/19 v6692 L3 Strings
 L3 Module: l3seq 2016/08/19 v6685 L3 Sequences and stacks
 L3 Module: l3int 2016/09/07 v6700 L3 Integers
-\c_max_int=\count180
-\l_tmpa_int=\count181
-\l_tmpb_int=\count182
-\g_tmpa_int=\count183
-\g_tmpb_int=\count184
+\c_max_int=\count272
+\l_tmpa_int=\count273
+\l_tmpb_int=\count274
+\g_tmpa_int=\count275
+\g_tmpb_int=\count276
 L3 Module: l3quark 2016/08/19 v6685 L3 Quarks
 L3 Module: l3prg 2016/08/18 v6679 L3 Control structures
-\g__prg_map_int=\count185
+\g__prg_map_int=\count277
 L3 Module: l3clist 2016/08/19 v6685 L3 Comma separated lists
 L3 Module: l3token 2016/09/01 v6695 L3 Experimental token manipulation
 L3 Module: l3prop 2016/08/19 v6685 L3 Property lists
 L3 Module: l3msg 2016/08/19 v6691 L3 Messages
 L3 Module: l3file 2016/08/19 v6685 L3 File and I/O operations
-\l_iow_line_count_int=\count186
-\l__iow_target_count_int=\count187
-\l__iow_current_line_int=\count188
-\l__iow_current_word_int=\count189
-\l__iow_current_indentation_int=\count190
+\l_iow_line_count_int=\count278
+\l__iow_target_count_int=\count279
+\l__iow_current_line_int=\count280
+\l__iow_current_word_int=\count281
+\l__iow_current_indentation_int=\count282
 L3 Module: l3skip 2016/08/19 v6692 L3 Dimensions and skips
 \c_zero_dim=\dimen277
 \c_max_dim=\dimen278
@@ -1658,17 +1742,17 @@ L3 Module: l3skip 2016/08/19 v6692 L3 Dimensions and skips
 \g_tmpa_muskip=\muskip16
 \g_tmpb_muskip=\muskip17
 L3 Module: l3keys 2016/09/21 v6711 L3 Key-value interfaces
-\l_keys_choice_int=\count191
+\l_keys_choice_int=\count283
 L3 Module: l3fp 2016/11/21 v6761 L3 Floating points
-\c__fp_leading_shift_int=\count192
-\c__fp_middle_shift_int=\count193
-\c__fp_trailing_shift_int=\count194
-\c__fp_big_leading_shift_int=\count195
-\c__fp_big_middle_shift_int=\count196
-\c__fp_big_trailing_shift_int=\count197
-\c__fp_Bigg_leading_shift_int=\count198
-\c__fp_Bigg_middle_shift_int=\count199
-\c__fp_Bigg_trailing_shift_int=\count266
+\c__fp_leading_shift_int=\count284
+\c__fp_middle_shift_int=\count285
+\c__fp_trailing_shift_int=\count286
+\c__fp_big_leading_shift_int=\count287
+\c__fp_big_middle_shift_int=\count288
+\c__fp_big_trailing_shift_int=\count289
+\c__fp_Bigg_leading_shift_int=\count290
+\c__fp_Bigg_middle_shift_int=\count291
+\c__fp_Bigg_trailing_shift_int=\count292
 L3 Module: l3box 2016/08/19 v6685 L3 Experimental boxes
 \c_empty_box=\box92
 \l_tmpa_box=\box93
@@ -1719,20 +1803,15 @@ L3 Module: l3luatex 2016/08/18 v6679 L3 Experimental LuaTeX-specific functions
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\l3pdf
 mode.def"
 File: l3pdfmode.def 2016/08/18 v6679 L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count267
+\l__driver_color_stack_int=\count293
 \l__driver_tmp_box=\box107
 ))
 Package: xparse 2016/11/21 v6760 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count268
-\l__xparse_m_args_int=\count269
-\l__xparse_mandatory_args_int=\count270
-\l__xparse_processor_int=\count271
-\l__xparse_v_nesting_int=\count272
-)
-("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\etoolbox\etool
-box.sty"
-Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count273
+\l__xparse_current_arg_int=\count294
+\l__xparse_m_args_int=\count295
+\l__xparse_mandatory_args_int=\count296
+\l__xparse_processor_int=\count297
+\l__xparse_v_nesting_int=\count298
 ) (D:\Tools\MikTex\tex\latex\oberdiek\zref-abspage.sty
 Package: zref-abspage 2016/05/21 v2.26 Module abspage for zref (HO)
 
@@ -1742,7 +1821,7 @@ Package zref Info: New property list: main on input line 759.
 Package zref Info: New property: default on input line 760.
 Package zref Info: New property: page on input line 761.
 )
-\c@abspage=\count274
+\c@abspage=\count299
 Package zref Info: New property: abspage on input line 62.
 )
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\needspace\need
@@ -1750,7 +1829,7 @@ space.sty"
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip88
-\c@mdf@globalstyle@cnt=\count275
+\c@mdf@globalstyle@cnt=\count300
 \mdf@skipabove@length=\skip89
 \mdf@skipbelow@length=\skip90
 \mdf@leftmargin@length=\skip91
@@ -1827,7 +1906,7 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@horizontalspaceofbox=\skip152
 \mdfsubtitleheight=\skip153
 \mdfsubsubtitleheight=\skip154
-\c@mdfcountframes=\count276
+\c@mdfcountframes=\count301
 
 ****** mdframed patching \endmdf@trivlist
 
@@ -1843,10 +1922,10 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 . 
 . Defining command \mdtheorem with sig. ' O{} m o m o ' on line 701.
 .................................................
-\mdf@envdepth=\count277
-\c@mdf@env@i=\count278
-\c@mdf@env@ii=\count279
-\c@mdf@zref@counter=\count280
+\mdf@envdepth=\count302
+\c@mdf@env@i=\count303
+\c@mdf@env@ii=\count304
+\c@mdf@zref@counter=\count305
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\placeins\place
@@ -1878,36 +1957,36 @@ s\decorations\pgflibrarydecorations.pathmorphing.code.tex"))
 layer\tikz\libraries\tikzlibrarydecorations.shapes.code.tex"
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\librarie
 s\decorations\pgflibrarydecorations.shapes.code.tex")))
-\c@definition=\count281
-\c@corollary=\count282
-\c@example=\count283
-\c@satz=\count284
+\c@definition=\count306
+\c@corollary=\count307
+\c@example=\count308
+\c@satz=\count309
  (Bachelorarbeit.aux)
 \openout1 = `Bachelorarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 154.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 159.
 
 
 (D:\Tools\MikTex\tex\latex\base\ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 154.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 159.
 
 (D:\Tools\MikTex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1915,17 +1994,17 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pd
 f.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count285
+\scratchcounter=\count310
 \scratchdimen=\dimen308
 \scratchbox=\box113
-\nofMPsegments=\count286
-\nofMParguments=\count287
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count288
+\nofMPsegments=\count311
+\nofMParguments=\count312
+\everyMPshowfont=\toks55
+\MPscratchCnt=\count313
 \MPscratchDim=\dimen309
-\MPnumerator=\count289
-\makeMPintoPDFobject=\count290
-\everyMPtoPDFconversion=\toks54
+\MPnumerator=\count314
+\makeMPintoPDFobject=\count315
+\everyMPtoPDFconversion=\toks56
 ) (D:\Tools\MikTex\tex\latex\oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1939,7 +2018,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-\c@lstlisting=\count291
+\c@lstlisting=\count316
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1976,18 +2055,18 @@ G,.JBIG2,.JB2,.eps]
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box114
-Package hyperref Info: Link coloring OFF on input line 154.
+Package hyperref Info: Link coloring OFF on input line 159.
 (D:\Tools\MikTex\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (D:\Tools\MikTex\tex\generic\oberdiek\gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count292
+\c@section@level=\count317
 )
-LaTeX Info: Redefining \ref on input line 154.
-LaTeX Info: Redefining \pageref on input line 154.
-LaTeX Info: Redefining \nameref on input line 154.
+LaTeX Info: Redefining \ref on input line 159.
+LaTeX Info: Redefining \pageref on input line 159.
+LaTeX Info: Redefining \nameref on input line 159.
  (Bachelorarbeit.out) (Bachelorarbeit.out)
 \@outlinefile=\write5
 \openout5 = `Bachelorarbeit.out'.
@@ -2016,7 +2095,7 @@ LaTeX Font Info:    Try loading font information for OMX+lmex on input line 44.
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 44.
+(Font)              <10.95> on input line 44.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 44.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -2034,7 +2113,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Try loading font information for U+stmry on input line 44.
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\stmaryrd\ustmr
-y.fd") [1
+y.fd")
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 44.
+ [1
 
 
 {C:/Users/Timo Bergerbusch/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
@@ -2064,8 +2146,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--16
 
  []
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 17.
 ) [2] (src/tex/0.3-abstract.tex
 Underfull \hbox (badness 10000) in paragraph at lines 1--2
 
@@ -2074,18 +2154,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--2
 LaTeX Font Info:    Try loading font information for T1+lmss on input line 6.
 (D:\Tools\MikTex\tex\latex\lm\t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
-))
-Underfull \hbox (badness 10000) in paragraph at lines 4--168
+)
+Underfull \hbox (badness 10000) in paragraph at lines 4--14
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--168
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--168
+)
+Underfull \hbox (badness 10000) in paragraph at lines 15--173
 
  []
 
@@ -2109,39 +2184,24 @@ l.1 \chapter
 
 ]
 Chapter 1.
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--6
-
- []
-
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 44.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 44.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 44.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 44.
-(D:\Tools\MikTex\tex\latex\lm\t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
- been already used, duplicate ignored
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 43.
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.46 
-      [3pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.1.1}) has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.46 
-     ]) (src/tex/2-Preliminaries.texpdfTeX warning (ext4): destination with the
- same identifier (name{page.4}) has been already used, duplicate ignored
+l.44 
+      [3]) (src/tex/2-Preliminaries.texpdfTeX warning (ext4): destination with 
+the same identifier (name{page.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1 \chapter
             {Preliminaries} [4]
 Chapter 2.
-
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 15.
+(D:\Tools\MikTex\tex\latex\lm\t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 Underfull \hbox (badness 10000) in paragraph at lines 13--21
 
  []
@@ -2160,6 +2220,10 @@ has been already used, duplicate ignored
                                                   
 l.27 	\item[(2)]
                  A function symbol denoting a current program-state]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 29.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 29.
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 47.
 
 (D:\Tools\MikTex\tex\latex\lm\ts1lmr.fd
@@ -2335,9 +2399,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 573--593
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.594 T
-       he from the technique given witness is the \gna of size 2 with the fo...
-]
+l.593 \end{figure}
+                  ]
 \pointcrit=\box119
 \raycrit=\box120
  [25]
@@ -2374,37 +2437,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--10
  []
 
 [33]
-Underfull \hbox (badness 1394) in paragraph at lines 123--128
+Underfull \hbox (badness 1394) in paragraph at lines 127--132
 \T1/lmr/m/n/10.95 at []$\T1/lmtt/m/n/10.95 http : / / en . wikipedia . org / w 
 / index . php ? title = Reverse _ Polish _ notation$[]\T1/lmr/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--135
+Underfull \hbox (badness 10000) in paragraph at lines 134--139
 \T1/lmr/m/n/10.95 at []$\T1/lmtt/m/n/10.95 http : / / termination-[]portal . or
 g / wiki / Termination _ Competition _ 2017$[]\T1/lmr/m/n/10.95 ,
  []
 
 ) [34]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 191.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 191.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 196.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 196.
  (Bachelorarbeit.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 191.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 191.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 196.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 196.
 Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 41DEA2AB16C77A0C8526362F9E6EB234;2892.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 191.
+(rerunfilecheck)             Checksum: 900EA4106AC4DEDBAE206195C5B3CEEA;2830.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 196.
  ) 
 Here is how much of TeX's memory you used:
- 36805 strings out of 493333
- 720768 string characters out of 3144357
- 824178 words of memory out of 3000000
- 39461 multiletter control sequences out of 15000+200000
- 126341 words of font info for 90 fonts, out of 3000000 for 9000
+ 37589 strings out of 493333
+ 734328 string characters out of 3144357
+ 850382 words of memory out of 3000000
+ 40211 multiletter control sequences out of 15000+200000
+ 121113 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,32n,85p,10435b,1369s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-rm.enc}{D:/Tools/MikTex/fonts/enc/dvip
-s/lm/lm-mathit.enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-ec.enc}{D:/Tools/MikT
+{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-ec.enc}{D:/Tools/MikTex/fonts/enc/dvip
+s/lm/lm-rm.enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-mathit.enc}{D:/Tools/MikT
 ex/fonts/enc/dvips/lm/lm-mathsy.enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-ts1.
 enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-mathex.enc}<D:/Tools/MikTex/fonts/ty
 pe1/public/lm/lmbx10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmbx12.pfb><D:/
@@ -2423,11 +2486,10 @@ ublic/lm/lmsso10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmsy10.pfb><D:/Tool
 s/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/lm
 /lmsy9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt10.pfb><D:/Tools/MikTex/f
 onts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt9.pfb
-><D:/Tools/MikTex/fonts/type1/public/lm/lmtti10.pfb><D:/Tools/MikTex/fonts/type
-1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (39 pages, 721834 bytes).
+><D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Bachelorarbeit.pdf (39 pages, 697888 bytes).
 PDF statistics:
- 830 PDF objects out of 1000 (max. 8388607)
- 179 named destinations out of 1000 (max. 500000)
- 437 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 824 PDF objects out of 1000 (max. 8388607)
+ 178 named destinations out of 1000 (max. 500000)
+ 429 words of extra memory for PDF output out of 10000 (max. 10000000)
 
