@@ -105,11 +105,18 @@ public class GeoNonTermArgument {
     private boolean checkDomainCriteria() {
 	boolean bool = true;
 
-	for (int i : lambda)
+	for (int i : lambda) {
+	    // Logger.getLog().writeln("Eigenvalue: "+i);
 	    bool &= (i >= 0);
+	}
 
-	for (int i : mu)
+	for (int i : mu) {
+	    // Logger.getLog().writeln("Mu: "+i);
 	    bool &= (i >= 0);
+	}
+
+	if (!bool)
+	    Logger.getLog().writeln("Domain Crit. doesn't hold!");
 
 	return bool;
     }
@@ -201,5 +208,23 @@ public class GeoNonTermArgument {
 	vec = a.mult(vec);
 
 	return vec.lessOrEqualThan(b);
+    }
+
+    public String toString() {
+	StringBuilder sb = new StringBuilder();
+	sb.append("++++++ GeoNonTermArgument ++++++").append("\n");
+	sb.append("    STEM: ").append("\t").append(x.toString()).append("\n");
+
+	for (int i = 0; i < y.length; i++)
+	    sb.append("     y_" + i + ": ").append("\t").append(y[i]).append("\n");
+
+	for (int i = 0; i < lambda.length; i++)
+	    sb.append("lambda_" + i + ": ").append("\t").append(lambda[i]).append("\n");
+
+	for (int i = 0; i < mu.length; i++)
+	    sb.append("    mu_" + i + ": ").append("\t").append(mu[i]).append("\n");
+	sb.append("++++++++++++++++++++++++++++++++");
+
+	return sb.toString();
     }
 }

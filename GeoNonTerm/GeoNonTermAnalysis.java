@@ -77,7 +77,7 @@ public class GeoNonTermAnalysis {
      * a static boolean to determine if the information about the process should
      * be printed using the {@link Logger#getLog() Logger}.
      */
-    private static int SHOULD_PRINT = 1;
+    private static int SHOULD_PRINT = 3;
 
     private static boolean GIVE_UP = false;
 
@@ -148,10 +148,17 @@ public class GeoNonTermAnalysis {
 	    if (!GIVE_UP)
 		gna = this.tryDerivingAGNA();
 
-	    if (gna != null && SHOULD_PRINT >= 1)
-		Logger.getLog()
-			.writeln("GNA-Test: " + gna.validate(loop.getIterationMatrix(), loop.getIterationConstants()));
+	    if (gna != null) {
+		boolean test = gna.validate(loop.getIterationMatrix(), loop.getIterationConstants());
+		if(SHOULD_PRINT >= 1)
+		    Logger.getLog().writeln("GNA-Test: " + test);
+		if(!test){
+		    Logger.getLog().close();
+		    assert test;
+		}
+	    }
 	    this.gna = gna;
+	    // Logger.getLog().writeln(gna);
 	}
 
 	Logger.getLog().close();

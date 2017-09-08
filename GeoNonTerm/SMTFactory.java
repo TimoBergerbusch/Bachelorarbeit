@@ -253,6 +253,7 @@ public class SMTFactory {
 	    vec.setEntry(i, varName + "" + i);
 	    vec.setEntry(i + size, lambda + "*" + varName + "" + i + "+" + mu + "*" + addVarName + "" + i);
 	}
+	this.addDomainCrit(mu);
 
 	return vec;
     }
@@ -358,6 +359,11 @@ public class SMTFactory {
 //	    Logger.getLog().writeln("////////// created rule:"+ nodes[i] +"<= "+ cons.get(i));
 	    solver.addAssertion(this.createRule(IntegerRelationType.LE, exp, this.createConst(cons.get(i))).toSMTExp());
 	}
+    }
+
+    public void addDomainCrit(String string) {
+	PlainIntegerRelation createRule = this.createRule(IntegerRelationType.GE, this.parseRPNTreeToSMTRule(new RPNVariable(string)), this.parseRPNTreeToSMTRule(new RPNConstant(0)));
+	solver.addAssertion(createRule.toSMTExp());
     }
 
 }
