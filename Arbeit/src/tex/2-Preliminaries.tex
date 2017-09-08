@@ -1,35 +1,35 @@
 \chapter{Preliminaries}
 \label{chapter:preliminaries}
 
-In order to be able to explain the non-termination approach we have to declare, what nontermination means, which programs are considered within the Geometric Nontermination and present the \gna building the core of the approach. Furthermore we have to define a few structures we work on.
+In order to be able to explain the non-termination approach we have to declare, what nontermination means, which programs are considered within the Geometric Nontermination and present the \gna building the core of the approach. Furthermore we have to define a few structures we work on. Further we have to define what an \solver is and how it is used within this implementation.
 
 \section{Non-Termination}
 The definition of non-termination is the most essential considering a technique proving it. Non-termination can be defined as a specific input to a program $p$, such that $p$ runs in an infinite loop.
 Proving termination is much harder than proving non-termination, since we only have to determine one case, which fit's the condition of running into an infinite loop. \newline
 Non-termination is obviously still undecidable, since otherwise the halting problem would be decidable, nevertheless there are a large variety of possibilities to prove non-termination as we will see in this paper.
 
-\section{Integer Term Rewrite System(\its)}
+\section{Integer Transition Systems(\its)}
 \label{sec:its}
-In order to apply the upcoming procedure we have to define what structure the approach works on. The derivation of an \its from source code is described in \autoref{sec:aprove}. Considering the following approach we will look at a \its in a more superficial way. The composition of a \its considered in this paper is shown in \autoref{fig:its-structure}.\newline
+In order to apply the upcoming procedure we have to define what structure the approach works on. The derivation of an \its from source code is described in \Cref{sec:aprove}. Considering the following approach we will look at a \its in a more superficial way. The composition of a \its considered in this paper is shown in \Cref{fig:its-structure}.\newline
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
 		!$\overbrace{f_x}^{(1)} \qquad\qquad \rightarrow \overbrace{f_y}^{(2)} (v_1, \dots v_n) :|: cond_1$!
-		!$f_y(\underbrace{v_1, \dots v_n}_{(3)}) \>\> \rightarrow \>\> f_y \>(\underbrace{v^\prime_1,\dots v^\prime_n}_{(3)})  :|: \underbrace{cond_2}_{(4)}$!
+		!$\>f_y(\underbrace{v_1, \dots v_n}_{(3)}) \> \rightarrow \>\> f_y \>(\underbrace{v^\prime_1,\dots v^\prime_n}_{(3)})  :|: \underbrace{cond_2}_{(4)}$!
 	\end{lstlisting}
 	\caption{The structure of a \its considered in this paper.}
 	\label{fig:its-structure}
 \end{figure}
 %QUESTION: Explanation in text or in figure?
 
-The considered program shown in \autoref{fig:its-structure} consists of a set of structure elements necessary to be defined:
+The considered program shown in \Cref{fig:its-structure} consists of a set of structure elements, whose definition is necessary:
 \begin{enumerate}[leftmargin=1]
-	\item[(1)] A function symbol consisting of no variables is a \textit{start function symbol} and is the first symbol to use. Further explanation in (line 1) and \autoref{fig:structure-example-TRS}.
+	\item[(1)] A function symbol consisting of no variables is a \textit{start function symbol} and is the first symbol to use. Further explanation in (line 1) and \Cref{fig:structure-example-TRS}.
 	\item[(2)] A function symbol denoting a current program-state
 	\item[(3)] The variables of a function symbol denoting the change of the variables by applying the term rewriting rule. The value of $v^\prime_i \in \mathbb{Z}$ is a linear update of the variables $v_j \in \mathbb{Z}$ $1 \le j \le n$ in \stdLinInt. \footnote{The \stdLinInt has the following pattern: $ a_1*v_1 + \dots + a_n*v_n + c$, where $a_i , v_i, c \in \mathbb{Z}$, $1 \le i\le n$. 
 		Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$} 
-	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$ $m \in \mathbb{N}$, where $\text{(in)equation}_i$ contains not only $v_j$ $1 \le j \le n$, but can also introduce new variables through equality. The $(in)equalities$ are defined further in \autoref{sec:derivation-guard}.
-	\item[(line 1)] The first line is the rewriting rule the program starts with and can be seen as a declaration of initial values of some variables. An example is shown in \autoref{fig:structure-example-TRS}
-	\item[(line 2)] Such a self-looping rule considered within this approach to define further computations. Other looping rules will be presented in \autoref{sec:structure-improvement}.
+	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$ $m \in \mathbb{N}$, where $\text{(in)equation}_i$ contains not only $v_j$ $1 \le j \le n$, but can also introduce new variables through equality. The $(in)equalities$ are defined further in \Cref{sec:derivation-guard}.
+	\item[(line 1)] The first line is the rewriting rule the program starts with and can be seen as a declaration of initial values of some variables. An example is shown in \Cref{fig:structure-example-TRS}
+	\item[(line 2)] Such a self-looping rule considered within this approach to define further computations. Other looping rules will be presented in \Cref{sec:structure-improvement}.
 \end{enumerate} 
 
 %In general an \its can have rules of other forms, like $f_x(v_1, \dots v_n) \rightarrow f_y(v^\prime_1, \dots v^\prime_k) :|: cond$ where $n \ne k$ can occur, but these rules are for now not considered.
@@ -38,16 +38,16 @@ The considered program shown in \autoref{fig:its-structure} consists of a set of
 Adapted from Jan Leikes and Matthias Heizmanns paper \textit{Geometric Nontermination Arguments} \cite{leike2014geometric} we will define the considered programs, define the \stem and \loopt and finally state the definition of \textit{Geometric Nontermination Arguments}.
 
 \subsection{Considered Programs}
-The considered programs in the Geometric Nontermination are not bound to a special programming language. The paper works on so called Linear-Lasso Programs, which in fact are also used within \aprove to derive the so called (int-)TRS, stated in \autoref{sec:aprove}. Because of the also stated conversion of the language into a \seg and further analysis the applicability of \gna's are not bound to any programming language. \newline
+The considered programs in the Geometric Nontermination are not bound to a special programming language. The paper works on so called Linear-Lasso Programs, which in fact are also used within \aprove to derive the so called (int-)TRS, stated in \Cref{sec:aprove}. Because of the also stated conversion of the language into a \seg and further analysis the applicability of \gna's are not bound to any programming language. \newline
 In order to define the specific conditions under which we can use the approach, we take the language \tool{Java} as an example.
 \subsection{Structure}
 \label{sec:structure}
-The structure of the considered programs is quite simple. They contain an optional declaration of the used variables and a \code{while}-loop. Even though \tool{Java} would not accept this the conversion to \tool{llvm} would still be sound. An example of a fulfilling \tool{Java} program is shown in \autoref{fig:structure-example-java}. 
+The structure of the considered programs is quite simple. They contain an optional declaration of the used variables and a \code{while}-loop. Even though \tool{Java} would not accept this the conversion to \tool{llvm} would still be sound. An example of a fulfilling \tool{Java} program is shown in \Cref{fig:structure-example-java}. 
 \begin{itemize}
 	\item The \stem: \newline
-		The initialization and optional declaration of variables used within the \code{while}-loop. In the figure line 3 and 4 are considered the \stem. Also only $b$ is initialized with a value.
+		The initialization and optional declaration of variables used within the \code{while}-loop. In \Cref{fig:structure-example-java} line 3 and 4 are considered the \stem. Also only $b$ is declared with a value.
 	\item The guard: \newline
-		The guard of the \code{while}-loop is essential to restrict $a$  as we will see in \autoref{sec:stem-var}. With the restriction of $a+b\ge 4 $ we can prove termination for $a < 3$ without further analysis, and also, in order to prove termination, assume that $a \ge 3$.
+		The guard of the \code{while}-loop is essential to restrict $a$  as we will see in \Cref{sec:stem-var}. With the restriction of $a+b\ge 4 $ we can prove termination for $a < 3$ without further analysis, and also, in order to prove nontermination, assume that $a \ge 3$.
 	\item The linear Updates: \newline
 		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their value determine if the guard still holds. The approach works with only linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have a $v_i=a_1*v_1+...+a_n*v_n+c$ with $n \in \mathbb{N}$. Note since we work on \its it is sufficient for $a_i$ to be in $\mathbb{Z}$. 	
 \end{itemize} 
@@ -80,12 +80,12 @@ The structure of the considered programs is quite simple. They contain an option
 		\draw (C.west) edge (d.east);
 		\draw (C.west) edge (e.east);
 	\end{tikzpicture}
-	\caption{A \tool{Java} program fulfilling the conditions to be applicable}
+	\caption{A \tool{Java} program fulfilling the conditions mentioned in \Cref{sec:structure} to be applicable}
 	\label{fig:structure-example-java}
 \end{figure}
 The guard and linear updates together form the so called \loopt. 
 
-Through the in \autoref{sec:its} described procedure and given structure we receive the to \autoref{fig:structure-example-java} equivalent \its shown in \autoref{fig:structure-example-TRS}. As we can see the original program can be recognized quite easily. The first rule in line 1 denotes the \stem, while the second line equals the loop \loopt. \newline
+Through the in \Cref{sec:its} described procedure and given structure we receive the to \Cref{fig:structure-example-java} corresponding \its shown in \Cref{fig:structure-example-TRS}. As we can see the original program can be recognized quite easily. The first rule in line 1 denotes the \stem, while the second line equals the \loopt. \newline
 
 %TODO: richtig formatieren
 \begin{figure}[H]
@@ -99,17 +99,17 @@ Through the in \autoref{sec:its} described procedure and given structure we rece
 %	f_1 -> f_2(1 + 3 * v_1, -3) :|: v_1 > 2 && 8 < 3 * v_1
 %	f_2(v_1, v_2) -> f_2(3 * v_1 + v_2, v_3) :|: v_1 + v_2 > 3 && v_1 > 6 && 3 * v_1 > 20 && 5 + v_3 = 2 * v_2 && v_3 < -10
 
-	\caption{The \its corresponding to the \tool{Java} program in \autoref{fig:structure-example-java}}
+	\caption{The \its corresponding to the \tool{Java} program in \Cref{fig:structure-example-java}}
 	\label{fig:structure-example-TRS}
 \end{figure}
- Neglecting the conditional terms for now the declaration of $v^\prime_2$ in line 1 is set to -3, because of the one circle the \seg has to compute in order to find a lasso. Starting with $b=1$ one step would be the computation of $b = 2*1-5=-3$. The definition of $v^\prime_1$ is more difficult and will be shown within \autoref{sec:stem}.
-Also the update for $v^\prime_1$ within line 2 is the same as in \autoref{fig:structure-example-java} line 7. The definition of $v^\prime_2 = v_3$ is fundamental and not as simple as $v^\prime_1$, since $v_3$ is a new variable introduced within the \textit{guards} through the equality $5+v_3=2*v_2$. The handling of such variables will be explained in \autoref{sec:derivation-update} and \autoref{sec:derivation-guard}. \newline
+ Neglecting the conditional terms for now the declaration of $v^\prime_2$ in line 1 to -3, because of the one circle the \seg has to compute in order to find a lasso. Starting with $b=1$ one step would be the computation of $b = 2*1-5=-3$. The definition of $v^\prime_1$ is more difficult and will be shown within \Cref{sec:stem}.
+Also the update for $v^\prime_1$ within line 2 is the same as in \Cref{fig:structure-example-java} line 7. The definition of $v^\prime_2 = v_3$ is fundamental and not as simple as $v^\prime_1$, since $v_3$ is a new variable introduced within the \textit{guards} through the equality $5+v_3=2*v_2$. The handling of such variables will be explained in \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}. \newline
 
 \subsection{Necessary Definitions}
 In order to be able to define the key element of this approach, the \gna, we have to define a number of matrices and constant vectors, which are used to derive such a \gna. 
 
 \begin{definition}[\stem]
-	The \stem is denoted as a vector $x \in \mathbb{Z}^n$, where $n$ is the number of variables within the rule of the start function symbols right hand side of a \its. The values of $x$ can be constants or defined by conditions. Examples are shown within \autoref{sec:stem}.
+	The \stem is denoted as a vector $x \in \mathbb{Z}^n$, where $n$ is the number of variables within the rule of the start function symbols right hand side of a \its. The values of $x$ can be constants or defined by conditions. Examples are shown within \Cref{sec:stem}.
 \end{definition}
 
 \begin{definition}[Guard Matrix, Guard Constants]
@@ -117,9 +117,11 @@ In order to be able to define the key element of this approach, the \gna, we hav
 	Let $n \in \mathbb{N}$ be the number of distinct variables, $v_i$ $1 \le i \le n$ the $i$-th distinct variable names occurring on the left hand side, $m \in \mathbb{N}$ be the number of guards not containing equality, $a_{i,j} \in \mathbb{Z}$ $1\le i \le n$, $1 \le j \le m$ the factor of $v_i$ in $g_j$ and $c_i \in \mathbb{Z}$ be the constant term within $r_j$. \newline
 	
 	Then the \guardmatrix $G \in \mathbb{Z}^{m\times n}$ is defined as $G_{i,j}=a_{i,j} $ and \guardconstants $g \in \mathbb{Z}^m$ are defined as $g_i = c_i$.
+	
+	Newly introduced variables must not be represented by a column of the \guardmatrix, but create substitutions further used in \Cref{sec:stem-var}, \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}.
 \end{definition}
 \begin{example}
-	The corresponding \guardmatrix to \autoref{fig:structure-example-TRS} is $G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$ and the \guardconstants is $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$ \newline
+	The corresponding \guardmatrix to \Cref{fig:structure-example-TRS} is $G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$ and the \guardconstants is $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$ \newline
 	The normalization of the guards $r_i$ to the form $a_{i,1}v_1+\dots a_{i,n}v_n \le c$ transforms for example the guard $r_1$ in the following way
 	\begin{center}
 		$r_1 \Leftrightarrow v_1+v_2 > 3  \Leftrightarrow -v_1-v_2 < -3 \Leftrightarrow -v_1-v_2 \le -4$
@@ -128,22 +130,22 @@ In order to be able to define the key element of this approach, the \gna, we hav
 
 \begin{definition}[Update Matrix, Update Constants]
 	\label{def:update}
-	Let $n \in \mathbb{N}$ be the number of distinct variables, $v_i$ $1 \le i \le n$ the $i$-th distinct		variable name, $m \in \mathbb{N}$ the arity of the function symbol of the right hand side, $m_i$ $1 \le i \le m$ the $i$-th variable definition of the right hand sight's function symbol, $a_{i,j} \in \mathbb{Z}$ $1 \le i \le n$ $1 \le j \le m$ be the factor of variable $v_i$ in variable definition $m_i$ and $c_i \in \mathbb{Z}$ $1 \le i \le m$ the constant term of $m_i$. \newline
+	Let $n \in \mathbb{N}$ be the number of distinct variables of the left hand side, $v_i$ $1 \le i \le n$ the $i$-th distinct		variable name, $m \in \mathbb{N}$ the arity of the function symbol of the right hand side, $v^\prime_i$ $1 \le i \le m$ the $i$-th variable definition of the right hand sight's function symbol, $a_{i,j} \in \mathbb{Z}$ $1 \le i \le n$ $1 \le j \le m$ be the factor of variable $v_i$ in variable definition $v^\prime_i$ and $c_i \in \mathbb{Z}$ $1 \le i \le m$ the constant term of $v^\prime_i$. \newline
 	
 	Then the \updatematrix $U \in \mathbb{Z}^{m \times n}$ is defined as $U_{i,j}=a_{i,j}$ and \updateconstants $u \in \mathbb{Z}^m$ are defined as $g_i = c_i$.
 	
-	Regarding the new variable $v_3$, we have to substitute in order to keep the desired size of the matrix. This procedure is further defined within \autoref{sec:derivation-guard} and \autoref{sec:derivation-update}.
+	Regarding the new variable $v_3$, we have to substitute in order to keep the desired size of the matrix. This procedure is further defined within \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}.
 \end{definition}
 \begin{example}
-	The corresponding \updatematrix to \autoref{fig:structure-example-TRS} is $U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ and the \updateconstants are $u = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$.
+	The corresponding \updatematrix to \Cref{fig:structure-example-TRS} is $U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ and the \updateconstants are $u = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$.
 	
-	The second row is not as obvious as the first row and will be derived in detail within \autoref{sec:derivation-update}.
+	The second row is not as obvious as the first row and will be derived in detail within \Cref{sec:derivation-update}.
 \end{example}
 
 \begin{definition}[Iteration Matrix, Iteration Constants]
 	\label{def:iteration}
 	Let $G$ be the \guardmatrix, $g$ the \guardconstants, $U$ the \updatematrix, $u$ the \updateconstants, $n\in \mathbb{N}$ the number of variables and $m \in \mathbb{N}$ the number of conditional terms. \newline
-	Also let \textbf{0} be a matrix of the size of $G$ with only entry's 0 and $I$ denote the identity matrix with the size of $U$. \newline
+	Also let \textbf{0} be a matrix of the size of $G$ with only entry's 0 and $I$ denote the identity matrix having the same dimension as $U$. \newline
 	
 	The \iterationmatrix $A \in \mathbb{Z}^{2*n+m \times 2*n}$, which defines one complete execution of the \loopt, and the \iterationconstants $b\in \mathbb{Z}^{2*n+m} $ is defined as
 	\begin{figure}[H]
@@ -153,7 +155,7 @@ In order to be able to define the key element of this approach, the \gna, we hav
 \end{definition}
 
 \begin{definition}[LOOP]
-	The \loopt is defined as a tuple $(A, b)$, where $A$ is the \iterationmatrix and $b$ the \iterationconstants of an \its. (See: \autoref{sec:loop})
+	The \loopt is defined as a tuple $(A, b)$, where $A$ is the \iterationmatrix and $b$ the \iterationconstants of an \its.
 \end{definition}
 
 Now we can define the key element, which was originally defined for \tool{linear lasso programs}. 
@@ -166,7 +168,7 @@ Now we can define the key element, which was originally defined for \tool{linear
 		$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$
 	\end{figure}  
 	\vspace{-1em}
-	is called a \gna for a program = $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
+	is called a \gna of size $k$ for a program = $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
 	\begin{itemize}
 		\setlength{\itemindent}{1in}
 		\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
@@ -185,14 +187,13 @@ The usage of such a \gna is justified by the following sentence:
 
 \section{Reverse-Polish-Notation-Tree}
 \label{sec:rpntree}
-Within the program of deriving a \gna it happens that we get a mathematical term in the so-called \textit{Polish Notation} or \textit{Reverse Polish Notation in prefix notation}, which is a special form of rewriting a, in our case linear, expression to compute the solution efficiently using a stack. Within our program we use this kind of notation to parse it into our own tree-structure to do further analysis. \cite{wikirpn}
+Within the program of deriving a \gna it happens that we get a mathematical term in the so-called \textit{Polish Notation} or \textit{Reverse Polish Notation in prefix notation}, which is a special form of rewriting a, in our case linear, expression to compute the solution efficiently using a stack.\cite{wikirpn} Within our program we use this kind of notation to parse it into our own tree-structure to do further analysis.
 
-As shown in \autoref{dia:RPN-classdiagram} we have an \code{abstract} root, subclasses for every occurring type of element within the \its, a \code{static} parsing of a given term and an exception for parsing exceptions.
-An example for the \rpntree is shown in \autoref{ex:rpntree}
+As shown in \Cref{dia:RPN-classdiagram} we have an \code{abstract} root, subclasses for every occurring type of element within the \its, a \code{static} parsing of a given term and an exception for parsing exceptions.
+An example of the \rpntree's usage is shown in \Cref{ex:rpntree}
 
 \begin{figure}[H]
-	\centering	
-	%TODO: REDRAW
+	\centering
 	\input{src/diagram/RPNTree-classdiagram.tex}
 %	\includegraphics[scale=0.5]{src/diagram/test}
 	\caption{The class diagram of the \rpntree within the \gnanal}	
@@ -230,7 +231,7 @@ An example for the \rpntree is shown in \autoref{ex:rpntree}
 	\end{tikzpicture}
 \end{lrbox}
 
-\begin{figure}
+\begin{figure}[H]
 	\begin{tikzpicture}[
 			scale=0.6,
 			every edge/.append style = { dashedarrow },
@@ -241,16 +242,16 @@ An example for the \rpntree is shown in \autoref{ex:rpntree}
 		\draw (L.south) edge (M.north);
 		\draw (M.east) edge (R.west);
 	\end{tikzpicture}
-	\caption{An example of the representation of the term $3*v_1+v_2$ as a graph using the \rpntree of \autoref{sec:rpntree}}
+	\caption{An example of the representation of the term $3*v_1+v_2$ as a graph using the \rpntree of \Cref{sec:rpntree}}
 	\label{ex:rpntree}
 \end{figure}
 
 
 \section{\tool{SMT}-Problem}
 \label{sec:smt-problem}
-Also we have to consider an \textit{Satisfiability Modulo Theorie}-Problem (\tool{SMT}-Problem, we have to solve to derive a \gna fulfilling all the criterias of \autoref{def:gna}. Since \tool{SMT}-Problem solving is a big research topic on it's own we only consider the very basic of \tool{SMT}-Solving necessary to understand how the program solves the problem. \newline
+Also we have to consider an \textit{Satisfiability Modulo Theorie}-Problem (\tool{SMT}-Problem), we have to solve to derive a \gna fulfilling all the criterias of \Cref{def:gna}. Since \tool{SMT}-Problem solving is a big research topic on it's own we only consider the very basic of \tool{SMT}-Solving necessary to understand how the program solves the problem. \newline
 %TODO: write it more mathematically
-Within this approach we use the so called \code{Basic Structures} defined within \aprove to add assertions to the \solver using the \smtfactory. An example of the structure of the assertions can be found in \autoref{ex:assertion-structure}. %MAYBE: Class-dia?
+Within this approach we use the so called \code{Basic Structures} defined within \aprove to add assertions to the \solver using the \smtfactory. An example of the structure of the assertions can be found in \Cref{ex:assertion-structure}. %MAYBE: Class-dia?
 
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar = !]
@@ -270,11 +271,11 @@ Within this approach we use the so called \code{Basic Structures} defined within
 
 Such an example assertion can be split into different parts: 
 \begin{enumerate}
-	\item[(1)] \code{PlainIntegerConstant}'s as coefficients
-	\item[(2)] \code{PlainIntegerVariables}'s as variables the \solver should derive values for such that all assertions are satisfied
-	\item[(3)] A coefficient multiplied with a variables is represented by an \code{PlainIntegerOperation} with \code{ArithmeticOperationType} \code{MUL}
-	\item[(4)] An \code{ArithmeticOperationType} of type \code{ADD}
-	\item[(5)] The left hand side is one big \code{PlainIntegerOperation} consisting of the addition(4) of the multiplication (3) of coefficient's (2) and variables (2).
+	\item[(1)] \code{PlainIntegerConstants} as coefficients
+	\item[(2)] \code{PlainIntegerVariables'} as variables the \solver should derive values for such that all assertions are satisfied
+	\item[(3)] A coefficient multiplied with a variables is represented by an \code{PlainIntegerOperation} with \code{ArithmeticOperationType} \code{MUL} to denote multiplication
+	\item[(4)] An \code{ArithmeticOperationType} of type \code{ADD} to denote addition
+	\item[(5)] The left hand side is one big \code{PlainIntegerOperation} consisting of the addition(4) of the multiplication (3) of coefficient's (1) and variables (2).
 	\item[(6)] The \code{IntegerRelationType} defining the assertion. We only use the \textit{EQ (equal)} or \textit{LE (less than or equal)} relations.
 	\item[(7)] The right hand side is only \underline{one} \code{PlainIntegerConstant}
 	\item[(8)] The whole line is a \code{PlainIntegerRelation}, which can be transformed into the \code{SMTExpressionFormat} the \solver uses.
@@ -288,13 +289,14 @@ We use a solver within \aprove to create a bunch of assertions restricting the p
 	\begin{figure}[H]
 		\centering
 		\begin{tabular}{cccc}
-			$x \le y$ &	$x  < 5 $ &	$ x+ y \le 20$ &$y \neq 10$ \\
+			$x \le y$ &	$x > 5 $ &	$ x+ y \le 20$ &$y \neq 10$ \\
 		\end{tabular}
 	\end{figure}
 	\vspace{-1em}
-	Then a possible model would be $m_1 = \{x=6, y=6\}$. An other model would be $m_2 = \{x=6, y=7\}$. If we change the third rule to $x+y\le 10$ there is no model to the problem and we would receive the unsatisfiable core $c= \{x \le y$ $x  < 5$ $x+ y \le 10 \}$.
+	Then a possible model would be $m_1 = \{x=6, y=6\}$. An other model would be $m_2 = \{x=6, y=7\}$.
+	However If we change the third rule to $x+y\le 10$ there is no model to the problem and we would receive the unsatisfiable core $c= \{x \le y$, $x > 5$, $x+ y \le 10 \}$.
 \end{example}
 
-Since for \autoref{def:gna} the existence of a model is the crucial information, the model which should be derived is arbitrary among the set of possible models.
+Since for \Cref{def:gna} the existence of a model is the crucial information, the model which should be derived is arbitrary among the set of possible models.
 
 Further knowledge about \tool{SMT}-Problem solving can be gathered from the lecture "Introduction to Satisfiability Checking" or the \tool{SMT-RAT} toolbox for Strategic and Parallel SMT Solving by Prof. Dr. Erika Ábrahám and her team at the \textit{RWTH Aachen University} \cite{corzilius2015smt}.

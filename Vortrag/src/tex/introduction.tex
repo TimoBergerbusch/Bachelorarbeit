@@ -1,0 +1,49 @@
+\section{Introduction}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame} %%Eine Folie
+  \frametitle{Introduction and Motivation}
+  \begin{itemize}
+  	\item software increase
+  	\item automatic assisted engineering $\Rightarrow$\red{halting problem}
+  	\item \aprove\newline
+	  	\begin{figure}[H]
+	  		\centering
+		  	\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+			  	\node[aproveNode] at (0,0) (java) {Java};
+			  	\node[aproveNode]at (0,-.75) (c) {C};
+			  	\node[aproveNode] at (0,-1.5) (haskell) {Haskell};
+			  	\node[aproveNode] at (0,-2.25) (prolog) {Prolog};
+			  	\node[shape = circle, draw,align = center] at (3, -1.125) (seg) {Symbolic\\ Execution\\ Tree};
+			  	\node<1>[stdNode] at (6,-.75) (its) {\its};			  	
+			  	\node<2>[stdNode, color = blue] at (6,-.75) (its) {\its};
+			  	\node[stdNode, minimum width = 3cm] at (10,-.25) (comp) {Complexity};
+			  	\node[stdNode, minimum width = 3cm] at (10,-1) (term) {Termination};
+			  	\node<1>[stdNode, minimum width = 3cm] at (10,-1.75) (nterm) {Non-Termination};
+			  	\node<2>[stdNode, minimum width = 3cm, color = blue] at (10,-1.75) (nterm) {Non-Termination};
+			  	
+			  	\draw[thickarrow] (java) edge (seg);
+			  	\draw[thickarrow] (c) edge (seg);
+			  	\draw[thickarrow] (haskell) edge (seg);
+			  	\draw[thickarrow] (prolog) edge (seg);
+			  	
+			  	\draw[thickarrow] (seg) edge (its);
+			  	\draw[thickarrow] (seg) edge (nterm.west);
+			  	
+			  	\draw[thickarrow] (its) edge (term);
+			  	\draw[thickarrow] (its) edge (comp);
+			  	\draw<1>[thickarrow] (its) edge (nterm);
+			  	\draw<2>[thickarrow, color = blue] (its) edge (nterm);
+			  	
+			  	\draw [thick,decoration={brace,mirror},decorate] (-1,-2.75) -- (3.9,-2.75) 
+			  	node [pos=0.5,anchor=north,yshift=-0.3cm] {\footnotesize Frontends}; 
+			  	
+			  	\draw [thick,decoration={brace,mirror},decorate] (5.2,-2.75) -- (11.5,-2.75) 
+			  	node [pos=0.5,anchor=north,yshift=-0.3cm] {\footnotesize Backend}; 
+		  	\end{tikzpicture}
+		\end{figure}
+	
+  \end{itemize}
+\end{frame}
+
+%TODO: mention its derivation

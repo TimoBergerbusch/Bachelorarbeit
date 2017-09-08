@@ -27,6 +27,11 @@ Florian Corzilius, Gereon Kremer, Sebastian Junges, Stefan Schupp, and Erika
 \newblock In {\em International Conference on Theory and Applications of
   Satisfiability Testing}, pages 360--368. Springer, 2015.
 
+\bibitem[CLA17]{CLANG}
+{\em clang: a C language family frontend for LLVM}, 2017.
+\newblock Available at \url{https://clang.llvm.org/}, [Accessed:
+  07-September-2017].
+
 \bibitem[DKL15]{david2015unrestricted}
 Cristina David, Daniel Kroening, and Matt Lewis.
 \newblock Unrestricted termination and non-termination arguments for bit-vector
@@ -69,14 +74,6 @@ J{\"u}rgen Giesl, Ren{\'e} Thiemann, Peter Schneider-Kamp, and Stephan Falke.
 \newblock In {\em Extended Abstracts of the 6th International Workshop on
   Termination, WST}, volume~3, pages 68--70, 2003.
 
-\bibitem[HEF{\etalchar{+}}17]{hensel2017aprove}
-Jera Hensel, Frank Emrich, Florian Frohn, Thomas Str{\"o}der, and J{\"u}rgen
-  Giesl.
-\newblock Aprove: Proving and disproving termination of memory-manipulating c
-  programs.
-\newblock In {\em International Conference on Tools and Algorithms for the
-  Construction and Analysis of Systems}, pages 350--354. Springer, 2017.
-
 \bibitem[I217]{aproveWebsite}
 Lehrstuhl~Informatik I2.
 \newblock {\em AProVE}, 2017.
@@ -107,6 +104,13 @@ Rachid Rebiha, N~Matringe, and AV~Moura.
 \newblock Characterization of termination for linear homogeneous programs.
 \newblock Technical report, Technical Report IC-14-08, Institute of Computing,
   University of Campinas (March 2014), 2014.
+
+\bibitem[SGB{\etalchar{+}}17]{DBLP:stroder}
+Thomas Str{\"{o}}der, J{\"{u}}rgen Giesl, Marc Brockschmidt, Florian Frohn,
+  Carsten Fuhs, Jera Hensel, Peter Schneider{-}Kamp, and Cornelius Aschermann.
+\newblock Automatically proving termination and memory safety for programs with
+  pointer arithmetic.
+\newblock {\em J. Autom. Reasoning}, 58(1):33--65, 2017.
 
 \bibitem[Tiw04]{tiwari2004termination}
 Ashish Tiwari.

@@ -1,0 +1,5 @@
+Möglichkeiten zu kürzen:
+Geometric Nontermination:
+	- Derivation: Guard Matrix/Constants
+		+ guardSet-algo
+	- Derivation: Update Matrix/Constants
