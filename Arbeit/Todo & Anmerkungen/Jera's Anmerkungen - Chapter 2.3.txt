@@ -1,0 +1,50 @@
+2.3.2
++ Z. 1: They contain -> It contains
++ Z. 1: optional declaration: Müssen Variablen nicht immer deklariert werden und nur die Initialisierung ist optional?
+- Z. 2: while: statt kursiv würde ich es in texttt/verbatim setzen (gilt auch für alle späteren Vorkommen)
++ Z. 2/3: Even though…: Verstehe den Satz nicht ganz, was genau würde Java nicht akzeptieren? Und welche conversion to LLVM? Java wird nie zu LLVM übersetzt (nur C wird bei uns zu LLVM)
++ Z. 3: fulfilling Java program -> linear lasso program in Java
+
+1. Item (The STEM):
+- insgesamt: Ich bin noch nicht sicher, ob ich STEM immer groß schreiben oder einfach als normales Wort „stem“ schreiben würde. Groß geschrieben sieht es komisch aus und es wäre ja auch so verständlich, was es ist. Aber Leike + Heizmann haben es auch groß geschrieben, richtig? Die Entscheidung überlass ich mal dir :)
++ Z. 1: The initialization and optional declaration -> The declaration and optionally initialization
++ Z. 2: line 3 and 4 -> lines 3 and 4
++ Z. 2: „Also“ weglassen; declared -> initialized
+
+2. Item (The guard):
++ Z. 1: to restrict a -> to restrict the variables (oder? klingt sonst sehr speziell auf dieses Beispiel)
++ Z. 2: for a < 3 -> for an initial value of a smaller than 3
++ Z. 3: assume that a >= 3 -> assume that a is initially greater than or equal to 3
+
+3. Item (The linear Updates)
++ in Überschrift: Updates -> updates
++ Z. 2: value -> values
++ Z. 2: The approach works with only -> The approach only works with (only verschieben)
++ Z. 3 Ende: have a -> have an update of the form
++ Z. 4: with n \in \N -> with a_i \in \Z for 1 \le i \le n and c \in \Z
++ Z. 4: ITS -> ITSs; würde diesen letzten Satz aber weglassen (steht ja dann schon davor; und man würde sich vielleicht fragen warum genau das an ITSs liegt)
+- Hübsches Bild :)
++ Bildunterschrift würde ich ändern zu: „A linear lasso Java program“, dann weiß man direkt, worum es geht
+
+- Falls STEM zu stem wird, muss natürlich auch LOOP zu loop werden, aber wie gesagt kannst du es auch so lassen
+
+Abschnitt über Figure 2.3:
++ Z. 1: Through the in Section 2.2 described procedure and given structure -> By the procedure described in Section 2.2 and by the given structure
+Mir ist allerdings nicht klar, was genau mit der procedure gemeint ist (da wird doch nur eine Struktur beschrieben, oder?) und welche Struktur du danach meinst. Vielleicht umformulieren zu: „The Java program from Figure 2.2 can be transformed into the ITS shown in Figure 2.3, which is conform to the structure described in Section 2.2.“
++ Z. 2: Komma hinter „see“
++ Z. 3: denotes -> represents; equals -> forms
+- Figure nach links rücken (passt sie überhaupt da rein?)
+- Zur Veranschaulichung wäre es schön, wenn du die Variablen umbenennst, sodass man sie besser aufs Java-Programm matchen kannst. Insgesamt muss das, was in der BA steht, nicht mit genau mit dem übereinstimmen, was in der Praxis in AProVE passiert. Wenn wir das immer so machen würden, wären einige Papiere sehr unschön geworden.
+Ich würde v_1 zu a umbenennen, v_2 zu b, und v_3 dann z.B. einfach zu v.
+Wenn ich es richtig sehe, änderst du das Beispiel hier aber eh noch? Aber ich denke, da wird es ähnlich sein.
+
+Beschreibung unter Figure 2.3
++ Z. 1: Komma hinter „for now“
++ Z. 1: Hier hat man nicht mehr im Kopf, was mit v’_2 gemeint ist. Vielleicht deshalb lieber sowas schreiben wie „the second argument of f_2 in line 1 is set to -3 because …“
++ Z. 2: Symbolic Execution Graph: nicht kursiv
++ Z. 2: Die Erklärung stimmt nicht ganz. Das kannst du nicht wissen, aber der Leser weiß hier auch kaum etwas über den Symbolic Execution Graph. Ich würde es so erklären: „because during the construction of the Symbolic Execution Graph, AProVE always unrolls the first iteration of the loop. Therefore, the STEM computed by AProVE will always contain the first execution of the LOOP.“
++ Z. 3/4/5: v’_1/v’_2: siehe oben (-> lieber von Funktionsargumenten schreiben)
++ Z. 6: guards: nicht kursiv; through -> by
+
+2.3.3
++ Überschrift: Necessary -> Preliminary

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  7 SEP 2017 16:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  12 SEP 2017 14:18
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -1964,29 +1964,29 @@ s\decorations\pgflibrarydecorations.shapes.code.tex")))
  (Bachelorarbeit.aux)
 \openout1 = `Bachelorarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 159.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 160.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 160.
 
 
 (D:\Tools\MikTex\tex\latex\base\ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 159.
-LaTeX Font Info:    ... okay on input line 159.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 159.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 160.
 
 (D:\Tools\MikTex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -2055,7 +2055,7 @@ G,.JBIG2,.JB2,.eps]
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box114
-Package hyperref Info: Link coloring OFF on input line 159.
+Package hyperref Info: Link coloring OFF on input line 160.
 (D:\Tools\MikTex\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -2064,9 +2064,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count317
 )
-LaTeX Info: Redefining \ref on input line 159.
-LaTeX Info: Redefining \pageref on input line 159.
-LaTeX Info: Redefining \nameref on input line 159.
+LaTeX Info: Redefining \ref on input line 160.
+LaTeX Info: Redefining \pageref on input line 160.
+LaTeX Info: Redefining \nameref on input line 160.
  (Bachelorarbeit.out) (Bachelorarbeit.out)
 \@outlinefile=\write5
 \openout5 = `Bachelorarbeit.out'.
@@ -2095,7 +2095,7 @@ LaTeX Font Info:    Try loading font information for OMX+lmex on input line 44.
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 44.
+(Font)              <12> on input line 44.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 44.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -2113,10 +2113,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Try loading font information for U+stmry on input line 44.
 
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\stmaryrd\ustmr
-y.fd")
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 44.
- [1
+y.fd") [1
 
 
 {C:/Users/Timo Bergerbusch/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
@@ -2146,6 +2143,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--16
 
  []
 
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 17.
 ) [2] (src/tex/0.3-abstract.tex
 Underfull \hbox (badness 10000) in paragraph at lines 1--2
 
@@ -2160,7 +2159,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--14
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 15--173
+Underfull \hbox (badness 10000) in paragraph at lines 15--174
 
  []
 
@@ -2184,13 +2183,11 @@ l.1 \chapter
 
 ]
 Chapter 1.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 43.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.44 
+l.45 
       [3]) (src/tex/2-Preliminaries.texpdfTeX warning (ext4): destination with 
 the same identifier (name{page.4}) has been already used, duplicate ignored
 <to be read again> 
@@ -2206,78 +2203,85 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--21
 
  []
 
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 30.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 30.
 pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.27 	\item[(2)]
-                 A function symbol denoting a current program-state [5
+l.32 	\item[(4)]
+                 The conditional term of the form $\text{(in)equation}_1 \te...
+[5
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
 has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.27 	\item[(2)]
-                 A function symbol denoting a current program-state]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 29.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 29.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 47.
-
-(D:\Tools\MikTex\tex\latex\lm\ts1lmr.fd
+l.32 	\item[(4)]
+                 The conditional term of the form $\text{(in)equation}_1 \te...
+]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 53.
+ (D:\Tools\MikTex\tex\latex\lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [6]
 ("C:\Users\Timo Bergerbusch\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstla
 ng1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+Underfull \hbox (badness 10000) in paragraph at lines 95--97
 
  []
 
 
-Overfull \hbox (72.94708pt too wide) in paragraph at lines 95--98
+Overfull \hbox (72.94708pt too wide) in paragraph at lines 103--106
 [][][][][]$[]$  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--107
+Underfull \hbox (badness 10000) in paragraph at lines 114--117
 
  []
 
-[7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}
-) has been already used, duplicate ignored
+
+Underfull \vbox (badness 1122) has occurred while \output is active []
+
+ [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
+}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.110 
+l.120 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.110 
+l.120 
       ]
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 122.
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--134
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--149
+Underfull \hbox (badness 10000) in paragraph at lines 157--159
 
  []
 
 [8] (src/diagram/RPNTree-classdiagram.tex
 \du=\skip155
 )
-Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--199
+Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--209
  [][] 
  []
 
@@ -2288,15 +2292,22 @@ Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--199
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.271 
+l.281 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.5}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.271 
+l.281 
       ]
-Underfull \hbox (badness 10000) in paragraph at lines 284--285
+Overfull \hbox (51.76566pt too wide) in paragraph at lines 291--292
+[]\T1/lmr/m/n/10.95 The whole line is a \T1/lmtt/m/n/10.95 PlainIntegerRelation
+\T1/lmr/m/n/10.95 , which can be trans-formed into the \T1/lmtt/m/n/10.95 SMTEx
+pressionFormat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 294--295
 
  []
 
@@ -2449,20 +2460,20 @@ g / wiki / Termination _ Competition _ 2017$[]\T1/lmr/m/n/10.95 ,
  []
 
 ) [34]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 196.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 196.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 197.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
  (Bachelorarbeit.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 196.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 196.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 197.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 197.
 Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 900EA4106AC4DEDBAE206195C5B3CEEA;2830.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 196.
+(rerunfilecheck)             Checksum: D020DBCB42456126FED59079FA113034;2757.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
  ) 
 Here is how much of TeX's memory you used:
- 37589 strings out of 493333
- 734328 string characters out of 3144357
- 850382 words of memory out of 3000000
- 40211 multiletter control sequences out of 15000+200000
+ 37590 strings out of 493333
+ 734343 string characters out of 3144357
+ 850083 words of memory out of 3000000
+ 40212 multiletter control sequences out of 15000+200000
  121113 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,32n,85p,10435b,1369s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2487,9 +2498,9 @@ s/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/lm
 /lmsy9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt10.pfb><D:/Tools/MikTex/f
 onts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt9.pfb
 ><D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (39 pages, 697888 bytes).
+Output written on Bachelorarbeit.pdf (39 pages, 698810 bytes).
 PDF statistics:
- 824 PDF objects out of 1000 (max. 8388607)
+ 820 PDF objects out of 1000 (max. 8388607)
  178 named destinations out of 1000 (max. 500000)
- 429 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 421 words of extra memory for PDF output out of 10000 (max. 10000000)
 

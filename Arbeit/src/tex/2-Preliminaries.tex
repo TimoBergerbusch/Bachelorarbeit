@@ -1,55 +1,61 @@
 \chapter{Preliminaries}
 \label{chapter:preliminaries}
 
-In order to be able to explain the non-termination approach we have to declare, what nontermination means, which programs are considered within the Geometric Nontermination and present the \gna building the core of the approach. Furthermore we have to define a few structures we work on. Further we have to define what an \solver is and how it is used within this implementation.
+In order to be able to explain the new \nonterm approach we have to declare, what \nonterm means, which programs are considered within this approach and present the construction of \gnas (GNAs), which builds the core of the approach. Furthermore we have to define a few structures we work on, we have to define what an \solver is and how it is used within this implementation.
 
-\section{Non-Termination}
-The definition of non-termination is the most essential considering a technique proving it. Non-termination can be defined as a specific input to a program $p$, such that $p$ runs in an infinite loop.
-Proving termination is much harder than proving non-termination, since we only have to determine one case, which fit's the condition of running into an infinite loop. \newline
-Non-termination is obviously still undecidable, since otherwise the halting problem would be decidable, nevertheless there are a large variety of possibilities to prove non-termination as we will see in this paper.
+%\section{Non-Termination}
+%The definition of \nonterm is the most essential considering a technique proving it. Non-termination can be defined as a specific input to a program $p$, such that $p$ runs in an infinite loop.
+%Proving termination is much harder than proving \nonterm, since we only have to determine one case, which fit's the condition of running into an infinite loop. \newline
+%Non-termination is obviously still undecidable, since otherwise the halting problem would be decidable, nevertheless there are a large variety of possibilities to prove \nonterm as we will see in this paper.
 
-\section{Integer Transition Systems(\its)}
+\section{Integer Transition Systems}
 \label{sec:its}
-In order to apply the upcoming procedure we have to define what structure the approach works on. The derivation of an \its from source code is described in \Cref{sec:aprove}. Considering the following approach we will look at a \its in a more superficial way. The composition of a \its considered in this paper is shown in \Cref{fig:its-structure}.\newline
+In order to apply the upcoming procedure we have to define what structure the approach works on. As described in \Cref{sec:aprove}, the C program is transferred into a symbolic execution graph. Afterwards, from each lasso of the graph an ITS is constructed. Here, a cycle is a lasso together with the path from the initial state to this cycle. Then, if we know that the resulting ITSs has the property that it is equivalent to the original program in its termination behaviour, we can prove non-termination of the original program by proving non-termination of one of the ITSs. Considering the following approach we will look at \itss of a special form shown in \Cref{fig:its-structure}.\newline
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
 		!$\overbrace{f_x}^{(1)} \qquad\qquad \rightarrow \overbrace{f_y}^{(2)} (v_1, \dots v_n) :|: cond_1$!
 		!$\>f_y(\underbrace{v_1, \dots v_n}_{(3)}) \> \rightarrow \>\> f_y \>(\underbrace{v^\prime_1,\dots v^\prime_n}_{(3)})  :|: \underbrace{cond_2}_{(4)}$!
 	\end{lstlisting}
-	\caption{The structure of a \its considered in this paper.}
+	\caption{The structure of an \its considered in this thesis}
 	\label{fig:its-structure}
 \end{figure}
 %QUESTION: Explanation in text or in figure?
 
-The considered program shown in \Cref{fig:its-structure} consists of a set of structure elements, whose definition is necessary:
+The \its shown in \Cref{fig:its-structure} consists of a set of structure elements, whose definition is necessary:
 \begin{enumerate}[leftmargin=1]
-	\item[(1)] A function symbol consisting of no variables is a \textit{start function symbol} and is the first symbol to use. Further explanation in (line 1) and \Cref{fig:structure-example-TRS}.
-	\item[(2)] A function symbol denoting a current program-state
-	\item[(3)] The variables of a function symbol denoting the change of the variables by applying the term rewriting rule. The value of $v^\prime_i \in \mathbb{Z}$ is a linear update of the variables $v_j \in \mathbb{Z}$ $1 \le j \le n$ in \stdLinInt. \footnote{The \stdLinInt has the following pattern: $ a_1*v_1 + \dots + a_n*v_n + c$, where $a_i , v_i, c \in \mathbb{Z}$, $1 \le i\le n$. 
-		Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$} 
-	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$ $m \in \mathbb{N}$, where $\text{(in)equation}_i$ contains not only $v_j$ $1 \le j \le n$, but can also introduce new variables through equality. The $(in)equalities$ are defined further in \Cref{sec:derivation-guard}.
-	\item[(line 1)] The first line is the rewriting rule the program starts with and can be seen as a declaration of initial values of some variables. An example is shown in \Cref{fig:structure-example-TRS}
-	\item[(line 2)] Such a self-looping rule considered within this approach to define further computations. Other looping rules will be presented in \Cref{sec:structure-improvement}.
+	\item[(line 1)] The first line is the rewriting rule the program starts with and can be seen as a declaration of initial values of some variables. An example is shown in \Cref{fig:structure-example-TRS}.
+	\item[(line 2)] A self-looping rule. Other looping rules will be presented in \Cref{sec:structure-improvement}.
+	\item[(1)] The \textit{start function symbol} is the first symbol used, consisting of a function symbol without arguments. Further explanation in (line 1) and \Cref{fig:structure-example-TRS}.
+	\item[(2)] A function symbol denoting a current program state
+	\item[(3)] The arguments of a function symbol showing the update of the values by applying this rule. The value of $v^\prime_i$ is a linear update of the variables $v_j$, $1 \le j \le n$, in \stdLinInt. \footnote{The \stdLinInt has the following pattern: $ a_1*v_1 + \dots + a_n*v_n + c$, where $a_i , c \in \mathbb{Z}$, $1 \le i\le n$. }
+%		Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$} 
+	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$, $m \in \mathbb{N}$, where $\text{(in)equation}_i$ does not only contain the variables $v_j$, $1 \le j \le n$, but can also introduce new variables. The form of the (in)equalities is defined in \Cref{sec:derivation-guard}.	
 \end{enumerate} 
+
+\begin{definition}[run]
+	A run of an integer transitioning system is the successively applying of rules, starting from a start function symbol.
+\end{definition}
+
+The termination of an \its is now defined as the not existing of an infinite run, i.e. for every run we reach a state in which we can not apply any rule. Vice versa non-termination of an \its is defined as the existence of an infinite run.
 
 %In general an \its can have rules of other forms, like $f_x(v_1, \dots v_n) \rightarrow f_y(v^\prime_1, \dots v^\prime_k) :|: cond$ where $n \ne k$ can occur, but these rules are for now not considered.
 
-\section{Geometric Nontermination Argument (GNA)}
-Adapted from Jan Leikes and Matthias Heizmanns paper \textit{Geometric Nontermination Arguments} \cite{leike2014geometric} we will define the considered programs, define the \stem and \loopt and finally state the definition of \textit{Geometric Nontermination Arguments}.
+\section{geometric non-termination arguments}
+Adapted from Jan Leikes and Matthias Heizmanns paper \textit{geometric non-termination arguments (GNA)} \cite{leike2014geometric} we will define the considered programs, define the division of these programs into \stem and \loopt and finally give the definition of \textit{geometric non-termination arguments}.
 
 \subsection{Considered Programs}
-The considered programs in the Geometric Nontermination are not bound to a special programming language. The paper works on so called Linear-Lasso Programs, which in fact are also used within \aprove to derive the so called (int-)TRS, stated in \Cref{sec:aprove}. Because of the also stated conversion of the language into a \seg and further analysis the applicability of \gna's are not bound to any programming language. \newline
-In order to define the specific conditions under which we can use the approach, we take the language \tool{Java} as an example.
+The considered programs are not bound to a special programming language. The paper works on so called \textit{linear lasso programs}, which in fact are also used within \aprove. Instead of the linear lasso programs, \aprove represents them as ITSs, stated in \Cref{sec:aprove}. Because of the also stated conversion of the program into a \seg and because of the further analysis the applicability of GNAs is not bound to any programming language. \newline
+In order to define the specific conditions under which we can use the approach, we choose the language \tool{Java} as an example.
 \subsection{Structure}
 \label{sec:structure}
-The structure of the considered programs is quite simple. They contain an optional declaration of the used variables and a \code{while}-loop. Even though \tool{Java} would not accept this the conversion to \tool{llvm} would still be sound. An example of a fulfilling \tool{Java} program is shown in \Cref{fig:structure-example-java}. 
+The structure of the considered programs is quite simple. It contains an optional initialization  of the used variables and a \code{while}-loop. Even though \tool{C} would not accept the usage of a variable without declaration, the conversion to \llvm would still be sound. An example of a linear lasso program in \tool{C} is shown in \Cref{fig:structure-example-java}. 
 \begin{itemize}
 	\item The \stem: \newline
-		The initialization and optional declaration of variables used within the \code{while}-loop. In \Cref{fig:structure-example-java} line 3 and 4 are considered the \stem. Also only $b$ is declared with a value.
+		The declaration and optional initialization of variables used within the \code{while}-loop. In \Cref{fig:structure-example-java} lines 3 and 4 are considered the \stem. Only $b$ is initialized with a value.
 	\item The guard: \newline
-		The guard of the \code{while}-loop is essential to restrict $a$  as we will see in \Cref{sec:stem-var}. With the restriction of $a+b\ge 4 $ we can prove termination for $a < 3$ without further analysis, and also, in order to prove nontermination, assume that $a \ge 3$.
-	\item The linear Updates: \newline
-		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their value determine if the guard still holds. The approach works with only linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have a $v_i=a_1*v_1+...+a_n*v_n+c$ with $n \in \mathbb{N}$. Note since we work on \its it is sufficient for $a_i$ to be in $\mathbb{Z}$. 	
+		The guard of the \code{while}-loop is essential to restrict the variable $a$ as we will see in \Cref{sec:stem-var}. With the restriction of $a+b\ge 4 $ we can prove termination for an initial value of $a < 3$ without further analysis, and also, in order to prove \nonterm, assume that initially $a \ge 3$.
+	\item The linear updates: \newline
+		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their values determine if the guard still holds. The approach only works with linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have an update of the form $v_i=a_1*v_1+...+a_n*v_n+c$ with $a_i \in \mathbb{Z}$ for $1 \le i \le n$ and $c \in \mathbb{Z}$.
 \end{itemize} 
 
 \begin{figure}[h]
@@ -80,12 +86,14 @@ The structure of the considered programs is quite simple. They contain an option
 		\draw (C.west) edge (d.east);
 		\draw (C.west) edge (e.east);
 	\end{tikzpicture}
-	\caption{A \tool{Java} program fulfilling the conditions mentioned in \Cref{sec:structure} to be applicable}
+	\caption{A linear lasso program fulfilling the conditions mentioned in \Cref{sec:structure} to be applicable}
 	\label{fig:structure-example-java}
 \end{figure}
 The guard and linear updates together form the so called \loopt. 
 
-Through the in \Cref{sec:its} described procedure and given structure we receive the to \Cref{fig:structure-example-java} corresponding \its shown in \Cref{fig:structure-example-TRS}. As we can see the original program can be recognized quite easily. The first rule in line 1 denotes the \stem, while the second line equals the \loopt. \newline
+%Through the in \Cref{sec:its} described procedure and given structure we receive the to \Cref{fig:structure-example-java} corresponding \its shown in \Cref{fig:structure-example-TRS}. 
+The program from \Cref{fig:structure-example-java} can be transformed into the ITS shown in \Cref{fig:structure-example-TRS}, which is conform to the structure described in \Cref{sec:structure}.
+As we can see, the original program can be recognized quite easily. The first rule in line 1 represents the \stem, while the second line forms the \loopt. \newline
 
 %TODO: richtig formatieren
 \begin{figure}[H]
@@ -102,10 +110,12 @@ Through the in \Cref{sec:its} described procedure and given structure we receive
 	\caption{The \its corresponding to the \tool{Java} program in \Cref{fig:structure-example-java}}
 	\label{fig:structure-example-TRS}
 \end{figure}
- Neglecting the conditional terms for now the declaration of $v^\prime_2$ in line 1 to -3, because of the one circle the \seg has to compute in order to find a lasso. Starting with $b=1$ one step would be the computation of $b = 2*1-5=-3$. The definition of $v^\prime_1$ is more difficult and will be shown within \Cref{sec:stem}.
-Also the update for $v^\prime_1$ within line 2 is the same as in \Cref{fig:structure-example-java} line 7. The definition of $v^\prime_2 = v_3$ is fundamental and not as simple as $v^\prime_1$, since $v_3$ is a new variable introduced within the \textit{guards} through the equality $5+v_3=2*v_2$. The handling of such variables will be explained in \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}. \newline
+%TODO: beispiel ändern
+ Neglecting the conditional terms for now, the declaration of $v^\prime_2$, which is the second argument of $f_2$, in line 1 to -3, 
+ because during the construction of the \seg, \aprove always unrolls the first iteration of the \loopt. Therefore, the \stem computed by \aprove will always contain the first execution of the \loopt. Starting with $b=1$ one step would be the computation of $b = 2*1-5=-3$. The definition of $v^\prime_1$ is more difficult and will be shown within \Cref{sec:stem}.
+Also the update for the first argument of $f_2$ $v^\prime_1$ within line 2 is the same as in \Cref{fig:structure-example-java} line 7. The definition of the second argument of $f_2$, $v^\prime_2 = v_3$, is fundamental and not as simple as $v^\prime_1$, since $v_3$ is a new variable introduced within the guards through the equality $5+v_3=2*v_2$. The handling of such variables will be explained in \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}. \newline
 
-\subsection{Necessary Definitions}
+\subsection{Preliminary Definitions}
 In order to be able to define the key element of this approach, the \gna, we have to define a number of matrices and constant vectors, which are used to derive such a \gna. 
 
 \begin{definition}[\stem]
@@ -160,7 +170,7 @@ In order to be able to define the key element of this approach, the \gna, we hav
 
 Now we can define the key element, which was originally defined for \tool{linear lasso programs}. 
 
-\begin{definition}[Geometric Non Termination Argument]
+\begin{definition}[geometric non-termination argument]
 	\label{def:gna}
 	A tuple of the form:
 	\begin{figure}[H]

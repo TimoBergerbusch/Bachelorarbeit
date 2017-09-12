@@ -95,7 +95,7 @@
 \newcommand{\labelname}[1]{% \labelname{<stuff>}
 	\def\@currentlabelname{#1}}%
 
-\newcommand{\code}[1]{\textit{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\tool}[1]{\textsf{#1}}
 \newcommand{\aprove}{\tool{AProVE}\xspace}
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
@@ -108,16 +108,16 @@
 \newcommand{\iterationmatrix}{Iteration Matrix\xspace}
 \newcommand{\iterationconstants}{Iteration Constants\xspace}
 \newcommand{\startterm}{\textit{start term}\xspace}
-\newcommand{\gna}{geometric nontermination argument\xspace}
-\newcommand{\gnas}{geometric nontermination arguments\xspace}
-\newcommand{\gnanal}{geometric nontermination analysis\xspace}
+\newcommand{\gna}{geometric non-termination argument\xspace}
+\newcommand{\gnas}{geometric non-termination arguments\xspace}
+\newcommand{\gnanal}{geometric non-termination analysis\xspace}
 \newcommand{\rpntree}{Reverse Polish Notation Tree\xspace}
 \newcommand{\smtfactory}{\code{SMTFactory}\xspace}
 \newcommand{\its}{\tool{ITS}\xspace}
 \newcommand{\itss}{\tool{ITSs}\xspace}
 \newcommand{\llvm}{\tool{LLVM}\xspace}
-\newcommand{\nonterm}{nontermination\xspace}
-\newcommand{\seg}{\textit{Symbolic Execution Graph}\xspace}
+\newcommand{\nonterm}{non-termination\xspace}
+\newcommand{\seg}{Symbolic Execution Graph\xspace}
 \newcommand{\stdLinInt}{standard linear integer form\xspace}
 \newcommand{\stdG}{standard guard form\xspace}
 \newcommand{\strG}{strict guard form\xspace}
@@ -155,6 +155,7 @@
 \renewcommand{\sectionautorefname}{Section}
 
 \newdateformat{myformat}{\THEDAY{. }\monthname[\THEMONTH], \THEYEAR}
+\newdateformat{coverFormat}{\THEDAY{. }\monthname[\THEMONTH] \THEYEAR}
 
 \begin{document}
 

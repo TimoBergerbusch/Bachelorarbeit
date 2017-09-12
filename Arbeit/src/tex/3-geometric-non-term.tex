@@ -1,7 +1,7 @@
 \chapter{Geometric Non-Termination}
 \label{chapter:geo-non-term}
-Now that all preliminaries are stated we can start to take a look at how the approach works within \aprove. To find a \gna and so prove nontermination we use \aprove to generate an \its of a given program, which is defined within \Cref{sec:aprove}.
-Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT}-Problem using \Cref{def:gna} and compute a \gna, which would be a prove of nontermination, or state that no \gna can exist, which does \underline{not} infer termination nor nontermination.
+Now that all preliminaries are stated we can start to take a look at how the approach works within \aprove. To find a \gna and so prove \nonterm we use \aprove to generate an \its of a given program, which is defined within \Cref{sec:aprove}.
+Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT}-Problem using \Cref{def:gna} and compute a \gna, which would be a prove of \nonterm, or state that no \gna can exist, which does \underline{not} infer termination nor \nonterm.
 
 \section{Derivation of the STEM}
 \label{sec:stem}
@@ -39,7 +39,7 @@ The more complex case is given if the start function symbol has the following fo
 	$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond$
 \end{figure}
 %\vspace{-1em}
-where $v_i$ $1 \le i \le n$ is either a constant term like in \Cref{sec:stem-const} \underline{or} a linear update defined by the $cond$ term. An example for such a \stem is shown in \Cref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \Cref{sec:smt-problem}, to create the assertions leading to either an assignment of the \stem $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment. If such a constellation entails termination or if it just does not entail nontermination needs further observance not provided in this paper. \newline
+where $v_i$ $1 \le i \le n$ is either a constant term like in \Cref{sec:stem-const} \underline{or} a linear update defined by the $cond$ term. An example for such a \stem is shown in \Cref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \Cref{sec:smt-problem}, to create the assertions leading to either an assignment of the \stem $x$ to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment. If such a constellation entails termination or if it just does not entail \nonterm needs further observance not provided in this paper. \newline
 The handling of equations within the guard term is described within \Cref{sec:derivation-guard} and underlies the same procedure regarding the stem.
 %TODO: im code: wenn unsat dann termination
 
@@ -412,7 +412,7 @@ Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a
 The existence of a \gna is checked using an \tool{SMT} solver, presented in \Cref{sec:smt-problem}, which will either give us a model satisfying the constraints or proof the non existence by giving an unsatisfiable core. \newline
 The constraints the \tool{SMT} solver has to fulfil are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute it's eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently. \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
 \newline
-So the next step in order to proof non termination is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \footnote{the mentioned method can be found under \cite{ApacheMath3}}  because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
+So the next step in order to proof non-termination is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \footnote{the mentioned method can be found under \cite{ApacheMath3}}  because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
 After computing the eigenvalues, we have set values for the \stem $x$ and $\lambda_1, \dots \lambda_k$ as constant values.
 \newline
 Using the \smtfactory, which offers methods to create the within \Cref{sec:smt-problem} and \Cref{ex:assertion-structure} stated structure, we are able to create assertions and add them to the \solver, such that the following holds:
@@ -567,7 +567,7 @@ In the whole chapter we work with the example used throughout the whole thesis w
 \begin{wrapfigure}{R}{0.5\textwidth}
 	\centering
 	\input{src/diagram/GeometricNonterminationArgument-classdiagram.tex}
-	\caption{The \tool{Java}-class of a \gna given to \aprove as a witness of nontermination}	
+	\caption{The \tool{Java}-class of a \gna given to \aprove as a witness of \nonterm}	
 	\label{dia:gna-classdiagram}
 \end{wrapfigure}
 The implemented technique provides a model $m$ from the \solver and it's assertions stated in \Cref{sec:derivation-smt}. From the model $m$ the technique filters the values and stores the in the \gna-class, which is given to \aprove as a witness. Such an \gna-object stores all variable declarations needed in order to revalidate itself to a given scenario. If one has an other technique of derivation it is possible to compute the matrices and set the values for an \gna-object and validate it, either proving it or mentioning, which criteria does not hold.\\ 
@@ -639,5 +639,5 @@ From that we can start and validate every criteria stated in \Cref{def:gna}.
 	Since all $r_i$ $1\le i \le 2$ are computed and checked that they hold also the ray-criteria holds.
 	\\
 	\\
-	Observing that all criteria hold the whole \gna is suitable to \Cref{def:gna} and therefore is a witness of nontermination regard the program stated in \Cref{fig:structure-example-java}.
+	Observing that all criteria hold the whole \gna is suitable to \Cref{def:gna} and therefore is a witness of \nonterm regard the program stated in \Cref{fig:structure-example-java}.
 	

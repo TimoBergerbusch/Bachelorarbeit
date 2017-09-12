@@ -1,0 +1,16 @@
+2.3
+- Titel: Argument -> Arguments
+- Wieder: Abkürzung (GNA) nicht in Titel sondern hinter erstes Vorkommen im Text (Z. 3)
+- Z. 2: define the STEM and LOOP -> define the division of these programs into a STEM and a LOOP
+- Z. 2: state -> give
+
+2.3.1
+- Z. 1: „in the Geometric Nontermination“ weglassen (oder umformulieren: „The programs that we consider here are not bound …" (klingt sonst als wäre das ein bekanntes Feld, ist es aber nicht)
+- Z. 2: linear lasso programs (kein Bindestrich, alles klein, stattdessen aber kursiv hier)
+- Z. 3: (int-)TRS -> ITS
+- Z. 3: hier ist mir nicht ganz klar, wie du das meinst: linear lasso programs werden von AProVE genutzt, um ein ITS abzuleiten? Willst du nicht eher sagen, dass ein ITS ein linear lasso program darstellt?
+- Z. 4: language -> program
+- Z. 4: and further analysis -> and because of the further analysis
+- Z. 5: geometric … -> GNAs (kein Apostroph übrigens)
+- Z. 5: are not bound -> is not bound
+- Z. 7: take -> choose

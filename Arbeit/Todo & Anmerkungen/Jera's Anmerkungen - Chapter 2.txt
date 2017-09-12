@@ -1,0 +1,54 @@
+Titel:
+- ist das Datum automatisch generiert? Falls nein, würde ich das Komma hinter den Wochentag schieben und dafür vorm Jahr weglassen (so machen wir es zumindest). Am Besten vielleicht sogar den Wochentag ganz weglassen.
+
+1.1 Motivation:
+- direkt unter der Figure ist die erste Zeile nur halb
+- gleiche Zeile: Dieser Satz klingt, als wär das ein Feature von AProVE, dabei macht ja eigentlich Clang die komplette Arbeit. Ich würde den Satz deshalb umformulieren zu:
+AProVE uses Clang to compile the C program to LLVM code.
+- Gleicher Satz: Space hinter „(LLVM)“, ansonsten kannst du hier aber auch direkt die Abkürzung verwenden
+- Gleicher Satz, Ende: Clang-Referenz vor den Punkt
+- Nächster Satz: LLVM-programs -> LLVM programs
+- S. 4, Z. 3: one can extrapolate the termination of the program of the program if the ITS terminates -> termination of the ITS implies termination of the C program.
+- S. 4, Z. 3/4: In special cases one can also extrapolate … -> In special cases the same holds for nontermination
+- Nächsten Satz (Regarding …) kannst du dann weglassen, dem Leser ist hier wahrscheinlich sowieso noch nicht klar, dass es mehrere ITSe geben kann etc.
+
+Chapter 2 - Preliminaries
+- Hier fängst du an, non-termination mit Bindestrich zu schreiben. Ist okay (so macht Prof. Giesl es auch), aber sollte insgesamt einheitlich sein
+- Z. 1: Vielleicht ein „new“ vor non-termination
+- Z. 2: „Geometric Nontermination“ schreibst du hier wieder groß, ist aber eigentlich kein feststehender Begriff und der Leser wird auch noch nicht wissen, was damit gemeint ist. Also entweder „within this approach“ oder einfach weglassen
+- Z. 3: „geometric nontermination argument building“ -> „construction of geometric non-termination arguments (GNAs)“
+- Z. 3: „the core …“ -> „which builds the core …“
+- Z. 4: „… work on. Further we have to define what …“ -> „… work on, what … (sonst hast du zweimal den gleichen Satzanfang)
+
+2.1 - Non-Termination
+- Zweiter Satz: Verstehe ich nicht ganz — warum ist Nichtterminierung ein Input?
+- Dritter Satz: Ich denke, diese Aussage ist zu wertend — Leike + Heizmann würden sicher sagen, dass Nichtterminierungsbeweise genau so hart sind. Der zweite Teil des Satzes (die Erklärung) ist zu ungenau und nicht für jeden verständlich.
+- Insgesamt: Dieser Abschnitt (also 2.1 insgesamt) ist sehr informell. Wahrscheinlich hattest du selber Probleme, eine allgemeine Definition zu finden, deshalb beschreibst du den Begriff eher. Du brauchst aber auch gar keine allgemeine Definition. Ich würde dieses Unterkapitel rausnehmen und die Begriffe Termination + Non-Termination nur für ITSe beweisen, d.h. in Kapitel 2.2. Dazu findest du bestimmt eine Definition in alten Abschlussarbeiten auf unserer Seite, z.B. in meiner (unter der Definition von ITSen).
+
+2.2 - Integer Transition Systems
+- Überschrift: Hier würde ich die Abkürzung noch weglassen und erst beim ersten Vorkommen im Text als Abkürzung dahinter schreiben
+- 2. Satz: Wie man das macht, steht nicht wirklich in 1.1 beschrieben (nur, dass man es macht). Deshalb lieber: As described in Section 1.1, the C program is transferred into a symbolic execution graph. Afterwards, from each lasso of the graph an ITS is constructed. Here, a cycle is a lasso together with the path from the initial state to this cycle. Then, if we know that the resulting ITSs has the property that it is equivalent to the original program in its termination behaviour, we can prove non-termination of the original program by proving non-termination of one of the ITSs.
+So hat man das Ziel hier noch mal vor Augen.
+- 3. Satz: Warum superficial? Und warum „more“? (Das klingt, als hätte man irgendwo genauer darauf geguckt.)
+- 3. + 4. Satz: a ITS -> an ITS
+- 4. Satz: composition -> structure
+- Bild: Ist es in deinem Beispiel später auch so, dass f_y nur zu f_y führt (es also keine Regel gibt, in der beide Funktionssymbole Argumente haben aber keine Selfloop sind)? Falls das in deinem Beispiel anders ist, würde ich das hier auch ändern oder allgemeiner definieren (siehe ggf. meine Masterarbeit oder irgendeines unserer Papiere). Ansonsten kannst du es ruhig so lassen (du verweist ja auch darauf, dass es andere Fälle gibt).
+- Bildunterschrift: a ITS -> an ITS; paper -> thesis; würde den Punkt weglassen
+- Satz unter Figure 2.1: considered program -> ITS
+Zu (1): Das ist die Definition des start function symbols oder? Dann würde ich den Satz umformulieren zu: The start function symbol is the first symbol used, consisting of a function symbol without arguments.
+Zu (2): Kein Bindestrich zwischen program und state
+Zu (3):
+- erster Satz: variables -> arguments (beim ersten Vorkommen von „variables“); denoting -> showing; change -> update; variables -> values (beim zweiten Vorkommen von „variables“); term rewriting rule -> this rule (ist ja kein term rewriting; außerdem weiß der Leser nicht, was eine „rule“ ist, und so kann man es sich besser denken)
+- zweiter Satz: die beiden „\in \Z“ solltest du weglassen, da ja nur der Wert dieser Variablen in Z ist aber es hier so aussieht, als sei die Variable in Z, also stellt man sich vor, die Argumente wäre Zahlen.
+- außerdem zweiter Satz: Komma vor und hinter 1 <= j <= n
+- Fußnote: v_i darf hier auch nicht als „\in \Z“ dargestellt werden (ist ja eine Variabel). Den zweiten Satz der Fußnote würde ich hier noch weglassen; wird ja vom ersten Satz eigentlich impliziert und hier versteht der Leser noch nicht, warum das wichtig sein soll
+Zu (4):
+- Komma vor „m \in \N“
+- contains not only v_j -> does not only contain the variables v_j
+- Komma hinter v_j; „through equality“ weglassen (oder falls dir was dran liegt, genauer definieren, was gemeint ist)
+- Letzter Satz von (4): „(in)equalities“ nicht kursiv
+- Außerdem im gleichen Satz: The -> The form of the; are -> is; „further“ streichen
+Unter (1) bis (4) sollte noch definiert werden, was ein „run“ ist und wann dieser „terminating“ bzw. „non-terminating“ ist (siehe z.B. meine Masterarbeit). Gerne auch mit Beispiel.
+(line 1) und (line 2) sollten meiner Meinung nach über (1) - (4) stehen, damit man die grobe Semantik vorher schon liest und danach die Details
+- (line 1): Punkt hinter zweiten Satz
+- (line 2): „Such“ streichen; „considered within this approach“ streichen; „to define further computations“ würd ich ebenfalls weglassen (das „to“ klingt, als wäre der Zweck der Regel, etwas zu definieren; darüber hinaus würd ich nicht sagen, dass eine Regel Läufe definiert — man kann einfach welche ableiten. Aber das brauchst du hier noch nicht schreiben sondern sollte lieber zusätzlich definiert werden (s.o.))

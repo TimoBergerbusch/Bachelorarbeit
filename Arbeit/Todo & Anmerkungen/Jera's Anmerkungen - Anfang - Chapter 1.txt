@@ -1,0 +1,113 @@
+Titelblatt:
+- Ich wäre wahrscheinlich eher ein „Supervisor“ als ein „Advisor“, aber am besten lässt du mich vom Titelblatt einfach weg, da ich offiziell keine wichtige Rolle habe
+
+Acknowledgement:
+(Danke übrigens für den netten Abschnitt :))
+
+Abstract:
+- Erster Satz klingt ein bisschen umständlich (vor allem „undergoes a sig… increase“)
+
+- 3. Abschnitt:
+- Erster Satz: klingt wieder sehr umständlich, „we will see that the implemented technique provides the desired mechanism“… desired mechanism würd ich hier weglassen, das ist ja kein Ergebnis das wir sehen wollen. Stattdessen vielleicht, dass wir die Nichtterminierung neuer Programme beweisen können (also die power tatsächlich increased wurde), aber das kann man natürlich nur schreiben, wenn wir am Ende auch welche finden
+- Gleicher Satz: „under certain limitations“ klingt immer etwas blöd. Ich würde die Sätze versuchen kürzer zu fassen und nur das Wichtigste zu schreiben. Falls wir neue Programme beweisen können, dann ist das so, und zwar nicht unter certain limitations :) Die Limitations kann man am Ende zusätzlich noch erläutern.
+- Gleicher Satz: „which are reasoned by the complexity …“ — das verstehe ich nicht, was willst du hier sagen?
+- Nächster und übernächster Satz: Hier weiß der Leser noch nicht, was Startterme sind und was es mit dem Variablenhandling auf sich hat. Entweder musst du das hier kurz erklären oder oberflächlicher beschreiben, oder du sagst nur, dass es Limitations gibt (da sonst der Rahmen der BA gesprengt würde) und dass die noch in der Arbeit erläutert werden.
+
+Titelblatt:
+- den Titel würde ich nicht komplett groß schreiben, sondern nur den ersten Buchstaben von jedem Wort (außer „for“)
+- Supervisor -> Referee
+- Ich wäre wahrscheinlich eher ein „Supervisor“ als ein „Advisor“, aber am besten lässt du mich vom Titelblatt einfach weg, da ich offiziell keine wichtige Rolle habe
+
+Acknowledgement:
+- Z. 2: a ongoing -> an ongoing
+- Komma hinter „Secondly“ und „Thirdly“
+- Z. 3: supervisor -> referee
+- Z. 5: „my“ weglassen (oder durch „me“ ersetzen)
+- „She not only answered“ -> „She did not only answer“
+(Danke übrigens für den netten Abschnitt :))
+- dritter Abschnitt, Z. 2: accepting -> accepted, strengthen my back -> backed me up
+- bachelor -> Bachelor studies
+
+Erklärung:
+- Datum ist hier auf Englisch, passt nicht zu „Aachen, den“
+
+Abstract:
+- Erster Satz klingt ein bisschen umständlich (vor allem „undergoes a sig… increase“)
+- Z. 1: significantly -> significant
+- Z. 3: lead -> leads; Komma hinter „support“; Ende: spend -> spent
+- Ende Z. 5: the -> its
+- Z. 6: the resulting in -> that it reaches
+- Z. 7: Klingt, als würde das halting problem sich insgesamt auf correctness beziehen. Lieber hier nur von Terminierung sprechen, nicht von correctness + soundness
+- Z. 8: Touring -> Turing
+- Z. 9: problematic -> problem; Komma statt Punkt vor „for example AProVE“
+- letzter Satz dieses Abschnittes: Klingt umständlich und ich bin mir auch nicht sicher, ob das den richtigen Eindruck vermitteln. „decide termination“ sollte man lieber nirgendwo schreiben. Lieber sowas wie: Wir können versuchen, Terminierung für möglichst viele Programme zu entscheiden, wenn es schon nicht für alle möglich ist.
+- 2. Abschnitt:
+- Z. 1: proofing -> proving; with -> by
+- Z. 2: the Geometric … approach of Jan Leike and Matthias Heizmann -> the approach described in [Referenz] by Jan Leike and Matthias Heizmann (ist ja nichts, was man kennen müsste)
+- Z. 3: integer term rewrite systems -> integer transition systems (durch die ganze Arbeit; das sind unterschiedliche Dinge. Leider in AProVE teilweise falsch benannt, weshalb du auf den Namen kommst)
+- Z. 5: Through -> By
+- Z. 5: Satisfiability Modulo Theorie solvers -> SMT solvers (und nicht kursiv, sowas werden die meisten Leser kennen)
+- Z. 6: geometric nonterm… -> nicht kursiv (nur beim ersten Auftreten)
+- Z. 6: Komma vor „which“
+- Insgesamt: Für integer transition systems würde ich beim ersten Auftreten (Abschnitt 2, Z. 3) in Klammern dahinter die Abkürzung ITS einführen und ab dann gebrauchen. Ebenfalls für GNA. Stört sonst beim Lesen… Wenn du diese Begriffe später in der Arbeit definierst, würde ich sie wieder beim ersten Auftreten und/oder in der Definition ausschreiben mit der Abkürzung dahinter, aber sonst kann man die Abkürzung verwenden
+- Z. 7: All this …: Stattdessen vielleicht: Using this technique as an additional approach in AProVE increases its power to prove nontermination.
+- Z 8: We restrict …: Hier weglassen, der Leser will hier nur eine grobe Einführung und kann sich die Details eh noch nicht vorstellen
+- 3. Abschnitt:
+- Erster Satz: klingt wieder sehr umständlich, „we will see that the implemented technique provides the desired mechanism“… desired mechanism würd ich hier weglassen, das ist ja kein Ergebnis das wir sehen wollen. Stattdessen vielleicht, dass wir die Nichtterminierung neuer Programme beweisen können (also die power tatsächlich increased wurde), aber das kann man natürlich nur schreiben, wenn wir am Ende auch welche finden
+- Gleicher Satz: „under certain limitations“ klingt immer etwas blöd. Ich würde die Sätze versuchen kürzer zu fassen und nur das Wichtigste zu schreiben. Falls wir neue Programme beweisen können, dann ist das so, und zwar nicht unter certain limitations :) Die Limitations kann man am Ende zusätzlich noch erläutern.
+- Gleicher Satz: „which are reasoned by the complexity …“ — das verstehe ich nicht, was willst du hier sagen?
+- Nächster und übernächster Satz: Hier weiß der Leser noch nicht, was Startterme sind und was es mit dem Variablenhandling auf sich hat. Entweder musst du das hier kurz erklären oder oberflächlicher beschreiben, oder du sagst nur, dass es Limitations gibt (da sonst der Rahmen der BA gesprengt würde) und dass die noch in der Arbeit erläutert werden.
+- 4. Abschnitt:
+- Z. 1: derive -> say; Geometric Nontermination -> the use of GNAs; topic for integer ... -> approach to prove nontermination of ITSs
+- Z. 2: like -> as
+- Z. 2: Such a … obviously is only -> This approach is obviously only; allerdings denke ich dass es hier wieder zu sehr ins Detail geht („linear lasso programs“ und „linear updates“ versteht der Leser hier vielleicht noch nicht, da er die Klasse der Programme nicht kennt). Also entweder kurz erklären (linear lasso programs, where we have a single while loop and only linear variable updates) oder oberflächlicher bleiben. Dein Abstract ist relativ lang, ich denke, da kann man auch ruhig kürzen, wenn es sich anbietet.
+- vorletzte Zeile: it’s -> its; kein „in“ hinter „regarding“
+
+Inhaltsverzeichnis:
+- AProVE nicht kursiv sondern in der Schriftart, die du für Tools verwendest
+- unter Kapitel 3: STEM/LOOP: ggf. als normale Worte (klein)
+- insgesamt: im Inhaltsverzeichnis keine kursiven Wörter (nur, wenn sie eingeführt oder definiert werden, aber das ist ja im Inhaltsverzeichnis nie der Fall)
+
+1.1 Motivation
+- Z. 2: Even though that -> Even though; Touring -> Turing; Complete -> complete
+- Z. 3: method -> method to decide termination
+- Z. 4: verity -> variety; „to determine termination“ weglassen
+- Z. 5/6: Hier klingt es wieder so, also wäre Terminierung entscheidbar, wenn man nur die Klasse der Programme einschränkt. Für viele dieser Einschränkungen der Sprache gilt aber sicher, dass sie immer noch turingmächtig ist, d.h. Terminierung wäre dafür auch nicht entscheidbar. Der Punkt ist eher, dass wir versuchen, möglichst gut zu werden (also für möglichst viele Programme „YES“ oder „NO“ sagen können, aber in Kauf nehmen, dass es immer welche geben wird, die nicht darunter sind, d.h. wir sind sound, aber nie complete)
+- Z. 8: kein Komma hinter „tool“
+- Z. 8: „and in many scenarios applicable“ würde ich weglassen
+- vorletzte Zeile: Economy -> economy; loses -> loss
+- letzte Zeile: associated -> associated with
+
+1.2 AProVE
+- Z. 2: RWTH Aachen University; „by the“ vielleicht einfach durch ein Komma ersetzen, klingt irgendwie komisch
+- Z. 2/3: The AProVE-tool (…): Würde ich direkt durch „tool“ ersetzen („The tool for automatic …“ klingt normal, aber „The AProVE tool for …“ klingt als gäbe es da noch andere AProVEs)
+- Z. 3: proving -> analysis; „works with …“ -> „proves termination for programs of various programming languages …“
+- Figure 1.1: Hier lieber „int-TRS“ durch „ITS“ ersetzen; Symbolic Execution Tree -> Symbolic Execution Graph (wie kommst du auf Tree? Es gibt ja meistens Kreise)
+- Bildunterschrift: „derivation“ klingt irgendwie falsch; insgesamt fällt mir aber auch keine gute Bildunterschrift ein. Ich denke ich würde es folgendermaßen machen: Das AProVE-Kapitel (1.2) mit dem darüber (1.1) zusammenfassen, ruhig unter dem Namen „Motivation“. Den Inhalt von 1.2 kann man einfach (mit normalem neuem Abschnitt) unter den Text von 1.1 setzen, liest sich ja in einem Fluss. Figure 1.1 würde ich dann einfach ohne Bildunterschrift in den Text dazu einreihen.
+- S. 4, Z. 1: unify -> transfer
+- S. 4, Z. 2: Space hinter „Machine“, llvm -> LLVM, kein Bindestrich zwischen (LLVM) und code;
+allerdings ist das inhaltlich nicht ganz richtig: C ist die einzige Sprache, die wir nach LLVM kompilieren. Für Java nutzen wir z.B. Java Bytecode. Bei Prolog weiß ich gar nicht, ob wir überhaupt eine IR nutzen. Ich würde dieses Detail hier entweder weglassen oder es als ein Beispiel für C darstellen (bisher klingt es, als würden alle Sprachen nach LLVM kompiliert)
+- Z. 3: llvm -> LLVM; kein Bindestrich
+- Z. 4: lasso’s -> lassos; „lasso“ sollte die normale Schriftart haben, ist ja kein Tool und keine Sprache
+- Z. 6: integer term rewrite systems bzw. int-TRS -> integer transition systems bzw. ITSs, „further only called“ kannst du weglassen
+- Z. 2 und Z. 6: Statt Fußnoten lieber einfach wie sonst eine Referenz. Seiten wie die von Clang kann man ganz normal in die Referenzen einreihen.
+- Z. 7: adding conditions/under-approximates: Im Allgemeinen tun wir das nicht, da man sonst nicht von der Terminierung des ITSs auf die Terminierung des Originalprograms schließen dürfte. Ich würd den Satz weglassen und stattdessen etwas dazu schreiben, dass das ITS so konstruiert ist, dass wir von seiner Terminierung immer auf Terminierung des Originalprogramms schließen können (d.h. es ist eine Über-Approximation). In manchen Fällen ist es sogar eine exakte Approximation, dann dürfen wir auch auf Nichtterminierung schließen.
+- Vorletzter Satz: Hier solltest du statt auf HEF+17 lieber auf diese Referenz verweisen: http://dblp.uni-trier.de/rec/bibtex/journals/jar/StroderGBFFHSA17
+- Letzter Satz: Bei den Abkürzungen auf die Endung achten. Also z.B. wird dann hier aus int-TRS -> ITSs (Mehrzahl); subsequently applying -> the application of; proofing -> proving; ich denke aber, dass das nicht ganz stimmt. Wir transformieren in ITSe, um unsere alten Techniken zu behalten, das ist aber nicht unbedingt stärker als andere Ansätze. Ich denke, ich würde den Satz einfach weglassen.
+
+1.3 Overview
+- Z. 1: paper -> thesis; the -> an
+- Z. 2: kein Komma vor „because“
+- Z. 4: hier ruhig noch mal das Papier aufführen, dessen BibTeX ich oben verlinkt hab
+- Z. 5: Within Chapter -> In Chapter; used within the paper -> needed to understand the contributions of this thesis; Punkt hinter „are defined“ (der Rest ist dann ja schon gesagt)
+- Z. 6/7: It covers … -> It covers most essential definitions such as that of nontermination, topics of basic …
+- Z. 8: it’s -> its (zwei mal); klingt wieder umständlich (bzw. schwer zu verstehen), vielleicht umformulieren zu: and their structure as it is considered in this thesis.
+- Z. 9: of the -> of; argument -> arguments; builds -> build
+- Z. 10: matrices -> mathematical knowledge needed to find GNAs
+- Z. 10: Also we define a tree-… -> würde ich weglassen (man kann sich darunter noch nichts vorstellen und ich denke, das muss hier nicht unbedingt rein. Außerdem sparst du dann einmal „Also“ am Anfang, das hattest du vorher schon)
+- Z. 11: Last -> Finally; glimpse -> look
+- Z. 13: The main chapter -> Würde ich weglassen, ist ein bisschen wertend, lieber einfach „Chapter 3 deals with …“
+- Z. 13: „the STEM part“: darunter kann sich hier noch keiner etwas vorstellen, ebenso unter „LOOP“. außerdem fragt man sich, warum es hier groß geschrieben ist (sieht nach etwas Feststehendem aus, aber man kennt es ja nicht). Lieber oberflächlicher beschreiben ohne STEM, LOOP, variable terms und matrices
+- Z. 14: it’s -> its
+- vorletzte Zeile: itself weglassen
+- letzter Satz: Also we want -> We also want
