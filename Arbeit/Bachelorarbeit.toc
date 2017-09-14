@@ -37,9 +37,9 @@
 \contentsline {chapter}{\numberline {4}Evaluation and Benchmark}{27}{chapter.4}
 \contentsline {section}{\numberline {4.1}Evaluation of the approach}{27}{section.4.1}
 \contentsline {section}{\numberline {4.2}Benchmarks}{27}{section.4.2}
-\contentsline {section}{\numberline {4.3}Possible Improvement of the Implementation}{27}{section.4.3}
+\contentsline {section}{\numberline {4.3}Possible Improvement of the Implementation}{28}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}SMT-solver\xspace logic}{28}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}\textsf {ITS}\xspace program structure}{28}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.2}\textsf {ITS}\xspace program structure}{29}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Reverse Polish Notation Tree\xspace }{29}{subsection.4.3.3}
 \contentsline {chapter}{\numberline {5}Related Work}{31}{chapter.5}
 \contentsline {chapter}{Literaturverzeichnis}{31}{chapter.5}

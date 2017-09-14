@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  12 SEP 2017 14:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  14 SEP 2017 17:24
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -2421,13 +2421,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 639--643
 
 ) (src/tex/4-benchmarks.tex [26]
 Chapter 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--44
+
+ []
+
 [27
 
-] [28]) (src/tex/5-related-work.tex [29] [30
+] [28pdfTeX warning (ext4): destination with the same identifier (name{figure.4
+.1}) has been already used, duplicate ignored
 
-]
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.56 
+     ] [29]) (src/tex/5-related-work.tex [30]
 Chapter 5.
-) (Bachelorarbeit.bbl [31] [32
+) (Bachelorarbeit.bbl [31
+
+] [32
 
 ]
 Underfull \hbox (badness 4886) in paragraph at lines 5--10
@@ -2447,14 +2458,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--10
  . html$[]\T1/lmr/m/n/10.95 , [Ac-cessed:
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--27
+\T1/lmtt/m/n/10.95 docs . google . com / spreadsheets / d / 1fH0fVvRW8FPtU4I3Ke
+ELEXl33t9oDMjaSG _
+ []
+
 [33]
-Underfull \hbox (badness 1394) in paragraph at lines 127--132
+Underfull \hbox (badness 1394) in paragraph at lines 144--149
 \T1/lmr/m/n/10.95 at []$\T1/lmtt/m/n/10.95 http : / / en . wikipedia . org / w 
 / index . php ? title = Reverse _ Polish _ notation$[]\T1/lmr/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--139
+Underfull \hbox (badness 10000) in paragraph at lines 151--156
 \T1/lmr/m/n/10.95 at []$\T1/lmtt/m/n/10.95 http : / / termination-[]portal . or
 g / wiki / Termination _ Competition _ 2017$[]\T1/lmr/m/n/10.95 ,
  []
@@ -2470,15 +2487,15 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
  ) 
 Here is how much of TeX's memory you used:
- 37590 strings out of 493333
- 734343 string characters out of 3144357
- 850083 words of memory out of 3000000
- 40212 multiletter control sequences out of 15000+200000
- 121113 words of font info for 86 fonts, out of 3000000 for 9000
+ 37615 strings out of 493333
+ 734713 string characters out of 3144357
+ 855298 words of memory out of 3000000
+ 40221 multiletter control sequences out of 15000+200000
+ 120794 words of font info for 85 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,32n,85p,10435b,1369s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-ec.enc}{D:/Tools/MikTex/fonts/enc/dvip
-s/lm/lm-rm.enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-mathit.enc}{D:/Tools/MikT
+{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-rm.enc}{D:/Tools/MikTex/fonts/enc/dvip
+s/lm/lm-mathit.enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-ec.enc}{D:/Tools/MikT
 ex/fonts/enc/dvips/lm/lm-mathsy.enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-ts1.
 enc}{D:/Tools/MikTex/fonts/enc/dvips/lm/lm-mathex.enc}<D:/Tools/MikTex/fonts/ty
 pe1/public/lm/lmbx10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmbx12.pfb><D:/
@@ -2496,11 +2513,11 @@ ype1/public/lm/lmro10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmss10.pfb><D:
 ublic/lm/lmsso10.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmsy10.pfb><D:/Tool
 s/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/lm
 /lmsy9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt10.pfb><D:/Tools/MikTex/f
-onts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt9.pfb
-><D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (39 pages, 698810 bytes).
+onts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/sym
+bols/msbm10.pfb>
+Output written on Bachelorarbeit.pdf (39 pages, 684540 bytes).
 PDF statistics:
- 820 PDF objects out of 1000 (max. 8388607)
- 178 named destinations out of 1000 (max. 500000)
+ 847 PDF objects out of 1000 (max. 8388607)
+ 195 named destinations out of 1000 (max. 500000)
  421 words of extra memory for PDF output out of 10000 (max. 10000000)
 

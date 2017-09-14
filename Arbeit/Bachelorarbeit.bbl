@@ -19,6 +19,12 @@ Karsten Behrmann, Andrej Dyck, Fabian Emmes, Carsten Fuhs, J{\"u}rgen Giesl,
 \newblock Bit-blasting for smt-nia with aprove.
 \newblock {\em Proc. SMT-COMP}, 14, 2014.
 
+\bibitem[Ben17]{Benchmark}
+{\em Benchmark results filtered and further computed}, 2017.
+\newblock Available at
+  \url{https://docs.google.com/spreadsheets/d/1fH0fVvRW8FPtU4I3KeELEXl33t9oDMjaSG_k_X4aUZs/edit?usp=sharing},
+  [Accessed: 14-September-2017].
+
 \bibitem[CKJ{\etalchar{+}}15]{corzilius2015smt}
 Florian Corzilius, Gereon Kremer, Sebastian Junges, Stefan Schupp, and Erika
   {\'A}brah{\'a}m.
@@ -111,6 +117,17 @@ Thomas Str{\"{o}}der, J{\"{u}}rgen Giesl, Marc Brockschmidt, Florian Frohn,
 \newblock Automatically proving termination and memory safety for programs with
   pointer arithmetic.
 \newblock {\em J. Autom. Reasoning}, 58(1):33--65, 2017.
+
+\bibitem[SVC17]{SVComp}
+{\em Competition on Software Verification}, 2017.
+\newblock Available at \url{https://sv-comp.sosy-lab.org/2017/}, [Accessed:
+  14-September-2017].
+
+\bibitem[Ter17]{TermComp}
+{\em Termination Competition}, 2017.
+\newblock Available at
+  \url{http://termination-portal.org/wiki/Termination_Competition}, [Accessed:
+  14-September-2017].
 
 \bibitem[Tiw04]{tiwari2004termination}
 Ashish Tiwari.

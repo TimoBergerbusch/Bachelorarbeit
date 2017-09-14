@@ -9,9 +9,40 @@ The approach provides a sound and complete solution to specific type of programs
 Since the paper itself does not mention equalities within the guards the substitution of newly introduced variables as handled within \Cref{sec:derivation-guard} is necessary in order to apply the definition. Such a substitution is very costly in computation time and also highly error prone.
 
 \section{Benchmarks}
+\label{sec:benchmarks}
+In order to discuss the possibilities of improvement regarding the implementation, we want to take a look at the performance. For that we compared \aprove, with all its techniques, to \aprove only running the \gnanal. The set of programs is from the SV-COMP \cite{SVComp}.\newline
+Detailed results of all programs can be found in \cite{Benchmark}.
+For now we only focus on programs that meet the conditions of the \gnanal. An overview is given below.
 
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{rlrl}
+		number of programs 	& 847 & $\varnothing$-time for termination & +0.0078 sec \\
+		applicable programs & 53 & $\varnothing$-time for \nonterm & -1.2675 sec \\
+		false pos./neg. & 0 & $\varnothing$-time save overall & 0.76 sec \\
+	\end{tabular}	
+\end{figure}
 
-STEHT NOCH AUS
+Regarding the average duration it takes \aprove to proof these programs is 4,513 seconds a save of average 0.76 seconds is a save of about 17 percent. Keeping in mind that the \gnanal has the objective of proving \nonterm and that \aprove uses approaches in parallel the save can be even bigger. \aprove stops if any approach returns a proof. So the on average longer proof of termination does not affect the average save up. \newline
+\begin{figure}[H]
+	\begin{lstlisting}[language = java]
+	int main(void){
+		int a = __VERIFIER_nondet_int();
+		int b = __VERIFIER_nondet_int();
+		int c = __VERIFIER_nondet_int();
+		
+		while (a+b+c >= 4) {
+			a = b;
+			b = a+b;
+			c = b-1;
+		}
+		return 0;
+	}
+	\end{lstlisting}
+	\caption{A program \aprove can not prove \nonterm for without the \gnanal}
+	\label{fig:program-newproof}
+\end{figure}
+Also there are programs, like the program shown in \Cref{fig:program-newproof},which \aprove can not proof \nonterm for without using the \gnanal. Including this technique to the set of approaches \aprove is able to prove \nonterm. So the set of provable programs gets extended and improves \aprove.
 
 
 \section{Possible Improvement of the Implementation}
@@ -20,7 +51,7 @@ So here we state the possible improvements of the implementation to make it univ
 \subsection{\solver logic}
 As already stated in \Cref{sec:derivation-smt} the problematic of the $\mu$'s can lead to a shift into undecidability, since the solvating of variable multiplication on integers (\qfnia) is undecidable. Also mentioned in \Cref{sec:derivation-smt} there are a bunch of approaches, which lead to semi-decidability and therefore to the possibility to still use the variable multiplication within the problem if the $\mu$'s can be restricted to a finite domain.\newline
 A possible improvement could be an iteration over different values of the $\mu$'s. The number of problems, that have to be solved would be blow up, but the problem itself would always be decidable.\newline
-A reliable case-study of a large set of examples could underline the necessity of the iteration, since we wouldn't be able to derive a \gna using the \qfnia. It could also lead to the overhead of computational cost using the iterative method, which can be useful if the problem does not have any time restrictions of the deciding process, but is not suitable within the competitions \aprove participates, like the \textit{International Competition of Termination Tools} \footnote{ further information: \url{http://termination-portal.org/wiki/Termination_Competition} } or \textit{International Competition on Software Verification} \footnote{further information: \url{https://sv-comp.sosy-lab.org/2017/}}. \cite{aproveWebsite} \newline
+A reliable case-study of a large set of examples could underline the necessity of the iteration, since we wouldn't be able to derive a \gna using the \qfnia. It could also lead to the overhead of computational cost using the iterative method, which can be useful if the problem does not have any time restrictions of the deciding process, but is not suitable within the competitions \aprove participates, like the \textit{International Competition of Termination Tools} or \textit{International Competition on Software Verification}. \cite{aproveWebsite} \cite{TermComp} \cite{SVComp} \newline
 The \textit{Termination Competition 2017}, which is organized by the \textit{International Competition of Termination Tools}, for example has a time limit of 300 seconds and only allows 4 core usage, which makes an iterative method very costly. \cite{wiki2017termComp}
 
 \subsection{\its program structure}
@@ -41,7 +72,7 @@ which obviously is a restriction, because \itss of the form
 	!$f_{y_k}(v_1, \dots v_n) \> \rightarrow  f_{y_1} \>(v^\prime_1,\dots v^\prime_n)  :|: cond_{k+1}$!
 	\end{lstlisting}
 \end{figure}
-could possibly considered using the method $k$ times. Analysing such \its would make the implementation much stronger in terms of proofing.
+could possibly considered using the method $k$ times. Analysing such \its would make the implementation much stronger in terms of proving.
 \\
 An other possible variation of the considered \its could be like the following
 \begin{figure}[H]

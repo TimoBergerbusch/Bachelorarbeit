@@ -2,6 +2,9 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: Bachelorarbeit.aux
 The style file: alpha.bst
 Database file #1: src/bib/Literatur.bib
 Warning--to sort, need author, organization, or key in CLANG
+Warning--to sort, need author, organization, or key in SVComp
+Warning--to sort, need author, organization, or key in Benchmark
+Warning--to sort, need author, organization, or key in TermComp
 Warning--empty note in sat2016
 Warning--empty journal in giesl2016
-(There were 3 warnings)
+(There were 6 warnings)
