@@ -18,6 +18,8 @@ R - Research
 
 5 related work:
 
+domain criteria!
+
 code:
 - Add nondet check
 - subs: maybe sth like 3*2*v?

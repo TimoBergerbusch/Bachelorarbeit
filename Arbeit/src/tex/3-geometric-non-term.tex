@@ -412,7 +412,7 @@ Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a
 The existence of a \gna is checked using an \tool{SMT} solver, presented in \Cref{sec:smt-problem}, which will either give us a model satisfying the constraints or proof the non existence by giving an unsatisfiable core. \newline
 The constraints the \tool{SMT} solver has to fulfil are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute it's eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently. \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
 \newline
-So the next step in order to proof non-termination is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \footnote{the mentioned method can be found under \cite{ApacheMath3}}  because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
+So the next step in order to proof non-termination is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \cite{ApacheMath3} because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
 After computing the eigenvalues, we have set values for the \stem $x$ and $\lambda_1, \dots \lambda_k$ as constant values.
 \newline
 Using the \smtfactory, which offers methods to create the within \Cref{sec:smt-problem} and \Cref{ex:assertion-structure} stated structure, we are able to create assertions and add them to the \solver, such that the following holds:
@@ -431,7 +431,8 @@ Using the \smtfactory, which offers methods to create the within \Cref{sec:smt-p
 \end{itemize}
 The \domc for $x$ and $y_1, \dots y_k$ are trivial, because at no point of computation we would consider a vector $v\in\mathbb{C}$.
 The arity of $x$ is set within the derivation of the \stem (see: \Cref{sec:stem}) and sets the starting values for the $n$-variables. The arity of every $y_i$ is determined within the assertions of the \pointc and the \rayc.\newline
-Therefore this criteria adds no further assertions towards the \solver.
+The assertions one has to make towards the \solver is to ensure that the $\lambda$'s are not negative, since the proof by Leike and Heizmann is only for positive eigenvalues. Also for the $\mu$'s we have to add the assertion of being positive to fulfil the criteria. \newline
+Research on negative eigenvalues is mentioned within \Cref{chapter:related-work}.
 \subsection{The Initiation Criteria}
 \begin{itemize}
 	\setlength{\itemindent}{1in}
@@ -440,7 +441,7 @@ Therefore this criteria adds no further assertions towards the \solver.
 \end{itemize}
 
 The \initc is quite trivial to mention within the \solver, since we defined the \stem $x$ within \Cref{sec:stem} to be exactly the  \textit{start term}.\newline
-So this criteria also adds no further assertions towards the \solver.
+So this criteria adds no further assertions towards the \solver.
 
 \subsection{The Point Criteria}
 \label{sec:point-criteria}
@@ -450,7 +451,6 @@ So this criteria also adds no further assertions towards the \solver.
 	\item[] (see: \Cref{def:gna})
 \end{itemize}
 
-The \pointc is the first criteria to add assertions towards the \solver.\newline
 Since within the \iterationmatrix $A$ the \updatematrix $U$ is contained twice with a different sign the \iterationmatrix creates ,through the \pointc exactly, opposite signed rules for the last $2n$ rows.
 This means that, even though within the \pointc the relation is $\le$, the last $2n$ have to fulfil the equality of the rows.\newline
 
@@ -469,7 +469,7 @@ Then the \pointc can be rewritten to:
 		-a_{1,1} & \dots 	& -a_{1,n}	& 1 	 & \dots  & 0 \\
 		\vdots   & \ddots 	& \vdots	& \vdots & \ddots & \vdots \\
 		-a_{n,1} & \dots 	& -a_{n,n}	& 0 	 & \dots  & 1 \\
-	\end{pmatrix} \begin{pmatrix} x1 \\ \vdots \\ x_n \\ s_1 \\ \vdots \\ s_n\end{pmatrix} \le \begin{pmatrix} g \\ -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$\\ %\newline
+	\end{pmatrix} \begin{pmatrix} x_1 \\ \vdots \\ x_n \\ s_1 \\ \vdots \\ s_n\end{pmatrix} \le \begin{pmatrix} g \\ -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$\\ %\newline
 	\vspace*{1em}
 	$\Rightarrow Gx\le g$, which means that the guards have to hold. Note that $s_1$ to $s_n$ get multiplied with 0 so don't need to be considered. Also the following has to hold: \newline
 	\vspace*{1em}
@@ -481,7 +481,7 @@ Then the \pointc can be rewritten to:
 	-a_{1,1} & \dots 	& -a_{1,n}	& 1 	 & \dots  & 0 \\
 	\vdots   & \ddots 	& \vdots	& \vdots & \ddots & \vdots \\
 	-a_{n,1} & \dots 	& -a_{n,n}	& 0 	 & \dots  & 1 \\
-	\end{pmatrix} \begin{pmatrix} x1 \\ \vdots \\ x_n \\ s_1 \\ \vdots \\ s_n\end{pmatrix} \le \begin{pmatrix} -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$ \newline
+	\end{pmatrix} \begin{pmatrix} x_1 \\ \vdots \\ x_n \\ s_1 \\ \vdots \\ s_n\end{pmatrix} \le \begin{pmatrix} -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$ \newline
 	$= \begin{pmatrix}
 	a_{1,1}*x_1  & \dots 	& a_{1,n}*x_n	& -1*s_1 & \dots  & 0*s_n \\
 	\vdots   	 & \ddots 	& \vdots		& \vdots & \ddots & \vdots \\
@@ -529,7 +529,7 @@ Through $A$ and the \domc we know, that every $y_i\in \mathbb{R}^n$ so we add $n
 \subsubsection{$i > 1$:}
 Since we don't have any concrete values for any $y_i$ or $\mu_i$ so far the solving of the problem with the term $\mu_{i-1}y_{i-1}$ is not linear and therefore the computation has to be either performed in \textit{quantifier free non-linear integer arithmetic} or iterated over possible entry's for the $\mu$'s.\newline
 In the implemented approach the \textit{quantifier free non-linear integer arithmetic} is used. Even if it's generally undecidable there are implementations over finite domains semi-deciding the problems. \cite{behrmann2014bit} \cite{giesl2016} \newline
-Further comment about the usage of QF\_NIA can be found within \Cref{chapter:eval}.
+Further comment about the usage of QF-NIA can be found within \Cref{chapter:eval}.
 \\
 With $\lambda_i$ being the $i$-th eigenvalue of the \updatematrix we can compute the result of the multiplication as in the $i=0$ case, but have to normalize the outcome using the basic distributive property in order to handle it within an \rpntree and correctly generate an assertion from it.\newline
 So for every step $i > 1$ we add $n$ new variables $y_{i,n}$ such that $y_i = \begin{pmatrix} y_{i,1} \\ \vdots \\ y_{i,n}\end{pmatrix}$ and a new variable $\mu_{i-1}$ such that 

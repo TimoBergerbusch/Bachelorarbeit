@@ -96,16 +96,13 @@ The program from \Cref{fig:structure-example-java} can be transformed into the I
 As we can see, the original program can be recognized quite easily. The first rule in line 1 represents the \stem, while the second line forms the \loopt. \newline
 
 %TODO: richtig formatieren
-\begin{figure}[H]
-	
+\begin{figure}[H]	
 	\begin{lstlisting}[linewidth=1.2\textwidth, escapechar = !]
 !$\overbrace{f_1	     \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1}^{\text{\stem}}$!
-!$\underbrace{\underbrace{f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3)}_{\text{linear update}} :|: \underbrace{v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 }_{\text{guards}}}_{\text{\loopt}}$!
-
-	
+!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } 3 * v_1 > 20 \text{ \&\& }$!
+!$\underbrace{\text{\qquad\qquad\qquad\qquad\qquad\qquad}}_{\text{linear update}}$!		!$\underbrace{ 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10\text{\qquad\qquad\qquad} }_{\text{guards}}$!
+!$\underbrace{\text{\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad}}_{\text{\loopt}}$!
 	\end{lstlisting}
-%	f_1 -> f_2(1 + 3 * v_1, -3) :|: v_1 > 2 && 8 < 3 * v_1
-%	f_2(v_1, v_2) -> f_2(3 * v_1 + v_2, v_3) :|: v_1 + v_2 > 3 && v_1 > 6 && 3 * v_1 > 20 && 5 + v_3 = 2 * v_2 && v_3 < -10
 
 	\caption{The \its corresponding to the \tool{Java} program in \Cref{fig:structure-example-java}}
 	\label{fig:structure-example-TRS}
@@ -212,7 +209,6 @@ An example of the \rpntree's usage is shown in \Cref{ex:rpntree}
 
 \newsavebox\mybox
 \begin{lrbox}{\mybox}
-	
 	\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
 		\node (Plus) at (0,0) [objDia] {
 			\textbf{f1}:RPNFunctionSymbol
@@ -242,6 +238,7 @@ An example of the \rpntree's usage is shown in \Cref{ex:rpntree}
 \end{lrbox}
 
 \begin{figure}[H]
+	\centering
 	\begin{tikzpicture}[
 			scale=0.6,
 			every edge/.append style = { dashedarrow },
@@ -259,7 +256,7 @@ An example of the \rpntree's usage is shown in \Cref{ex:rpntree}
 
 \section{\tool{SMT}-Problem}
 \label{sec:smt-problem}
-Also we have to consider an \textit{Satisfiability Modulo Theorie}-Problem (\tool{SMT}-Problem), we have to solve to derive a \gna fulfilling all the criterias of \Cref{def:gna}. Since \tool{SMT}-Problem solving is a big research topic on it's own we only consider the very basic of \tool{SMT}-Solving necessary to understand how the program solves the problem. \newline
+Also we have to consider an \textit{Satisfiability Modulo Theory}-Problem (\tool{SMT}-Problem), we have to solve to derive a \gna fulfilling all the criterias of \Cref{def:gna}. Since \tool{SMT}-Problem solving is a big research topic on it's own we only consider the very basic of \tool{SMT}-Solving necessary to understand how the program solves the problem. \newline
 %TODO: write it more mathematically
 Within this approach we use the so called \code{Basic Structures} defined within \aprove to add assertions to the \solver using the \smtfactory. An example of the structure of the assertions can be found in \Cref{ex:assertion-structure}. %MAYBE: Class-dia?
 

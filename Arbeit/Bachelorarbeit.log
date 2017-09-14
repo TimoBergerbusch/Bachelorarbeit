@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  14 SEP 2017 17:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  14 SEP 2017 21:07
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -2236,52 +2236,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 95--97
  []
 
 
-Overfull \hbox (72.94708pt too wide) in paragraph at lines 103--106
-[][][][][]$[]$  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--117
+Underfull \hbox (badness 10000) in paragraph at lines 111--114
 
  []
 
-
-Underfull \vbox (badness 1122) has occurred while \output is active []
-
- [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
-}) has been already used, duplicate ignored
+[7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}
+) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.120 
+l.117 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.120 
+l.117 
       ]
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 122.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 119.
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--159
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--156
 
  []
 
 [8] (src/diagram/RPNTree-classdiagram.tex
 \du=\skip155
 )
-Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--209
+Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--206
  [][] 
  []
 
@@ -2292,22 +2284,22 @@ Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--209
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.281 
+l.278 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.5}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.281 
+l.278 
       ]
-Overfull \hbox (51.76566pt too wide) in paragraph at lines 291--292
+Overfull \hbox (51.76566pt too wide) in paragraph at lines 288--289
 []\T1/lmr/m/n/10.95 The whole line is a \T1/lmtt/m/n/10.95 PlainIntegerRelation
 \T1/lmr/m/n/10.95 , which can be trans-formed into the \T1/lmtt/m/n/10.95 SMTEx
 pressionFormat
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 294--295
+Underfull \hbox (badness 10000) in paragraph at lines 291--292
 
  []
 
@@ -2371,7 +2363,7 @@ fier (name{figure.3.5}) has been already used, duplicate ignored
                                                   
 l.424 \end{figure}
                   ]
-Underfull \hbox (badness 10000) in paragraph at lines 453--456
+Underfull \hbox (badness 10000) in paragraph at lines 454--456
 
  []
 
@@ -2487,11 +2479,11 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
  ) 
 Here is how much of TeX's memory you used:
- 37615 strings out of 493333
- 734713 string characters out of 3144357
- 855298 words of memory out of 3000000
- 40221 multiletter control sequences out of 15000+200000
- 120794 words of font info for 85 fonts, out of 3000000 for 9000
+ 37616 strings out of 493333
+ 734726 string characters out of 3144357
+ 854295 words of memory out of 3000000
+ 40220 multiletter control sequences out of 15000+200000
+ 116523 words of font info for 84 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,32n,85p,10435b,1369s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Tools/MikTex/fonts/enc/dvips/lm/lm-rm.enc}{D:/Tools/MikTex/fonts/enc/dvip
@@ -2515,9 +2507,9 @@ s/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/lm
 /lmsy9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt10.pfb><D:/Tools/MikTex/f
 onts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (39 pages, 684540 bytes).
+Output written on Bachelorarbeit.pdf (39 pages, 683232 bytes).
 PDF statistics:
- 847 PDF objects out of 1000 (max. 8388607)
- 195 named destinations out of 1000 (max. 500000)
+ 851 PDF objects out of 1000 (max. 8388607)
+ 197 named destinations out of 1000 (max. 500000)
  421 words of extra memory for PDF output out of 10000 (max. 10000000)
 
