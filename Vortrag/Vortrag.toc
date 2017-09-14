@@ -1,16 +1,16 @@
 \select@language {english}
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Example}{6}{0}{2}
-\beamer@sectionintoc {3}{Preliminaries}{9}{0}{3}
-\beamer@subsectionintoc {3}{1}{Integer Term Rewrite Systems (int-TRS) }{9}{0}{3}
-\beamer@subsectionintoc {3}{2}{Geometric Nontermination Argument (GNA)}{11}{0}{3}
-\beamer@subsectionintoc {3}{3}{Definitions}{14}{0}{3}
-\beamer@subsectionintoc {3}{4}{Reverse Polish Notation Tree (RPNTree)}{20}{0}{3}
-\beamer@subsectionintoc {3}{5}{Sat. Modulo Theorie (SMT)}{21}{0}{3}
-\beamer@sectionintoc {4}{Geometric Nontermination}{22}{0}{4}
-\beamer@subsectionintoc {4}{1}{Derivation: STEM}{24}{0}{4}
-\beamer@subsectionintoc {4}{2}{Derivation: Guard Matrix/Constants}{25}{0}{4}
-\beamer@subsectionintoc {4}{3}{Derivation: Update Matrix/Constants}{33}{0}{4}
-\beamer@subsectionintoc {4}{4}{Derivation: Iteration Matrix/Constants}{36}{0}{4}
-\beamer@subsectionintoc {4}{5}{Derivation: SMT-Problem}{37}{0}{4}
-\beamer@sectionintoc {5}{Verification of a GNA}{45}{0}{5}
+\beamer@sectionintoc {1}{Einleitung}{3}{0}{1}
+\beamer@sectionintoc {2}{Beispiel}{6}{0}{2}
+\beamer@sectionintoc {3}{N{\"o}tiges Vorwissen}{9}{0}{3}
+\beamer@subsectionintoc {3}{1}{Integer Transition Systems (ITS) }{9}{0}{3}
+\beamer@subsectionintoc {3}{2}{Geometrische Nicht-Terminierungs Argumente (GNA)}{11}{0}{3}
+\beamer@subsectionintoc {3}{3}{Definitionen}{14}{0}{3}
+\beamer@subsectionintoc {3}{4}{Umgekehrt Polnische Notation (RPNTree)}{19}{0}{3}
+\beamer@subsectionintoc {3}{5}{Sat. Modulo Theorie (SMT)}{20}{0}{3}
+\beamer@sectionintoc {4}{Geometrische Nicht-Terminierung}{21}{0}{4}
+\beamer@subsectionintoc {4}{1}{Herleitung: STEM}{22}{0}{4}
+\beamer@subsectionintoc {4}{2}{Herleitung: Guard Matrix \& Konstanten}{23}{0}{4}
+\beamer@subsectionintoc {4}{3}{Herleitung: Update Matrix \& Konstanten}{30}{0}{4}
+\beamer@subsectionintoc {4}{4}{Herleitung: Iteration Matrix \& Konstanten}{33}{0}{4}
+\beamer@subsectionintoc {4}{5}{Herleitung: SMT-Problem}{34}{0}{4}
+\beamer@sectionintoc {5}{Verifizierung eines GNA}{41}{0}{5}

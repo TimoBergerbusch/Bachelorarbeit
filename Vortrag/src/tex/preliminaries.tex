@@ -1,37 +1,37 @@
-\section{Preliminaries}
+\section{N{\"o}tiges Vorwissen}
 
-\subsection{Integer Term Rewrite Systems (int-TRS) }
+\subsection{Integer Transition Systems (ITS) }
 \frame{\tableofcontents[currentsection]}
 \begin{frame}[fragile] %%Eine Folie
-	\frametitle{Integer Term Rewrite Systems (int-TRS)}
-	\its considered:
+	\frametitle{Integer Transition Systems (ITS)}
+	\its betrachtete Programme:
 	\begin{lstlisting}[escapechar=!]
 	!$\overbrace{f_x}^{(1)} \qquad\quad\>\>\>\> \rightarrow \overbrace{f_y}^{(2)} (v_1, \dots v_n) :|: cond_1$!
 	!$\>\>f_y(\underbrace{v_1, \dots v_n}_{(3)}) \> \rightarrow \>\> f_y \>\>\>(\underbrace{v^\prime_1,\dots v^\prime_n}_{(3)})  :|: \underbrace{cond_2}_{(4)}$!
 	\end{lstlisting}
 	
 	\begin{enumerate}
-		\item[(1)] function symbol (no variables $\Rightarrow$ start)
-		\item[(3)] variables $v^\prime_i$ as linear updates of the variables $v_j$
-			\item[(2)] function symbol
-			\item[(4)] a set of (in)-equations mentioning $v_j$ and $v^\prime_i$
+		\item[(1)] Funktionssymbol (kein Variablen $\Rightarrow$ Start)
+		\item[(3)] Variablen $v^\prime_i$ als linear Updates der Variablen $v_j$
+		\item[(2)] Funktionssymbol
+		\item[(4)] eine Menge von (Un-)Gleichungen \"uber $v_j$ und $v^\prime_i$
 	\end{enumerate}
 
-	Reading: "rewrite $f_y(v_1,\dots,v_n)$ as $f_y(v^\prime_1,\dots,v^\prime_n)$ if \textit{cond} holds"
+%	Gelesen als: "rewrite $f_y(v_1,\dots,v_n)$ as $f_y(v^\prime_1,\dots,v^\prime_n)$ if \textit{cond} holds"
 \end{frame}
 
-\subsection{Geometric Nontermination Argument (GNA)}
+\subsection{Geometrische Nicht-Terminierungs Argumente (GNA)}
 \begin{frame}[fragile]
-	\frametitle{Geometric Nontermination Argument (GNA)}
+	\frametitle{Geometrische Nicht-Terminierungs Argumente (GNA)}
 	\begin{itemize}
-		\item Idea: Split program into two parts:
+		\item Idee: Teilen des Programms in \blue{zwei} Teile:
 			\begin{itemize}
-				\item \stem: variable initialization and declaration
+				\item \stem: Variablen Deklaration und Initialisierung
 					\begin{lstlisting}[language = java]
 	int a;
 	int b=1;
 					\end{lstlisting}
-				\item \loopt: linear updates and \code{while}-guard
+				\item \loopt: linear Updates und \code{while}-Bedingung
 				\begin{lstlisting}[language = java]
 	while(a+b>=4){
 		a=3*a+b;
@@ -39,66 +39,70 @@
 	}
 				\end{lstlisting}
 			\end{itemize}
-		\item apply the definition of a \gna by J. Leike and M. Heizmann 
+		\item anwenden der Definition der \gna von J. Leike and M. Heizmann 
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 	\begin{example}
-		The \its of the example program would be: \newline
+		Das \its zum Beispielprogramm: \newline
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
-		!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
-		!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& }$! 
-		!$v_1 > 6 \text{ \&\& } 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
+!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
+!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
+				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
 		\end{lstlisting}
-		The first rule represents the \stem \newline
-		Second rule represents the \loopt
+		erste Regel repr\"asentiert den \stem \newline
+		zweite Regel repr\"asentiert die \loopt
 	\end{example}	
 \end{frame}
 
 \begin{frame}
-	\begin{definition}[Geometric Non Termination Argument]
+	\begin{definition}[Geometrische Nicht-Terminierungs Argumente]
 		\label{def:gna}
-		A tuple of the form:
+		Ein Tupel der Form:
 		\vspace{-1em}
 		\begin{figure}
 			\centering
 			$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$
 		\end{figure}  
 		\vspace{-1em}
-		is called a \gna of size $k$ for a program = $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
+		ist ein \gna der Gr\"oße $k$ f\"ur ein Programm = $(\stem, \loopt)$ mit $n$ Variablen g.d.w. alle folgenden Kriterien erf\"ullt sind:
 		\begin{itemize}
 			\setlength{\itemindent}{1in}
 			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
-			\item[(init)] x represents the \startterm (\stem)
+			\item[(init)] x repr\"asentiert den \startterm (\stem)
 			\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
 			\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
 		\end{itemize}
-		Note: $y_0 = \mu_0 = 0$ instead of case distinction
+		Anmerkung: Definiere $y_0 = \mu_0 = 0$ statt einer Fallunterscheidung
 	\end{definition}
 \end{frame}
 
-\subsection{Definitions}
+\subsection{Definitionen}
 
 \begin{frame}
-	\frametitle{Definitons: Matrices}
-%	For all definitions we take a rule to be specified as $r \Leftrightarrow f_x(v_1,\dots,v_n)\rightarrow f_y(c_1+\sum_{i=1}^{n}g_{1,i}v_i, \dots, c_n+\sum_{i=1}^{n}g_{n,i}v_i) :|: $\newline 
-%	\hspace*{1.5cm}$\bigwedge_{\text{guard }g} \sum_{i=1}^{n}g_{n,i}v_i \le c_m$
-	\begin{definition}[\guardmatrix, \guardconstants]<1->
-		For $1\le i,j\le n$ and $m$ the number of guards not containing "=":\newline
-		The \guardmatrix $G\in \mathbb{Z}^{m\times n}$ is the matrix of coefficients $a_{i,j}$ of a variable $v_i$ within the $j$-th guard. The \guardconstants $g \in \mathbb{Z}^{m}$ are the constant terms $c_j$ within the $j$-th guard.
+	\begin{definition}[Guard Matrix \& Konstanten]
+		Die Guard Matrix $G$ ist eine Koeffizienten Matrix f\"ur Ungleichungen. Die Guard Konstanten $g$ die Konstanten der Ungleichungen.
 	\end{definition}
-	\begin{definition}[\updatematrix, \updateconstants]<2->
-		The \updatematrix $U \in \mathbb{Z}^{n \times n}$ and \updateconstants $u \in \mathbb{Z}^n$ are analogously to the \guardmatrix and \guardconstants , considering the updates (right hand side) instead of the guards.
+	\begin{definition}[Update Matrix \& Konstanten]<2->
+		Die Update Matrix $U$ und Konstanten $u$ sind analog zu der Guard Matrix und Konstanten über den linearen Updates.
+	\end{definition}
+	\begin{definition}[Iteration Matrix \& Konstanten]<3->
+		Mit \textbf{0} eine Matrix aus 0-en und $I$ der Einheitsmatrix ergeben sich die Iteration Matrix $A$ und Konstanten $b$ wie folgt:
+		\vspace*{-1em}
+		\begin{figure}[H]
+			\centering
+			$A = \begin{pmatrix} G & \textbf{0} \\ U & -I \\ -U & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
+		\end{figure}
 	\end{definition}
 \end{frame}
 
 \begin{frame}[fragile]
 	\begin{variableblock}{Reminder: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
-		!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
-		!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& }$! 
-		!$v_1 > 6 \text{ \&\& } 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
+!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
+!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
+				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
 		\end{lstlisting}
 	\end{variableblock}
 	\begin{example}[\guardmatrix, \guardconstants]
@@ -113,9 +117,9 @@
 \begin{frame}[fragile]
 	\begin{variableblock}{Reminder: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
-		!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
-		!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& }$! 
-		!$v_1 > 6 \text{ \&\& } 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
+!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
+!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
+				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
 		\end{lstlisting}
 	\end{variableblock}
 		\begin{example}[\updatematrix, \updateconstants]
@@ -127,27 +131,13 @@
 		\end{example}
 \end{frame}
 
-\begin{frame}
-	\begin{definition}[\iterationmatrix, \iterationconstants]<1->
-		Let \textbf{0} be a matrix of the size of $G$ with only entry's 0 and $I$ denote the identity matrix having the same dimension as $U$. Then are the \iterationmatrix $A$ and \iterationconstants $b$ defined as:
-		\begin{figure}[H]
-			\centering
-			$A = \begin{pmatrix} G & \textbf{0} \\ U & -I \\ -U & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
-		\end{figure}
-	\end{definition}
-	\begin{variableblock}{Sentence}{bg=blue!10!white,fg=black}{bg=blue, fg=white}<2->
-		If a geometric nontermination argument $a$ for a program $p$ exists, then $p$ does
-		not terminate.
-	\end{variableblock}
-\end{frame}
-
-\subsection{Reverse Polish Notation Tree (RPNTree)}
+\subsection{Umgekehrt Polnische Notation (RPNTree)}
 
 \begin{frame}[fragile]
 	\frametitle{\rpntree (RPNTree)}
 	\begin{itemize}
-		\item<1-> simple tree structure to handle \underline{only} considered terms 
-		\item<1-> classes for variables, constants and arith. operations
+		\item<1-> simple Baumstruktur f\"ur \underline{ausschließlich} ber\"ucksichtigter Terme 
+		\item<1-> Klassen f\"ur Konstanten, Variablen und Operatoren
 	\end{itemize}
 	
 	\newsavebox\testboxEX
@@ -186,8 +176,8 @@
 			scale=0.4,
 			every edge/.append style = { dashedarrow },
 			every node/.append style = { stdNode, scale = 0.75} ]
-			\node (L) {\begin{tabular}{cc} mathematical expression: \\ $3*v_1+v_2$ \end{tabular} };
-			\node[below = of L] (M)  {\begin{tabular}{cc} reverse polish notation: \\ $+(*(3, v_1),v_2)$ \end{tabular} };
+			\node (L) {\begin{tabular}{cc} Term: \\ $3*v_1+v_2$ \end{tabular} };
+			\node[below = of L] (M)  {\begin{tabular}{cc} Umgekehr Polnische Notation: \\ $+(*(3, v_1),v_2)$ \end{tabular} };
 			\node[right = of M] (R) {\usebox\testboxEX};
 			\draw (L.south) edge (M.north);
 			\draw (M.east) edge (R.west);
@@ -202,16 +192,16 @@
 	\frametitle{Sat. Modulo Theorie (SMT)}
 	
 	\begin{itemize}
-		\item Basic idea: 
+		\item Grundlegende Idee: 
 			\begin{itemize}
-				\item[] set of assertions: (in)-equations with variables
-				\item[] \qquad$\>\>$ $\xrightarrow{\text{\solver}}$ a sat. model \underline{or} unsat. core
+				\item[] Menge von Regeln: (Un)-Gleichungen mit Variablen
+				\item[] \qquad$\>\>$ $\xrightarrow{\text{\solver}}$ ein erf. Modell \underline{oder} unerf. Kern
 			\end{itemize}		
-		\item \color{blue}sat. model\color{black}: a value for every variable s.t. all assertions hold
-		\item \color{blue}unsat. core\color{black}: a (minimal) set of assertions that can't hold simultaneously
+		\item \color{blue}erf. Modell\color{black}: einen Wert f\"ur jede Variable
+		\item \color{blue}unerf. Modell\color{black}: ein (minimale) Menge von Regeln die nicht alle zeitgleich gelten k\"onnen
 	\end{itemize}
 	\begin{example}
-		Considering the following assertions:
+		Beispiel mit folgenden Regeln:
 		\vspace*{-1em}
 		\begin{figure}[H]
 			\centering
@@ -220,35 +210,8 @@
 			\end{tabular}
 		\end{figure}
 		\vspace*{-1em}
-		 A possible model would be $m_1 = \{x=6, y=6\}$.\newline \newline
-		 changing the third assertion to $x+y\le10$:\newline
-		 no possible solution with unsat. core $\{x \le y$, $x > 5$, $x+ y \le 10 \}$
+		 M\"ogliches Modell $m_1 = \{x=6, y=6\}$.\newline \newline
+		 \"Andern der dritten Regel zu $x+y\le10$:\newline
+		 Kein Modell ex. mit unerf. Kern $\{x \le y$, $x > 5$, $x+ y \le 10 \}$
 	\end{example}
 \end{frame}
-
-%\begin{frame}
-%	\begin{itemize}
-%		\item assertions can be generated using \color{blue}\smtfactory\color{black}
-%		\item if generated it ensures the following property:
-%		\begin{figure}[H]
-%			\centering
-%			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
-%			\node[objDia] (top) {
-%				\textbf{f1}: RPNFunctionSymbol
-%				\nodepart{second}arithmeticSymbol: $\circ$
-%			};
-%			\node[rectangle, draw=black, rounded corners, text centered, anchor=north, below left = of top] (left) {
-%				$\psi$
-%			};
-%			\node[objDia, below right = of top] (right) {
-%				\textbf{c1}: RPNConstant
-%				\nodepart{second}value: $c$
-%			};
-%			
-%			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (left.north) node [pos = 0.4, above, font=\footnotesize]{left};
-%			\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (right.north) node [pos = 0.4, above, font=\footnotesize]{right};
-%			\end{tikzpicture}
-%		\end{figure}
-%		where $\circ \in \{\le, = \}$, $cons\in \mathbb{Z}$ and a linear update $\psi= \sum_{i=1}^{n}a_{i,j}v_i$ for variables $v_i$
-%	\end{itemize}
-%\end{frame}

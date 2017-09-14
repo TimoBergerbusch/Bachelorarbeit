@@ -1,29 +1,29 @@
-\section{Geometric Nontermination}
+\section{Geometrische Nicht-Terminierung}
 
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame} %%Eine Folie
-  \frametitle{Geometric Nontermination} 
-  Necessary steps for the derivation of a GNA:
-  \begin{enumerate}
-  	\item derive the \stem
-  	\item derive the \guardmatrix/\textit{Constants}
-  	\item derive the \updatematrix/\textit{Constants}
-  	\item compute the \iterationmatrix/\textit{Constants}
-  	\item add the criteria of a GNA as assertions to an \solver
-  	\item read of GNA (if exists)
-  \end{enumerate}
-\end{frame}
+%\begin{frame} %%Eine Folie
+%  \frametitle{Geometrische Nicht-Terminierung} 
+%  Notwendige Schritte zur Herleitung eines GNA:
+%  \begin{enumerate}
+%  	\item den \stem herleiten
+%  	\item die Guard Matrix \& Konstanten herleiten
+%  	\item die Update Matrix \& Konstanten herleiten
+%  	\item die Iteration Matrix \& Konstanten herleiten
+%  	\item alle Kriterien eines GNA einem \solver zuweisen
+%  	\item GNA ablesen (wenn eins ex.)
+%  \end{enumerate}
+%\end{frame}
 
-\subsection{Derivation: STEM}
+\subsection{Herleitung: STEM}
 
 
 \begin{frame}[fragile]
-	\frametitle{Derivation: \stem}
-	Consider \color{blue}two\color{black}\xspace different possibilities:
+	\frametitle{Herleitung: \stem}
+	unterscheiden von \blue{zwei} M\"oglichkeiten:
 	\begin{tabular}{rl}
-		\blue{constant stem}: & $f_x \rightarrow f_y(c_1,\dots,c_n) :|: TRUE$ \\
-							  & $\Rightarrow$ read of values \\
+		\blue{konstanter \stem}: & $f_x \rightarrow f_y(c_1,\dots,c_n) :|: TRUE$ \\
+							  & $\Rightarrow$ Werte ablesen \\
 	\end{tabular}
 	\begin{example}
 		\centering
@@ -32,53 +32,55 @@
 	\end{example}
 
 	\begin{tabular}{rl}
-		\blue{variable stem}: & $f_x \rightarrow f_y(c_1+\sum_{i=1}^{n}a_{1,i}v_i, \dots, c_n+\sum_{i=1}^{n}a_{n,i}v_i) :|: $ \\
+		\blue{variabler \stem}: & $f_x \rightarrow f_y(c_1+\sum_{i=1}^{n}a_{1,i}v_i, \dots, c_n+\sum_{i=1}^{n}a_{n,i}v_i) :|: $ \\
 							  & $\bigwedge_{\text{guard }g} \sum_{i=1}^{n}g_{n,i}v_i \le c_m$ \\
-							  & $\Rightarrow$ create assertions and derive a model \\
+							  & $\Rightarrow$ Bedingungen einem \solver geben und  \\
+							  & \quad$\>$ Modell ablesen \\
 	\end{tabular}
 	\begin{example}
 		\centering
 		$f_1 \rightarrow f_2(1 + 3v_1, -3) :|: v_1 > 2\text{ \&\& }8 < 3v_1 $ \newline
-		$\Rightarrow$ model $m_1=\{v=3\}$ $\Rightarrow$\stem = $ (10, -3)^T$
+		$\Rightarrow$ Modell $m_1=\{v=3\}$ $\Rightarrow$\stem = $ (10, -3)^T$
 	\end{example}
 \end{frame}
 
 
-\subsection{Derivation: Guard Matrix/Constants}
+\subsection{Herleitung: Guard Matrix \& Konstanten}
 \begin{frame}
-	\frametitle{Derivation: Guard Matrix/Constants}
-	conditional term given by the \seg \newline
-	\hspace*{1.5cm}$r = \&\&(g_1,( \&\& (\dots,(\&\&(g_{n-1},g_n) )\dots)))$
-	\begin{algorithm}[H]
-		\begin{algorithmic}[1]
-			\Function{computeGuardSet}{Rule r}
-			\State Stack $stack \gets r$
-			\State Set $guards$
-			\While{$!stack.isEmpty()$}
-			\State $item \gets stack.pop$
-			\If{item is of the form $\&\&(x_1,x_2)$}
-			\State add $x_1$ and $x_2$ to $stack$
-			\Else
-			\State add $item$ to $guards$
-			\EndIf				
-			\EndWhile	
-			\State \Return $guards$
-			\EndFunction
-		\end{algorithmic}
-		\caption{derive set of guards}
-	\end{algorithm}
-\end{frame}	
-	
-\begin{frame}
+	\frametitle{Herleitung: Guard Matrix \& Konstanten}
 	\begin{itemize}
-		\item now we have $G=\{g \mid g \text{ is a guard}\}$
-		\item \red{Problem}: $g$ could not be in the desired $\varphi \le c$ form.
-		\item \red{Even worse}: $g$ could declare new variables using "$=$"
-		\item \green{Solution}: bring every $g$ in the desired form, by: 
+		\item (Un-)Gleichungen vom \seg der Form
+		\item[] \hspace{1cm} $r = \&\&(g_1,( \&\& (\dots,(\&\&(g_{n-1},g_n) )\dots)))$
+%	\begin{algorithm}[H]
+%		\begin{algorithmic}[1]
+%			\Function{computeGuardSet}{Rule r}
+%			\State Stack $stack \gets r$
+%			\State Set $guards$
+%			\While{$!stack.isEmpty()$}
+%			\State $item \gets stack.pop$
+%			\If{item is of the form $\&\&(x_1,x_2)$}
+%			\State add $x_1$ and $x_2$ to $stack$
+%			\Else
+%			\State add $item$ to $guards$
+%			\EndIf				
+%			\EndWhile	
+%			\State \Return $guards$
+%			\EndFunction
+%		\end{algorithmic}
+%		\caption{derive set of guards}
+%	\end{algorithm}
+%\end{frame}	
+%	
+%\begin{frame}
+	
+		\item Aufspalten zu $G=\{g \mid g \text{ ist eine (Un-)Gleichung}\}$
+		\item \red{Problem}: $g$ k\"onnte nicht die Form $\varphi \le c$ haben
+		\item \red{Schlimmer}: $g$ k\"onnte mittels "$=$" neue Variablen einf\"uhren
+		\item \green{L\"osung}: umformen von $g$ in die gew\"unschte Form: 
 			\begin{tabular}{cll}
-				1. & filter equalities   & by substituting "new" variables \\
-				2. & normalizing ($\le$) & rewrite $<,>,\ge$ to $\le$ \\
-				3. & normalizing ($c$)   & transfer only constant term to r.h.s.\\
+				1. & Gleichungen suchen   & ersetzen "neuer" Variablen \\
+				2. & Normalisierung ($\le$) & umschreiben $<,>,\ge$ to $\le$ \\
+				3. & Normalisierung ($c$)   & umschreiben der Konstanten\\
 			\end{tabular}
 	\end{itemize}	
 \end{frame}
@@ -88,20 +90,20 @@
 	\begin{algorithm}[H]
 		\begin{algorithmic}[1]
 			\Function{filterEqualities}{$G$}
-			\State $V_{left} = \{v \mid $the left hand side of the rule contains $ v\}$
-			\State $V_{right} = \{v \mid $the right hand side of the rule contains $ v\}$
+			\State $V_{left} = \{v \mid $ die linke Seite beinhaltet $ v\}$
+			\State $V_{right} = \{v \mid $ die rechte Seite beinhaltet $ v\}$
 			\State $V_{sub} = V_{right} - V_{left}$
-			\State define substitution $\theta=\{\}$
+			\State definiere Substitutionen $\theta=\{\}$
 			\While{$V_{sub} \neq \emptyset}$
-			\State select $ s \in V_{sub}$
-			\State select $g_s \in \{g \in G\mid g \text{ contains } "=" \}$
-			\State remove $g_s$ from $G$
-			\State rewrite $g_s$ to the form $s = \psi$
+			\State w\"ahle $ s \in V_{sub}$
+			\State w\"ahle $g_s \in \{g \in G\mid g \text{ beinhaltet } "=" \text{ und } s\}$
+			\State entferne $g_s$ aus $G$
+			\State umschreiben von $g_s$ zur Form $s = \psi$
 			\State $\theta=\theta\{s/\psi\}$
 			\ForAll{$g\in G$}
 			\State $g = \theta g$
 			\EndFor	
-			\State remove $s$ from $V_{sub}$
+			\State entferne $s$ aus $V_{sub}$
 			\EndWhile
 			\State \Return $G$
 			\EndFunction
@@ -111,24 +113,24 @@
 
 \begin{frame} % bsp: filter eq.
 	\begin{example}
-		From the example \its we get using the decat. algorithm:\newline
+		F\"urs Beispiel \its erhalten wir:\newline
 		$\{v_1 + v_2 > 3\text{, } v_1 > 6 \text{, } 3 * v_1 > 20 \text{, } 5 + v_3 = 2 * v_2 \text{, } v_3 < -10\}$
 		\begin{enumerate}
 %			\setlength{\itemindent}{1cm}
-			\item We compute $V_{left}=\{v_1, v_2\}$, $V_{right}=\{v_1,v_2,v_3\}$ so $V_{sub}=\{v_3\}$
-			\item Begin with $\theta=\{\}$ 
-			\item Since obviously $V_{sub} \neq \emptyset$  we select $s=v_3$ and select $g_s \Leftrightarrow 5+v_3=2*v_2$
-			\item $g_s$ rewritten to the form $s=\psi$ then follows with $v_3=2*v_2-5$
+			\item berechne $V_{left}=\{v_1, v_2\}$, $V_{right}=\{v_1,v_2,v_3\}$ so $V_{sub}=\{v_3\}$
+			\item starte mit $\theta=\{\}$ 
+			\item Da $V_{sub} \neq \emptyset$  w\"ahle $s=v_3$ und w\"ahle $g_s \Leftrightarrow 5+v_3=2*v_2$
+			\item $g_s$ umschreiben zur Form $s=\psi$ f\"uhrt zu $v_3=2*v_2-5$
 			\item $\theta = \theta\{s/2*v_2-5\} = \{s/2*v_2-5\}$
 			\item $G=\{v_1 + v_2 > 3$, $ v_1 > 6 $, $ 3 * v_1 > 20 $, $ 2*v_2-5 < -10\}$
-			\item Since $V_{sub}=\emptyset$ return $G$
+			\item Da $V_{sub}=\emptyset$ gebe $G$ zur\"uck
 		\end{enumerate}
 	\end{example}
 \end{frame}
 
 \begin{frame} % normal. <=
-	\frametitle{normalization ($\le$)}
-	rewrite a guard $g_i$ of the form $g_i \Leftrightarrow \psi + c_{\psi} \circ c$, where $\circ \in \{<,>,\le,\ge\}$ to the form $ \eta*\psi + \eta*c_{\psi} \le \eta*c-\tau$ depending on $\circ$.\newline
+	\frametitle{Normalisierung ($\le$)}
+	Umschreiben von $g_i$ der Form $g_i \Leftrightarrow \psi + c_{\psi} \circ c$, mit $\circ \in \{<,>,\le,\ge\}$ zur Form $ \eta*\psi + \eta*c_{\psi} \le \eta*c-\tau$ abh\"angig von $\circ$.\newline
 	\begin{figure}[H]
 		\vspace*{-1cm}
 		\centering
@@ -143,17 +145,17 @@
 		\end{tabular}
 	\end{figure}
 	\footnotesize
-	$\eta$ is the indicator of inverting the guard to convert $\ge$ ($>$) to $\le$ ($<$)\newline
-	$\tau$ is the possible subtraction of 1 to receive the $\le$ instead of a $<$.
+	$\eta$ beschreibt die Umwandlung von $\ge$ ($>$) zu $\le$ ($<$)\newline
+	$\tau$ steht f\"ur m\"oglich Subtraktion um $\le$ statt $<$ zu erhalten
 \end{frame}
 
 \begin{frame} % normal. c
-	\frametitle{normalization ($c$)}
-	Subtract the term $\eta*c_\psi$ on both sides: \newline
-	final form:  $\eta*\psi \le \underbrace{\eta*c -\tau -1*\eta*c_{\psi}}_{\text{constant term}}$
+	\frametitle{Normalisierung ($c$)}
+	Subtrahiere $\eta*c_\psi$ auf beiden Seiten: \newline
+	endg\"ultige Form:  $\eta*\psi \le \underbrace{\eta*c -\tau -1*\eta*c_{\psi}}_{\text{constant term}}$
 	
-	\begin{variableblock}{Reminder: \its structure}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
-		Can derive constant factors very simple using a structure property :
+	\begin{variableblock}{Erinnerung: \its Struktur}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		Herleiten des Konstanten Terms unter Ausnutzung einer Struktureigenschaft:
 		\begin{figure}[H]
 			\centering
 			\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
@@ -178,9 +180,10 @@
 
 \begin{frame} % bsp: norm
 	\begin{example}
-		Normalizing the guard $g \Leftrightarrow 3*v_1>20 \Leftrightarrow \underbrace{3*v_1}_{\psi}+\underbrace{0}_{c_\psi} > \underbrace{20}_{c}$ \vspace*{-1em}\newline
+		Normalisierung der Ungleichung $g \Leftrightarrow 3*v_1>20 \Leftrightarrow \underbrace{3*v_1}_{\psi}+\underbrace{0}_{c_\psi} > \underbrace{20}_{c}$\newline
 		
-		Looking up the row for $\circ \Leftrightarrow >$: 
+		Nachschlagen des Wertes von $\circ \Leftrightarrow >$: 
+		\hspace*{1.5cm}
 		\begin{tabular}{|l|r|l|l|}
 			\hline
 			$\circ$ 	& $\eta$ 	& $\tau$ 	&  $ \eta*\psi + \eta*c_{\psi} \le \eta*c-\tau$ \\ 
@@ -189,33 +192,34 @@
 			$>$ 		& $-1$		&  1 		& $-\psi - c_{\psi} \le -c -1 $ \\ \hline
 		\end{tabular} \newline
 	
-		Result with $\eta=-1$, $\tau = 1$ in: $-(3*v_1)-(0)\le-20-1 \Leftrightarrow -3*v_1 \le -21$
+		Endergebnis mit $\eta=-1$, $\tau = 1$ in: \newline
+		\hspace*{1.5cm}$-(3*v_1)-(0)\le-20-1 \Leftrightarrow -3*v_1 \le -21$
 	\end{example}
 \end{frame}
 
 \begin{frame} % conclus
 	\begin{itemize}
-		\item now every guard has the form $\varphi \le c$
-		\item deriving \guardconstants is very simple
-		\item deriving \guardmatrix is read off the coefficients.
-		\hspace*{1.5cm}(more detailed within the \updatematrix)
-		\item[$\Rightarrow$] \updatematrix/\textit{Constants} derived \checkmark
+		\item Jede Ungleichung hat die Form $\varphi \le c$
+		\item herleiten der Guard Konstanten ist nun trivial
+		\item herleiten der Guard Matrix ist einfaches Ablesen
+		\hspace*{1.5cm}(genauer unter der Update Matrix)
+		\item[$\Rightarrow$] Guard matrix \& Konstanten hergeleitet \checkmark
 	\end{itemize}
 \end{frame}
 
-\subsection{Derivation: Update Matrix/Constants}
+\subsection{Herleitung: Update Matrix \& Konstanten}
 \begin{frame}
-	\frametitle{Derivation: Update Matrix/Constants}
+	\frametitle{Herleitung: Update Matrix \& Konstanten}
 	\begin{itemize}
-		\item do \underline{not} contain any (in-)equalities
-		\item follow the form: $c+\sum_{i=1}^{n}a_i v_i$ (\underline{not} $v_i a_i$)
-		\item \red{Problem}: can still contain new variables from the guards
-		\item[] \green{Solution}: apply substitutions to the updates
-		\item \red{Problem}: constant term can occur anywhere
-		\item[] \green{Solution}: perform recursive search under certainty of two aspects:
+		\item beinhalten \underline{keine} (Un-)Gleichheiten
+		\item haben die Form: $c+\sum_{i=1}^{n}a_i v_i$ (\underline{nicht} $v_i a_i$)
+		\item \red{Problem}: k\"onnte "neue" Variablen aus den Guard beinhalten
+		\item[] \green{L\"osung}: Substitutionen auf die Updates anwenden
+		\item \red{Problem}: keine Struktureigenschaft wie bei den Guards
+		\item[] \green{L\"osung}: rekursive Suche mit zwei Eigenschaften:
 			\begin{enumerate}
-				\item at most one constant term exists
-				\item the constant term is \underline{not} multiplied
+				\item es ex. maximal eine Konstante
+				\item die Konstante wird \underline{nicht} multipliziert
 			\end{enumerate}
 	\end{itemize}
 \end{frame}
@@ -227,18 +231,18 @@
 			\Function{getCoefficient}{$query$}
 			\If{this == query}
 			\State \Return $1$
-			\ElsIf{this does \underline{not} contain query}
+			\ElsIf{beinhaltet die query \underline{nicht}}
 			\State \Return $0$
 			\EndIf
 			\State
-			\If{this represents PLUS}
-			\If{left side contains $query$}
+			\If{this repr\"asentiert PLUS}
+			\If{linke Seite beinhaltet $query$}
 			\State \Return getCoefficient$(query)$
 			\Else
 			\State \Return getCoefficient$(query)$
 			\EndIf
 			\EndIf
-			\If{this represents TIMES}
+			\If{this repr\"asentiert TIMES}
 			\If{this.right == query}
 			\State \Return this.left.value
 			\EndIf				
@@ -254,7 +258,7 @@
 
 \begin{frame}
 	\begin{example}
-		An example of coefficient derivation for query $v_1$:
+		Beispielherleitung des Koeffizienten von $v_1$:
 		\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
 		\node (Plus) at (0,0) [objDia] {
 			\textbf{f1}:RPNFunctionSymbol
@@ -285,64 +289,64 @@
 \end{frame}
 
 
-\subsection{Derivation: Iteration Matrix/Constants}
+\subsection{Herleitung: Iteration Matrix \& Konstanten}
 \begin{frame} % iterationmatrix
-	\frametitle{\updatematrix/\textit{Constants} \& \iterationmatrix/\textit{Constants}}
+	\frametitle{Update Matrix \& Konstanten, Iteration Matrix \& Konstanten}
 	\begin{itemize}
-		\item derived a coefficient for every variable and constant per update
-		\item[$\Rightarrow$] \updatematrix/\textit{Constants} \checkmark
-		\item \iterationmatrix/\textit{Constants} given by: 
+		\item Koeffizient f\"ur jede Variable und Konstante pro Update
+		\item[$\Rightarrow$] Update Matrix \& Konstanten \checkmark
+		\item Iteration Matrix \& Konstanten gegeben durch: 
 			\begin{figure}[H]
 				\centering
-				$A = \begin{pmatrix} G & \textbf{0} \\ M & -I \\ -M & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
+				$A = \begin{pmatrix} G & \textbf{0} \\ M & -I \\ -M & I \end{pmatrix}$ und $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
 			\end{figure}
 		 can be computed
-		 \item[$\Rightarrow$] \iterationmatrix/\textit{Constants} \checkmark
+		 \item[$\Rightarrow$] Iteration Matrix \& Konstanten \checkmark
 	\end{itemize}
 \end{frame}
 
-\subsection{Derivation: SMT-Problem}
+\subsection{Herleitung: SMT-Problem}
 \begin{frame}
 	\frametitle{SMT-Problem}
 	\begin{itemize}
-		\item given $A$ and $b$ use a \solver to dis-/prove existence of a GNA
-		\item regarding the proof of the GNA:
+		\item geg. $A$ und $b$ nutze \solver zum Beweisen der (nicht) ex. eines GNA
+		\item in Anlehnung an den Beweis der GNA-Korrektheit:
 		\item[]	\begin{definition}
-					$\lambda_i$ is the $i$-th eigenvalue of $U$.
+					$\lambda_i$ ist der $i$-te Eigenwert von $U$.
 				\end{definition}
-		\item \red{Problem}: $\mu_i*y_i$ is non-linear
-		\item[] can approach this problem in 2 ways:
+		\item \red{Problem}: $\mu_i*y_i$ ist nicht-linear
+		\item[] zwei m\"ogliche L\"osungsans\"atze:
 			\begin{enumerate}
-				\item use \qfnia
-				\item iterate over all $\mu$'s
+				\item nutze \qfnia
+				\item iterieren \"uber alle $\mu$'s
 			\end{enumerate}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\begin{variableblock}{Reminder: Domain Criteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Erinnerung: Domain Kriterium}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{itemize}
 			\setlength{\itemindent}{1cm}
 			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
 		\end{itemize}
 	\end{variableblock}
 	\begin{itemize}
-		\item[] $\Rightarrow$ adds no assertion
+		\item[] $\Rightarrow$ Bedingungen f\"ur  $\mu$'s hinzufügen
 	\end{itemize}
-	\begin{variableblock}{Reminder: Initiation Criteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}<2>
+	\begin{variableblock}{Erinnerung: Initiation Kriteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{itemize}
 			\setlength{\itemindent}{1cm}
-			\item[(init)] x represents the \startterm (\stem)
+			\item[(init)] x repr\"asentiert den \startterm (\stem)
 		\end{itemize}
 	\end{variableblock}
 	\begin{itemize}
-		\item[]<2> $\Rightarrow$ adds no assertion
+		\item[] $\Rightarrow$ keine weiteren Bedingungen
 	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	\begin{variableblock}{Reminder: Point Criteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Erinnerung: Point Kriterium}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{itemize}
 			\setlength{\itemindent}{1cm}
 %			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
@@ -352,8 +356,8 @@
 		\end{itemize}
 	\end{variableblock}
 	\begin{itemize}
-		\item $y_i$ unknown $\Rightarrow$ create $s_i=x_i+\sum_{j=1}^n y_{j,i}$
-		\item<1> $A\begin{pmatrix} x \\ s \end{pmatrix} \le b$ \newline
+		\item $y_i$ unbekannt $\Rightarrow$ erstelle $s_i=x_i+\sum_{j=1}^n y_{j,i}$
+		\item $A\begin{pmatrix} x \\ s \end{pmatrix} \le b$ \newline
 	\end{itemize}
 	$\Leftrightarrow \begin{pmatrix}
 	& G 		& 			& 0 	 & \dots  & 0 \\
@@ -395,13 +399,13 @@
 				\draw[color=red, thick] (c-1-1.north west) -- (c-1-1.north east) -- (c-1-1.south east) -- (c-1-1.south west) -- (c-1-1.north west);
 				\draw[color=red, thick] (c-4-1.north west) -- (c-4-1.north east) -- (c-4-1.south east) -- (c-4-1.south west) -- (c-4-1.north west);
 			\end{tikzpicture}
-		\item[$\Rightarrow$] add guard assertion, $n$ assertions of equality 
-		\item[] and addition assertion for every $s_i$
+		\item[$\Rightarrow$] f\"uge Guard Bedingungen f\"ur den \stem hinzu, $n$ Bedingungen mit Gleichheit
+		\item[] und eine Bedingung pro $s_i$
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\begin{variableblock}{Reminder: Ray Criteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Erinnerung: Ray Kriterium}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{itemize}
 			\setlength{\itemindent}{1cm}
 			\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
@@ -410,18 +414,19 @@
 	\begin{itemize}
 		\setlength{\itemindent}{1cm}
 		\item[$i=1$:] $\Rightarrow \mu_{i-1}y_{i-1}=0 \Rightarrow $ $A\begin{pmatrix} y_1 \\ \lambda_1 y_1 \end{pmatrix} \le 0$
-		\item[]	add assertion with $y_{1,j}$ $1\le j \le n$ as new variables
-		\item[$i>1$:] with $\lambda_i$ as the $i$-th eigenvalue 
-		\item[] add assertion with $y_{i,j}$ $1 \le j \le n$ and $\mu_i$ as new variables
+		\item[]	f\"uge Bedingung hinzu mit $y_{1,j}$ $1\le j \le n$ als neue Variablen
+		\item[$i>1$:] mit $\lambda_i$ als den $i$-ten Eigenwert
+		\item[] f\"uge Bedingung hinzu mit $y_{i,j}$ $1 \le j \le n$ 
+		\item[] und $\mu_i$ als neue Variablen
 		\item[]
-		\item[] $\Rightarrow$ all necessary assertions stated \checkmark
-		\item[] let \solver derive a GNA (if exists)
+		\item[] $\Rightarrow$ alle n\"otigen Bedingungen  hinzugef\"ugt\checkmark
+		\item[] lasse den \solver ein GNA herleiten (wenn eins ex.)
 	\end{itemize}	
 \end{frame}
 
 
 \begin{frame}
-	\begin{variableblock}{Reminder: Derived matrices and values}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Erinnerung: Hergeleitete Matrix und Werte}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{tabular}{llc}
 			\multirow{2}{*}{$A=\begin{pmatrix}
 				-1 		& -1 		&  0		& 0		 \\
@@ -444,17 +449,17 @@
 			& & \\
 		\end{tabular}
 	\end{variableblock}
-	\begin{example}[Assertions \rom{1}: Point Crit.]
+	\begin{example}[Bedingungen \rom{1}: Point Crit.]
 		\begin{itemize}
-			\item add guards. I.e.: $-10-(-3)\le-4$
-			\item		  add sum rules. I.e.: $30-3-s_1=0$
-			\item       add $s_1= y_{1,1}+y_{2,1}$ and $s_2=y_{1,2}+y_{2,2}$
+			\item Guards: $-10-(-3)\le-4$
+			\item Gleichheitsbedingung: $30-3-s_1=0$
+			\item Summenbedingungen: $s_1= y_{1,1}+y_{2,1}$ und $s_2=y_{1,2}+y_{2,2}$
 		\end{itemize}
 	\end{example}	
 \end{frame}
 
 \begin{frame}
-	\begin{variableblock}{Reminder: Derived matrices and values}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Erinnerung: Hergeleitete Matrix und Werte}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{tabular}{llc}
 			\multirow{2}{*}{$A=\begin{pmatrix}
 				-1 		& -1 		&  0		& 0		 \\
@@ -477,11 +482,11 @@
 			& & \\
 		\end{tabular}
 	\end{variableblock}
-	\begin{example}[Assertions \rom{2}: Ray Crit.]
+	\begin{example}[Bedingungen \rom{2}: Ray Crit.]
 		\begin{itemize}
 			\setlength{\itemindent}{0.25cm}
-			\item[i=1:] add for instance $-y_{1,1}-y_{1,2}\le 4$, $3*y_{1,1}+y_{1,2}-3*y_{1,1}\le0$
-			\item[i$>$1:] add for instance $-y_{2,1}-y_{2,2}\le 4$, 
+			\item[i=1:] Beispielbedingung: $-y_{1,1}-y_{1,2}\le 4$, $3*y_{1,1}+y_{1,2}-3*y_{1,1}\le0$
+			\item[i$>$1:] Beispielbedingung: $-y_{2,1}-y_{2,2}\le 4$, 
 			\item[] $3*y_{2,1}+y_{2,2}-1*(2*y_{2,1}+\mu*y_{1,1})\le0$
 		\end{itemize}
 	\end{example}
@@ -490,36 +495,36 @@
 
 
 
-\section{Verification of a GNA}
+\section{Verifizierung eines GNA}
 \frame{\tableofcontents[currentsection]}
 \begin{frame}
-	\frametitle{\color{white}Verification of a GNA}
+	\frametitle{\color{white}Verifizierung eines GNA}
 	\begin{itemize}
-		\item received a GNA form the \solver
-		\item want to verify the correctness of the \solver's model
-		\item[$\Rightarrow$] recalculating of a GNA with the matrices and given values
+		\item bekommen ein GNA vom \solver
+		\item wollen testen ob dieses wirklich korrekt ist
+		\item[$\Rightarrow$] Nachberechnen des GNA mit geg. Matrizen und Werten
 	\end{itemize}
-	\begin{example}[Validating a GNA \rom{1}]
-		The \solver gave us: $y_1=\begin{pmatrix} 9 \\ 0 \end{pmatrix}$, $y_2=\begin{pmatrix} 8 \\ -8 \end{pmatrix}$, $\mu_1=0$\newline
+	\begin{example}[Verifizierung eines GNA \rom{1}]
+		Vom \solver: $y_1=\begin{pmatrix} 9 \\ 0 \end{pmatrix}$, $y_2=\begin{pmatrix} 8 \\ -8 \end{pmatrix}$, $\mu_1=0$\newline
 		\begin{itemize}
 			\setlength{\itemindent}{1.5cm}
-			\item[(domain)]<1-> obviously true \checkmark
-			\item[(init)]<2-> checked against the \stem \checkmark
-			\item[(point)]<3->  $A\begin{pmatrix} 10 \\ -3 \\ 10+9+8 \\ -3 + 0 + (-8) \end{pmatrix} \le b \Leftrightarrow A\begin{pmatrix} 10 \\ -3 \\ 27 \\ -11 \end{pmatrix} \le b$ \checkmark
+			\item[(domain)] offensichtlich wahr \checkmark
+			\item[(init)] gegenrechnen \stem \checkmark %TODO gegenrechnen?!
+			\item[(point)]  $A\begin{pmatrix} 10 \\ -3 \\ 10+9+8 \\ -3 + 0 + (-8) \end{pmatrix} \le b \Leftrightarrow A\begin{pmatrix} 10 \\ -3 \\ 27 \\ -11 \end{pmatrix} \le b$ \checkmark
 		\end{itemize}
 	\end{example}
 \end{frame}
 
 \begin{frame}
-	\begin{example}[Validating a GNA \rom{2}]
-		The \solver gave us: $y_1=\begin{pmatrix} 9 \\ 0 \end{pmatrix}$, $y_2=\begin{pmatrix} 8 \\ -8 \end{pmatrix}$, $\mu_1=0$\newline
+	\begin{example}[Verifizierung eines GNA \rom{2}]
+		Vom \solver: $y_1=\begin{pmatrix} 9 \\ 0 \end{pmatrix}$, $y_2=\begin{pmatrix} 8 \\ -8 \end{pmatrix}$, $\mu_1=0$\newline
 		\begin{itemize}
 			\setlength{\itemindent}{0.5cm}
 			\item[(ray)]
-			\item[$i=1$:]<1->  $A\begin{pmatrix} 9 \\ 0 \\ 3*9 \\ 3*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 9 \\ 0 \\ 27 \\ 0 \end{pmatrix} \le 0$ \checkmark
-			\item[$i>1$:]<2> $A\begin{pmatrix} 8 \\ -8 \\ 2*8+0*9 \\ 2*(-8)+0*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 16 \\ -16 \end{pmatrix} \le 0$ \checkmark
+			\item[$i=1$:]  $A\begin{pmatrix} 9 \\ 0 \\ 3*9 \\ 3*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 9 \\ 0 \\ 27 \\ 0 \end{pmatrix} \le 0$ \checkmark
+			\item[$i>1$:] $A\begin{pmatrix} 8 \\ -8 \\ 2*8+0*9 \\ 2*(-8)+0*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 16 \\ -16 \end{pmatrix} \le 0$ \checkmark
 		\end{itemize}
-		$\Rightarrow$ the derived GNA is applicable $\Rightarrow$ nontermination is proven
+		$\Rightarrow$ das GNA erf\"ullt alle Kriterien $\Rightarrow$ Nicht-Terminierung ist bewiesen
 	\end{example}
 \end{frame}
 

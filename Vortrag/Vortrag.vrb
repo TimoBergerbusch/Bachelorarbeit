@@ -26,6 +26,6 @@
 				\draw[color=red, thick] (c-1-1.north west) -- (c-1-1.north east) -- (c-1-1.south east) -- (c-1-1.south west) -- (c-1-1.north west);
 				\draw[color=red, thick] (c-4-1.north west) -- (c-4-1.north east) -- (c-4-1.south east) -- (c-4-1.south west) -- (c-4-1.north west);
 			\end{tikzpicture}
-		\item[$\Rightarrow$] add guard assertion, $n$ assertions of equality
-		\item[] and addition assertion for every $s_i$
+		\item[$\Rightarrow$] f\"uge Guard Bedingungen f\"ur den \stem hinzu, $n$ Bedingungen mit Gleichheit
+		\item[] und eine Bedingung pro $s_i$
 	\end{itemize}
