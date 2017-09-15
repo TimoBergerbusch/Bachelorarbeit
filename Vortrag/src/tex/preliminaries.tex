@@ -12,9 +12,9 @@
 	
 	\begin{enumerate}
 		\item[(1)] Funktionssymbol (kein Variablen $\Rightarrow$ Start)
-		\item[(3)] Variablen $v^\prime_i$ als linear Updates der Variablen $v_j$
 		\item[(2)] Funktionssymbol
-		\item[(4)] eine Menge von (Un-)Gleichungen \"uber $v_j$ und $v^\prime_i$
+		\item[(3)] Variablen $v^\prime_i$ als linear Updates der Variablen $v_j$
+		\item[(4)] eine Menge von (Un-)Gleichungen \"uber $v_j$
 	\end{enumerate}
 
 %	Gelesen als: "rewrite $f_y(v_1,\dots,v_n)$ as $f_y(v^\prime_1,\dots,v^\prime_n)$ if \textit{cond} holds"
@@ -39,21 +39,24 @@
 	}
 				\end{lstlisting}
 			\end{itemize}
-		\item anwenden der Definition der \gna von J. Leike and M. Heizmann 
+		\item anwenden der Definition der Geometrischen Nicht-Terminierungs Argumente von J. Leike und M. Heizmann 
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-	\begin{example}
+	\begin{exampleblock}{Beispiel}
 		Das \its zum Beispielprogramm: \newline
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
 !$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
 !$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
 				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
 		\end{lstlisting}
-		erste Regel repr\"asentiert den \stem \newline
-		zweite Regel repr\"asentiert die \loopt
-	\end{example}	
+		\begin{figure}[H]
+			\centering
+			erste Regel $\Leftrightarrow$ \stem \hspace*{.5cm}
+			zweite Regel $\Leftrightarrow$ \loopt
+		\end{figure}
+	\end{exampleblock}	
 \end{frame}
 
 \begin{frame}
@@ -66,7 +69,7 @@
 			$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$
 		\end{figure}  
 		\vspace{-1em}
-		ist ein \gna der Gr\"oße $k$ f\"ur ein Programm = $(\stem, \loopt)$ mit $n$ Variablen g.d.w. alle folgenden Kriterien erf\"ullt sind:
+		ist ein Geometrisches Nicht-Terminierungs Argument der Gr\"o\ss e $k$ f\"ur ein Programm = $(\stem, \loopt)$ mit $n$ Variablen g.d.w. alle folgenden Kriterien erf\"ullt sind:
 		\begin{itemize}
 			\setlength{\itemindent}{1in}
 			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
@@ -82,12 +85,12 @@
 
 \begin{frame}
 	\begin{definition}[Guard Matrix \& Konstanten]
-		Die Guard Matrix $G$ ist eine Koeffizienten Matrix f\"ur Ungleichungen. Die Guard Konstanten $g$ die Konstanten der Ungleichungen.
+		Die Guard Matrix $G$ ist eine Koeffizienten Matrix f\"ur die Ungleichungen. Die Guard Konstanten $g$ ein Vektor mit Konstanten der Ungleichungen.
 	\end{definition}
-	\begin{definition}[Update Matrix \& Konstanten]<2->
-		Die Update Matrix $U$ und Konstanten $u$ sind analog zu der Guard Matrix und Konstanten über den linearen Updates.
+	\begin{definition}[Update Matrix \& Konstanten]
+		Die Update Matrix $U$ und Konstanten $u$ sind analog zu der Guard Matrix und Konstanten \"uber den linearen Updates.
 	\end{definition}
-	\begin{definition}[Iteration Matrix \& Konstanten]<3->
+	\begin{definition}[Iteration Matrix \& Konstanten]
 		Mit \textbf{0} eine Matrix aus 0-en und $I$ der Einheitsmatrix ergeben sich die Iteration Matrix $A$ und Konstanten $b$ wie folgt:
 		\vspace*{-1em}
 		\begin{figure}[H]
@@ -98,37 +101,37 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\begin{variableblock}{Reminder: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Erinnerung: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
 !$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
 !$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
 				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
 		\end{lstlisting}
 	\end{variableblock}
-	\begin{example}[\guardmatrix, \guardconstants]
-		for the stated \its the \guardconstants $G$ and \guardconstants $g$ for the loop are:\newline
+	\begin{exampleblock}{Beispiel: Guard Matrix \& Konstanten}
+		f\"ur das Beispiel ITS ergeben sich die Guard Matrix $G$ und Konstanten $g$:\newline
 		\begin{center}
 			\vspace{-2em}
-			$G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$ and $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$
+			$G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$ und $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$
 		\end{center}		
-	\end{example}
+	\end{exampleblock}
 \end{frame}
 
 \begin{frame}[fragile]
-	\begin{variableblock}{Reminder: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\begin{variableblock}{Erinnerung: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
 !$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
 !$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
 				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
 		\end{lstlisting}
 	\end{variableblock}
-		\begin{example}[\updatematrix, \updateconstants]
-			for the stated \its the \updatematrix $U$ and \updateconstants $u$ are:\newline
+		\begin{exampleblock}{Beispiel: Update Matrix \& Konstanten}
+			f\"ur das Beispiel ITS ergeben sich die Update Matrix $U$ und Konstanten $u$:\newline
 			\begin{center}
 				\vspace{-2em}
-				$U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ and $u = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$
+				$U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ und $u = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$
 			\end{center}		
-		\end{example}
+		\end{exampleblock}
 \end{frame}
 
 \subsection{Umgekehrt Polnische Notation (RPNTree)}
@@ -136,8 +139,8 @@
 \begin{frame}[fragile]
 	\frametitle{\rpntree (RPNTree)}
 	\begin{itemize}
-		\item<1-> simple Baumstruktur f\"ur \underline{ausschließlich} ber\"ucksichtigter Terme 
-		\item<1-> Klassen f\"ur Konstanten, Variablen und Operatoren
+		\item simple Baumstruktur f\"ur \underline{ausschließlich} ber\"ucksichtigter Terme 
+		\item Klassen f\"ur Konstanten, Variablen und Operatoren
 	\end{itemize}
 	
 	\newsavebox\testboxEX
@@ -170,7 +173,7 @@
 		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
 		\end{tikzpicture}
 	\end{lrbox}
-	\begin{example}
+	\begin{exampleblock}{Beispiel}
 		\centering
 		\begin{tikzpicture}[
 			scale=0.4,
@@ -182,7 +185,7 @@
 			\draw (L.south) edge (M.north);
 			\draw (M.east) edge (R.west);
 		\end{tikzpicture}
-	\end{example}
+	\end{exampleblock}
 \end{frame}
 
 
@@ -200,7 +203,7 @@
 		\item \color{blue}erf. Modell\color{black}: einen Wert f\"ur jede Variable
 		\item \color{blue}unerf. Modell\color{black}: ein (minimale) Menge von Regeln die nicht alle zeitgleich gelten k\"onnen
 	\end{itemize}
-	\begin{example}
+	\begin{exampleblock}{Beispiel}
 		Beispiel mit folgenden Regeln:
 		\vspace*{-1em}
 		\begin{figure}[H]
@@ -213,5 +216,5 @@
 		 M\"ogliches Modell $m_1 = \{x=6, y=6\}$.\newline \newline
 		 \"Andern der dritten Regel zu $x+y\le10$:\newline
 		 Kein Modell ex. mit unerf. Kern $\{x \le y$, $x > 5$, $x+ y \le 10 \}$
-	\end{example}
+	\end{exampleblock}
 \end{frame}

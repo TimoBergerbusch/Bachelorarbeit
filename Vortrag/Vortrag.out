@@ -4,12 +4,12 @@
 \BOOKMARK [3][]{Outline0.3.1.9}{Integer Transition Systems \(ITS\) }{Outline0.3}% 4
 \BOOKMARK [3][]{Outline0.3.2.11}{Geometrische Nicht-Terminierungs Argumente \(GNA\)}{Outline0.3}% 5
 \BOOKMARK [3][]{Outline0.3.3.14}{Definitionen}{Outline0.3}% 6
-\BOOKMARK [3][]{Outline0.3.4.19}{Umgekehrt Polnische Notation \(RPNTree\)}{Outline0.3}% 7
-\BOOKMARK [3][]{Outline0.3.5.20}{Sat. Modulo Theorie \(SMT\)}{Outline0.3}% 8
+\BOOKMARK [3][]{Outline0.3.4.17}{Umgekehrt Polnische Notation \(RPNTree\)}{Outline0.3}% 7
+\BOOKMARK [3][]{Outline0.3.5.18}{Sat. Modulo Theorie \(SMT\)}{Outline0.3}% 8
 \BOOKMARK [2][]{Outline0.4}{Geometrische Nicht-Terminierung}{}% 9
-\BOOKMARK [3][]{Outline0.4.1.22}{Herleitung: STEM}{Outline0.4}% 10
-\BOOKMARK [3][]{Outline0.4.2.23}{Herleitung: Guard Matrix \046 Konstanten}{Outline0.4}% 11
-\BOOKMARK [3][]{Outline0.4.3.30}{Herleitung: Update Matrix \046 Konstanten}{Outline0.4}% 12
-\BOOKMARK [3][]{Outline0.4.4.33}{Herleitung: Iteration Matrix \046 Konstanten}{Outline0.4}% 13
-\BOOKMARK [3][]{Outline0.4.5.34}{Herleitung: SMT-Problem}{Outline0.4}% 14
+\BOOKMARK [3][]{Outline0.4.1.20}{Herleitung: STEM}{Outline0.4}% 10
+\BOOKMARK [3][]{Outline0.4.2.21}{Herleitung: Guard Matrix \046 Konstanten}{Outline0.4}% 11
+\BOOKMARK [3][]{Outline0.4.3.27}{Herleitung: Update Matrix \046 Konstanten}{Outline0.4}% 12
+\BOOKMARK [3][]{Outline0.4.4.30}{Herleitung: Iteration Matrix \046 Konstanten}{Outline0.4}% 13
+\BOOKMARK [3][]{Outline0.4.5.31}{Herleitung: SMT-Problem}{Outline0.4}% 14
 \BOOKMARK [2][]{Outline0.5}{Verifizierung eines GNA}{}% 15
