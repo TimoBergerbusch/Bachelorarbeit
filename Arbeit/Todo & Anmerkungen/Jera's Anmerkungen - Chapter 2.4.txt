@@ -1,0 +1,71 @@
+Definition 2.1.1:
++ transitioning -> transition; oder stimmiger mit dem davor: Abkürzung ITS verwenden
++ successively -> successive
++ applying -> application
++ Insgesamt finde ich es etwas unstimmig, dass ITSe ohne „Definitions X.X“ definiert werden aber runs mit, deshalb würde ich diese Definition hier auch in den Fließtext schreiben.
+Abschnitt darunter:
++ „not existing“ -> absence
+
+- Figure 2.3: Ist nicht mittig (ragt rechts in den Rand)
+
+2.2.3
++ Definition 2.2.1, Z. 2: „number of variables within the rule of the start function symbols right hand side“ -> „arity of the function symbol at the right hand side of the rule representing the STEM of the ITS“
+(Abgesehen von der Umformulierung denke ich ist hier „arity“ das richtige Wort, da es um die Anzahl der Argumente geht und nicht darum, ob dort Variablen oder feste Zahlen stehen, oder?)
++ gleiche Definition, Z. 3: „defined by conditions“ -> vielleicht zu „restricted by a (possibly empty) conjunction of conditions“
++ wieder Z. 3: Letzter Satz „Examples …“ sollte nicht in die Definition sonder in normaler Schrift darunter.
++ Definition 2.2.2, Anfang: "number of distinct variables“ wo? Im STEM?
++ gleiche Definition, Z. 2: Komma vor und hinter 2 \le i \le n
++ gleiche Definition, Z. 2: variable names -> variable’s name? (sonst weiß ich nicht, wie das gemeint ist)
++ gleiche Zeile: left hand side of what? STEM?
++ gleiche Definition, Z. 3: Komma vor und hinter 1 \le i \le n, 1 \le i \le m und dazwischen lieber ein „and“
++ gleiche Definition, Z. 3: factor -> coefficient- gleiche Definition: Im ersten Absatz steht nicht, was g_j und r_j sind, wird aber schon gebraucht
++ Einerseits definierst du G \in Z^{mxn}, d.h. es gibt m Zeilen, richtig? Auf der anderen Seite rangiert darüber das i von a_ij zwischen 1 und n. Ich würde in der Definition, Z. 2, v_i -> v_j nennen, (dahinter dann „1 \le j \le n“ und „j-th“) und in Z. 3 muss es dann „1 \le i \le m and 1 \le j \le n“ heißen (und dahinter v_j). Dafür g_j zu g_i und r_j zu r_i (sonst hätte man nämlich a_ji, was irgendwie kontra-intuitiv ist).
++ In Definition: Zu viel space zwischen erstem und zweitem Absatz. Entweder gar keine Absätze oder nur wenig space, damit es nicht so abgetrennt aussieht.
++ Zweiter Absatz in Definition: Hier definierst du g_i = c_i, aber oben meinst du mit den g_j die kompletten guards, oder? g solltest du nur für eins von beidem verwenden
++ Dritter Absatz in Definition, Z. 2: „further used“ -> „further discussed“
+
++ Example 1: Punkt am Ende des Satzes (beide Male); in Zeile 2 vielleicht „is“ -> „are“? Klingt sonst komisch, auch wenn es ein feststehender Begriff ist
++ Die Normalisierung, die hier im Beispiel erwähnt wird, sollte irgendwo darüber noch definiert werden
++ Ich kann dem Beispiel insgesamt nicht folgen. Das sollte aber möglichst leicht gemacht werden. Zum einen sollte die Normalisierung über dem ersten Teil des Beispiels stehen, falls sie dafür gebraucht wird. Zum anderen sollte erklärt werden, wie man auf die Zahlen kommt in der Matrix und in g kommt, falls das nicht trivial ist.
+
++ Definition 2.2.3: Wieder gleiches Problem mit „left hand side“ -> Entweder „let … be a rule of an ITS …“ oder klar auf STEM oder so beziehen
++ gleiche Definition, Z. 2: Komma vor und hinter 1 \le i \le n
++ gleiche Definition, Z. 3: wieder Komma vor und hinter 1 \le i \le m
++ gleiche Definition, Z. 3: „variable definition“ -> „argument“
++ gleiche Definition, Z. 4: sight -> side; „symbol“ weglassen, das ist nämlich nur das vor den Argumenten
++ gleiche Definition, Z. 4: wieder Komma vor und hinter 1 \le i \le n 1 \le i \le m und dazwischen ein „and“
++ gleiche Definition, Z. 4: factor -> coefficient
++ gleiche Definition, Z. 5: „variable definition“ weglassen
++ gleiche Definition, Z. 5: wieder Komma vor und hinter 1 \le i \le m
++ gleiche Definition: v_i sollte v_j sein (also in Z. 2 einmal v_i -> v_j und zweimal i->j und in Z. 4 sollte es „1 \le i \le m and 1 \le j \le n“ heißen und am Ende Z. 4 auch v_i -> v_j)
++ spacing in der Defintion: s.o.
++ 2. Abschnitt: „the“ vor „Update Constants“
++ 2. Abschnitt Z. 2: hier sollte u_i statt g_i stehen
++ 3. Abschnitt: Eigentlich ist es eine allgemeine Definition, aber dann steht da was von v_3, was sich auf ein Beispiel bezieht. Solche eher informellen Dinge solltest du unter die Definition schreiben, nicht da rein.
++ Example 2: Kann ich nachvollziehen :-) Würde trotzdem noch eine kurze Erklärung schreiben (zumindest, wie der entsprechende Guard umgestellt nach v_3 aussieht, damit man die -5 direkt sieht).
++ Example 2, zweiter Satz: Den lieber weglassen. Ein Beispiel, das man hier noch nicht nachvollziehen kann, hilft nicht. Lieber (wie oben genannt) schon kurz erklären und ggf. in einem weiteren Satz schreiben, dass solche Fälle im Detail in Section 3.2.2 behandelt werden.
+
+Definition 2.2.4
++ Z. 4: Also -> Furthermore; entry’s 0 -> zero entries
++ darunter: wieder zu viel space
++ unterer Abschnitt, im Exponenten von den ganzen Zahlen (sowohl Z. 1 als auch Z. 2): aus * entweder \cdot machen oder ganz weglassen
++ gleicher Abschnitt, Z. 1: statt „defines“ vielleicht lieber „computes“
++ gleicher Abschnitt, Z. 2: is defined -> are defined
++ schön wäre, auch hier das Beispiel fortzuführen und A und b einmal zu geben für obiges Beispiel
+
++ Unter Definition 2.2.5: „linear lasso programs“ sollte (wie vorher auch immer) in normaler Schrift stehen
+
+Definition 2.2.6
++ In Klammern hinter „Def…“: Das G, N, T und A sollten hier (weil es wie eine Überschrift ist und in vorherigen Definitionen auch so war) groß geschrieben sein. Später im Text der Definition aber nicht.
++ Z. 3: Hier ist die Stelle, an der das GNA prominent eingeführt wird, deshalb würde ich hier auch hinter dem ersten mal Ausschreiben (d.h. Z. 3) als Abkürzung (GNA) dahinter schreiben
++ Z. 3: „=" hinter „program“ weglassen
++ (init): start term != STEM (start term ist nur das Funktionssymbol der linken Seite des STEMs). Dieses Kriterium sollte klarer ausgedrückt werden
+- die Kriterien (init) und (ray) weichen von der originalen Fassung ab (ersteres, weil du x statt x_0 und x_1 schreibst). Macht das einen Unterschied und wenn ja, ist der unproblematisch im Hinblick auf Korrektheit?
++ letzter Satz: Referenz sollte immer vor dem Punkt stehen
++ letzter Satz: „instead of a case distinction“: Was ist damit gemeint?
+- noch mal letzter Satz: Ich würde statt „Note that“ schreiben „Here,“, denn das kann man ja vorher nicht wissen sondern wird hier einfach definiert, oder?
+
+Sentence 2.1
++ Sentence -> Theorem
++ Z. 1: „a“ vor „for“ weglassen
++ Z. 2: wieder Referenz vor Punkt

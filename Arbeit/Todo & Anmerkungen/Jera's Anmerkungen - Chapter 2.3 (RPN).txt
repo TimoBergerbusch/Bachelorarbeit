@@ -1,0 +1,60 @@
+2.3
++ Z. 1: program -> procedure
++ Z. 4: Ref vor Punkt
++ Z. 4: „Within our program“ weglassen (ähnlich zu letztem Satzanfang und hier überflüssig)
++ Z. 5: Kein Bindestrich zwischen tree und structure
++ Bildunterschrift zu Figure 2.5: „of Section 2.3“ weglassen
+
+2.4
++ Den ersten Satz würde ich umformulieren, z.B.: „To derive a geometric non-termination argument that satisfies all the criteria of Definition 2.2.6, we encounter a Satisfiability … problem (SMT problem).“
++ Z. 1: an -> a; problem klein und kein Bindestrich (s.o.)
++ Z. 2: criterias -> criteria
++ Z. 3: SMT-Problem solving -> SMT solving
++ Z. 3: it’s -> its
++ Z. 3: Komma hinter „own“
++ Z. 3, Ende: basic -> basics
++ Z. 4: SMT-Solving -> SMT solving
++ Z. 4: how the program solves -> how to solve
++ Z. 6: SMT-solver -> SMT solver
++ Bildunterschrift unter Figure 2.6: SMT-solver -> SMT solver
++ Satz unter Bildunterschrift: „example“ weglassen
++ (2): Hinter PlainIntegerVariables ist ein Apostroph - warum? Ich glaub der muss weg
++ (2): SMT-solver -> SMT solver
++ (3): with -> by
++ (3): variables -> variable
++ (3): an -> a
++ (4): streng genommen müsste die Klammer über die gesamte Operation, nicht nur den Operator „+“ gehen, also wie (5), da das bei (3) auch so war
++ (5): Würde ich (s.o.) mit zu (4) schreiben.
++ (5): one -> a (wird ja automatisch impliziert, dass es nur eine ist); „big“ würde ich weglassen (ist Ansichtssache)
++ (5): space zwischen „addition“ und „(4)“, wobei man „(4)“ hier auch weglassen könnte, wenn das zu Punkt (4) dazukommt
++ (5), Z. 2: coefficient’s -> coefficients
++ (7): „only“ weglassen (oder durch „also“ ersetzen); „one“ -> „a“ (siehe oben). Hier klingt es mit „only“ und Unterstreichen so, als wäre das hier besonders zu beachten, dabei galt das für die linke Seite ja auch schon.
++ (8): line -> assertion
++ (8) ragt in den Rand; evtl einfach SMTExpressionFormat durch „format“ ersetzen (wenn man solche Details fürs Verständnis nicht braucht, immer lieber weglassen)
++ (8), Z. 2: SMT-solver -> SMT solver
++ Insgesamt bei diesen Punkten: Manchmal steht ein Punkt am Ende, manchmal nicht. Sollte einheitlich sein
++ ggf. wird dann natürlich (6)/(7)/(8) zu (5)/(6)/(7).
+
+Unter Auflistung:
++ We use a solver within AProVE -> AProVE calls a solver (sonst klingt es, als würde der Solver innerhalb von AProVE laufen, also z.B. dort implementiert sein)
++ Insgesamt erster Satz: Ein solver wird genutzt um assertions zu kreieren? Werden nicht erst assertions (von AProVE) kreiert und diese dann dem solver übergeben?
++ Z. 2: Komma hinter „equations“
++ Z. 3: quantifier free linear arithmetic: sollte nicht kursiv sein; außerdem Bindestrich zwischen „quantifier“ und „free“
++ Z. 4: Komma hinter „assertions“
++ Z. 5: Ref vor Punkt
+
+Example 3
++ zweiter Abschnitt, Z. 1: Then a possible model would be -> Then a valid model is
++ gleiche Zeile: An other -> Another
++ gleiche Zeile: would be -> is
++ Zeile darunter: Komma hinter „However“; If -> if
++ gleiche Zeile: Komma vor „there“
++ gleiche Zeile: model to -> model for (glaube ich jedenfalls)
++ Zeile darunter: would receive -> receive
+
+Abschnitt unter Example 3
++ Z. 2: possible -> valid
+
+Abschnitt darunter
++ Z. 1: SMT-Problem solving -> SMT solving
++ Z. 1/2: quotation marks sind irgendwie falsch (sollten ``und '' sein)

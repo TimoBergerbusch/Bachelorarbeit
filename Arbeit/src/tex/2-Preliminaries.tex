@@ -32,11 +32,8 @@ The \its shown in \Cref{fig:its-structure} consists of a set of structure elemen
 	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$, $m \in \mathbb{N}$, where $\text{(in)equation}_i$ does not only contain the variables $v_j$, $1 \le j \le n$, but can also introduce new variables. The form of the (in)equalities is defined in \Cref{sec:derivation-guard}.	
 \end{enumerate} 
 
-\begin{definition}[run]
-	A run of an integer transitioning system is the successively applying of rules, starting from a start function symbol.
-\end{definition}
-
-The termination of an \its is now defined as the not existing of an infinite run, i.e. for every run we reach a state in which we can not apply any rule. Vice versa non-termination of an \its is defined as the existence of an infinite run.
+A run of an ITS is the successive application of rules, starting from a start function symbol.
+The termination of an \its is now defined as the absence of an infinite run, i.e. for every run we reach a state in which we can not apply any rule. Vice versa non-termination of an \its is defined as the existence of an infinite run.
 
 %In general an \its can have rules of other forms, like $f_x(v_1, \dots v_n) \rightarrow f_y(v^\prime_1, \dots v^\prime_k) :|: cond$ where $n \ne k$ can occur, but these rules are for now not considered.
 
@@ -116,58 +113,88 @@ Also the update for the first argument of $f_2$ $v^\prime_1$ within line 2 is th
 In order to be able to define the key element of this approach, the \gna, we have to define a number of matrices and constant vectors, which are used to derive such a \gna. 
 
 \begin{definition}[\stem]
-	The \stem is denoted as a vector $x \in \mathbb{Z}^n$, where $n$ is the number of variables within the rule of the start function symbols right hand side of a \its. The values of $x$ can be constants or defined by conditions. Examples are shown within \Cref{sec:stem}.
+	The \stem is denoted as a vector $x \in \mathbb{Z}^n$, where $n$ is the arity of the function symbol at the right hand side of the rule representing the \stem of the \its. The values of $x$ can be constants or restricted by a (possibly empty) conjunction of conditions. 
 \end{definition}
+Examples of the \stem are shown within \Cref{sec:stem}.
 
 \begin{definition}[Guard Matrix, Guard Constants]
 	\label{def:guard}
-	Let $n \in \mathbb{N}$ be the number of distinct variables, $v_i$ $1 \le i \le n$ the $i$-th distinct variable names occurring on the left hand side, $m \in \mathbb{N}$ be the number of guards not containing equality, $a_{i,j} \in \mathbb{Z}$ $1\le i \le n$, $1 \le j \le m$ the factor of $v_i$ in $g_j$ and $c_i \in \mathbb{Z}$ be the constant term within $r_j$. \newline
+	Let $n \in \mathbb{N}$ be the number of distinct variables of the \loopt rules left hand side, $v_j$, $1 \le j \le n$, the $j$-th distinct variable occurring on the left hand side of the rule, $m \in \mathbb{N}$ be the number of guards not containing equality, $r_i$, $1\le i \le m$, the $i$-th guard, $a_{i,j} \in \mathbb{Z}$, $1 \le i \le m$ and $1\le j \le n$, the coefficient of $v_j$ in $r_i$ and $c_i \in \mathbb{Z}$ be the constant term within $r_i$.
 	
 	Then the \guardmatrix $G \in \mathbb{Z}^{m\times n}$ is defined as $G_{i,j}=a_{i,j} $ and \guardconstants $g \in \mathbb{Z}^m$ are defined as $g_i = c_i$.
 	
-	Newly introduced variables must not be represented by a column of the \guardmatrix, but create substitutions further used in \Cref{sec:stem-var}, \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}.
+	Newly introduced variables must not be represented by a column of the \guardmatrix, but create substitutions further discussed in \Cref{sec:stem-var}, \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}.
 \end{definition}
+
 \begin{example}
-	The corresponding \guardmatrix to \Cref{fig:structure-example-TRS} is $G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$ and the \guardconstants is $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$ \newline
-	The normalization of the guards $r_i$ to the form $a_{i,1}v_1+\dots a_{i,n}v_n \le c$ transforms for example the guard $r_1$ in the following way
+	\label{ex:guardmatrix-and-constants}
+	First we normalize every guard $r_i$ to the form $a_{i,1}v_1+\dots a_{i,n}v_n \le c$. For example the guard $r_1$ in the following way:
 	\begin{center}
 		$r_1 \Leftrightarrow v_1+v_2 > 3  \Leftrightarrow -v_1-v_2 < -3 \Leftrightarrow -v_1-v_2 \le -4$
 	\end{center}
+	The necessity and computation of the normalization is explained within \Cref{sec:derivation-guard}.\newline
+	Since the coefficient of $v_1$ is $-1$ and of $v_2$ is also $-1$ we can set the entries $G_{1,1} = G_{1,2}=-1$.
+	Iterating over all $r_i$ we derive the corresponding \guardmatrix to \Cref{fig:structure-example-TRS} is $G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$.
+	The constant factor of a guard $r_i$ is the right hand side of the inequation. So the constant of $r_1=-4$. Iterating over all $r-i$ we derive the \guardconstants are $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$.	
 \end{example}
 
 \begin{definition}[Update Matrix, Update Constants]
 	\label{def:update}
-	Let $n \in \mathbb{N}$ be the number of distinct variables of the left hand side, $v_i$ $1 \le i \le n$ the $i$-th distinct		variable name, $m \in \mathbb{N}$ the arity of the function symbol of the right hand side, $v^\prime_i$ $1 \le i \le m$ the $i$-th variable definition of the right hand sight's function symbol, $a_{i,j} \in \mathbb{Z}$ $1 \le i \le n$ $1 \le j \le m$ be the factor of variable $v_i$ in variable definition $v^\prime_i$ and $c_i \in \mathbb{Z}$ $1 \le i \le m$ the constant term of $v^\prime_i$. \newline
-	
-	Then the \updatematrix $U \in \mathbb{Z}^{m \times n}$ is defined as $U_{i,j}=a_{i,j}$ and \updateconstants $u \in \mathbb{Z}^m$ are defined as $g_i = c_i$.
-	
-	Regarding the new variable $v_3$, we have to substitute in order to keep the desired size of the matrix. This procedure is further defined within \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}.
+	Let $n \in \mathbb{N}$ be the number of distinct variables of the \loopt rules left hand side, $v_j$, $1 \le j \le n$, the $j$-th distinct	variables of the \loopt rules left hand side, $m \in \mathbb{N}$ the arity of the function symbol of the right hand side, $v^\prime_i$, $1 \le i \le m$, the $i$-th argument of the right hand side function, $a_{i,j} \in \mathbb{Z}$, $1 \le i \le m$ and $1 \le j \le n$, be the coefficient of variable $v_j$ in $v^\prime_i$ and $c_i \in \mathbb{Z}$, $1 \le i \le m$, the constant term of $v^\prime_i$. \newline
+	Then the \updatematrix $U \in \mathbb{Z}^{m \times n}$ is defined as $U_{i,j}=a_{i,j}$ and the \updateconstants $u \in \mathbb{Z}^m$ are defined as $u_i = c_i$.
 \end{definition}
+Regarding the new variable $v_3$, we have to substitute in order to keep the desired size of the matrix. This procedure is further defined within \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}.
+
 \begin{example}
-	The corresponding \updatematrix to \Cref{fig:structure-example-TRS} is $U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ and the \updateconstants are $u = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$.
+	\label{ex:updatematrix-and-constants}
+	Referring to the \its from \Cref{fig:structure-example-TRS} we have to substitute $v_3$.
+	\begin{center}
+		$5+v_3=2*v_2 \Leftrightarrow v_3=2*v_2-5$
+	\end{center}
+	So we substitute $v_3$ in the second argument and receive the arguments $2*v_1+v_2$ and $2*v_2-5$.
+	The corresponding \updatematrix is therefore $U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ and the \updateconstants are $u = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$.
 	
-	The second row is not as obvious as the first row and will be derived in detail within \Cref{sec:derivation-update}.
+	The detailed derivation of substitutions is explained in \Cref{sec:derivation-update}.
 \end{example}
 
 \begin{definition}[Iteration Matrix, Iteration Constants]
 	\label{def:iteration}
 	Let $G$ be the \guardmatrix, $g$ the \guardconstants, $U$ the \updatematrix, $u$ the \updateconstants, $n\in \mathbb{N}$ the number of variables and $m \in \mathbb{N}$ the number of conditional terms. \newline
-	Also let \textbf{0} be a matrix of the size of $G$ with only entry's 0 and $I$ denote the identity matrix having the same dimension as $U$. \newline
-	
-	The \iterationmatrix $A \in \mathbb{Z}^{2*n+m \times 2*n}$, which defines one complete execution of the \loopt, and the \iterationconstants $b\in \mathbb{Z}^{2*n+m} $ is defined as
+	Furthermore let \textbf{0} be a matrix of the size of $G$ with only zero entries and $I$ denote the identity matrix having the same dimension as $U$. \newline
+	The \iterationmatrix $A \in \mathbb{Z}^{2n+m \times 2n}$, which computes one complete execution of the \loopt, and the \iterationconstants $b\in \mathbb{Z}^{2n+m} $ are defined as
 	\begin{figure}[H]
 		\centering
 		$A = \begin{pmatrix} G & \textbf{0} \\ U & -I \\ -U & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$ \cite{leike2014geometric}
 	\end{figure}	
 \end{definition}
 
+\begin{example}
+	Taking the \guardmatrix $G$ and \guardconstants $g$ from \Cref{ex:guardmatrix-and-constants}, and the \guardmatrix $U$ and \updateconstants $u$ from \Cref{ex:updatematrix-and-constants} and computing the \iterationmatrix $A$ and \iterationconstants $b$ by inserting the matrices and vectors into the formula of \Cref{def:iteration} we get: \newline
+	\begin{center}
+		$A = \begin{pmatrix} G & \textbf{0} \\ U & -I \\ -U & I \end{pmatrix} \Rightarrow 
+		\begin{pmatrix} 
+			-1 & -1 & 0 & 0 \\
+			-1 & 0 & 0 & 0 \\
+			-3 & 0 & 0 & 0\\
+			0 & 2 & 0 & 0 \\
+			3 & 1 & -1 & 0 \\
+			0 & 2 & 0 & -1 \\
+			-3 & -1 & 1 & 0 \\
+			0 & -2 & 0 & 1 \\
+		\end{pmatrix}$ and 
+		$b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix} \Rightarrow \begin{pmatrix}
+			-4 \\ -7 \\-21\\-6\\ 0 \\ 5 \\ 0 \\ -5
+		\end{pmatrix}$
+	\end{center}
+\end{example}
+
 \begin{definition}[LOOP]
 	The \loopt is defined as a tuple $(A, b)$, where $A$ is the \iterationmatrix and $b$ the \iterationconstants of an \its.
 \end{definition}
 
-Now we can define the key element, which was originally defined for \tool{linear lasso programs}. 
+Now we can define the key element, which was originally defined for linear lasso programs. 
 
-\begin{definition}[geometric non-termination argument]
+\begin{definition}[Geometric Non-Termination Argument]
 	\label{def:gna}
 	A tuple of the form:
 	\begin{figure}[H]
@@ -175,26 +202,27 @@ Now we can define the key element, which was originally defined for \tool{linear
 		$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$
 	\end{figure}  
 	\vspace{-1em}
-	is called a \gna of size $k$ for a program = $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
+	is called a \gna (GNA) of size $k$ for a program $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
 	\begin{itemize}
 		\setlength{\itemindent}{1in}
 		\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
-		\item[(init)] x represents the \startterm (\stem)
+		\item[(init)] x represents a valid \stem
 		\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
 		\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
 	\end{itemize}
-	Note that $y_0 = \mu_0 = 0$ is set for the ray instead of a case distinction. \cite{leike2014geometric}
+	Here $y_0 = \mu_0 = 0$ is set for the ray instead of a case distinction for $i=1$ \cite{leike2014geometric}.
 \end{definition}
+The validity of the \initc refers to the possibility of different valid STEMs, further defined in \Cref{sec:stem-var}.
 
 The usage of such a \gna is justified by the following sentence:
 \begin{satz}
 	\label{sen:gna-nonterm}
-	If a \gna $a$ for a program $p$ exists, then $p$ does not terminate. \cite{leike2014geometric} 
+	If a \gna for a program $p$ exists, then $p$ does not terminate \cite{leike2014geometric}.
 \end{satz}
 
 \section{Reverse-Polish-Notation-Tree}
 \label{sec:rpntree}
-Within the program of deriving a \gna it happens that we get a mathematical term in the so-called \textit{Polish Notation} or \textit{Reverse Polish Notation in prefix notation}, which is a special form of rewriting a, in our case linear, expression to compute the solution efficiently using a stack.\cite{wikirpn} Within our program we use this kind of notation to parse it into our own tree-structure to do further analysis.
+Within the procedure of deriving a \gna it happens that we get a mathematical term in the so-called \textit{Polish Notation} or \textit{Reverse Polish Notation in prefix notation}, which is a special form of rewriting a, in our case linear, expression to compute the solution efficiently using a stack \cite{wikirpn}. We use this kind of notation to parse it into our own tree structure to do further analysis.
 
 As shown in \Cref{dia:RPN-classdiagram} we have an \code{abstract} root, subclasses for every occurring type of element within the \its, a \code{static} parsing of a given term and an exception for parsing exceptions.
 An example of the \rpntree's usage is shown in \Cref{ex:rpntree}
@@ -249,14 +277,14 @@ An example of the \rpntree's usage is shown in \Cref{ex:rpntree}
 		\draw (L.south) edge (M.north);
 		\draw (M.east) edge (R.west);
 	\end{tikzpicture}
-	\caption{An example of the representation of the term $3*v_1+v_2$ as a graph using the \rpntree of \Cref{sec:rpntree}}
+	\caption{An example of the representation of the term $3*v_1+v_2$ as a graph using the \rpntree}
 	\label{ex:rpntree}
 \end{figure}
 
 
 \section{\tool{SMT}-Problem}
 \label{sec:smt-problem}
-Also we have to consider an \textit{Satisfiability Modulo Theory}-Problem (\tool{SMT}-Problem), we have to solve to derive a \gna fulfilling all the criterias of \Cref{def:gna}. Since \tool{SMT}-Problem solving is a big research topic on it's own we only consider the very basic of \tool{SMT}-Solving necessary to understand how the program solves the problem. \newline
+To derive a \gna that satisfies all the criteria of \Cref{def:gna}, we encounter a \textit{Satisfiability Modulo Theory} problem (\tool{SMT}-Problem), we have to solve to derive a \gna fulfilling all the criteria of \Cref{def:gna}. Since \tool{SMT} problem solving is a big research topic on its own, we only consider the very basics of \tool{SMT} solving necessary to understand how to solve the problem. \newline
 %TODO: write it more mathematically
 Within this approach we use the so called \code{Basic Structures} defined within \aprove to add assertions to the \solver using the \smtfactory. An example of the structure of the assertions can be found in \Cref{ex:assertion-structure}. %MAYBE: Class-dia?
 
@@ -264,31 +292,30 @@ Within this approach we use the so called \code{Basic Structures} defined within
 	\begin{lstlisting}[escapechar = !]
 		!$\underbrace{
 			\underbrace{
-				\underbrace{\underbrace{3}_{(1)}*\underbrace{v_1}_{(2)}}_{(3)} \quad \underbrace{+}_{(4)} \quad ...
-			}_{(5)} 
+				\underbrace{\underbrace{3}_{(1)}*\underbrace{v_1}_{(2)}}_{(3)} \quad + \quad ...
+			}_{(4)} 
 			\qquad
-			\underbrace{\le}_{(6)}
+			\underbrace{\le}_{(5)}
 			\qquad
-			\underbrace{5}_{(7)}
-		}_{(8)}$!
+			\underbrace{5}_{(6)}
+		}_{(7)}$!
 	\end{lstlisting}
-	\caption{An example to show the structure of an assertion used for the \solver}
+	\caption{Show the structure of an assertion used for the \solver}
 	\label{ex:assertion-structure}
 \end{figure}
 
 Such an example assertion can be split into different parts: 
 \begin{enumerate}
 	\item[(1)] \code{PlainIntegerConstants} as coefficients
-	\item[(2)] \code{PlainIntegerVariables'} as variables the \solver should derive values for such that all assertions are satisfied
-	\item[(3)] A coefficient multiplied with a variables is represented by an \code{PlainIntegerOperation} with \code{ArithmeticOperationType} \code{MUL} to denote multiplication
-	\item[(4)] An \code{ArithmeticOperationType} of type \code{ADD} to denote addition
-	\item[(5)] The left hand side is one big \code{PlainIntegerOperation} consisting of the addition(4) of the multiplication (3) of coefficient's (1) and variables (2).
-	\item[(6)] The \code{IntegerRelationType} defining the assertion. We only use the \textit{EQ (equal)} or \textit{LE (less than or equal)} relations.
-	\item[(7)] The right hand side is only \underline{one} \code{PlainIntegerConstant}
-	\item[(8)] The whole line is a \code{PlainIntegerRelation}, which can be transformed into the \code{SMTExpressionFormat} the \solver uses.
+	\item[(2)] \code{PlainIntegerVariables} as variables the \solver should derive values for such that all assertions are satisfied
+	\item[(3)] A coefficient multiplied by a variable is represented by a \code{PlainIntegerOperation} with \code{ArithmeticOperationType} \code{MUL} to denote multiplication
+	\item[(4)] An \code{ArithmeticOperationType} of type \code{ADD} to denote addition. The left hand side is a \code{PlainIntegerOperation} consisting of the addition of the multiplication (3) of coefficients (1) and variables (2)
+	\item[(5)] The \code{IntegerRelationType} defining the assertion. We only use the \textit{EQ (equal)} or \textit{LE (less than or equal)} relations
+	\item[(6)] The right hand side is a \code{PlainIntegerConstant}
+	\item[(7)] The whole assertion is a \code{PlainIntegerRelation}, which can be transformed into the \\ \code{SMTExpressionFormat} the \solver uses
 \end{enumerate}
 
-We use a solver within \aprove to create a bunch of assertions restricting the possible solution space. Since we operate in integer arithmetic and use linear equations we can restrict the solver to only use \textit{quantifier free linear integer arithmetic}. In order to solve the problem given by the assertions the solver tries to derive a model satisfying all of them or derive an unsatisfiable core. \cite{sat2016}\newline
+\aprove calls a solver and uses the \smtfactory to create a bunch of assertions added to the solver to restricting the possible solution space. Since we operate in integer arithmetic and use linear equations, we can restrict the solver to only use quantifier-free linear integer arithmetic. In order to solve the problem given by the assertions, the solver tries to derive a model satisfying all of them or derive an unsatisfiable core \cite{sat2016}\newline.
 
 \begin{example}
 	Consider the following assertions that should hold:\newline
@@ -300,10 +327,10 @@ We use a solver within \aprove to create a bunch of assertions restricting the p
 		\end{tabular}
 	\end{figure}
 	\vspace{-1em}
-	Then a possible model would be $m_1 = \{x=6, y=6\}$. An other model would be $m_2 = \{x=6, y=7\}$.
-	However If we change the third rule to $x+y\le 10$ there is no model to the problem and we would receive the unsatisfiable core $c= \{x \le y$, $x > 5$, $x+ y \le 10 \}$.
+	Then a valid model is $m_1 = \{x=6, y=6\}$. Another model is $m_2 = \{x=6, y=7\}$.
+	However, if we change the third rule to $x+y\le 10$, there is no model for the problem and we receive the unsatisfiable core $c= \{x \le y$, $x > 5$, $x+ y \le 10 \}$.
 \end{example}
 
-Since for \Cref{def:gna} the existence of a model is the crucial information, the model which should be derived is arbitrary among the set of possible models.
+Since for \Cref{def:gna} the existence of a model is the crucial information, the model which should be derived is arbitrary among the set of valid models.
 
-Further knowledge about \tool{SMT}-Problem solving can be gathered from the lecture "Introduction to Satisfiability Checking" or the \tool{SMT-RAT} toolbox for Strategic and Parallel SMT Solving by Prof. Dr. Erika Ábrahám and her team at the \textit{RWTH Aachen University} \cite{corzilius2015smt}.
+Further knowledge about \tool{SMT} problem solving can be gathered from the lecture ''Introduction to Satisfiability Checking'' or the \tool{SMT-RAT} toolbox for Strategic and Parallel SMT Solving by Prof. Dr. Erika Ábrahám and her team at the \textit{RWTH Aachen University} \cite{corzilius2015smt}.

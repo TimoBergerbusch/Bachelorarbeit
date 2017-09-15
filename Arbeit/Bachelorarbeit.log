@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  14 SEP 2017 21:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  15 SEP 2017 15:10
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -2223,7 +2223,7 @@ has been already used, duplicate ignored
 l.32 	\item[(4)]
                  The conditional term of the form $\text{(in)equation}_1 \te...
 ]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 53.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 50.
  (D:\Tools\MikTex\tex\latex\lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [6]
@@ -2231,12 +2231,12 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ng1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 95--97
+Underfull \hbox (badness 10000) in paragraph at lines 92--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--114
+Underfull \hbox (badness 10000) in paragraph at lines 108--111
 
  []
 
@@ -2245,77 +2245,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 111--114
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.117 
+l.114 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.117 
+l.114 
       ]
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 119.
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 140--141
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 116.
+ [8]
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 154--156
-
- []
-
-[8] (src/diagram/RPNTree-classdiagram.tex
+[9] (src/diagram/RPNTree-classdiagram.tex
 \du=\skip155
 )
-Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--206
+Overfull \hbox (16.17314pt too wide) in paragraph at lines 577--234
  [][] 
  []
 
-[9]
 \mybox=\box115
- [10pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
-4}) has been already used, duplicate ignored
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4
+}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.278 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2.5}) has been already used, duplicate ignored
+l.283 
+      ] [11pdfTeX warning (ext4): destination with the same identifier (name{fi
+gure.2.5}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.278 
-      ]
-Overfull \hbox (51.76566pt too wide) in paragraph at lines 288--289
-[]\T1/lmr/m/n/10.95 The whole line is a \T1/lmtt/m/n/10.95 PlainIntegerRelation
-\T1/lmr/m/n/10.95 , which can be trans-formed into the \T1/lmtt/m/n/10.95 SMTEx
-pressionFormat
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--292
-
- []
-
-) (src/tex/3-geometric-non-term.tex [11pdfTeX warning (ext4): destination with 
-the same identifier (name{figure.2.6}) has been already used, duplicate ignored
-
+l.316 \end{enumerate}
+                     pdfTeX warning (ext4): destination with the same identifie
+r (name{figure.2.6}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.1 \chapter
-            {Geometric Non-Termination}] [12
-
-]
+l.316 \end{enumerate}
+                     ]) (src/tex/3-geometric-non-term.tex [12]
 Chapter 3.
 \stemexone=\box116
-[13]
+[13
+
+]
 \stemextwo=\box117
 \stemextwosecond=\box118
  [14pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
@@ -2475,15 +2451,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 197.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 197.
 Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: D020DBCB42456126FED59079FA113034;2757.
+(rerunfilecheck)             Checksum: 6247DCCCDEC75CC61DCF5370EC231720;2757.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
  ) 
 Here is how much of TeX's memory you used:
- 37616 strings out of 493333
- 734726 string characters out of 3144357
- 854295 words of memory out of 3000000
- 40220 multiletter control sequences out of 15000+200000
- 116523 words of font info for 84 fonts, out of 3000000 for 9000
+ 37622 strings out of 493333
+ 734879 string characters out of 3144357
+ 854355 words of memory out of 3000000
+ 40226 multiletter control sequences out of 15000+200000
+ 125065 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,32n,85p,10435b,1369s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Tools/MikTex/fonts/enc/dvips/lm/lm-rm.enc}{D:/Tools/MikTex/fonts/enc/dvip
@@ -2507,9 +2483,9 @@ s/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/lm
 /lmsy9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt10.pfb><D:/Tools/MikTex/f
 onts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (39 pages, 683232 bytes).
+Output written on Bachelorarbeit.pdf (39 pages, 685200 bytes).
 PDF statistics:
- 851 PDF objects out of 1000 (max. 8388607)
+ 855 PDF objects out of 1000 (max. 8388607)
  197 named destinations out of 1000 (max. 500000)
  421 words of extra memory for PDF output out of 10000 (max. 10000000)
 
