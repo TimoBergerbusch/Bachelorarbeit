@@ -39,7 +39,7 @@
 	}
 				\end{lstlisting}
 			\end{itemize}
-		\item anwenden der Definition der Geometrischen Nicht-Terminierungs Argumente von J. Leike und M. Heizmann 
+		\item Anwenden der Definition von Geometrischen Nicht-Terminierungs Argumenten von J. Leike und M. Heizmann 
 	\end{itemize}
 \end{frame}
 
@@ -87,17 +87,17 @@
 	\begin{definition}[Guard Matrix \& Konstanten]
 		Die Guard Matrix $G$ ist eine Koeffizienten Matrix f\"ur die Ungleichungen. Die Guard Konstanten $g$ ein Vektor mit Konstanten der Ungleichungen.
 	\end{definition}
-	\begin{definition}[Update Matrix \& Konstanten]
+	\uncover<2->{\begin{definition}[Update Matrix \& Konstanten]
 		Die Update Matrix $U$ und Konstanten $u$ sind analog zu der Guard Matrix und Konstanten \"uber den linearen Updates.
-	\end{definition}
-	\begin{definition}[Iteration Matrix \& Konstanten]
+	\end{definition}}
+	\uncover<3->{\begin{definition}[Iteration Matrix \& Konstanten]
 		Mit \textbf{0} eine Matrix aus 0-en und $I$ der Einheitsmatrix ergeben sich die Iteration Matrix $A$ und Konstanten $b$ wie folgt:
 		\vspace*{-1em}
 		\begin{figure}[H]
 			\centering
 			$A = \begin{pmatrix} G & \textbf{0} \\ U & -I \\ -U & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
 		\end{figure}
-	\end{definition}
+	\end{definition}}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -139,14 +139,14 @@
 \begin{frame}[fragile]
 	\frametitle{\rpntree (RPNTree)}
 	\begin{itemize}
-		\item simple Baumstruktur f\"ur \underline{ausschließlich} ber\"ucksichtigter Terme 
+		\item Baumstruktur f\"ur \underline{ausschlie\ss lich} ber\"ucksichtigter Terme 
 		\item Klassen f\"ur Konstanten, Variablen und Operatoren
 	\end{itemize}
 	
 	\newsavebox\testboxEX
 	\begin{lrbox}{\testboxEX}
 		
-		\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+		\begin{tikzpicture}[scale=0.7, every node/.style={scale=0.7}]
 		\node (Plus) at (0,0) [objDia] {
 			\textbf{f1}:RPNFunctionSymbol
 			\nodepart{second}arithmeticSymbol: PLUS
@@ -180,10 +180,10 @@
 			every edge/.append style = { dashedarrow },
 			every node/.append style = { stdNode, scale = 0.75} ]
 			\node (L) {\begin{tabular}{cc} Term: \\ $3*v_1+v_2$ \end{tabular} };
-			\node[below = of L] (M)  {\begin{tabular}{cc} Umgekehr Polnische Notation: \\ $+(*(3, v_1),v_2)$ \end{tabular} };
-			\node[right = of M] (R) {\usebox\testboxEX};
-			\draw (L.south) edge (M.north);
-			\draw (M.east) edge (R.west);
+			\node[right = of L] (M)  {\begin{tabular}{cc} Umgekehr Polnische Notation: \\ $+(*(3, v_1),v_2)$ \end{tabular} };
+			\node[below left = 0.5cm and -4cm of M] (R) {\usebox\testboxEX};
+			\draw (L.east) edge (M.west);
+			\draw[dashedarrow] (M.south) -- +(0,-.5) -| (R.north);
 		\end{tikzpicture}
 	\end{exampleblock}
 \end{frame}

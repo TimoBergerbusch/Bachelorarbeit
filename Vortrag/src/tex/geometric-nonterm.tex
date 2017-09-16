@@ -31,7 +31,7 @@
 		$\Rightarrow$ \stem = $ (10, -3)^T$
 	\end{exampleblock}
 
-	\begin{tabular}{rl}
+	\uncover<2>{\begin{tabular}{rl}
 		\blue{variabler \stem}: & $f_x \rightarrow f_y(c_1+\sum_{i=1}^{n}a_{1,i}v_i, \dots, c_n+\sum_{i=1}^{n}a_{n,i}v_i) :|: $ \\
 							  & $\bigwedge_{\text{guard }g} \sum_{i=1}^{n}g_{n,i}v_i \le c_m$ \\
 							  & $\Rightarrow$ Bedingungen einem \solver geben und  \\
@@ -41,7 +41,7 @@
 		\centering
 		$f_1 \rightarrow f_2(1 + 3v_1, -3) :|: v_1 > 2\text{ \&\& }8 < 3v_1 $ \newline
 		$\Rightarrow$ Modell $m_1=\{v=3\}$ $\Rightarrow$\stem = $ (10, -3)^T$
-	\end{exampleblock}
+	\end{exampleblock}}
 \end{frame}
 
 
@@ -74,9 +74,9 @@
 %\begin{frame}
 	
 		\item Aufspalten zu $G=\{g \mid g \text{ ist eine (Un-)Gleichung}\}$
-		\item \red{Problem}: $g$ k\"onnte nicht die Form $\varphi \le c$ haben
-		\item \red{Schlimmer}: $g$ k\"onnte mittels "$=$" neue Variablen einf\"uhren
-		\item \green{L\"osung}: umformen von $g$ in die gew\"unschte Form: 
+		\item<2-> \red{Problem}: $g$ k\"onnte nicht die Form $\varphi \le c$ haben
+		\item<3-> \red{Schlimmer}: $g$ k\"onnte mittels "$=$" neue Variablen einf\"uhren
+		\item<4-> \green{L\"osung}: umformen von $g$ in die gew\"unschte Form: 
 			\begin{tabular}{cll}
 				1. & Gleichungen suchen   & ersetzen "neuer" Variablen \\
 				2. & Normalisierung ($\le$) & umschreiben $<,>,\ge$ to $\le$ \\
@@ -113,7 +113,7 @@
 
 \begin{frame} % bsp: filter eq.
 	\begin{exampleblock}{Beispiel}
-		F\"urs Beispiel \its erhalten wir:\newline
+		F\"ur das Beispiel \its erhalten wir:\newline
 		$\{v_1 + v_2 > 3\text{, } v_1 > 6 \text{, } 3 * v_1 > 20 \text{, } 5 + v_3 = 2 * v_2 \text{, } v_3 < -10\}$
 		\begin{enumerate}
 %			\setlength{\itemindent}{1cm}
@@ -224,10 +224,10 @@
 \begin{frame} % conclus
 	\begin{itemize}
 		\item Jede Ungleichung hat die Form $\varphi \le c$
-		\item herleiten der Guard Konstanten ist nun trivial
-		\item herleiten der Guard Matrix ist einfaches Ablesen
+		\item Herleiten der Guard Konstanten ist nun trivial
+		\item Herleiten der Guard Matrix ist einfaches Ablesen
 		\hspace*{1.5cm}(genauer unter der Update Matrix)
-		\item[$\Rightarrow$] Guard matrix \& Konstanten hergeleitet \checkmark
+		\item[$\Rightarrow$] Guard Matrix \& Konstanten hergeleitet \checkmark
 	\end{itemize}
 \end{frame}
 
@@ -238,9 +238,9 @@
 		\item beinhalten \underline{keine} (Un-)Gleichheiten
 		\item haben die Form: $c+\sum_{i=1}^{n}a_i v_i$ (\underline{nicht} $v_i a_i$)
 		\item \red{Problem}: k\"onnte "neue" Variablen aus den Guard beinhalten
-		\item[] \green{L\"osung}: Substitutionen auf die Updates anwenden
-		\item \red{Problem}: keine Struktureigenschaft wie bei den Guards
-		\item[] \green{L\"osung}: rekursive Suche mit zwei Eigenschaften:
+		\item[]<2-> \green{L\"osung}: Substitutionen auf die Updates anwenden
+		\item<2-> \red{Problem}: keine Struktureigenschaft wie bei den Guards
+		\item[]<3-> \green{L\"osung}: rekursive Suche mit zwei Eigenschaften:
 			\begin{enumerate}
 				\item es ex. maximal eine Konstante
 				\item die Konstante wird \underline{nicht} multipliziert
@@ -319,13 +319,13 @@
 	\begin{itemize}
 		\item Koeffizient f\"ur jede Variable und Konstante pro Update
 		\item[$\Rightarrow$] Update Matrix \& Konstanten \checkmark
-		\item Iteration Matrix \& Konstanten gegeben durch: 
+		\uncover<2>{\item Iteration Matrix \& Konstanten gegeben durch: 
 			\begin{figure}[H]
 				\centering
 				$A = \begin{pmatrix} G & \textbf{0} \\ M & -I \\ -M & I \end{pmatrix}$ und $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
 			\end{figure}
 		 can be computed
-		 \item[$\Rightarrow$] Iteration Matrix \& Konstanten \checkmark
+		 \item[$\Rightarrow$] Iteration Matrix \& Konstanten \checkmark}
 	\end{itemize}
 \end{frame}
 
@@ -339,11 +339,11 @@
 					$\lambda_i$ ist der $i$-te Eigenwert von $U$.
 				\end{block}
 		\item \red{Problem}: $\mu_i*y_i$ ist nicht-linear
-		\item[] zwei m\"ogliche L\"osungsans\"atze:
+		\uncover<2>{\item[] zwei m\"ogliche L\"osungsans\"atze:
 			\begin{enumerate}
 				\item nutze \qfnia
 				\item iterieren \"uber alle $\mu$'s
-			\end{enumerate}
+			\end{enumerate}}
 	\end{itemize}
 \end{frame}
 
@@ -357,7 +357,7 @@
 	\begin{itemize}
 		\item[] $\Rightarrow$ Bedingungen f\"ur  $\mu$'s hinzufügen
 	\end{itemize}
-	\begin{variableblock}{Erinnerung: Initiation Kriteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\uncover<2>{\begin{variableblock}{Erinnerung: Initiation Kriteria}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{itemize}
 			\setlength{\itemindent}{1cm}
 			\item[(init)] x repr\"asentiert den \startterm (\stem)
@@ -365,7 +365,7 @@
 	\end{variableblock}
 	\begin{itemize}
 		\item[] $\Rightarrow$ keine weiteren Bedingungen
-	\end{itemize}
+	\end{itemize}}
 	
 \end{frame}
 
@@ -506,6 +506,7 @@
 			& & \\
 		\end{tabular}
 	\end{variableblock}
+	\vspace*{-.5em}
 	\begin{exampleblock}{Beispiel: Bedingungen \rom{2}: Ray Crit.}
 		\begin{itemize}
 			\setlength{\itemindent}{0.25cm}
