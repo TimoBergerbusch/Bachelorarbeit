@@ -63,7 +63,7 @@ Definition 2.2.6
 - die Kriterien (init) und (ray) weichen von der originalen Fassung ab (ersteres, weil du x statt x_0 und x_1 schreibst). Macht das einen Unterschied und wenn ja, ist der unproblematisch im Hinblick auf Korrektheit?
 + letzter Satz: Referenz sollte immer vor dem Punkt stehen
 + letzter Satz: „instead of a case distinction“: Was ist damit gemeint?
-- noch mal letzter Satz: Ich würde statt „Note that“ schreiben „Here,“, denn das kann man ja vorher nicht wissen sondern wird hier einfach definiert, oder?
++ noch mal letzter Satz: Ich würde statt „Note that“ schreiben „Here,“, denn das kann man ja vorher nicht wissen sondern wird hier einfach definiert, oder?
 
 Sentence 2.1
 + Sentence -> Theorem

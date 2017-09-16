@@ -5,7 +5,7 @@
 \contentsline {section}{\numberline {1.2}Overview}{4}{section.1.2}
 \contentsline {chapter}{\numberline {2}Preliminaries}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Integer Transition Systems}{5}{section.2.1}
-\contentsline {section}{\numberline {2.2}geometric non-termination arguments}{6}{section.2.2}
+\contentsline {section}{\numberline {2.2}Geometric Non-Termination Arguments}{6}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Considered Programs}{6}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Structure}{6}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Preliminary Definitions}{8}{subsection.2.2.3}
