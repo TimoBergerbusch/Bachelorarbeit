@@ -23,7 +23,7 @@ For now we only focus on programs that meet the conditions of the \gnanal. An ov
 	\end{tabular}	
 \end{figure}
 
-Regarding the average duration it takes \aprove to proof these programs is 4,513 seconds a save of average 0.76 seconds is a save of about 17 percent. Keeping in mind that the \gnanal has the objective of proving \nonterm and that \aprove uses approaches in parallel the save can be even bigger. \aprove stops if any approach returns a proof. So the on average longer proof of termination does not affect the average save up. \newline
+Regarding the average duration it takes \aprove to proof these programs, which is 4,513 seconds, a save of average 0.76 seconds is a save of about 17 percent. Keeping in mind that the \gnanal has the objective of proving \nonterm and that \aprove uses approaches in parallel the save can be even bigger. \aprove stops if any approach returns a proof. So the on average longer proof of termination does not affect the average save up. \newline
 \begin{figure}[H]
 	\begin{lstlisting}[language = java]
 	int main(void){
@@ -42,7 +42,7 @@ Regarding the average duration it takes \aprove to proof these programs is 4,513
 	\caption{A program \aprove can not prove \nonterm for without the \gnanal}
 	\label{fig:program-newproof}
 \end{figure}
-Also there are programs, like the program shown in \Cref{fig:program-newproof},which \aprove can not proof \nonterm for without using the \gnanal. Including this technique to the set of approaches \aprove is able to prove \nonterm. So the set of provable programs gets extended and improves \aprove.
+Also there are programs, like the program shown in \Cref{fig:program-newproof}, which \aprove can not proof \nonterm for without using the \gnanal. Including this technique to the set of approaches \aprove is able to prove \nonterm. So the set of provable programs gets extended and improves \aprove.
 
 
 \section{Possible Improvement of the Implementation}
@@ -51,8 +51,8 @@ So here we state the possible improvements of the implementation to make it univ
 \subsection{\solver logic}
 As already stated in \Cref{sec:derivation-smt} the problematic of the $\mu$'s can lead to a shift into undecidability, since the solvating of variable multiplication on integers (\qfnia) is undecidable. Also mentioned in \Cref{sec:derivation-smt} there are a bunch of approaches, which lead to semi-decidability and therefore to the possibility to still use the variable multiplication within the problem if the $\mu$'s can be restricted to a finite domain.\newline
 A possible improvement could be an iteration over different values of the $\mu$'s. The number of problems, that have to be solved would be blow up, but the problem itself would always be decidable.\newline
-A reliable case-study of a large set of examples could underline the necessity of the iteration, since we wouldn't be able to derive a \gna using the \qfnia. It could also lead to the overhead of computational cost using the iterative method, which can be useful if the problem does not have any time restrictions of the deciding process, but is not suitable within the competitions \aprove participates, like the \textit{International Competition of Termination Tools} or \textit{International Competition on Software Verification}. \cite{aproveWebsite} \cite{TermComp} \cite{SVComp} \newline
-The \textit{Termination Competition 2017}, which is organized by the \textit{International Competition of Termination Tools}, for example has a time limit of 300 seconds and only allows 4 core usage, which makes an iterative method very costly. \cite{wiki2017termComp}
+A reliable case-study of a large set of examples could underline the necessity of the iteration, since we wouldn't be able to derive a \gna using the \qfnia. It could also lead to the overhead of computational cost using the iterative method, which can be useful if the problem does not have any time restrictions of the deciding process, but is not suitable within the competitions \aprove participates, like the \textit{International Competition of Termination Tools} or \textit{International Competition on Software Verification} \cite{aproveWebsite} \cite{TermComp} \cite{SVComp}. \newline
+The \textit{Termination Competition 2017}, which is organized by the \textit{International Competition of Termination Tools}, for example has a time limit of 300 seconds and only allows 4 core usage, which makes an iterative method very costly \cite{wiki2017termComp}.
 
 \subsection{\its program structure}
 \label{sec:structure-improvement}

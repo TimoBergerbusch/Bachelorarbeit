@@ -104,9 +104,10 @@ As we can see, the original program can be recognized quite easily. The first ru
 	\label{fig:structure-example-TRS}
 \end{figure}
 
-Neglecting the conditional terms for now, the declaration of $v^\prime_2$, which is the second argument of $f_2$, in line 1 to -3, 
+Neglecting the conditional terms for now, we initialize  $v^\prime_2$, which is the second argument of $f_2$, in line 1 to the value of -3, 
 because during the construction of the \seg, \aprove always unrolls the first iteration of the \loopt. Therefore, the \stem computed by \aprove will always contain the first execution of the \loopt. Starting with $b=1$ one step would be the computation of $b = 2*1-5=-3$. The definition of $v^\prime_1$ is more difficult and will be shown within \Cref{sec:stem}.
-Also the update for the first argument of $f_2$ $v^\prime_1$ within line 2 is the same as in \Cref{fig:structure-example-java} line 7. The definition of the second argument of $f_2$, $v^\prime_2 = v_3$, is fundamental and not as simple as $v^\prime_1$, since $v_3$ is a new variable introduced within the guards through the equality $5+v_3=2*v_2$. The handling of such variables will be explained in \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}. \newline
+%TODO: b von 1 zu -3
+Also the update of  $v^\prime_1$, which is the first argument of $f_2$, within line 2 is the same as in \Cref{fig:structure-example-java} line 7. The definition of the second argument of $f_2$, $v^\prime_2 = v_3$, is fundamental and not as simple as $v^\prime_1$, since $v_3$ is a new variable introduced within the guards through the equality $5+v_3=2*v_2$. The handling of such variables will be explained in \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}. \newline
 
 \subsection{Preliminary Definitions}
 In order to be able to define the key element of this approach, the \gna, we have to define a number of matrices and constant vectors, which are used to derive such a \gna. 
@@ -134,7 +135,7 @@ Examples of the \stem are shown within \Cref{sec:stem}.
 	The necessity and computation of the normalization is explained within \Cref{sec:derivation-guard}.\newline
 	Since the coefficient of $v_1$ is $-1$ and of $v_2$ is also $-1$ we can set the entries $G_{1,1} = G_{1,2}=-1$.
 	Iterating over all $r_i$ we derive the corresponding \guardmatrix to \Cref{fig:structure-example-TRS} is $G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$.
-	The constant factor of a guard $r_i$ is the right hand side of the inequation. So the constant of $r_1=-4$. Iterating over all $r-i$ we derive the \guardconstants are $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$.	
+	The constant factor of a guard $r_i$ is the right hand side of the inequation. So the constant of $r_1=-4$. Iterating over all $r_i$ we derive the \guardconstants are $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$.	
 \end{example}
 
 \begin{definition}[Update Matrix, Update Constants]
@@ -328,7 +329,7 @@ Such an example assertion can be split into different parts:
 	\item[(7)] The whole assertion is a \code{PlainIntegerRelation}, which can be transformed into the \\ \code{SMTExpressionFormat} the \solver uses
 \end{enumerate}
 
-\aprove calls a solver and uses the \smtfactory to create a bunch of assertions added to the solver to restricting the possible solution space. Since we operate in integer arithmetic and use linear equations, we can restrict the solver to only use quantifier-free linear integer arithmetic. In order to solve the problem given by the assertions, the solver tries to derive a model satisfying all of them or derive an unsatisfiable core \cite{sat2016}\newline.
+\aprove calls a solver and uses the \smtfactory to create a bunch of assertions added to the solver to restricting the possible solution space. Since we operate in integer arithmetic and use linear equations, we can restrict the solver to only use quantifier-free linear integer arithmetic. In order to solve the problem given by the assertions, the solver tries to derive a model satisfying all of them or derive an unsatisfiable core \cite{sat2016}.\newline
 
 \begin{example}
 	Consider the following assertions that should hold:\newline

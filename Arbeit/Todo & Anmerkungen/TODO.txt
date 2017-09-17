@@ -18,7 +18,7 @@ R - Research
 
 5 related work:
 
-domain criteria!
+- Cite . nicht . Cite
 
 code:
 - Add nondet check
