@@ -5,6 +5,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,positioning,automata,matrix}
 \usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{calc}
 \usepackage[ngerman, english]{babel}
 \usepackage{listings}
 \usepackage{xspace}
@@ -13,11 +14,14 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 \usepackage{multirow}
+\usepackage[ngerman]{babel}
+\usepackage{datetime}
 
+\newdateformat{myformat}{\THEDAY{. }\monthname[\THEMONTH]{ }\THEYEAR}
 
-\title{Geometrische Nicht-Terminierungs Argumente}
+\title{Geometrische Nichtterminierungs-Argumente}
 \author{Timo Bergerbusch}
-\date{\today}
+\date{\myformat\today}
 
 
 \lstset{
@@ -61,6 +65,33 @@
 \tikzstyle{considered}=[thickarrow, color = blue]
 \tikzstyle{neglected} = [thickarrow, color = red]
 \tikzstyle{query} = [thickarrow, color = green!50!black]
+
+
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\newcommand{\DrawFirstBox}[1][]{%
+	\tikz[overlay,remember picture]{
+		\draw[green!50!black,#1]
+		($(left1)+(-0.2em,0.9em)$) rectangle
+		($(right1)+(0.4em,-0.3em)$);}
+}
+\newcommand{\DrawFirstSmallBox}[1][]{%
+	\tikz[overlay,remember picture]{
+		\draw[green!50!black,#1]
+		($(sleft1)+(-0.2em,0.9em)$) rectangle
+		($(sright1)+(0.4em,-0.3em)$);}
+}
+\newcommand{\DrawSecondBox}[1][]{%
+	\tikz[overlay,remember picture]{
+		\draw[blue,#1]
+		($(left2)+(-0.2em,0.9em)$) rectangle
+		($(right2)+(0.4em,-0.3em)$);}
+}
+\newcommand{\DrawSecondSmallBox}[1][]{%
+	\tikz[overlay,remember picture]{
+		\draw[blue,#1]
+		($(sleft2)+(-0.4em,0.9em)$) rectangle
+		($(sright2)+(0.4em,-0.3em)$);}
+}
 
 \tikzset{
 	invisible/.style={opacity=0},

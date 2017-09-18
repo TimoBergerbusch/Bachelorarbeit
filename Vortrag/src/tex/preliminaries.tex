@@ -1,37 +1,34 @@
 \section{N{\"o}tiges Vorwissen}
 
-\subsection{Integer Transition Systems (ITS) }
+\subsection{Integer Transitionssystems (ITS) }
 \frame{\tableofcontents[currentsection]}
 \begin{frame}[fragile] %%Eine Folie
 	\frametitle{Integer Transition Systems (ITS)}
-	\its betrachtete Programme:
+	Hier betrachtete Programme:
 	\begin{lstlisting}[escapechar=!]
 	!$\overbrace{f_x}^{(1)} \qquad\quad\>\>\>\> \rightarrow \overbrace{f_y}^{(2)} (v_1, \dots v_n) :|: cond_1$!
 	!$\>\>f_y(\underbrace{v_1, \dots v_n}_{(3)}) \> \rightarrow \>\> f_y \>\>\>(\underbrace{v^\prime_1,\dots v^\prime_n}_{(3)})  :|: \underbrace{cond_2}_{(4)}$!
 	\end{lstlisting}
 	
 	\begin{enumerate}
-		\item[(1)] Funktionssymbol (kein Variablen $\Rightarrow$ Start)
+		\item[(1)] Startsymbol (keine Variablen)
 		\item[(2)] Funktionssymbol
-		\item[(3)] Variablen $v^\prime_i$ als linear Updates der Variablen $v_j$
+		\item[(3)] Variablen $v^\prime_i$ als lineare Updates der Variablen $v_j$
 		\item[(4)] eine Menge von (Un-)Gleichungen \"uber $v_j$
 	\end{enumerate}
-
-%	Gelesen als: "rewrite $f_y(v_1,\dots,v_n)$ as $f_y(v^\prime_1,\dots,v^\prime_n)$ if \textit{cond} holds"
 \end{frame}
 
-\subsection{Geometrische Nicht-Terminierungs Argumente (GNA)}
+
 \begin{frame}[fragile]
-	\frametitle{Geometrische Nicht-Terminierungs Argumente (GNA)}
 	\begin{itemize}
 		\item Idee: Teilen des Programms in \blue{zwei} Teile:
 			\begin{itemize}
-				\item \stem: Variablen Deklaration und Initialisierung
+				\item \stem: Variablen Deklaration und ggf. Initialisierung
 					\begin{lstlisting}[language = java]
 	int a;
 	int b=1;
 					\end{lstlisting}
-				\item \loopt: linear Updates und \code{while}-Bedingung
+				\item \loopt: \code{while}-Bedingung und lineare Updates
 				\begin{lstlisting}[language = java]
 	while(a+b>=4){
 		a=3*a+b;
@@ -39,7 +36,7 @@
 	}
 				\end{lstlisting}
 			\end{itemize}
-		\item Anwenden der Definition von Geometrischen Nicht-Terminierungs Argumenten von J. Leike und M. Heizmann 
+		\item suche eines GNAs (J. Leike und M. Heizmann)
 	\end{itemize}
 \end{frame}
 
@@ -70,13 +67,97 @@
 	\begin{exampleblock}{Beispiel}
 		Das \its zum Beispielprogramm:
 		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
-!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
-!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
-				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
+!$f_1 \qquad\> \rightarrow f_2(1+3\cdot a,-3)   :|: a>2 \text{ \&\& } 8<3\cdot a$!
+!$f_2(a,b) \rightarrow f_2(3\cdot a+b,z) \>\ :|: a + b > 3 \text{ \&\& } a > 6 \text{ \&\& } $!
+				!$ 3 \cdot  a > 20 \text{ \&\& } 5 + z = 2 \cdot  b \text{ \&\& } z < -10 $!
 		\end{lstlisting}
 	\end{exampleblock}	
 \end{frame}
 
+\subsection{Definitionen}
+
+
+\begin{frame}[fragile]
+	\begin{variableblock}{Erinnerung: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
+!$f_1 \qquad\> \rightarrow f_2(1+3\cdot a,-3)   :|: a>2 \text{ \&\& } 8<3\cdot a$!
+!$f_2(a,b) \rightarrow f_2(3\cdot a+b,z) \>\ :|: a + b > 3 \text{ \&\& } a > 6 \text{ \&\& } $!
+				!$ 3 \cdot  a > 20 \text{ \&\& } 5 + z = 2 \cdot  b \text{ \&\& } z < -10 $!
+		\end{lstlisting}
+	\end{variableblock}
+	\begin{exampleblock}{Guard-Matrix \& Konstanten}
+		Vorher: Normalisieren 
+		\begin{center}
+			\only<1>{$a+b > 3 \Leftrightarrow -a-b < -3 \Leftrightarrow -a-b \le -4$}
+			\only<2>{$a+b > 3 \Leftrightarrow -a-b < -3 \Leftrightarrow \green{-a}\blue{-b} \le \red{-4}$}
+		\end{center}
+		\uncover<2->{$\Rightarrow$ Guard-Matrix $G$ und Konstanten $g$:\newline
+		\begin{center}
+			\vspace{-2em}
+			$G = \begin{pmatrix} \green{-1} & \blue{-1} \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$ und $g= \begin{pmatrix} \red{-4} \\ -7 \\ -21 \\ -6 \end{pmatrix}$
+		\end{center}}		
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{variableblock}{Erinnerung: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
+!$f_1 \qquad\> \rightarrow f_2(1+3\cdot a,-3)   :|: a>2 \text{ \&\& } 8<3\cdot a$!
+!$f_2(a,b) \rightarrow f_2(\green{3\cdot a}+\blue{b},z) \>\ :|: a + b > 3 \text{ \&\& } a > 6 \text{ \&\& } $!
+				!$ 3 \cdot  a > 20 \text{ \&\& } 5 + z = 2 \cdot  b \text{ \&\& } z < -10 $!
+		\end{lstlisting}
+	\end{variableblock}
+		\begin{exampleblock}{Update-Matrix \& Konstanten}
+			Vorher: Ersetzen
+			\begin{center}
+				$5+z=2\cdot b \Leftrightarrow z=2\cdot b - 5$
+			\end{center}
+			$\Rightarrow$ Update-Matrix $U$ und Konstanten $u$:\newline
+			\begin{center}
+				\vspace{-2em}
+				$U = \begin{pmatrix} \green{3} & \blue{1} \\ 0 & 2 \end{pmatrix}$ und $u = \begin{pmatrix} \red{0} \\ -5 \end{pmatrix}$
+			\end{center}		
+		\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{definition}[Iteration-Matrix \& Konstanten]
+		$\Rightarrow$ Iteration-Matrix $A$ und Konstanten $b$ wie folgt:
+		\vspace*{-1em}
+		\begin{figure}[H]
+			\centering
+			$A = \begin{pmatrix} \green{G} & \textbf{0} \\ \blue{U} & -I \\ -U & I \end{pmatrix}$ und $b = \begin{pmatrix} \green{g} \\ -u \\ \blue{u} \end{pmatrix}$
+		\end{figure}
+	\end{definition}
+	\begin{exampleblock}{Beispiel: Iteration-Matrix \& Konstanten}
+		\centering
+		\(
+			A = \left(\begin{array}{*{4}{c}}
+				\tikzmark{left1}-1 		& -1 		&  0		& 0		 \\
+				-1 		& 0 		&  0		& 0		 \\
+				-3 		& 0 		&  0		& 0		 \\
+				0 		& 2 \tikzmark{right1}		&  0		& 0		 \\
+				\tikzmark{left2}3 		& 1 		&  -1		& 0		 \\
+				0 		& 2 \tikzmark{right2} 		&  0		& -1	 \\
+				-3 		& -1 		&  1		& 0		 \\
+				0 		& -2 		&  0		& 1	 	 \\           
+			\end{array}\right)
+		\)
+		\(
+		b = \left(\begin{array}{*{1}{c}}
+		\tikzmark{sleft1}-4 \\ -7 \\ -21 \\ -6\tikzmark{sright1} \\ 0 \\ 5 \\ \tikzmark{sleft2}0 \\ -5 \tikzmark{sright2}	          
+		\end{array}\right)
+		\)
+		
+		\DrawFirstBox[thick]
+		\DrawFirstSmallBox[thick]
+		\DrawSecondBox[thick]
+		\DrawSecondSmallBox[thick]
+	\end{exampleblock}
+\end{frame}
+
+
+\subsection{Geometrische Nicht-Terminierungs Argumente (GNA)}
 \begin{frame}
 	\begin{definition}[Geometrische Nicht-Terminierungs Argumente]
 		\label{def:gna}
@@ -87,7 +168,7 @@
 			$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$
 		\end{figure}  
 		\vspace{-1em}
-		ist ein Geometrisches Nicht-Terminierungs Argument der Gr\"o\ss e $k$ f\"ur ein Programm = $(\stem, \loopt)$ mit $n$ Variablen g.d.w. alle folgenden Kriterien erf\"ullt sind:
+		ist ein GNA der Gr\"o\ss e $k$ mit $n$ Variablen g.d.w.:
 		\begin{itemize}
 			\setlength{\itemindent}{1in}
 			\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
@@ -95,150 +176,42 @@
 			\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
 			\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
 		\end{itemize}
-		Anmerkung: Definiere $y_0 = \mu_0 = 0$ statt einer Fallunterscheidung
+		Anmerkung:
+		\begin{itemize}
+			\item Definiere $y_0 = \mu_0 = 0$
+			\item $\lambda_i$ ist der $i$-te Eigenwert von $U$.
+		\end{itemize}
 	\end{definition}
 \end{frame}
 
-\subsection{Definitionen}
+\subsection{SMT-Solving}
 
 \begin{frame}
-	\begin{definition}[Guard Matrix \& Konstanten]
-		Die Guard Matrix $G$ ist eine Koeffizienten Matrix f\"ur die Ungleichungen. Die Guard Konstanten $g$ ein Vektor mit Konstanten der Ungleichungen.
-	\end{definition}
-	\uncover<2->{\begin{definition}[Update Matrix \& Konstanten]
-		Die Update Matrix $U$ und Konstanten $u$ sind analog zu der Guard Matrix und Konstanten \"uber den linearen Updates.
-	\end{definition}}
-	\uncover<3->{\begin{definition}[Iteration Matrix \& Konstanten]
-		Mit \textbf{0} eine Matrix aus 0-en und $I$ der Einheitsmatrix ergeben sich die Iteration Matrix $A$ und Konstanten $b$ wie folgt:
-		\vspace*{-1em}
-		\begin{figure}[H]
-			\centering
-			$A = \begin{pmatrix} G & \textbf{0} \\ U & -I \\ -U & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$
-		\end{figure}
-	\end{definition}}
-\end{frame}
-
-\begin{frame}[fragile]
-	\begin{variableblock}{Erinnerung: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
-		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
-!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
-!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
-				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
-		\end{lstlisting}
-	\end{variableblock}
-	\begin{exampleblock}{Beispiel: Guard Matrix \& Konstanten}
-		Vorher: Normalisieren 
-		\vspace*{-1em}
-		\begin{center}
-			$v_1+v_2 > 3 \Leftrightarrow -v_1-v_2 < -3 \Leftrightarrow -v_1-v_2 \le -4$
-		\end{center}
-		\vspace*{-1em}
-		f\"ur das Beispiel ITS ergeben sich die Guard Matrix $G$ und Konstanten $g$:\newline
-		\begin{center}
-			\vspace{-2em}
-			$G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$ und $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$
-		\end{center}		
-	\end{exampleblock}
-\end{frame}
-
-\begin{frame}[fragile]
-	\begin{variableblock}{Erinnerung: \its}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
-		\begin{lstlisting}[linewidth=10.5cm, escapechar = !]
-!$f_1 \qquad\>\>\>\> \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1$!
-!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } $!
-				!$ 3 * v_1 > 20 \text{ \&\& } 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10 $!
-		\end{lstlisting}
-	\end{variableblock}
-		\begin{exampleblock}{Beispiel: Update Matrix \& Konstanten}
-			f\"ur das Beispiel ITS ergeben sich die Update Matrix $U$ und Konstanten $u$:\newline
-			\begin{center}
-				\vspace{-2em}
-				$U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ und $u = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$
-			\end{center}		
-		\end{exampleblock}
-\end{frame}
-
-\subsection{Umgekehrt Polnische Notation (RPNTree)}
-
-\begin{frame}[fragile]
-	\frametitle{\rpntree (RPNTree)}
-	\begin{itemize}
-		\item Baumstruktur f\"ur \underline{ausschlie\ss lich} ber\"ucksichtigter Terme 
-		\item Klassen f\"ur Konstanten, Variablen und Operatoren
-	\end{itemize}
-	
-	\newsavebox\testboxEX
-	\begin{lrbox}{\testboxEX}
-		
-		\begin{tikzpicture}[scale=0.7, every node/.style={scale=0.7}]
-		\node (Plus) at (0,0) [objDia] {
-			\textbf{f1}:RPNFunctionSymbol
-			\nodepart{second}arithmeticSymbol: PLUS
-		};
-		\node (Times1) at (-4, -2 ) [objDia] {
-			\textbf{f2}:RPNFunctionSymbol
-			\nodepart{second}arithmeticSymbol: TIMES	
-		};
-		\node (cons1) at (-6, -4) [objDia] {
-			\textbf{c1}:RPNConstant
-			\nodepart{second}value: 3
-		};
-		\node (var1) at (-2, -4)[objDia] {
-			\textbf{v1}:RPNVariable
-			\nodepart{second}varName: $v_1$
-		};
-		\node (var2) at (4, -2) [objDia] {
-			\textbf{v2}:RPNVariable
-			\nodepart{second}value: $v_2$
-		};
-		\draw[thickarrow] (Plus.south)  -- ++(0,-0.4) -| (Times1.north) node [pos = 0.4, above, font=\footnotesize]{left};
-		\draw[thickarrow] (Plus.south)  -- ++(0,-0.4) -| (var2.north) node [pos = 0.4, above, font=\footnotesize]{right};
-		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
-		\draw[thickarrow] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
-		\end{tikzpicture}
-	\end{lrbox}
-	\begin{exampleblock}{Beispiel}
-		\centering
-		\begin{tikzpicture}[
-			scale=0.4,
-			every edge/.append style = { dashedarrow },
-			every node/.append style = { stdNode, scale = 0.75} ]
-			\node (L) {\begin{tabular}{cc} Term: \\ $3*v_1+v_2$ \end{tabular} };
-			\node[right = of L] (M)  {\begin{tabular}{cc} Umgekehr Polnische Notation: \\ $+(*(3, v_1),v_2)$ \end{tabular} };
-			\node[below left = 0.5cm and -4cm of M] (R) {\usebox\testboxEX};
-			\draw (L.east) edge (M.west);
-			\draw[dashedarrow] (M.south) -- +(0,-.5) -| (R.north);
-		\end{tikzpicture}
-	\end{exampleblock}
-\end{frame}
-
-
-\subsection{Sat. Modulo Theorie (SMT)}
-
-\begin{frame}
-	\frametitle{Sat. Modulo Theorie (SMT)}
+	\frametitle{\color{white}SMT-Solving}
 	
 	\begin{itemize}
 		\item Grundlegende Idee: 
 			\begin{itemize}
 				\item[] Menge von Regeln: (Un)-Gleichungen mit Variablen
-				\item[] \qquad$\>\>$ $\xrightarrow{\text{\solver}}$ ein erf. Modell \underline{oder} unerf. Kern
+				\item[] \qquad$\>\>$ $\xrightarrow{\text{\solver}}$ Modell \underline{oder} unerf\"ullbarer Kern
 			\end{itemize}		
-		\item \color{blue}erf. Modell\color{black}: einen Wert f\"ur jede Variable
-		\item \color{blue}unerf. Modell\color{black}: ein (minimale) Menge von Regeln die nicht alle zeitgleich gelten k\"onnen
+		\item \blue{Modell}: einen Wert f\"ur jede Variable
+		\item \color{blue}unerf\"ullbarer Kern\color{black}: eine (minimale) unerf\"ullbare Menge von Bedingungen
 	\end{itemize}
 	\begin{exampleblock}{Beispiel}
-		Beispiel mit folgenden Regeln:
-		\vspace*{-1em}
 		\begin{figure}[H]
 			\centering
 			\begin{tabular}{cccc}
-				$x \le y$ &	$x > 5 $ &	$ x+ y \le 20$ &$y \neq 10$ \\
+				$x > 5 $ & $x \le y$ & $ x+ y \le 20$ &$y \neq 10$ \\
 			\end{tabular}
 		\end{figure}
-		\vspace*{-1em}
-		 M\"ogliches Modell $m_1 = \{x=6, y=6\}$.\newline \newline
-		 \"Andern der dritten Regel zu $x+y\le10$:\newline
-		 Kein Modell ex. mit unerf. Kern $\{x \le y$, $x > 5$, $x+ y \le 10 \}$
+		M\"ogliches Modell $m_1 = \{x=6, y=6\}$.
+		\begin{figure}[H]
+			\centering
+			\begin{tabular}{cccc}
+				$x > 5 $ & $x \le y$ & $ x+ y \le 10$ &$y \neq 10$ \\
+			\end{tabular}
+		\end{figure}
+		unerf\"ullbarer Kern $\{x > 5$, $x \le y$,  $x+ y \le 10 \}$
 	\end{exampleblock}
 \end{frame}

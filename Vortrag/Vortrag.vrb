@@ -1,5 +1,4 @@
-\underline{\red{aber}}: \newline
-	\begin{lstlisting}[language = java]
+\begin{lstlisting}[language = java]
 	int main(void){
 		int a, b, c;
 

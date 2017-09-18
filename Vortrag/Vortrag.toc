@@ -1,16 +1,15 @@
 \select@language {english}
 \beamer@sectionintoc {1}{Einleitung}{3}{0}{1}
 \beamer@sectionintoc {2}{N{\"o}tiges Vorwissen}{8}{0}{2}
-\beamer@subsectionintoc {2}{1}{Integer Transition Systems (ITS) }{8}{0}{2}
-\beamer@subsectionintoc {2}{2}{Geometrische Nicht-Terminierungs Argumente (GNA)}{10}{0}{2}
-\beamer@subsectionintoc {2}{3}{Definitionen}{13}{0}{2}
-\beamer@subsectionintoc {2}{4}{Umgekehrt Polnische Notation (RPNTree)}{18}{0}{2}
-\beamer@subsectionintoc {2}{5}{Sat. Modulo Theorie (SMT)}{19}{0}{2}
-\beamer@sectionintoc {3}{Geometrische Nicht-Terminierung}{20}{0}{3}
-\beamer@subsectionintoc {3}{1}{Herleitung: STEM}{21}{0}{3}
-\beamer@subsectionintoc {3}{2}{Herleitung: Guard Matrix \& Konstanten}{23}{0}{3}
-\beamer@subsectionintoc {3}{3}{Herleitung: Update Matrix \& Konstanten}{32}{0}{3}
-\beamer@subsectionintoc {3}{4}{Herleitung: Iteration Matrix \& Konstanten}{37}{0}{3}
-\beamer@subsectionintoc {3}{5}{Herleitung: SMT-Problem}{39}{0}{3}
-\beamer@sectionintoc {4}{Verifizierung eines GNA}{48}{0}{4}
-\beamer@sectionintoc {5}{Resultate}{51}{0}{5}
+\beamer@subsectionintoc {2}{1}{Integer Transitionssystems (ITS) }{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Definitionen}{12}{0}{2}
+\beamer@subsectionintoc {2}{3}{Geometrische Nicht-Terminierungs Argumente (GNA)}{16}{0}{2}
+\beamer@subsectionintoc {2}{4}{SMT-Solving}{17}{0}{2}
+\beamer@sectionintoc {3}{Geometrische Nicht-Terminierung}{18}{0}{3}
+\beamer@subsectionintoc {3}{1}{Herleitung: STEM}{19}{0}{3}
+\beamer@subsectionintoc {3}{2}{Herleitung: Guard-Matrix \& Konstanten}{21}{0}{3}
+\beamer@subsectionintoc {3}{3}{Herleitung: Update-Matrix \& Konstanten}{28}{0}{3}
+\beamer@subsectionintoc {3}{4}{Herleitung: Iteration-Matrix \& Konstanten}{32}{0}{3}
+\beamer@subsectionintoc {3}{5}{Herleitung: SMT-Problem}{34}{0}{3}
+\beamer@sectionintoc {4}{Beispiel eines GNAs}{44}{0}{4}
+\beamer@sectionintoc {5}{Resultate}{47}{0}{5}

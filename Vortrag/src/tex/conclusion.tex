@@ -4,30 +4,20 @@
 
 \begin{frame}[fragile]
 	\frametitle{Resultate}
-	Wie gut/schlecht ist das Programm? \newline
-	Benchmark auf den SV-COMP Programmen
+	Benchmark auf den 847 SV-COMP Programmen
 	\begin{figure}[H]
 		\centering
-		\begin{tabular}{r|l||r|l}
-		 	\multicolumn{2}{c||}{SV-COMP} & \multicolumn{2}{c}{Vgl. zu \aprove ohne GNAs}  \\ \hline
-			Anzahl Programme 	& 847 & Terminierung & \red{0.0078} sec \\
-			Anwendbare Programme & 53 &  \nonterm & \green{-1.2675} sec \\
-			false pos./neg. & 0 & Insgesamt & \green{-0.76} sec \\
-		\end{tabular}	
-	\end{figure}
-	\uncover<2->{\begin{figure}[H]
-		\centering
 		\begin{tabular}{r|l}
-			\multicolumn{2}{c}{Durchschn. Berechnungszeit:} \\ \hline\hline
-			\aprove\xspace \underline{ohne} GNAs & \red{4.513} \\
-			\aprove mit \underline{lediglich} GNAs & \green{3.753} \\
-		\end{tabular}
-	\end{figure}}	
-	
+		 	\multicolumn{2}{c}{SV-COMP: nur GNAs} \\ \hline
+			Terminierung (21) & X sek \\
+			\nonterm (32)& X sek \\
+			false pos./neg. & 0 \\
+			Insgesamt & X sek \\
+		\end{tabular}	
+	\end{figure}	
 \end{frame}
 
 \begin{frame}[fragile]
-	\underline{\red{aber}}: \newline
 	\begin{lstlisting}[language = java]
 	int main(void){
 		int a, b, c;
@@ -45,6 +35,16 @@
 		\aprove\xspace \underline{mit} GNAs & $\Rightarrow$ \green{NO} &\\
 	\end{tabular}}
 	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Zusammenfassung}
+	\begin{itemize}
+		\item Prinzip der Programmaufteilung (\stem, \loopt)
+		\item Matrixdarstellungen der Programmbestandteile 
+		\item SMT-Solver als Tool eingesetzt
+		\item GNAs als Beweise der Nichtterminierung hergeleitet	
+	\end{itemize}
 \end{frame}
 
 \begin{frame}[plain]%Kopf- und Fußzeile ausblenden
