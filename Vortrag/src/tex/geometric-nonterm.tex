@@ -1,4 +1,4 @@
-\section{Geometrische Nicht-Terminierung}
+\section{Geometrische Nichtterminierung}
 
 \frame{\tableofcontents[currentsection]}
 
@@ -7,15 +7,17 @@
 
 \begin{frame}[fragile]
 	\frametitle{Herleitung: \stem}
-	Unterscheiden von \blue{zwei} M\"oglichkeiten:
+	Unterscheiden von \blue{zwei} M\"oglichkeiten:\newline
+	
 	\begin{tabular}{rl}
 		\blue{konstanter \stem}: & $f_1 \rightarrow f_2(10,-3) :|: TRUE$ \\
 							  & $\Rightarrow$ Werte ablesen:  \\
 							  & \quad$\>$ \stem = $ \begin{pmatrix} 10 \\ -3 \end{pmatrix}$ \\
 								  
 	\end{tabular}
-
+	
 	\uncover<2>{\begin{tabular}{rl}
+								& \\
 		\blue{variabler \stem}: & $f_1 \rightarrow f_2(1 + 3a, -3) :|: a > 2\text{ \&\& }8 < 3a $ \\
 								& $\Rightarrow$ Bedingungen einem \solver geben \\
 								& $\Rightarrow$ Modell $m_1=\{a=3\}$ \\
@@ -30,20 +32,20 @@
 	\begin{itemize}
 		\item Bedingungen: $G=\{g \mid g \text{ ist eine (Un-)Gleichung}\}$
 		\item<2-> \red{Problem}: $g$ muss nicht die Form $a_1 v_1+\dots +a_n v_n \le c$ haben
-		\item<3-> \red{Schlimmer}: $g$ k\"onnte mittels \glqq$=$\grqq neue Variablen einf\"uhren
-		\item<4-> \green{L\"osung}: umformen von $g$ in die gew\"unschte Form: 
+		\item<3-> \red{Schlimmer}: $g$ k\"onnte mittels \glqq$=$\grqq\xspace neue Variablen einf\"uhren
+		\item<4-> \green{L\"osung}: Umformen von $g$ in die gew\"unschte Form: 
 			\begin{tabular}{cll}
-				1. & Gleichungen suchen   & ersetzen \glqq neuer \grqq Variablen \\
-				2. & Normalisierung ($\le$) & umschreiben $<,>,\ge$ zu $\le$ \\
-				3. & Normalisierung ($c$)   & umschreiben der Konstanten\\
+				1. & Gleichungen suchen:   & Ersetzen \glqq neuer\grqq\xspace Variablen \\
+				2. & Normalisierung ($\le$): & Umschreiben $<,>,\ge$ zu $\le$ \\
+				3. & Normalisierung ($c$):   & Umschreiben der Konstanten\\
 			\end{tabular}
 	\end{itemize}	
 \end{frame}
 
 \begin{frame}[fragile]
 	\begin{enumerate}
-		\item filtern welche Variable nicht vorkommen soll
-		\item suchen einer Gleichung mit dieser Variable
+		\item filtern, welche Variable nicht vorkommen soll
+		\item Suchen einer Gleichung mit dieser Variable
 		\item umformen und substituieren
 	\end{enumerate}
 	\begin{exampleblock}{Beispiel}
@@ -58,7 +60,7 @@
 	\end{exampleblock}
 	\begin{itemize}
 		\item[] Zum Schluss: 
-		\item[] schreibe alle \"ubrigen Gleichungen als Ungleichungen
+		\item[] Schreibe alle \"ubrigen Gleichungen als Ungleichungen
 	\end{itemize}
 \end{frame}
 
@@ -79,8 +81,8 @@
 	\begin{exampleblock}{Beispiel}
 		F\"ur $g \Leftrightarrow 3a+5>20$:
 		\begin{tabular}{cll}
-			Schritt 1: & Multiplizieren mit $-1$ & $\Rightarrow -3a-5 < -20$ \\
-			Schritt 2: & Subtrahieren von 1 & $\Rightarrow -3a-5\le -21$ \\
+			Schritt 1: & Multipliziere mit $-1$ & $\Rightarrow -3a-5 < -20$ \\
+			Schritt 2: & Subtrahiere 1 & $\Rightarrow -3a-5\le -21$ \\
 			Schritt 3: & Subtrahiere konstanten Term & $\Rightarrow -3a \le -16$ \\
 		\end{tabular}
 	\end{exampleblock}
@@ -180,7 +182,7 @@
 
 \subsection{Herleitung: Iteration-Matrix \& Konstanten}
 \begin{frame} % iterationmatrix
-	\frametitle{Iteration-Matrix \& Konstanten}
+	\frametitle{\color{white}Iteration-Matrix \& Konstanten}
 	\begin{itemize}
 		\item Koeffizient f\"ur jede Variable und Konstante pro Update
 		\item[$\Rightarrow$] Update-Matrix \& Konstanten \checkmark
@@ -200,11 +202,11 @@
 	\begin{itemize}
 		\item Geg. Iteration-Matrix A und Iteration-Konstante b
 		\item nutze SMT-Solver zum Beweis der (Nicht-)Existenz
-		\item \red{Problem}: Teile des Ray-Kriterium nicht-linear
+		\item \red{Problem}: Teile des Ray-Kriteriums nicht linear
 		\uncover<2>{\item[] zwei m\"ogliche L\"osungsans\"atze:
 			\begin{enumerate}
 				\item nutze \qfnia
-				\item iterieren \"uber unbekannte
+				\item iteriere \"uber Unbekannte
 			\end{enumerate}}
 	\end{itemize}
 \end{frame}
@@ -219,7 +221,7 @@
 	\begin{itemize}
 		\item[] $\Rightarrow$ Bedingungen f\"ur  $\lambda_i$ und $\mu_i$ hinzuf\"ugen
 	\end{itemize}
-	\uncover<2>{\begin{variableblock}{Erinnerung: Initiation Kriterium}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
+	\uncover<2>{\begin{variableblock}{Erinnerung:}{bg=orange!50!white,fg=black}{bg=orange, fg=white}
 		\begin{itemize}
 			\setlength{\itemindent}{1cm}
 			\item[(init)] x repr\"asentiert den \stem
@@ -359,20 +361,20 @@
 \frame{\tableofcontents[currentsection]}
 \begin{frame}
 	\frametitle{\color{white}Beispiel  eines GNAs}
-	\begin{exampleblock}{Beispiel eines GNA \rom{1}}
+	\begin{exampleblock}{Beispiel eines GNAs \rom{1}}
 		Vom \solver: $y_1=\begin{pmatrix} 9 \\ 0 \end{pmatrix}$, $y_2=\begin{pmatrix} 8 \\ -8 \end{pmatrix}$, $\mu_1=0$\newline
 		\vspace*{-.8em}
 		\begin{itemize}
 			\setlength{\itemindent}{1.5cm}
 			\item[(domain)] offensichtlich wahr \checkmark
-			\item[(init)] neu berechnen des \stem (\checkmark)
+			\item[(init)] Berechnung des \stem (\checkmark)
 			\item[(point)]  $A\begin{pmatrix} 10 \\ -3 \\ 10+9+8 \\ -3 + 0 + (-8) \end{pmatrix} \le b \Leftrightarrow A\begin{pmatrix} 10 \\ -3 \\ 27 \\ -11 \end{pmatrix} \le b$ \checkmark
 		\end{itemize}
 	\end{exampleblock}
 \end{frame}
 
 \begin{frame}
-	\begin{exampleblock}{Beispiel eines GNA \rom{2}}
+	\begin{exampleblock}{Beispiel eines GNAs \rom{2}}
 		Vom \solver: $y_1=\begin{pmatrix} 9 \\ 0 \end{pmatrix}$, $y_2=\begin{pmatrix} 8 \\ -8 \end{pmatrix}$, $\mu_1=0$\newline
 		\begin{itemize}
 			\setlength{\itemindent}{0.5cm}
@@ -381,7 +383,7 @@
 			\item[$i>1$:] $A\begin{pmatrix} 8 \\ -8 \\ 2\cdot 8+0\cdot 9 \\ 2\cdot (-8)+0\cdot 0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 16 \\ -16 \end{pmatrix} \le 0$ \checkmark
 		\end{itemize}
 		$\Rightarrow$ das GNA erf\"ullt alle Kriterien\newline
-		$\Rightarrow$ Nicht-Terminierung ist bewiesen
+		$\Rightarrow$ Nichtterminierung ist bewiesen
 	\end{exampleblock}
 \end{frame}
 

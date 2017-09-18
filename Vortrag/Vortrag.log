@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  18 SEP 2017 18:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  18 SEP 2017 21:11
 entering extended mode
 **./Vortrag.tex
 (Vortrag.tex
@@ -1377,15 +1377,9 @@ line 47.
 \ot1mathkerncmss.fd"
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-)
-Missing character: There is no Ã in font cmss10!
-Missing character: There is no ¤ in font cmss10!
- [4
+) [4
 
-]
-Missing character: There is no Ã in font cmss10!
-Missing character: There is no ¤ in font cmss10!
- [5
+] [5
 
 ])
 \openout2 = `src/tex/example.aux'.
@@ -1527,19 +1521,19 @@ Overfull \vbox (8.95479pt too high) detected at line 217
 ] [40
 
 ]
-Overfull \vbox (81.59995pt too high) detected at line 298
+Overfull \vbox (81.59995pt too high) detected at line 300
  []
 
 
-Overfull \vbox (81.59995pt too high) detected at line 298
+Overfull \vbox (81.59995pt too high) detected at line 300
  []
 
 
-Overfull \vbox (27.19998pt too high) detected at line 298
+Overfull \vbox (27.19998pt too high) detected at line 300
  []
 
 
-Overfull \vbox (5.61537pt too high) detected at line 298
+Overfull \vbox (5.61537pt too high) detected at line 300
  []
 
 [41
@@ -1547,19 +1541,19 @@ Overfull \vbox (5.61537pt too high) detected at line 298
 ] [42
 
 ]
-Overfull \vbox (81.59995pt too high) detected at line 353
+Overfull \vbox (81.59995pt too high) detected at line 355
  []
 
 
-Overfull \vbox (81.59995pt too high) detected at line 353
+Overfull \vbox (81.59995pt too high) detected at line 355
  []
 
 
-Overfull \vbox (27.19998pt too high) detected at line 353
+Overfull \vbox (27.19998pt too high) detected at line 355
  []
 
 
-Overfull \vbox (3.6903pt too high) detected at line 353
+Overfull \vbox (3.6903pt too high) detected at line 355
  []
 
 [43
@@ -1569,7 +1563,7 @@ Overfull \vbox (3.6903pt too high) detected at line 353
 ] [45
 
 ]
-Overfull \vbox (3.19142pt too high) detected at line 386
+Overfull \vbox (3.19142pt too high) detected at line 388
  []
 
 [46
@@ -1616,7 +1610,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
 Package rerunfilecheck Info: File `Vortrag.out' has not changed.
-(rerunfilecheck)             Checksum: B14C6DD04D209DBAD531D62B44AE1699;1004.
+(rerunfilecheck)             Checksum: 19D2C0C56E510B0FE159B5839807D5A5;1002.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1626,7 +1620,7 @@ LaTeX Font Warning: Size substitutions with differences
 Here is how much of TeX's memory you used:
  27872 strings out of 493333
  568642 string characters out of 3144357
- 744007 words of memory out of 3000000
+ 744005 words of memory out of 3000000
  30553 multiletter control sequences out of 15000+200000
  16406 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1644,7 +1638,7 @@ D:/Tools/MikTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Tools/MikTex/fonts
 /type1/public/amsfonts/cm/cmtt10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfon
 ts/symbols/msam10.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on Vortrag.pdf (52 pages, 616366 bytes).
+Output written on Vortrag.pdf (52 pages, 615923 bytes).
 PDF statistics:
  2019 PDF objects out of 2073 (max. 8388607)
  120 named destinations out of 1000 (max. 500000)

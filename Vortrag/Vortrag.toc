@@ -1,11 +1,11 @@
 \select@language {english}
 \beamer@sectionintoc {1}{Einleitung}{3}{0}{1}
 \beamer@sectionintoc {2}{N{\"o}tiges Vorwissen}{8}{0}{2}
-\beamer@subsectionintoc {2}{1}{Integer Transitionssystems (ITS) }{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Integer-Transitionssysteme (ITS) }{8}{0}{2}
 \beamer@subsectionintoc {2}{2}{Definitionen}{12}{0}{2}
-\beamer@subsectionintoc {2}{3}{Geometrische Nicht-Terminierungs Argumente (GNA)}{16}{0}{2}
+\beamer@subsectionintoc {2}{3}{Geometrische Nichtterminierungs-Argumente (GNA)}{16}{0}{2}
 \beamer@subsectionintoc {2}{4}{SMT-Solving}{17}{0}{2}
-\beamer@sectionintoc {3}{Geometrische Nicht-Terminierung}{18}{0}{3}
+\beamer@sectionintoc {3}{Geometrische Nichtterminierung}{18}{0}{3}
 \beamer@subsectionintoc {3}{1}{Herleitung: STEM}{19}{0}{3}
 \beamer@subsectionintoc {3}{2}{Herleitung: Guard-Matrix \& Konstanten}{21}{0}{3}
 \beamer@subsectionintoc {3}{3}{Herleitung: Update-Matrix \& Konstanten}{28}{0}{3}

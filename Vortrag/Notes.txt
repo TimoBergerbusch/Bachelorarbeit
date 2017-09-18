@@ -1,5 +1,76 @@
-Möglichkeiten zu kürzen:
-Geometric Nontermination:
-	- Derivation: Guard Matrix/Constants
-		+ guardSet-algo
-	- Derivation: Update Matrix/Constants
+Inhaltsverzeichnis:
++ Punkt 2, Unterpunkt 1: Integer Transitionssystems -> Integer-Transitionssysteme (Bindestrich und am Ende e statt s)
++ Punkt 2, Unterpunkt 3: Geometrische Nicht-Terminierungs Argumente -> Geometrische Nichtterminierungs-Argumente (wie auf Titelfolie)
++ Punkt 3: Nicht-Terminierung -> Nichtterminierung
+
+Slide 4:
++ Halte-Problem -> Halteproblem
++ Komplexitt -> ä fehlt
+
+Slide 6:
+~ Zeile „Ein Beispiel für den gesamten Vortrag“ würde ich weglassen, ist aber vielleicht Ansichtssache
+
+Slide 9:
++ Überschrift korrigieren: Integer-Transitionssysteme
+
+Slide 10:
++ suche -> Suche
+
+Slide 16:
++ Überschrift in Rahmen: -> Geometrische Nichtterminierungs-Argumente
++ Anmerkung Nr. 2: Kein Punkt am Ende
+
+Slide 17:
++ Beispiel: Entweder „Mögliches“ klein oder „unerfüllbarer“ groß (um es einheitlich zu machen; würde zu beidem groß tendieren)
+
+Slide 20:
++ Kann man hier noch minimalen Platz zwischen erster Zeile und Möglichkeit Nr. 1, sowie zwischen Möglichkeit Nr. 1 und Möglichkeit Nr. 2 einfügen? Das macht es übersichtlicher.
++ Zeile unter variabler STEM: SMT solver -> SMT-Solver
+
+Slide 24:
++ Z. 3: Space hinter Anführungszeichen oben (ich glaub \grqq{} mit Leerzeichen dahinter sollte es tun)
++ Z. 4: umformen -> Umformen
++ darunter: Doppelpunkte?
++ Z. 5-7: Ersetzen, Umschreiben, Umschreiben groß
++ Z. 5: Hier ist Space vor den Anführungszeichen oben, der sollte weg, stattdessen dahinter
+
+Slide 25:
++ Punkt 1: Komma hinter „filtern“
++ Punkt 2: suchen -> Suchen
++ ganz unten: schreibe -> Schreibe
+
+Slide 26:
++ Beispielbox, Z. 2: Multiplizieren -> Multipliziere
++ Beispielbox, Z. 3: Subtrahieren von 1 -> Subtrahiere 1
+
+Slide 32:
++ Überschrift ist schwarz statt weiß (?)
+
+Slide 35:
++ Z. 3: Kriterium -> Kriteriums
++ Z. 3: nicht-linear -> nicht linear
++ letzte Zeile: iterieren -> iteriere
++ letzte Zeile: unbekannte -> Unbekannte
+
+Slide 37:
++ zweite Box, Überschrift (hinter Erinnerung) löschen
+
+Slide 42:
++ ganz unten: SMT solver -> SMT-Solver
+
+Slide 45:
++ Überschrift in grüner Box: GNA -> GNAs
++ Zeile 1 in grüner Box: SMT solver -> SMT-Solver
++ (init): neu berechnen -> Neuberechnung (oder einfach Berechnung)
+
+Slide 46:
++ wieder Überschrift in grüner Box: GNA -> GNAs
++ Zeile 1 wieder: SMT solver -> SMT-Solver
++ ganz unten: Nicht-Terminierung -> Nichtterminierung
+
+Slide 48:
++ Z. 1: Bindestrich zwischen SV-COMP und Programmen
++ Ich würde die Tabelle mit 3 Spalten machen: Spalte 2 allein für die Anzahl (21/32/0/53), Spalte 3 für die Zeit
++ sek -> s (ist üblicher)
++ Zeile 3 der Tabelle (false pos./neg.) lieber rauslassen, weil wir das als selbstverständlich annehmen (AProVE ist sound, nur nicht complete)
+
