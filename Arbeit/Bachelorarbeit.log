@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  17 SEP 2017 15:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  18 SEP 2017 20:35
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -2306,35 +2306,33 @@ the same identifier (name{figure.2.6}) has been already used, duplicate ignored
 l.1 \chapter
             {Geometric Non-Termination}]
 Chapter 3.
-\stemexone=\box116
 [13
 
-]
-\stemextwo=\box117
-\stemextwosecond=\box118
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) 
+has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.40 \end{figure}
+                 ]
+\stemextwo=\box116
+\stemextwosecond=\box117
  [14pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-1}) has been already used, duplicate ignored
+2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.74 \begin{definition}
-                       [standard guard form]pdfTeX warning (ext4): destination 
-with the same identifier (name{figure.3.2}) has been already used, duplicate ig
-nored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.74 \begin{definition}
+l.75 \begin{definition}
                        [standard guard form]]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 108.
+put line 109.
  [15]
-Underfull \hbox (badness 10000) in paragraph at lines 154--166
+Underfull \hbox (badness 10000) in paragraph at lines 155--167
 
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 198--203
+Underfull \hbox (badness 10000) in paragraph at lines 199--204
 
  []
 
@@ -2343,51 +2341,51 @@ e.3.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.302 
+l.303 
       ] [19pdfTeX warning (ext4): destination with the same identifier (name{fi
 gure.3.4}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.388 \FloatBarrier
+l.389 \FloatBarrier
                    ] [20pdfTeX warning (ext4): destination with the same identi
 fier (name{figure.3.5}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.424 \end{figure}
+l.425 \end{figure}
                   ]
-Underfull \hbox (badness 10000) in paragraph at lines 454--456
+Underfull \hbox (badness 10000) in paragraph at lines 455--457
 
  []
 
 [21] [22] [23]
-Underfull \hbox (badness 10000) in paragraph at lines 554--560
+Underfull \hbox (badness 10000) in paragraph at lines 555--561
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 554--560
+Underfull \hbox (badness 10000) in paragraph at lines 555--561
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 563--565
+Underfull \hbox (badness 10000) in paragraph at lines 564--566
 
  []
 
 (src/diagram/GeometricNonterminationArgument-classdiagram.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 572--592
+Underfull \hbox (badness 10000) in paragraph at lines 573--593
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 572--592
+Underfull \hbox (badness 10000) in paragraph at lines 573--593
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 572--592
+Underfull \hbox (badness 10000) in paragraph at lines 573--593
 
  []
 
@@ -2396,13 +2394,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 572--592
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.593 T
+l.594 T
        he from the technique given witness is the \gna of size 2 with the fo...
 ]
-\pointcrit=\box119
-\raycrit=\box120
+\pointcrit=\box118
+\raycrit=\box119
  [25]
-Underfull \hbox (badness 10000) in paragraph at lines 638--642
+Underfull \hbox (badness 10000) in paragraph at lines 639--643
 
  []
 
@@ -2470,14 +2468,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 196.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 196.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 196.
 Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 213CC3B1362E1163F55D078EF1571C21;2757.
+(rerunfilecheck)             Checksum: 216735499804D6609E957F4D9DE92FE5;2757.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 196.
  ) 
 Here is how much of TeX's memory you used:
- 37623 strings out of 493333
- 734888 string characters out of 3144357
- 854339 words of memory out of 3000000
- 40226 multiletter control sequences out of 15000+200000
+ 37622 strings out of 493333
+ 734879 string characters out of 3144357
+ 854020 words of memory out of 3000000
+ 40225 multiletter control sequences out of 15000+200000
  125065 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,32n,85p,10435b,1369s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2502,7 +2500,7 @@ s/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/lm
 /lmsy9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt10.pfb><D:/Tools/MikTex/f
 onts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (39 pages, 686967 bytes).
+Output written on Bachelorarbeit.pdf (39 pages, 686996 bytes).
 PDF statistics:
  860 PDF objects out of 1000 (max. 8388607)
  198 named destinations out of 1000 (max. 500000)

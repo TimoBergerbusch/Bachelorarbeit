@@ -117,7 +117,7 @@ In order to be able to define the key element of this approach, the \gna, we hav
 \end{definition}
 Examples of the \stem are shown within \Cref{sec:stem}.
 
-\begin{definition}[Guard Matrix, Guard Constants]
+\begin{definition}[Guard Matrix and Guard Constants]
 	\label{def:guard}
 	Let $n \in \mathbb{N}$ be the number of distinct variables of the \loopt rules left hand side, $v_j$, $1 \le j \le n$, the $j$-th distinct variable occurring on the left hand side of the rule, $m \in \mathbb{N}$ be the number of guards not containing equality, $r_i$, $1\le i \le m$, the $i$-th guard, $a_{i,j} \in \mathbb{Z}$, $1 \le i \le m$ and $1\le j \le n$, the coefficient of $v_j$ in $r_i$ and $c_i \in \mathbb{Z}$ be the constant term within $r_i$.
 	
@@ -138,7 +138,7 @@ Examples of the \stem are shown within \Cref{sec:stem}.
 	The constant factor of a guard $r_i$ is the right hand side of the inequation. So the constant of $r_1=-4$. Iterating over all $r_i$ we derive the \guardconstants are $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$.	
 \end{example}
 
-\begin{definition}[Update Matrix, Update Constants]
+\begin{definition}[Update Matrix and Update Constants]
 	\label{def:update}
 	Let $n \in \mathbb{N}$ be the number of distinct variables of the \loopt rules left hand side, $v_j$, $1 \le j \le n$, the $j$-th distinct	variables of the \loopt rules left hand side, $m \in \mathbb{N}$ the arity of the function symbol of the right hand side, $v^\prime_i$, $1 \le i \le m$, the $i$-th argument of the right hand side function, $a_{i,j} \in \mathbb{Z}$, $1 \le i \le m$ and $1 \le j \le n$, be the coefficient of variable $v_j$ in $v^\prime_i$ and $c_i \in \mathbb{Z}$, $1 \le i \le m$, the constant term of $v^\prime_i$. \newline
 	Then the \updatematrix $U \in \mathbb{Z}^{m \times n}$ is defined as $U_{i,j}=a_{i,j}$ and the \updateconstants $u \in \mathbb{Z}^m$ are defined as $u_i = c_i$.
@@ -157,7 +157,7 @@ Regarding the new variable $v_3$, we have to substitute in order to keep the des
 	The detailed derivation of substitutions is explained in \Cref{sec:derivation-update}.
 \end{example}
 
-\begin{definition}[Iteration Matrix, Iteration Constants]
+\begin{definition}[Iteration Matrix and Iteration Constants]
 	\label{def:iteration}
 	Let $G$ be the \guardmatrix, $g$ the \guardconstants, $U$ the \updatematrix, $u$ the \updateconstants, $n\in \mathbb{N}$ the number of variables and $m \in \mathbb{N}$ the number of conditional terms. \newline
 	Furthermore let \textbf{0} be a matrix of the size of $G$ with only zero entries and $I$ denote the identity matrix having the same dimension as $U$. \newline
@@ -234,7 +234,7 @@ The usage of such a \gna is justified by the following sentence:
 	If a \gna for a program $p$ exists, then $p$ does not terminate \cite{leike2014geometric}.
 \end{satz}
 
-\section{Reverse-Polish-Notation-Tree}
+\section{Reverse Polish Notation Tree}
 \label{sec:rpntree}
 Within the procedure of deriving a \gna it happens that we get a mathematical term in the so-called \textit{Polish Notation} or \textit{Reverse Polish Notation in prefix notation}, which is a special form of rewriting a, in our case linear, expression to compute the solution efficiently using a stack \cite{wikirpn}. We use this kind of notation to parse it into our own tree structure to do further analysis.
 
@@ -296,7 +296,7 @@ An example of the \rpntree's usage is shown in \Cref{ex:rpntree}
 \end{figure}
 
 
-\section{\tool{SMT}-Problem}
+\section{\tool{SMT} Problem}
 \label{sec:smt-problem}
 To derive a \gna that satisfies all the criteria of \Cref{def:gna}, we encounter a \textit{Satisfiability Modulo Theory} problem (\tool{SMT}-Problem), we have to solve to derive a \gna fulfilling all the criteria of \Cref{def:gna}. Since \tool{SMT} problem solving is a big research topic on its own, we only consider the very basics of \tool{SMT} solving necessary to understand how to solve the problem. \newline
 %TODO: write it more mathematically

@@ -1,0 +1,41 @@
+3.1.2
+Abschnitt unter Regel:
++ Z. 1: Komma vor und hinter 1 \le i \le n
++ Ende Z. 1: linear update defined by ... -> linear expression, where the variables are constrained by …
++ Z. 3: Komma hinter \Z
++ Z. 6: a unsatisfiable -> an unsatisfiable
++ Z. 6: Kein Komma vor „that“
++ Ende Z. 6: while-Loop -> while loop
++ Z. 7: hold -> be entered
++ Z. 7: any -> some
++ Z. 8: paper -> thesis
++ Z. 9: guard term -> guard
++ Z. 10: stem -> STEM
++ Bildunterschrift: Würde ich wieder umformulieren: „Example of a variable STEM“. Den Rest lieber in den Fließtext, sonst wird die Bildunterschrift eindeutig zu lang
++ Z. 2 in Bildunterschrift: an v -> a variable v
++ gleiche Zeile: fulfilling -> satisfying
++ gleiche Zeile: need -> needs
++ gleiche Zeile: SMT-Solver -> SMT solver
++ nächste Zeile: „in \Z“ sollte hinter „number“ stehen statt hinter „solver“
++ gleiche Zeile: Hier steht SMT in normaler Schrift. Ist an sich ok (und würde ich auch bevorzugen, da es keine Sprache, kein Toolname oder ähnliches ist), sollte aber insgesamt einheitlich sein
++ Auch bei „ITS“ gibt es noch Vorkommen unterschiedlicher Schriftart in der Arbeit (z.B. im Abstract und in der Introduction).
++ gleiche Zeile: Komma hinter „guards“
++ gleiche Zeile: would be -> is
++ nächste Zeile: permissible -> valid
+
+3.2
++ Z. 1: Definition 2.2.2, Definition 2.2.3 -> „and“ statt Komma
++ Z. 2: „the“ vor „Iteration Matrix“ und „the“ vor „Iteration Constants“
+- Z. 3: hier werden wieder die falschen quotation marks benutzt
++ Z. 3/4: Beim „Then …“-Satz ist mir nicht klar, was du meinst:
+1. „Then“ bezieht sich worauf? Falls keine guards mit Gleichheiten existieren? Oder falls doch welche existieren? Falls letzteres gemeint ist, sollte es nicht „Then“ heißen sondern „Otherwise“. Falls du aber ersteres meinst, kann es „Then“ bleiben.
+2. Was sind die „previous steps“, von denen du hier sprichst? Kannst du auf etwas verweisen, damit man sich etwas darunter vorstellen kann? Sind damit die Schritte von 2.1.3 gemeint? Falls ja, würde ich es umformulieren zu „the steps explained in Section 2.1.3“. Oder ist damit das gemeint, was du dann im Anschluss erklärst? Dann würde ich schreiben „Then we first have to perform the following steps to …“ (oder etwas in der Art)
++ Z. 5: starting -> start
++ Z. 5: given by -> given in
++ Z. 5: be a rule with -> be the following rule:
++ nächste Zeile: then -> Then
++ gleiche Zeile: the in lexicographical order first rule -> the first rule in lexicographical order
++ nächste Zeile: „the“ vor Iteration Constants
++ gleiche Zeile: kein Komma vor „that“
++ nächste Zeile: Komma hinter „exists“
+- eine inhaltliche Frage dazu: Falls noch eine weitere Regel existiert, wäre es ja eigentlich nicht inkorrekt, diese einfach zu ignorieren, oder? Falls du Nichtterminierung für die erste beweisen kannst, reicht das ja, oder? Man könnte dann zwar sagen, dass das noch eine Einschränkung ist, dass man nur die erste betrachtet, aber zumindest müsstest du mit deinem Ansatz nicht aufgeben, nur weil noch eine weitere Regel existiert.

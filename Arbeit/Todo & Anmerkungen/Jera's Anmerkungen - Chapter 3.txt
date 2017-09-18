@@ -1,0 +1,26 @@
+Überschriften:
++ 2.3 Reverse-Polish-Notation-Tree -> alle Bindestriche weglassen
++ 2.4 SMT-Problem -> Bindestrich weglassen
+
++ Im Text von 2.4 steht in Z. 2 in Klammern auch noch mal (SMT-Problem), da sollte ebenfalls der Bindestrich weg und das „p“ von problem klein.
+
+Und weiter mit Chapter 3:
+
++ Z. 2: so -> this way
++ Z. 4: SMT-Problem -> SMT problem
++ Z. 5: would be -> is
++ Z. 5: a prove -> a proof
+
+3.1
++ Z. 3: Kein Komma vor „that“
++ Z. 4: Komma hinter „Graph“
++ Z. 5: it -> the program
++ Z. 5: Komma hinter „terminate“
++ Z. 5 (hinter terminate): i -> it
++ Z. 6: Komma hinter „one iteration“ und Komma hinter „compute one“
+
+3.1.1
++ Z. 1: stem -> STEM (zumindest ist es in der Überschrift auch groß)
++ Z. 1: „from“ weglassen
++ Bildunterschrift zu Figure 3.1: „constant ITS rule“ würde ich nicht schreiben (bin mir nicht sicher, ob man eine Regel als konstant bezeichnen kann). Lieber „Example of a constant STEM. Here, the STEM is (10 -3).“
+Den zweiten Satz (Here, the STEM is (10 -3).) würde ich nicht zur Bildunterschrift sondern mit in den Fließtext schreiben.

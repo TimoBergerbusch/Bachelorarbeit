@@ -1,16 +1,16 @@
 \chapter{Geometric Non-Termination}
 \label{chapter:geo-non-term}
-Now that all preliminaries are stated we can start to take a look at how the approach works within \aprove. To find a \gna and so prove \nonterm we use \aprove to generate an \its of a given program, which is defined within \Cref{sec:aprove}.
-Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT}-Problem using \Cref{def:gna} and compute a \gna, which would be a prove of \nonterm, or state that no \gna can exist, which does \underline{not} infer termination nor \nonterm.
+Now that all preliminaries are stated we can start to take a look at how the approach works within \aprove. To find a \gna and this way prove \nonterm we use \aprove to generate an \its of a given program, which is defined within \Cref{sec:aprove}.
+Based on the calculated \its we derive the \stem, the \loopt and then generate an \tool{SMT} problem using \Cref{def:gna} and compute a \gna, which is a proof of \nonterm, or state that no \gna can exist, which does \underline{not} infer termination nor \nonterm.
 
 \section{Derivation of the STEM}
 \label{sec:stem}
-The derivation of the \stem is the first step in order to derive a \gna. As described in \Cref{sec:structure} the \stem defines the variables before iterating through the \loopt.  Owed to the fact, that \aprove has to find the lasso to derive an \its within the generated \seg one iteration through the \loopt will be calculated. Obviously this does not falsify the result. If it does not terminate i will still not terminate after one iteration and if it terminates after $n$ iterations and we compute one it will still terminate after $n-1$ iterations. \newline
+The derivation of the \stem is the first step in order to derive a \gna. As described in \Cref{sec:structure} the \stem defines the variables before iterating through the \loopt.  Owed to the fact that \aprove has to find the lasso to derive an \its within the generated \seg, one iteration through the \loopt will be calculated. Obviously this does not falsify the result. If the program does not terminate, it will still not terminate after one iteration, and if it terminates after $n$ iterations and we compute one, it will still terminate after $n-1$ iterations. \newline
 Within the derivation of the \stem we distinguish between two cases discussed in the following sections.
 
 \subsection{Constant \stem}
 \label{sec:stem-const}
-The constant stem is the easiest case to derive the \stem from. It has the form: 
+The constant \stem is the easiest case to derive the \stem. It has the form: 
 %\vspace{-1em}
 \begin{figure}[H]
 	\centering
@@ -18,15 +18,15 @@ The constant stem is the easiest case to derive the \stem from. It has the form:
 \end{figure} 
 %\vspace{-2em}
 Here the $c_1,\dots c_n \in \mathbb{Z}$ denote constant numbers. \newline
-An example of a constant \stem is shown in \Cref{lst:stem-cons}. 
+An example of a constant \stem is shown in \Cref{lst:stem-cons}. Here, the \stem is $\begin{pmatrix}10\\-3\end{pmatrix}$.
 The values of $x$ can be directly read from the right hand side and need no further calculations.
-\newsavebox{\stemexone}% Box to store smallmatrix content
-\savebox{\stemexone}{$\begin{pmatrix}10\\-3\end{pmatrix}$}
+%\newsavebox{\stemexone}% Box to store smallmatrix content
+%\savebox{\stemexone}{$\begin{pmatrix}10\\-3\end{pmatrix}$}
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
 	!$f_1 \rightarrow f_2(10,-3) :|: TRUE $!
 	\end{lstlisting}	
-	\caption{An example of a constant \its rule to derive the \stem. The \stem in this case would be \usebox{\stemexone} }
+	\caption{Example of a constant \stem.}
 	\label{lst:stem-cons}
 \end{figure}
 
@@ -39,9 +39,8 @@ The more complex case is given if the start function symbol has the following fo
 	$f_x \rightarrow f_y(v_1, \dots v_n) :|: cond$
 \end{figure}
 %\vspace{-1em}
-where $v_i$ $1 \le i \le n$ is either a constant term like in \Cref{sec:stem-const} \underline{or} a linear update defined by the $cond$ term. An example for such a \stem is shown in \Cref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$ an \tool{SMT}-Problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \Cref{sec:smt-problem}, to create the assertions leading to either an assignment of the \stem to a value or to a unsatisfiable core. Such a core would state, that the \code{while}-Loop would not hold after any assignment. If such a constellation entails termination or if it just does not entail \nonterm needs further observance not provided in this paper. \newline
-The handling of equations within the guard term is described within \Cref{sec:derivation-guard} and underlies the same procedure regarding the stem.
-%TODO: im code: wenn unsat dann termination
+where $v_i$, $1 \le i \le n$, is either a constant term like in \Cref{sec:stem-const} \underline{or} a linear expression, where the variables are constrained by the $cond$ term. An example for such a \stem is shown in \Cref{lst:stem-var}. In order to derive terms in $\mathbb{Z}$, an \tool{SMT} problem needs to be solved. We can compute the \guardmatrix, \guardconstants, \updatematrix and \updateconstants of the start function symbol and use the \smtfactory, which is explained within \Cref{sec:smt-problem}, to create the assertions leading to either an assignment of the \stem to a value or to an unsatisfiable core. Such a core would state that the \code{while} loop would not be entered after some assignment. If such a constellation entails termination or if it just does not entail \nonterm needs further observance not provided in this thesis. \newline
+The handling of equations within the guard is described within \Cref{sec:derivation-guard} and underlies the same procedure regarding the \stem.
 
 \newsavebox{\stemextwo}% Box to store smallmatrix content
 \savebox{\stemextwo}{$\begin{pmatrix}1+3*3\\-3\end{pmatrix}$}
@@ -51,22 +50,27 @@ The handling of equations within the guard term is described within \Cref{sec:de
 	\begin{lstlisting}[escapechar=!]
 	!$f_1 \rightarrow f_2(1 + 3 * v, -3) :|: v > 2\text{ \&\& }8 < 3 * v $!
 	\end{lstlisting}	
-	\caption{An example of a variable \its rule to derive the \stem from. In order to derive the \stem, a $v$ fulfilling the conditions need to be found using an \solver. Since $v=3$ is the first number provided by the \solver in $\mathbb{Z}$ that satisfies the guards the \stem would be \usebox{\stemextwo}$=$\usebox{\stemextwosecond}. Note that $v=4$ would be equally permissible.}
+	\caption{Example of a variable \stem.}
+%	\caption{An example of a variable \its rule to derive the \stem from. }
 	\label{lst:stem-var}
 \end{figure}
+In order to derive the \stem, a $v$ satisfying the conditions needs to be found using an \solver. Since $v=3$ is the first number in $\mathbb{Z}$ provided by the \solver that satisfies the guards, the \stem is \usebox{\stemextwo}$=$\usebox{\stemextwosecond}. Note that $v=4$ would be equally valid.
 
 \section{Derivation of the LOOP}
 \label{sec:loop}
-The derivation of the \loopt is pretty straight forward applying \Cref{def:guard}, \Cref{def:update} to a looping rule and then computing the \iterationmatrix and \iterationconstants using \Cref{def:iteration}, if no guards with equalities ("=") occur. Then we have to perform previous steps to apply the mentioned definitions. \newline
-Let $f_x$ be the starting function symbol given by the \its and $r_i$ be a rule, with 
+%TODO: ""
+The derivation of the \loopt is pretty straight forward applying \Cref{def:guard}, \Cref{def:update} to a looping rule and then computing the \iterationmatrix and the \iterationconstants using \Cref{def:iteration}, if no guards with equalities ("=") occur. Otherwise we first have to perform the following steps to apply the mentioned definitions. \newline
+Let $f_x$ be the start function symbol given in the \its and $r_i$ be the following rule:
 \begin{lstlisting}[escapechar=!]
 	!$f_x \rightarrow f_y(v_1, \dots, v_n) :|: cond_1$!
 \end{lstlisting} 
-then we take the in lexicographical order first rule $r_l$ of the form 
+Then we take the first rule in $r_l$ lexicographical order of the form 
 \begin{lstlisting}[escapechar=!]
 	!$f_y(v_1, \dots, v_n) \rightarrow f_y(v^\prime_1, \dots, v^\prime_n) :|: cond_2$!
 \end{lstlisting}
-and compute the \iterationmatrix and \iterationconstants according to $r_l$. If we observe, that a second rule that could possibly chosen exists we encounter non-determinism, which is not supported so far.
+and compute the \iterationmatrix and the \iterationconstants according to $r_l$. 
+%TODO rewrite zweite regel
+If we observe that a second rule that could possibly chosen exists, we encounter non-determinism, which is not supported so far.
 
 \subsection{The \guardmatrix and \guardconstants}
 \label{sec:derivation-guard}
@@ -409,8 +413,8 @@ Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a
 
 \section{Derivation of the SMT-Problem}
 \label{sec:derivation-smt}
-The existence of a \gna is checked using an \tool{SMT} solver, presented in \Cref{sec:smt-problem}, which will either give us a model satisfying the constraints or proof the non existence by giving an unsatisfiable core. \newline
-The constraints the \tool{SMT} solver has to fulfil are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute its eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
+The existence of a \gna is checked using an \solver, presented in \Cref{sec:smt-problem}, which will either give us a model satisfying the constraints or proof the non existence by giving an unsatisfiable core. \newline
+The constraints the \solver has to fulfil are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute its eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
 \newline
 So the next step in order to proof non-termination is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \cite{ApacheMath3} because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
 After computing the eigenvalues, we have set values for the \stem $x$ and $\lambda_1, \dots \lambda_k$ as constant values.
