@@ -26,7 +26,7 @@ The \its shown in \Cref{fig:its-structure} consists of a set of structure elemen
 	\item[(line 2)] A self-looping rule. Other looping rules will be presented in \Cref{sec:structure-improvement}.
 	\item[(1)] The \textit{start function symbol} is the first symbol used, consisting of a function symbol without arguments. Further explanation in (line 1) and \Cref{fig:structure-example-TRS}.
 	\item[(2)] A function symbol denoting a current program state
-	\item[(3)] The arguments of a function symbol showing the update of the values by applying this rule. The value of $v^\prime_i$ is a linear update of the variables $v_j$, $1 \le j \le n$, in \stdLinInt. \footnote{The \stdLinInt has the following pattern: $ a_1*v_1 + \dots + a_n*v_n + c$, where $a_i , c \in \mathbb{Z}$, $1 \le i\le n$. }
+	\item[(3)] The arguments of a function symbol showing the update of the values by applying this rule. The value of $v^\prime_i$ is a linear update of the variables $v_j$, $1 \le j \le n$, in \stdLinInt. \footnote{The \stdLinInt has the following pattern: $ a_1*v_1 + \dots + a_n*v_n + c$, where $a_i , c \in \mathbb{Z}$, $1 \le i\le n$.  }
 %		Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$} 
 	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$, $m \in \mathbb{N}$, where $\text{(in)equation}_i$ does not only contain the variables $v_j$, $1 \le j \le n$, but can also introduce new variables. The form of the (in)equalities is defined in \Cref{sec:derivation-guard}.	
 \end{enumerate} 

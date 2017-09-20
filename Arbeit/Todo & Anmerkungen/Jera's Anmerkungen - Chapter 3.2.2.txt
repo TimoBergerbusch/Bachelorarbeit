@@ -1,0 +1,76 @@
+3.2.2
++ Überschrift: „the“ vor Update Constants
++ Z. 1: s.o.
++ Z. 3: Kein Komma vor „that“, kein Komma vor „within“
++ Z. 3, Ende: „part“ weglassen
++ Z. 4: Kein Komma vor „variables“
++ Z. 4: Komma vor „we have to“
+
+Example 7
++ Z. 1: based in -> based on
++ Z. 1: Kein „the“ vor Example 6
++ Z. 3: „within“ weglassen
++ Z. 5: Komma vor „we have to“
+~ Z. 4 und Z. 6 würde ich mit \begin/\end{center} umgeben oder mit echter mathematischer Umgebung ($$ am Anfang und $$ am Ende), damit es mittig und mit etwas Platz dort steht (sonst ist es komisch, dass hier die Ausdrücke allein in einer Zeile stehen)
+
+Abschnitt unter Ex. 7
++ Z. 1: mention -> contain
++ Z. 1: Komma vor „we can“
++ Z. 3: „definition“ weglassen
++ Z. 3: „that“ -> „that guarantees that“
++ Z. 4, Ende: „like the following“ -> „as follows“
+
+Algorithm 3
++ Überschrift: an -> a
++ Z. 9: hier steht „left side“, aber in Z. 16 „this.right“. Sollte einheitlich sein
++ Z. 10, 12: muss da vielleicht ein „this.left“ bzw. „this.right“ vor „getCoeff.“?
+
+Figure 3.3,
++ Bildunterschrift: „of a given formula and a variable as query“ -> „of the variable $v_1$ in a formula given as a query“
++ dann den Satz darunter weglassen (dass es ein RPNT ist, sieht man, und das dahinter klingt wiederholend)
+
+Abschnitt unter Figure 3.3
++ Z. 1: Bindestrich zwischen „red“ und „arrow“ weglassen
++ Z. 1: „stands for the neglected right subtree of …“ -> „between the right subtree and …“, dann Komma und „which“ weglassen
++ Z. 2: Bindestrich zwischen „blue“ und „arrows“ weglassen
++ Z. 3: wieder Bindestrich weglassen
++ Z. 3: kein Komma vor „that“
++ Z. 4, Ende: Komma hinter „form“
+
+Abschnitt direkt über Algorithm 4
++ Z. 1: by an -> by a
++ Z. 1: Komma vor „since“ würde ich weglassen
+
+Algorithm 4
++ Überschrift: within an -> within a
++ Z. 12: * -> \cdot (vllt sollte man mal im ganzen Dokument nach * suchen, weil ich bestimmt auch Stellen übersehen habe
+- Hier frage ich mich, warum man überall nach Konstanten sucht, obwohl wir doch von standard linear integer form ausgehen (und diese auch ausnutzen). Müsste man dann nicht wissen, dass die Konstante ganz rechts steht?
+
+Figure 3.4
++ Bildunterschrift: „of the example in Example 7“ -> „of Example 7“ (sonst hat man zweimal example)
+
+Abschnitt darunter:
++ Z. 1: Komma vor „we consider“
++ Z. 3: occurs -> occurrences
+
+Figure 3.5
++ Bildunterschrift, Z. 2: can not -> cannot
++ Z. 2: „This constellation …“ verstehe ich nicht, vor allem was mit „constellation“ und „universally“ gemeint ist. Falls du damit nur meinst, dass man „flip“ im Allgemeinen braucht, dann versteht sich das spätestens hier von selbst, deshalb würd ich den Satz rauslassen
++ Z. 3: „would be“ -> „is“
++ Z. 3: Punkt am Ende
+
+3.2.3
++ Überschrift: „and the Iteration Constants“ noch dahinter? Bisher hattest du das auch immer so :)
++ Z. 1: „the“ vor „Iteration Constants“
++ Z. 2: Muss man hier nicht statt „Iteration“ jeweils „Update“ schreiben? Und dann nicht kursiv und ohne Bindestrich (im Englischen lieber jeweils mit „Matrix“ ausschreiben, z.B. „Update Matrix and Guard Matrix“
++ Z. 3: „the“ vor „Iteration Constants“
++ darunter: M durch U und -M durch -U ersetzen
+
+Letzter Abschnitt:
++ Z. 1: Komma hinter „u“
++ Z. 1: computing A and b is simply inserting and creating -> to compute A and b we only insert
+(creating würd ich weglassen, das ist ja kein Aufwand)
++ Z. 1: a matrix -> the matrix
++ Z. 2: „the“ vor „identity“
++ Z. 2: kein Bindestrich hinter „identity“
++ Z. 3: „is“ hinter „m“

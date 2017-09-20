@@ -224,22 +224,22 @@ So the constant term can simply be read from the right child of the \code{RPNFun
 	Next we apply \Cref{algo:coefficient} and receive the \guardmatrix  $G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$. Furthermore, we can derive the \guardconstants $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$
 \end{example}
 
-\subsection{The \updatematrix and \updateconstants}
+\subsection{The \updatematrix and the \updateconstants}
 \label{sec:derivation-update}
-The \updatematrix and \updateconstants can be derived quite easily. The updates within the function symbol neither contain an equation nor an inequation sign. Therefore no new variables can be initialized. Since it is still possible, that some of the, within the guard part instantiated, variables appear within the update we have to apply the final set of substitutions $\theta$ from \Cref{algo:filter-equalities} to the linear update. 
+The \updatematrix and the \updateconstants can be derived quite easily. The updates within the function symbol neither contain an equation nor an inequation sign. Therefore no new variables can be initialized. Since it is still possible that some of the within the guard instantiated variables appear within the update, we have to apply the final set of substitutions $\theta$ from \Cref{algo:filter-equalities} to the linear update. 
 
 \begin{example}
 	\label{ex:derivation-update-sub}
-	This example is based in the \its  from \Cref{fig:structure-example-TRS} in combination with the \Cref{ex:derivation-guard} providing $V_{sub}$ and $\theta$. \newline
-	Since the set of substitutions $\theta=\{v_3/2*v_2-5\}$ is not empty and within the update given by\newline
-	\hspace*{1cm}$(3*v_1+v_2\text{, } v_3)$\newline
-	contains $v_3 \in V_{sub}$ we have to apply the substitution and receive:\newline
-	\hspace*{1cm}$(3*v_1+v_2\text{, }2*v_2-5)$
+	This example is based on the \its from \Cref{fig:structure-example-TRS} in combination with \Cref{ex:derivation-guard} providing $V_{sub}$ and $\theta$. \newline
+	Since the set of substitutions $\theta=\{v_3/2*v_2-5\}$ is not empty and the update given by\newline
+	\hspace*{.4\textwidth}$(3*v_1+v_2\text{, } v_3)$\newline
+	contains $v_3 \in V_{sub}$, we have to apply the substitution and receive:\newline
+	\hspace*{.37\textwidth}$(3*v_1+v_2\text{, }2*v_2-5)$
 \end{example}
 
-After restraining the updates to only mention the desired variables we can introduce \Cref{algo:coefficient} as a procedure to compute the coefficient of a given variable. It performs a recursive search on the tree and uses the \stdLinInt definition that a coefficient is always the left child of the multiplication with its corresponding variable. The procedure works like the following:
+After restraining the updates to only contain the desired variables, we can introduce \Cref{algo:coefficient} as a procedure to compute the coefficient of a given variable. It performs a recursive search on the tree and uses the \stdLinInt that guarantees that a coefficient is always the left child of the multiplication with its corresponding variable. The procedure works as follows:
 \begin{algorithm}[H]
-	\caption{Derivation of a coefficient within an \rpntree}
+	\caption{Derivation of a coefficient within a \rpntree}
 	\label{algo:coefficient}
 	\begin{algorithmic}[1]
 		\Function{getCoefficient}{$query$}
@@ -250,10 +250,10 @@ After restraining the updates to only mention the desired variables we can intro
 			\EndIf
 			\State
 			\If{this represents PLUS} \Comment{Choose the subtree containing the query}
-				\If{left side contains $query$}
-					\State \Return getCoefficient$(query)$
+				\If{this.left side contains $query$}
+					\State \Return this.left.getCoefficient$(query)$
 				\Else
-					\State \Return getCoefficient$(query)$
+					\State \Return this.right.getCoefficient$(query)$
 				\EndIf
 			\EndIf
 			\If{this represents TIMES} \Comment{Retrieve value}
@@ -297,13 +297,13 @@ An example derivation of a factor using \Cref{algo:coefficient} is shown in \Cre
 		\draw[considered] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
 		\draw[query] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
-	\caption{An example of deriving the coefficient of a given formula and a variable as query. This example uses the \rpntree of \Cref{ex:rpntree} and variable $v_1$ as the query. }
+	\caption{An example of deriving the coefficient of the variable $v_1$ in a formula given as query.}
 	\label{ex:factor-derivation}
 \end{figure}
 
-The \color{red}red\color{black}-arrow stands for the neglected right subtree of the root node, which can be neglected because the query is not contained. The \color{blue}blue\color{black}-arrows show the path to the subtree further investigated. The \color{green!50!black}green\color{black}-arrow determines, that the right child node is the query so the left child node has to be the coefficient. Since the underlying update is in \stdLinInt the left subtree has to be a \textit{RPNConstant}.
+The \color{red}red\color{black}\xspace arrow between the right subtree and the root node which can be neglected because the query is not contained. The \color{blue}blue\color{black}\xspace arrows show the path to the subtree further investigated. The \color{green!50!black}green\color{black}\xspace arrow determines that the right child node is the query so the left child node has to be the coefficient. Since the underlying update is in \stdLinInt, the left subtree has to be a \textit{RPNConstant}.
 
-The \updateconstants can be derived by an simplification of \Cref{algo:coefficient}, since we only have to retrieve the constant term within the tree. The corresponding derivation is given by \Cref{algo:constant-term}.
+The \updateconstants can be derived by a simplification of \Cref{algo:coefficient} since we only have to retrieve the constant term within the tree. The corresponding derivation is given by \Cref{algo:constant-term}.
 
 \begin{algorithm}[H]
 	\begin{algorithmic}[1]
@@ -318,13 +318,13 @@ The \updateconstants can be derived by an simplification of \Cref{algo:coefficie
 			\EndIf
 			\If{this represents sth. $\ne$ TIMES}
 				\State $left \gets left.getConstantTerm()$ \Comment{recursive calls}
-				\State $right \gets right.getConstantTerm()*flip$
+				\State $right \gets right.getConstantTerm() \cdot flip$
 				\State \Return $left+right$
 			\EndIf
 			\State \Return $0$
 		\EndFunction
 	\end{algorithmic}
-	\caption{Derivation of a constant term within an \rpntree}
+	\caption{Derivation of a constant term within a \rpntree}
 	\label{algo:constant-term}
 \end{algorithm}
 
@@ -358,11 +358,11 @@ An example of a constant term using \Cref{algo:constant-term} can be found in \C
 	\draw[neglected] (Times1.south)  -- ++(0,-0.5) -| (cons1.north) node [pos = 0.4, above, font=\footnotesize]{left};
 	\draw[neglected] (Times1.south)  -- ++(0,-0.5) -| (var1.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
-	\caption{An example derivation of a constant term in the second variable update of the example in \Cref{ex:derivation-update-sub}. Here \color{red}red \color{black} stands for neglected paths, \color{blue}blue \color{black} stands for considered paths/recursive calls, and \color{green!50!black}green \color{black} stands for a found constant term.}
+	\caption{An example derivation of a constant term in the second variable update of  \Cref{ex:derivation-update-sub}. Here \color{red}red \color{black} stands for neglected paths, \color{blue}blue \color{black} stands for considered paths/recursive calls, and \color{green!50!black}green \color{black} stands for a found constant term.}
 	\label{ex:constant-term}
 \end{figure}
 
-Since a constant $c < 0$ can be stored in a constellation shown in \Cref{ex:constant-term-minus} we consider a variable $flip$ to store a sign change occurring for a subtraction. Knowing that the \stdLinInt is used all occurs of a multiplication can be neglected.\newline %TODO: small Proof?
+Since a constant $c < 0$ can be stored in a constellation shown in \Cref{ex:constant-term-minus}, we consider a variable $flip$ to store a sign change occurring for a subtraction. Knowing that the \stdLinInt is used all occurrences of a multiplication can be neglected.\newline %TODO: small Proof?
 Through the \stdLinInt one of the recursive calls has to be $0$ since only one constant term exists.
 
 \begin{figure}
@@ -384,7 +384,7 @@ Through the \stdLinInt one of the recursive calls has to be $0$ since only one c
 		\draw[thickarrow] (minus.south)  -- ++(0,-0.5) -| (var.north) node [pos = 0.4, above, font=\footnotesize]{left};
 		\draw[thickarrow] (minus.south)  -- ++(0,-0.5) -| (cons.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
-	\caption{The \rpntree of the term $x-3$, where the $flip$ of \Cref{algo:constant-term} has to be used. This constellation can not be universally neglected. The value recursively found for the constant term would be $(-1)*3 = -3$}
+	\caption{The \rpntree of the term $x-3$, where the $flip$ of \Cref{algo:constant-term} has to be used. The value recursively found for the constant term is $(-1)*3 = -3$.}
 	\label{ex:constant-term-minus}
 \end{figure}
 
@@ -401,14 +401,14 @@ so that the following holds:
 	$U \times \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} + u = \begin{pmatrix} v^\prime_1 \\ \vdots \\ v^\prime_n \end{pmatrix}$
 \end{figure}
 
-\subsection{The Iteration Matrix}
-The \iterationmatrix and \iterationconstants are a composition of the previously derived \textit{Iteration-} and \guardmatrix respectively \textit{Iteration- } and \guardconstants. \newline
-As stated in \Cref{def:iteration} the \iterationmatrix and \iterationconstants can be computed as
+\subsection{The \iterationmatrix and the \iterationconstants}
+The \iterationmatrix and the \iterationconstants are a composition of the previously derived Guard and \updatematrix respectively Guard and \updateconstants. \newline
+As stated in \Cref{def:iteration} the \iterationmatrix and the \iterationconstants can be computed as
 \begin{figure}[H]
 	\centering
-	$A = \begin{pmatrix} G & \textbf{0} \\ M & -I \\ -M & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$ \cite{leike2014geometric}
+	$A = \begin{pmatrix} G & \textbf{0} \\ U & -I \\ -U & I \end{pmatrix}$ and $b = \begin{pmatrix} g \\ -u \\ u \end{pmatrix}$ \cite{leike2014geometric}
 \end{figure}
-Given $G, g, U$ and $u$ computing $A$ and $b$ is simply inserting and creating a matrix \textbf{0}$ \in \{0\}^{m\times n}$ and identity-matrix $I \in \{0,1\}^{n\times n}$, where $n$ is the number of distinct not newly introduced variables and $m$ the number of guards without equations.
+Given $G, g, U$ and $u$, to compute $A$ and $b$ we only insert the matrix \textbf{0}$ \in \{0\}^{m\times n}$ and the identity matrix $I \in \{0,1\}^{n\times n}$, where $n$ is the number of distinct not newly introduced variables and $m$ is the number of guards without equations.
 
 \section{Derivation of the SMT-Problem}
 \label{sec:derivation-smt}
