@@ -1,0 +1,84 @@
+3.2.1
++ Überschrift: „the“ vor Guard Constants
++ Z. 1: s.o.
++ Z. 2: For that -> For this
++ Z. 4: quotation marks (2 x)
++ Z. 4: the dealing with -> how to deal with
++ Z. 4: In Section 3.2.1 -> In this section
++ Z. 6: the guards are given from -> which is the form of the guards when they are extracted from
++ Z. 7: strict guards form -> strict guard form (ohne s hinter guard)
+
+Def. 3.2.1
++ Z. 1: Hier ist ein Zeilenumbruch, der die Zeile vorzeitig beendet. Den würde ich rausnehmen.
+~ Z. 2: ggf. phi durch e ersetzen (e für expression), da phi so nach Formel aussieht. Dann auch nachfolgend überall ändern, wenn das noch häufiger vorkommt (wovon ich ausgehe). Kann aber auch verstehen, wenn du es jetzt nicht mehr überall ändern willst :)
++ Z. 3: to -> of
++ Z. 3: „cond“ vor „to“
++ Z. 4: Punkt am Ende (gehört ja noch zum Satz)
+~ hier ist mir gerade aufgefallen, dass es eigentlich kontraintuitiv ist, dass das gesamte Ding „condition“ heißt aber ein einzelnes Element der Konjunktion „guard“. Für mich klingt es richtiger, wenn es andersrum ist (conditions werden verundet und insgesamt hat eine Regel einen (einzigen) guard). Das wäre dann aber wahrscheinlich an ziemlich vielen Stellen zu ändern…
++ Z. 5: kein space vor dem Komma
++ Z. 5: given by -> extracted from
++ Z. 5: one rule r -> a formula phi (eine Regel ist das, woraus ein ITS besteht; was man hier hat nennt man Formel.)
++ falls du r umbenennst, auch im Folgenden (z.B. im Algorithmus) überall r -> phi
+
+Algorithm 1:
++ Überschrift: rule -> formula
++ Überschrift: form stated in Section 3.2.1 -> standard guard form
++ Z. 1: Rule r -> Formula … + Kommentar anpassen; hier würde ich auch „term“ zu „formula“ umbenennen
+
+Def. 3.2.2:
++ Z. 1: wieder zu früher Zeilenumbruch
+~ Z. 2: ggf. wieder phi ersetzen
++ Z. 2/3: „subtracted by a possible constant c_phi previously included by phi“: Ich glaube ich weiß, was du meinst, aber das klappt als Definition so nicht. Was du wahrscheinlich sagen willst, ist, dass phi keinen konstanten Term enthält, oder? Dann reicht es, das genau so zu sagen: „g := …, where \phi is standard linear integer form with constant term 0, and c \in \Z.“
++ Z. 3: Punkt fehlt am Ende
+
+1. rewrite equations:
++ Z. 1: „If the guards contain a guard“ -> „If the guard contains a condition“ (s.o.)
++ Z. 1: englische quotation marks um =
++ Z. 1: Komma hinter =
++ Z. 1: um „new“ quotation marks weglassen
++ Z. 2: kein Komma hinter „define“
+
+Algorithm 2:
++ Überschrift: kein Punkt am Ende; Würde „The algorithm to handle“ ersetzen durch „Handling“ (dass das ein Algorithmus ist, sieht man auch so ;))
++ Z. 8: englische quotation marks
++ Z. 8: Kommentar: Should -> should
++ Z. 12: Kommentar: Substitution -> substitution
++ Z. 13: ungewöhnliche Schreibweise für Substitutionen. Vielleicht eher \Theta(g) oder g[\Theta]?
++ Ebenso Z. 11: Vielleicht als Komposition schreiben: \Theta = \{ s/\phi \} \circ \Theta
+
++ Zeile unter Alg. 2: „of that“ weglassen
+
+2. normalizing
++ Überschrift: normalizing -> normalization
++ Z. 2: with -> in
++ (a), Z. 2ff: * durch \cdot ersetzen (3 mal in dieser Zeile und 3 mal in der Tabelle)
++ unter Tabelle, Z. 1: „of inverting“ -> if it is necessary to invert
++ gleiche Zeile: Komma am Ende der Zeile
++ nächste Zeile: „the“ vor \le und „a“ vor < würd ich weglassen
++ (b), Z. 1: contain -> obtain
+
+Absatz darunter:
++ Z. 1: „now“ weglassen; stattdessen „we have“ -> „that is left“
++ Z. 5: „also“ hinter „can“ statt vor „we“
+
+Unter RPN-Baum:
++ Z. 1: „read off from“ -> „read from“
++ Z. 1: child-node -> child
+
+Example 6:
++ Z. 1: based in -> based on
++ Z. 3: * -> \cdot (2 mal)
++ Z. 4: lead -> leads
++ Z. 5: * -> \cdot (2 mal)
++ Z. 6: Starting with -> We start with
++ (line 9,10): Umformulieren: „By rewriting g_s to the form s = \phi, we get v_3 = …“
++ (line 11): ggf. wieder anpassen an Änderungen im Algorithmus (\circ?)
++ gleiche Zeile und die darunter: * -> \cdot (insgesamt 4 mal)
++ (end): Komma vor „return“
++ darunter: „Starting with“ -> „We continue with“
++ nächste Zeile: „stated rule“ -> „rules“
++ gleiche Zeile: kein Bindestrich zwischen „inequation“ und „signs“
++ nächste Zeile: * -> \cdot (5 mal)
++ nächste Zeile: Bei diesem Satz verstehe ich die Begründung nicht. Ich glaube, ich würde ihn einfach komplett weglassen — man kann sich das schon denken, dass es einen Sinn hat, „-1“ davor zu schreiben. Da der Satz mit zweimal „for example“ erklärt ist, ist es vermutlich nicht so einfach, ihn so umzuformulieren, dass er klarer/allgemeiner verständlich ist.
++ nächster Satz: „From that“ -> „Next“
++ nächster Satz: „Also using the stated structure details“ klingt wieder komplizierter als es ist (was sind die structure details?). Ich würde einfach schreiben: „Furthermore, we can derive …“

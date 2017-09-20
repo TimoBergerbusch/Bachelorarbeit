@@ -72,31 +72,31 @@ and compute the \iterationmatrix and the \iterationconstants according to $r_l$.
 %TODO rewrite zweite regel
 If we observe that a second rule that could possibly chosen exists, we encounter non-determinism, which is not supported so far.
 
-\subsection{The \guardmatrix and \guardconstants}
+\subsection{The \guardmatrix and the \guardconstants}
 \label{sec:derivation-guard}
-The derivation of the \guardmatrix and \guardconstants can be achieved by applying \Cref{def:guard} to the guards of the given rule $r_l$. For that we create $G$ as the coefficient matrix. The size of $G$ is determined by the arity of the function symbol of $r_l$ and the number of guards not containing "$=$". In \Cref{sec:derivation-guard} we show the dealing with guards containing "$=$" with \Cref{ex:derivation-guard} as an example. The first step is to define the desired form of the guards. For that we introduce the \textit{standard guard form}, the guards are given from the \seg, and the desired \textit{strict guards form}.
+The derivation of the \guardmatrix and the \guardconstants can be achieved by applying \Cref{def:guard} to the guards of the given rule $r_l$. For this we create $G$ as the coefficient matrix. The size of $G$ is determined by the arity of the function symbol of $r_l$ and the number of guards not containing ``$=$''. In this section we show how to deal with guards containing ``$=$'' with \Cref{ex:derivation-guard} as an example. The first step is to define the desired form of the guards. For that we introduce the \textit{standard guard form}, which is the form of the guards when they are extracted from the \seg, and the desired \textit{strict guard form}.
 \begin{definition}[standard guard form]
-	A guard $g$ is in standard guard form iff\newline
+	A guard $g$ is in standard guard form iff
 	$g := \varphi \circ c$, with
 	$\varphi$ in \stdLinInt and $\circ \in \{ <, >, \le, \ge, = \}$.\newline
 %	If $\varphi$ contains a constant $c_\varphi$ the constant $c$ gets subtracted by $c_\varphi$. \newline
-	A condition to a rule $cond$ is in standard guard form iff 
+	A condition $cond$ of a rule is in standard guard form iff 
 	\begin{figure}[H]
 		\centering
-		$cond = \{ g | g\text{ guard}, g\text{ is in standard guard form}\}$
+		$cond = \{ g | g\text{ guard}, g\text{ is in standard guard form}\}$.
 	\end{figure}
 \end{definition} 
-The condition given by the \seg is one rule $r$ , which represents a set $G$  in standard guard form as 
+The condition extracted from the \seg is a formula $\phi$ , which represents a set $G$  in standard guard form as 
 \begin{center}
-	$r = \&\&(g_1,( \&\& (\dots,(\&\&(g_{n-1},g_n) )\dots)))$,
+	$\phi = \&\&(g_1,( \&\& (\dots,(\&\&(g_{n-1},g_n) )\dots)))$,
 \end{center}
 where $g_i \in G$.\newline
 The easiest way to retrieve the guards $g_i$ is by using \Cref{algo:decat-guards}.
 
 \begin{algorithm}
 	\begin{algorithmic}[1]
-		\Function{computeGuardSet}{Rule r} \Comment{r has to be a rule representing a $cond$-term}
-			\State Stack $stack \gets r$
+		\Function{computeGuardSet}{formula $\phi$} \Comment{$\phi$ has to be a formula representing a $cond$-formula}
+			\State Stack $stack \gets \phi$
 			\State Set $guards$
 			\While{$!stack.isEmpty()$}
 				\State $item \gets stack.pop$
@@ -109,7 +109,7 @@ The easiest way to retrieve the guards $g_i$ is by using \Cref{algo:decat-guards
 			\State \Return $guards$
 		\EndFunction		
 	\end{algorithmic}
-	\caption{Retrieving a set of guards $G$ from a rule $r$ of the form stated in \Cref{sec:derivation-guard}}
+	\caption{Retrieving a set of guards $G$ from a formula $\phi$ of the \stdG}
 	\label{algo:decat-guards}
 \end{algorithm}
 
@@ -117,17 +117,16 @@ So we get a set $G=\{ g \mid g \text{ is in standard guard form}\}$. Now we want
 
 \begin{definition}[strict guard form]
 	\label{def:strict-guard-form}
-	A guard $g$ is in strict guard form iff\newline
-	$g := \varphi \le c$, with
-	$\varphi$ in \stdLinInt and $c \in \mathbb{Z}$ subtracted by a possible constant $c_\varphi$ previously included by $\varphi$
+	A guard $g$ is in strict guard form iff 
+	$g := \varphi \le c$, with $\varphi$ in \stdLinInt with constant term 0, and $c \in \mathbb{Z}$.
 \end{definition}
 
 To transfer a guard from \stdG to \strG we have to apply the two following steps:
 \begin{enumerate}
 	\item \textbf{rewrite equations} \newline
-		If the guards contain a guard with the symbol "$=$" we have to rewrite the "new" variable. To define, which are new variables and substitute these, we perform the following algorithm:
+		If the guard contains a condition with the symbol ``$=$'', we have to rewrite the new variable. To define which are new variables and substitute these, we perform the following algorithm:
 		\begin{algorithm}[H]
-			\caption{The algorithm to handle equalities that introduce new variables within the guards.}
+			\caption{Handling equalities that introduce new variables within the guards}
 			\label{algo:filter-equalities}
 			\begin{algorithmic}[1]
 				\Function{filterEqualities}{$G$} \Comment{$G$ is in \stdG}
@@ -137,12 +136,12 @@ To transfer a guard from \stdG to \strG we have to apply the two following steps
 					\State define substitution $\theta=\{\}$
 					\While{$V_{sub} \neq \emptyset}$
 						\State select $ s \in V_{sub}$
-						\State select $g_s \in \{g \in G\mid g \text{ contains } "=" \}$	\Comment{Should only be one guard}
+						\State select $g_s \in \{g \in G\mid g \text{ contains } \text{``}=\text{''} \}$	\Comment{should only be one guard}
 						\State remove $g_s$ from $G$
 						\State rewrite $g_s$ to the form $s = \psi$
-						\State $\theta=\theta\{s/\psi\}$	\Comment{update substitution}
-						\ForAll{$g\in G$}	\Comment{apply Substitution}
-							\State $g = \theta g$
+						\State $\theta=\{s/\psi\} \circ \theta$	\Comment{update substitution}
+						\ForAll{$g\in G$}	\Comment{apply substitution}
+							\State $g = \theta(g)$
 						\EndFor	
 						\State remove $s$ from $V_{sub}$
 					\EndWhile
@@ -150,17 +149,17 @@ To transfer a guard from \stdG to \strG we have to apply the two following steps
 				\EndFunction
 			\end{algorithmic}
 		\end{algorithm}
-		The result of that is a set $G^\prime$, which satisfies the condition of occurring variables.
-	\item \textbf{normalizing} \newline
+		The result is a set $G^\prime$, which satisfies the condition of occurring variables.
+	\item \textbf{normalization} \newline
 		\label{algo:normalization}
-		Given the new set $G^\prime$ we have to normalize the inequalities to achieve \strG. This is done with two steps:
+		Given the new set $G^\prime$ we have to normalize the inequalities to achieve \strG. This is done in two steps:
 		\begin{enumerate}
-			\item rewrite a guard $g_i$ of the form $g_i \Leftrightarrow \psi + c_{\psi} \circ c$, where $\circ \in \{<,>,\le,\ge\}$ to the form $ \eta*\psi + \eta*c_{\psi} \le \eta*c-\tau$ depending on $\circ$.\newline
+			\item rewrite a guard $g_i$ of the form $g_i \Leftrightarrow \psi + c_{\psi} \circ c$, where $\circ \in \{<,>,\le,\ge\}$ to the form $ \eta\cdot\psi + \eta\cdot c_{\psi} \le \eta\cdot c-\tau$ depending on $\circ$.\newline
 			\begin{figure}[H]
 				\centering
 				\begin{tabular}{|l|r|l|l|}
 					\hline
-					$\circ$ 	& $\eta$ 	& $\tau$ 	&  $ \eta*\psi + \eta*c_{\psi} \le \eta*c-\tau$ \\ 
+					$\circ$ 	& $\eta$ 	& $\tau$ 	&  $ \eta\cdot \psi + \eta\cdot c_{\psi} \le \eta\cdot c-\tau$ \\ 
 					\hline \hline
 					$<$ 		& $1$ 		&  $1$ 		& $\psi + c_{\psi} \le c - 1$ \\ \hline
 					$>$ 		& $-1$		&  1 		& $-\psi - c_{\psi} \le -c -1 $ \\ \hline
@@ -168,13 +167,13 @@ To transfer a guard from \stdG to \strG we have to apply the two following steps
 					$\ge$ 		& $-1$ 		&  0 		& $-\psi - c_{\psi} \le -c$ \\ \hline
 				\end{tabular}
 			\end{figure}
-			$\eta$ is the indicator of inverting the guard to convert $\ge$ ($>$) to $\le$ ($<$)\newline
-			$\tau$ can be seen as the subtraction of 1 to receive the $\le$ instead of a $<$.
-			\item transfer the $c_{\psi}$ to the right side to only contain one constant term located on the right side. So the final form is $\eta*\psi \le \eta*c -\tau -1*\eta*c_{\psi}$, where $\eta*c -\tau -1*\eta*c_{\psi}$ is a constant term and $\psi$ is in \stdLinInt without a constant term.
+			$\eta$ is the indicator if it is necessary to invert the guard to convert $\ge$ ($>$) to $\le$ ($<$),\newline
+			$\tau$ can be seen as the subtraction of 1 to receive $\le$ instead of $<$.
+			\item transfer the $c_{\psi}$ to the right side to only obtain one constant term located on the right side. So the final form is $\eta*\psi \le \eta*c -\tau -1*\eta*c_{\psi}$, where $\eta*c -\tau -1*\eta*c_{\psi}$ is a constant term and $\psi$ is in \stdLinInt without a constant term.
 		\end{enumerate}
 \end{enumerate}
- After that every guard is in \strG. So all we have to do in order to now compute the \guardmatrix and the \guardconstants is to apply \Cref{algo:coefficient}, to determine the coefficients stored in the \guardmatrix, and determine the constant terms. \newline
- Regarding the normalization, which is implemented on the \rpntree, we could apply \Cref{algo:constant-term} to compute the constant terms, but also we can use the normalized guard to compute the constant term within linear time. The implementation of the transformation guarantees the following form for a guard in \strG:
+ After that every guard is in \strG. So all that is left to do in order to compute the \guardmatrix and the \guardconstants is to apply \Cref{algo:coefficient}, to determine the coefficients stored in the \guardmatrix, and determine the constant terms. \newline
+ Regarding the normalization, which is implemented on the \rpntree, we could apply \Cref{algo:constant-term} to compute the constant terms, but we can also use the normalized guard to compute the constant term within linear time. The implementation of the transformation guarantees the following form for a guard in \strG:
  
 \begin{figure}[H]
 	\centering
@@ -195,34 +194,34 @@ To transfer a guard from \stdG to \strG we have to apply the two following steps
 	\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (right.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
 \end{figure}
-So the constant term can simply be read off from the right child-node of the \code{RPNFunctionSymbol} "$\le$", neglecting the left $\psi$-term.
+So the constant term can simply be read from the right child of the \code{RPNFunctionSymbol} "$\le$", neglecting the left $\psi$-term.
 
 \begin{example}
 	\label{ex:derivation-guard}
-	This example is based in the \its  from \Cref{fig:structure-example-TRS}.
+	This example is based on the \its  from \Cref{fig:structure-example-TRS}.
 	Regarding the \its we have the guard-term:\newline
-	\hspace*{2cm}$v_1 + v_2 > 3 \>\&\&\> v_1 > 6 \>\&\&\> 3 * v_1 > 20 \>\&\&\> 5 + v_3 = 2 * v_2 \>\&\&\> v_3 < -10$\newline
-	which lead to the set $G$ using \Cref{algo:decat-guards}:\newline
-	\hspace*{2cm}$\{v_1 + v_2 > 3\text{, } v_1 > 6 \text{, } 3 * v_1 > 20 \text{, } 5 + v_3 = 2 * v_2 \text{, } v_3 < -10\}$\newline	
+	\hspace*{2cm}$v_1 + v_2 > 3 \>\&\&\> v_1 > 6 \>\&\&\> 3 \cdot v_1 > 20 \>\&\&\> 5 + v_3 = 2 \cdot v_2 \>\&\&\> v_3 < -10$\newline
+	which leads to the set $G$ using \Cref{algo:decat-guards}:\newline
+	\hspace*{2cm}$\{v_1 + v_2 > 3\text{, } v_1 > 6 \text{, } 3 \cdot v_1 > 20 \text{, } 5 + v_3 = 2 \cdot v_2 \text{, } v_3 < -10\}$\newline	
 	
-	Starting with \Cref{algo:filter-equalities} to handle equalities:
+	We start with \Cref{algo:filter-equalities} to handle equalities:
 	\begin{enumerate}
 		\setlength{\itemindent}{1in}
 		\item[(line 2-4)] We compute $V_{left}=\{v_1, v_2\}$, $V_{right}=\{v_1,v_2,v_3\}$ so $V_{sub}=\{v_3\}$
 		\item[(line 5)] Begin with $\theta=\{\}$ 
-		\item[(line 7,8)] Since obviously $V_{sub} \neq \emptyset$  we select $s=v_3$ and select $g_s \Leftrightarrow 5+v_3=2*v_2$
-		\item[(line 9,10)] $g_s$ rewritten to the form $s=\psi$ then follows with $v_3=2*v_2-5$
-		\item[(line 11)] $\theta = \theta\{s/2*v_2-5\} = \{s/2*v_2-5\}$
-		\item[(line 12-15)] $G=\{v_1 + v_2 > 3$, $ v_1 > 6 $, $ 3 * v_1 > 20 $, $ 2*v_2-5 < -10\}$
-		\item[(end)] Since $V_{sub}=\emptyset$ return $G$
+		\item[(line 7,8)] Since obviously $V_{sub} \neq \emptyset$  we select $s=v_3$ and select $g_s \Leftrightarrow 5+v_3=2\cdot v_2$
+		\item[(line 9,10)] By rewriting $g_s$ to the form $s=\psi$, we get $v_3=2\cdot v_2-5$
+		\item[(line 11)] $\theta = \{s/2\cdot v_2-5\} \circ \theta = \{s/2\cdot v_2-5\}$
+		\item[(line 12-15)] $G=\{v_1 + v_2 > 3$, $ v_1 > 6 $, $ 3 \cdot  v_1 > 20 $, $ 2\cdot v_2-5 < -10\}$
+		\item[(end)] Since $V_{sub}=\emptyset$, return $G$
 	\end{enumerate}
 	
-	Starting with the normalization:\newline
-	Applying the stated rule for the different inequation-signs we receive the new guards:\newline
-	\hspace*{1cm}$\{-1*v_1+-1*v_3 \le -4\text{, } -1*v_1 \le -7 \text{, } -3*v_1 \le -21\text{, } 2*v_2\le -6\}$\newline
-	Note that the writing of for example $-1*v_1$ is wanted in order to be able to neglect the case of for example $-2*-v_1$ if $-2$ gets multiplied.
+	We continue with the normalization:\newline
+	Applying the rules for the different inequation signs we receive the new guards:\newline
+	\hspace*{1cm}$\{-1\cdot v_1+-1\cdot v_3 \le -4\text{, } -1\cdot v_1 \le -7 \text{, } -3\cdot v_1 \le -21\text{, } 2\cdot v_2\le -6\}$\newline
+%	Note that the writing of for example $-1\cdot v_1$ is wanted in order to be able to neglect the case of for example $-2\cdot -v_1$ if $-2$ gets multiplied.
 	
-	From that we apply \Cref{algo:coefficient} and receive the \guardmatrix  $G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$. Also using the stated structure details we can derive the \guardconstants $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$
+	Next we apply \Cref{algo:coefficient} and receive the \guardmatrix  $G = \begin{pmatrix} -1 & -1 \\ -1 & 0 \\ -3 & 0 \\ 0 & 2 \end{pmatrix}$. Furthermore, we can derive the \guardconstants $g= \begin{pmatrix} -4 \\ -7 \\ -21 \\ -6 \end{pmatrix}$
 \end{example}
 
 \subsection{The \updatematrix and \updateconstants}

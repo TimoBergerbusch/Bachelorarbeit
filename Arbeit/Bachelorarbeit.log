@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  18 SEP 2017 22:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.18)  20 SEP 2017 15:37
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -2327,12 +2327,17 @@ l.78 \begin{definition}
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 112.
  [15]
-Underfull \hbox (badness 10000) in paragraph at lines 158--170
+Underfull \hbox (badness 10000) in paragraph at lines 157--169
 
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 202--207
+Underfull \hbox (badness 10000) in paragraph at lines 201--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--223
 
  []
 
@@ -2341,51 +2346,51 @@ e.3.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.306 
+l.305 
       ] [19pdfTeX warning (ext4): destination with the same identifier (name{fi
 gure.3.4}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.392 \FloatBarrier
+l.391 \FloatBarrier
                    ] [20pdfTeX warning (ext4): destination with the same identi
 fier (name{figure.3.5}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.428 \end{figure}
+l.427 \end{figure}
                   ]
-Underfull \hbox (badness 10000) in paragraph at lines 458--460
+Underfull \hbox (badness 10000) in paragraph at lines 457--459
 
  []
 
 [21] [22] [23]
-Underfull \hbox (badness 10000) in paragraph at lines 558--564
+Underfull \hbox (badness 10000) in paragraph at lines 557--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 558--564
+Underfull \hbox (badness 10000) in paragraph at lines 557--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 567--569
+Underfull \hbox (badness 10000) in paragraph at lines 566--568
 
  []
 
 (src/diagram/GeometricNonterminationArgument-classdiagram.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 576--596
+Underfull \hbox (badness 10000) in paragraph at lines 575--595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 576--596
+Underfull \hbox (badness 10000) in paragraph at lines 575--595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 576--596
+Underfull \hbox (badness 10000) in paragraph at lines 575--595
 
  []
 
@@ -2394,13 +2399,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 576--596
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.597 T
+l.596 T
        he from the technique given witness is the \gna of size 2 with the fo...
 ]
 \pointcrit=\box118
 \raycrit=\box119
  [25]
-Underfull \hbox (badness 10000) in paragraph at lines 642--646
+Underfull \hbox (badness 10000) in paragraph at lines 641--645
 
  []
 
@@ -2468,13 +2473,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 196.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 196.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 196.
 Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 216735499804D6609E957F4D9DE92FE5;2757.
+(rerunfilecheck)             Checksum: 5EAC1AA15F3F80DA1C4EA7A0FA11103B;2761.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 196.
  ) 
 Here is how much of TeX's memory you used:
  37622 strings out of 493333
  734879 string characters out of 3144357
- 854020 words of memory out of 3000000
+ 854036 words of memory out of 3000000
  40225 multiletter control sequences out of 15000+200000
  125065 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2500,9 +2505,9 @@ s/MikTex/fonts/type1/public/lm/lmsy8.pfb><D:/Tools/MikTex/fonts/type1/public/lm
 /lmsy9.pfb><D:/Tools/MikTex/fonts/type1/public/lm/lmtt10.pfb><D:/Tools/MikTex/f
 onts/type1/public/lm/lmtt8.pfb><D:/Tools/MikTex/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
-Output written on Bachelorarbeit.pdf (39 pages, 686986 bytes).
+Output written on Bachelorarbeit.pdf (39 pages, 686597 bytes).
 PDF statistics:
- 860 PDF objects out of 1000 (max. 8388607)
+ 858 PDF objects out of 1000 (max. 8388607)
  198 named destinations out of 1000 (max. 500000)
  421 words of extra memory for PDF output out of 10000 (max. 10000000)
 
