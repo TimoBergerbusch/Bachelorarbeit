@@ -1,0 +1,98 @@
+3.3.3
++ Z. 4: Komma hinter „sign“
++ Z. 4: Komma vor „through“ und Komma vor „opposite“ weglassen
++ Z. 4: criteria -> criterion
++ Z. 5: kein Komma hinter „that“
++ Z. 5: criteria -> criterion
++ Z. 6: „the last 2n have to fulfil the equality of the rows“ -> „the last 2n inequalities are actually n equalities“
+
+Nächster Abschnitt:
++ Z. 1: „and“ vor „for“
++ Z. 2: criteria -> criterion
+
+2 Zeilen unter erster Matrix:
++ Z. 1: get multiplied -> are multiplied
++ Z. 1: with -> by
++ Z. 2: so don’t -> so they do not
+
++ Matrizen darunter: * durch \cdot ersetzen
+
++ Darunter: „By looking closely“ weglassen (einfach „One can see“ oder „We see“ oder „Note“)
+
++ Weiter darunter: „which can be rewritten as n rule“ -> „$n$ rules“ durch „a rule“ ersetzen (diese einzelne Zeile wird ja nur durch eine ersetzt)
+
+Insgesamt hier:
++ die Zeilen „By looking closely …“, „there is a rule …“, „which can be …“ und auch weiter oben die beiden Textzeilen zwischen den Matrizen sollten nicht gecentert sein. Das macht man üblicherweise nicht, sondern nur die mathematischen Sachen stehen mittig. Der Text steht  ganz normal in Blocksatz dazwischen (bzw. bei kleineren Teilsätzen dann halt links).
++ der Teil unten ist okay, da ist genügend Platz zwischen Textzeilen und Mathematischem, aber oben bei den großen Matrizen sieht es sehr gequetscht aus. Vor allem zwischen Matrizen und Text sollte mindestens so viel Platz sein wie auch unten
+
+Abschnitt darunter (So using …)
++ Z. 2: Komma vor „since“ verschieben hinter „constant“
++ Z. 2: „and if there are“ -> „and if they are not constant“
++ Z. 3: „to fulfil“ -> „in such a way that the values satisfy“
++ Z. 3: „advantage“ -> „additional knowledge“
++ Z. 4: Die Vektoren selbst werden nicht so repräsentiert, nur die Einträge, oder? Falls ja: „Since“ -> „Since the entries of“
++ Z. 4: „as a“ -> „by“, dann „Tree“ -> „Trees“
++ Z. 4: Komma hinter „Trees“
++ Z. 4/5: „an implemented method“ -> „already implemented methods“
++ Z. 6: Tree -> Trees
++ Z. 6: an assertion -> assertions
++ Z. 7: y’s -> y_j
+
+3.3.4
++ Z. 3: criteria -> criterion (2 mal)
++ Z. 3: in terms of asserting -> to assert
++ Z. 3: kein Komma vor „because“
++ Z. 4: „on its own“ weglassen
+
+Fall i = 1
++ Z. 1: i = 0 -> i = 1
++ Z. 1, Ende: that -> where (mit Komma davor)
++ Z. 3: criteria -> criterion
++ Z. 3: kein Komma vor that
++ Z. 4: with -> by
++ Z. 5: per row -> for each row
+
+Fall i > 1
++ Z. 1: don’t -> do not
++ Z. 1: Komma vor „the solving“
++ Z. 1: „the solving of“ -> „solving“
++ Z. 3: quantifier free -> quantifier-free
++ Z. 3: iterated -> iterating
++ Z. 3: entry’s -> entries
++ Z. 3: \mu’s -> \mu_{i-1}
++ Z. 4: quantifier free -> quantifier-free
++ Z. 5: it’s -> it is
++ Z. 5: generally undecidable -> undecidable in general
++ Z. 5: Komma hinter „undecidable in general“
++ Z. 7: „Further …“ an den Abschnitt davor anschließen (kein neuer Absatz)
++ Z. 7: „comment about“ -> „comments on“ (Mehrzahl und „on“)
++ Z. 7: within -> in
++ Z. 9: the i = 0 case -> the case i = 1
++ Z. 9: kein Komma vor „but“
++ Z. 10: an Reverse ... -> a Reverse …
+
+Abschnitt unter Vektorzeile (As in the other …)
++ Z. 1: multiplication with -> multiplication by
++ Z. 1, Ende: Kein Space vor dem Komma
++ Z. 2: per row -> for each row
++ Z. 2: with the SMT… -> using the SMT…
++ nächste Zeile: „the“ vor y_{i-1,n}
++ gleiche Zeile: „not only“ -> „do not only“
++ vorletzte Zeile: relation -> idea
++ letztes Wort: comprehensibly -> comprehensible
+
+3.3.5
++ Überschrift: assertion -> Assertions (Mehrzahl und groß)
++ Z. 1: asserting -> assertion construction
++ Z. 1: kein Komma vor „because“
++ Z. 2: criteria -> criterion
++ Z. 3: kein Komma vor „that“
++ Z. 5: criteria -> criterion
+
+Nächster Abschnitt:
++ Z. 1: „additional“ klein
++ Z. 1: assertion -> assertions
++ Z. 1: Komma hinter „3.3.5“
++ Z. 1: contains -> received
++ Z. 1/2: restrictions -> constraints
++ Z. 4: Komma hinter „found“

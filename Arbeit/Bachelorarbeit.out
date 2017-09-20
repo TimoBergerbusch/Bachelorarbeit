@@ -19,15 +19,15 @@
 \BOOKMARK [2][]{subsection.3.2.3}{The Iteration Matrix and the Iteration Constants}{section.3.2}% 19
 \BOOKMARK [1][]{section.3.3}{Derivation of the SMT Problem}{chapter.3}% 20
 \BOOKMARK [2][]{subsection.3.3.1}{The Domain Criterion}{section.3.3}% 21
-\BOOKMARK [2][]{subsection.3.3.2}{The Initiation Criteria}{section.3.3}% 22
-\BOOKMARK [2][]{subsection.3.3.3}{The Point Criteria}{section.3.3}% 23
+\BOOKMARK [2][]{subsection.3.3.2}{The Initiation Criterion}{section.3.3}% 22
+\BOOKMARK [2][]{subsection.3.3.3}{The Point Criterion}{section.3.3}% 23
 \BOOKMARK [2][]{subsection.3.3.4}{The Ray Criteria}{section.3.3}% 24
-\BOOKMARK [2][]{subsection.3.3.5}{Additional assertion}{section.3.3}% 25
-\BOOKMARK [1][]{section.3.4}{Verification of the Geometric Non-Termination Argument}{chapter.3}% 26
-\BOOKMARK [2][]{subsection.3.4.1}{Verifying: domain-criteria}{section.3.4}% 27
-\BOOKMARK [2][]{subsection.3.4.2}{Verifying: init-criteria}{section.3.4}% 28
-\BOOKMARK [2][]{subsection.3.4.3}{Verifying: point-criteria}{section.3.4}% 29
-\BOOKMARK [2][]{subsection.3.4.4}{Verifying: ray-criteria}{section.3.4}% 30
+\BOOKMARK [2][]{subsection.3.3.5}{Additional Assertions}{section.3.3}% 25
+\BOOKMARK [1][]{section.3.4}{Example of a Geometric Non-Termination Argument}{chapter.3}% 26
+\BOOKMARK [2][]{subsection.3.4.1}{Verifying: domain criterion}{section.3.4}% 27
+\BOOKMARK [2][]{subsection.3.4.2}{Verifying: init-criterion}{section.3.4}% 28
+\BOOKMARK [2][]{subsection.3.4.3}{Verifying: point-criterion}{section.3.4}% 29
+\BOOKMARK [2][]{subsection.3.4.4}{Verifying: ray-criterion}{section.3.4}% 30
 \BOOKMARK [0][]{chapter.4}{Evaluation and Benchmark}{}% 31
 \BOOKMARK [1][]{section.4.1}{Evaluation of the approach}{chapter.4}% 32
 \BOOKMARK [1][]{section.4.2}{Benchmarks}{chapter.4}% 33

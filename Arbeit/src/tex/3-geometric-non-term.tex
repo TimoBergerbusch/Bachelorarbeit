@@ -436,7 +436,7 @@ The \domc for $x$ and $y_1, \dots y_k$ trivially hold.
 The arity of $x$ is set within the derivation of the \stem (cf. \Cref{sec:stem}) and sets the starting values for the $n$ variables. The arity of every $y_i$ is determined within the assertions of the \pointc and the \rayc.\newline
 The assertions one has to pass to the \solver ensure that the $\lambda_i$ are not negative, since the proof by Leike and Heizmann only holds for nonnegative eigenvalues. Also for the $\mu_i$ we have to add the assertion of being nonnegativity to satisfy the criterion. \newline
 Related work on negative eigenvalues is mentioned in \Cref{chapter:related-work}.
-\subsection{The Initiation Criteria}
+\subsection{The Initiation Criterion}
 \begin{itemize}
 	\setlength{\itemindent}{1in}
 	\item[(init)] x represents the \startterm (\stem)
@@ -445,18 +445,18 @@ Related work on negative eigenvalues is mentioned in \Cref{chapter:related-work}
 
 The \initc is quite trivial to pass to the \solver, since we defined the \stem $x$ within \Cref{sec:stem} to be exactly the start term. So for this criterion, we do not pass any further assertions to the \solver.
 
-\subsection{The Point Criteria}
+\subsection{The Point Criterion}
 \label{sec:point-criteria}
 \begin{itemize}
 	\setlength{\itemindent}{1in}
 	\item[(point)] $A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$
-	\item[] (see: \Cref{def:gna})
+	\item[] (cf: \Cref{def:gna})
 \end{itemize}
 
-Since within the \iterationmatrix $A$ the \updatematrix $U$ is contained twice with a different sign the \iterationmatrix creates, through the \pointc exactly, opposite signed rules for the last $2n$ rows.
-This means that, even though within the \pointc the relation is $\le$, the last $2n$ have to fulfil the equality of the rows.\newline
+Since within the \iterationmatrix $A$ the \updatematrix $U$ is contained twice with a different sign, the \iterationmatrix creates through the \pointc exactly opposite signed rules for the last $2n$ rows.
+This means that, even though within the \pointc the relation is $\le$, the last $2n$ inequalities are actually $n$ equalities.\newline
 
-Let $s\in \mathbb{R}^n$ for $1 \le i \le n$ be $s_i=x_i+\sum_{j} (y_j)_i$, where $(y_j)_i$ denotes the $i$-th entry of $y_j$.
+Let $s\in \mathbb{R}^n$ and for $1 \le i \le n$ be $s_i=x_i+\sum_{j} (y_j)_i$, where $(y_j)_i$ denotes the $i$-th entry of $y_j$.
 Then the \pointc can be rewritten to: 
 \begin{figure}[H]
 	\centering
@@ -472,11 +472,13 @@ Then the \pointc can be rewritten to:
 		\vdots   & \ddots 	& \vdots	& \vdots & \ddots & \vdots \\
 		-a_{n,1} & \dots 	& -a_{n,n}	& 0 	 & \dots  & 1 \\
 	\end{pmatrix} \begin{pmatrix} x_1 \\ \vdots \\ x_n \\ s_1 \\ \vdots \\ s_n\end{pmatrix} \le \begin{pmatrix} g \\ -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$\\ %\newline
-	\vspace*{1em}
-	$\Rightarrow Gx\le g$, which means that the guards have to hold. Note that $s_1$ to $s_n$ get multiplied with 0 so don't need to be considered. Also the following has to hold: \newline
-	\vspace*{1em}
-	\hspace*{1em}
-	$\begin{pmatrix}
+\end{figure}
+	$\Rightarrow Gx\le g$, which means that the guards have to hold. Note that $s_1$ to $s_n$ are multiplied by 0 so they do not need to be considered. Also the following has to hold: \newline
+%	\vspace*{2em}
+%	\hspace*{1em}
+\begin{figure}[H]
+	\centering
+	$\qquad\begin{pmatrix}
 	a_{1,1}  & \dots 	& a_{1,n}	& -1 	 & \dots  & 0 \\
 	\vdots   & \ddots 	& \vdots	& \vdots & \ddots & \vdots \\
 	a_{n,1}  & \dots 	& a_{n,n}	& 0 	 & \dots  & -1 \\
@@ -485,16 +487,16 @@ Then the \pointc can be rewritten to:
 	-a_{n,1} & \dots 	& -a_{n,n}	& 0 	 & \dots  & 1 \\
 	\end{pmatrix} \begin{pmatrix} x_1 \\ \vdots \\ x_n \\ s_1 \\ \vdots \\ s_n\end{pmatrix} \le \begin{pmatrix} -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$ \newline
 	$= \begin{pmatrix}
-	a_{1,1}*x_1  & \dots 	& a_{1,n}*x_n	& -1*s_1 & \dots  & 0*s_n \\
+	a_{1,1}\cdot x_1  & \dots 	& a_{1,n}\cdot x_n	& -1\cdot s_1 & \dots  & 0\cdot s_n \\
 	\vdots   	 & \ddots 	& \vdots		& \vdots & \ddots & \vdots \\
-	a_{n,1}*x_1  & \dots 	& a_{n,n}*x_n	& 0*s_1	 & \dots  & -1*s_n \\
-	-a_{1,1}*x_1 & \dots 	& -a_{1,n}*x_n	& 1*s_1	 & \dots  & 0*s_n \\
+	a_{n,1}\cdot x_1  & \dots 	& a_{n,n}\cdot x_n	& 0\cdot s_1	 & \dots  & -1\cdot s_n \\
+	-a_{1,1}\cdot x_1 & \dots 	& -a_{1,n}\cdot x_n	& 1\cdot s_1	 & \dots  & 0\cdot s_n \\
 	\vdots   	 & \ddots 	& \vdots		& \vdots & \ddots & \vdots \\
-	-a_{n,1}*x_1 & \dots 	& -a_{n,n}*x_n	& 0*s_1	 & \dots  & 1*s_n \\
+	-a_{n,1}\cdot x_1 & \dots 	& -a_{n,n}\cdot x_n	& 0\cdot s_1	 & \dots  & 1\cdot s_n \\
 	\end{pmatrix} \le \begin{pmatrix} -u_1 \\ \vdots\\ -u_n \\ u_1 \\ \vdots \\ u_n \end{pmatrix}$\\
 %	\\
-	\vspace*{1em}
-	By looking closely one can see that for every line $l_i$ $1 \le i \le n$ with 
+\end{figure}
+One can see that for every line $l_i$ $1 \le i \le n$ with 
 	\begin{figure}[H]
 		\centering
 		$l^{\text{left}}_i \le l^{\text{right}}_i$
@@ -504,15 +506,14 @@ Then the \pointc can be rewritten to:
 		\centering
 		$-l^{\text{left}}_i \le -l^{\text{right}}_i$,
 	\end{figure}
-	which can be rewritten as $n$ rules of the form: 
+	which can be rewritten as a rules of the form: 
 	\begin{figure}[H]
 		\centering
 		$l^{\text{left}}_i = l^{\text{right}}_i$
 	\end{figure}	
-\end{figure}
-So using the \smtfactory we create such variables $s_i$ and add the $n$ assertions determined above. The guards can be neglected, since if they are constant there are no guards and if there are, we derive the \stem to fulfil these, so adding them would not give any advantage.\newline
-Since variable vectors are represented as a \rpntree we can use an implemented method to calculate the multiplication, normalize the outcome and parse the \rpntree into an assertion all featured by the \smtfactory. \newline
-The assertion ensuring that the new variables $s_i$ are the sum of the $i$-th value of the $y$'s is added within \Cref{sec:additional-assertion}.
+So using the \smtfactory we create such variables $s_i$ and add the $n$ assertions determined above. The guards can be neglected since if they are constant, there are no guards and if they are not constant, we derive the \stem in such a way that the values satisfy these, so adding them would not give any additional knowledge.\newline
+Since the entries of variable vectors are represented by \rpntrees, we can use already implemented methods to calculate the multiplication, normalize the outcome and parse the \rpntrees into assertions all featured by the \smtfactory. \newline
+The assertion ensuring that the new variables $s_i$ are the sum of the $i$-th value of the $y_i$ is added within \Cref{sec:additional-assertion}.
 
 
 \subsection{The Ray Criteria}
@@ -520,20 +521,19 @@ The assertion ensuring that the new variables $s_i$ are the sum of the $i$-th va
 \begin{itemize}
 	\setlength{\itemindent}{1in}
 	\item[(ray)] $A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$
-	\item[] (see: \Cref{def:gna})
+	\item[] (cf. \Cref{def:gna})
 \end{itemize}
-The \rayc is the hardest criteria in terms of asserting, because of its way of computation. \newline
-The computation can be split into two parts on its own.
+The \rayc is the hardest criteria to assert because of its way of computation. \newline
+The computation can be split into two parts.
 \subsubsection{$i=1$:}
-For $i=0$ the second addend $\mu_{i-1}y_{i-1}$ is equal to $0$, because of \Cref{def:gna} that $y_0 = \mu_0 = 0$. So with $\lambda_1$ being the first eigenvalue of the \updatematrix we get that $A\begin{pmatrix} y_1 \\ \lambda_1 y_1 \end{pmatrix} \le 0$. \newline
-Through $A$ and the \domc we know, that every $y_i\in \mathbb{R}^n$ so we add $n$ new variables $y_{1,i}$, such that $y_1 = \begin{pmatrix} y_{1,1} \\ \vdots \\ y_{1,n}\end{pmatrix}$, multiply the \updatematrix $A$ with the new vector regarding the substitution and create an assertion per row using the \smtfactory, the \code{IntegerRelationType} \code{LE} (denotes: less than or equal) and as the right hand side constant a 0.
+For $i=1$ the second addend $\mu_{i-1}y_{i-1}$ is equal to $0$, because of \Cref{def:gna}, where $y_0 = \mu_0 = 0$. So with $\lambda_1$ being the first eigenvalue of the \updatematrix we get that $A\begin{pmatrix} y_1 \\ \lambda_1 y_1 \end{pmatrix} \le 0$. \newline
+Through $A$ and the \domc we know that every $y_i\in \mathbb{R}^n$ so we add $n$ new variables $y_{1,i}$, such that $y_1 = \begin{pmatrix} y_{1,1} \\ \vdots \\ y_{1,n}\end{pmatrix}$, multiply the \updatematrix $A$ by the new vector regarding the substitution and create an assertion for each row using the \smtfactory, the \code{IntegerRelationType} \code{LE} (denotes: less than or equal) and as the right hand side constant a 0.
 
 \subsubsection{$i > 1$:}
-Since we don't have any concrete values for any $y_i$ or $\mu_i$ so far the solving of the problem with the term $\mu_{i-1}y_{i-1}$ is not linear and therefore the computation has to be either performed in \textit{quantifier free non-linear integer arithmetic} or iterated over possible entry's for the $\mu$'s.\newline
-In the implemented approach the \textit{quantifier free non-linear integer arithmetic} is used. Even if it's generally undecidable there are implementations over finite domains semi-deciding the problems  \cite{behrmann2014bit} \cite{giesl2016}. \newline
-Further comment about the usage of QF-NIA can be found within \Cref{chapter:eval}.
+Since we do not have any concrete values for any $y_i$ or $\mu_i$ so far, the solving of the problem with the term $\mu_{i-1}y_{i-1}$ is not linear and therefore the computation has to be either performed in \textit{quantifier-free non-linear integer arithmetic} or iterating over possible entries for the $\mu_i$.\newline
+In the implemented approach the \textit{quantifier-free non-linear integer arithmetic} is used. Even if it is undecidable in general, there are implementations over finite domains semi-deciding the problems  \cite{behrmann2014bit} \cite{giesl2016}. Further comments on the usage of QF-NIA can be found in \Cref{chapter:eval}.
 \\
-With $\lambda_i$ being the $i$-th eigenvalue of the \updatematrix we can compute the result of the multiplication as in the $i=0$ case, but have to normalize the outcome using the basic distributive property in order to handle it within an \rpntree and correctly generate an assertion from it.\newline
+With $\lambda_i$ being the $i$-th eigenvalue of the \updatematrix we can compute the result of the multiplication as in the $i=1$ case but have to normalize the outcome using the basic distributive property in order to handle it within a \rpntree and correctly generate an assertion from it.\newline
 So for every step $i > 1$ we add $n$ new variables $y_{i,n}$ such that $y_i = \begin{pmatrix} y_{i,1} \\ \vdots \\ y_{i,n}\end{pmatrix}$ and a new variable $\mu_{i-1}$ such that 
 \begin{figure}[H]
 	\centering
@@ -542,13 +542,13 @@ So for every step $i > 1$ we add $n$ new variables $y_{i,n}$ such that $y_i = \b
 	\end{pmatrix}$ 
 \end{figure}
 
-As in the other case we can simply compute the multiplication with the \updatematrix $A$ , normalize the outcome and analogously create an assertion per row with the \smtfactory. \newline
-Note that $y_{i-1,n}$ represent the values of the previous step and therefore not only already exist, but also create a lattice of restrictions for the $y_{i,j}$ since the values depend highly on the previous values. At this point the relation of rewriting the problem as a geometric series, like it is done in the underlying paper \cite{leike2014geometric}, is quite comprehensibly.
+As in the other case we can simply compute the multiplication by the \updatematrix $A$, normalize the outcome and analogously create an assertion for each row using the \smtfactory. \newline
+Note that the $y_{i-1,n}$ represent the values of the previous step and therefore do not only already exist, but also create a lattice of restrictions for the $y_{i,j}$ since the values depend highly on the previous values. At this point the idea of rewriting the problem as a geometric series, like it is done in the underlying paper \cite{leike2014geometric}, is quite comprehensible.
 
-\subsection{Additional assertion}
+\subsection{Additional Assertions}
 \label{sec:additional-assertion}
-The final step of asserting needs to be done, because of the restriction of the variables from the \rayc in \Cref{sec:ray-criteria} to the sum from the \pointc in \Cref{sec:point-criteria}.\newline
-The assertion, that needs to be added has the following form:
+The final step of assertion construction needs to be done because of the restriction of the variables from the \rayc in \Cref{sec:ray-criteria} to the sum from the \pointc in \Cref{sec:point-criteria}.\newline
+The assertion that needs to be added has the following form:
 \begin{figure}[H]
 	\centering
 	$s_i = y_{1,i}+ \dots + y_{n,i}$
@@ -556,25 +556,20 @@ The assertion, that needs to be added has the following form:
 This ensures that the values of $y$ sum up to the values determined in the \pointc.
 \\
 \\
-\\
-After adding the \addass from \Cref{sec:additional-assertion} the \solver contains all the restrictions to compute a \gna or an unsatisfiable core for the given program.\newline
-If a \gna is found it is stored as an instance of the corresponding class and given to \aprove as a proof.
+After adding the \addasss from \Cref{sec:additional-assertion}, the \solver received all the constraints to compute a \gna or an unsatisfiable core for the given program.\newline
+If a \gna is found, it is stored as an instance of the corresponding class and given to \aprove as a proof.
 
-\section{Verification of the Geometric Non-Termination Argument}
+\section{Example of a Geometric Non-Termination Argument}
 \label{sec:verification-of-gna}
-An instance of a \gna can be rechecked giving the \iterationmatrix and \iterationconstants if all of the four criteria of \Cref{def:gna} hold.
-In the whole chapter we work with the example used throughout the whole thesis with its \tool{Java}-code in \Cref{fig:structure-example-java} its corresponding \its in \Cref{fig:structure-example-TRS}. The in \Cref{chapter:geo-non-term} computed \iterationmatrix and \iterationconstants based on the \textit{Guard} and \textit{Update Matrix/Constants} and also the Eigenvalues as the $\lambda$'s. \newline
-
 \begin{wrapfigure}{R}{0.5\textwidth}
 	\centering
 	\input{src/diagram/GeometricNonterminationArgument-classdiagram.tex}
-	\caption{The \tool{Java}-class of a \gna given to \aprove as a witness of \nonterm}	
+	\caption{The \tool{Java} class of a \gna given to \aprove as a witness of \nonterm}	
 	\label{dia:gna-classdiagram}
 \end{wrapfigure}
-The implemented technique provides a model $m$ from the \solver and its assertions stated in \Cref{sec:derivation-smt}. From the model $m$ the technique filters the values and stores the in the \gna-class, which is given to \aprove as a witness. Such a \gna-object stores all variable declarations needed in order to revalidate itself to a given scenario. If one has an other technique of derivation it is possible to compute the matrices and set the values for a \gna-object and validate it, either proving it or mentioning, which criteria does not hold.\\ 
-\\
-\\
-\\
+An instance of a \gna can be rechecked giving the \iterationmatrix and \iterationconstants if all of the four criteria of \Cref{def:gna} hold. This mechanism was mainly used for debugging purposes. In this chapter we want to show that the given model from the \solver holds and therefore the criteria are stated correctly. \newline
+In the whole chapter we work with the example used throughout the whole thesis with its \tool{Java} code in \Cref{fig:structure-example-java} and its corresponding \its in \Cref{fig:structure-example-TRS}. The \iterationmatrix and \iterationconstants computed in \Cref{chapter:geo-non-term} are based on the Guard and Update Matrix and Constants and also the eigenvalues as the $\lambda_i$.\newline
+The implemented technique provides a model $m$ from the \solver and its assertions stated in \Cref{sec:derivation-smt}. From the model $m$ the technique extracts the values and stores them in the class \texttt{GeoNonTermArgument}, which is given to \aprove as a witness. An object of this class stores all variable declarations needed in order to revalidate itself to a given scenario. If one has another technique of derivation, it is possible to compute the matrices and set the values for a  \texttt{GeoNonTermArgument} object and validate it, either proving it or identifying, which criterion does not hold.\\ \\
 From \Cref{chapter:geo-non-term} we get the following \iterationmatrix $A$ and \iterationconstants $b$: 
 \begin{figure}[H]
 	\centering
@@ -592,7 +587,7 @@ From \Cref{chapter:geo-non-term} we get the following \iterationmatrix $A$ and \
 		-4 \\ -7 \\ -21 \\ -6 \\ 0 \\ 5 \\ 0 \\ -5
 	\end{pmatrix}$
 \end{figure}
-The from the technique given witness is the \gna of size 2 with the following values:
+The witness given by this technique is the \gna of size 2 with the following values:
 \begin{figure}[H]
 	\label{ex:gna}
 	\centering
@@ -602,29 +597,29 @@ The from the technique given witness is the \gna of size 2 with the following va
 		$\begin{pmatrix} 10 \\ -3 \end{pmatrix}$ & $\begin{pmatrix} 9 \\ 0 \end{pmatrix}$ & $\begin{pmatrix} 8 \\ -8 \end{pmatrix}$ & 3 & 2 & 0 \\ \hline
 	\end{tabular}
 \end{figure}
-From that we can start and validate every criteria stated in \Cref{def:gna}.
+From that we can start and validate every criterion stated in \Cref{def:gna}.
 
-	\subsection[Verifying: domain-criteria]{(domain-criteria)	$x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$ }
-		The validity of this criteria is given in \Cref{ex:gna} with $n=2$. This should not be surprising, since we defined the vectors to this dimension and the $\lambda$'s and $\mu$'s to be $\ge 0$ in \Cref{sec:derivation-smt}.
+	\subsection[Verifying: domain criterion]{(domain)	$x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$ }
+		The validity of this criterion is given in \Cref{ex:gna} with $n=2$. This should not be surprising, since we defined the vectors for this dimension and the $\lambda_i$ and $\mu_i$ to be $\ge 0$ in \Cref{sec:derivation-smt}.
 		
-	\subsection[Verifying: init-criteria]{(init-criteria) x represents the \startterm (\stem)}
+	\subsection[Verifying: init-criterion]{(init) x represents the \startterm (\stem)}
 	Also the given \stem meets the conditions as already derived in \Cref{sec:stem-var}.
 	
 	\newsavebox{\pointcrit}% Box to store smallmatrix content
 	\savebox{\pointcrit}{$A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b$}
-	\subsection[Verifying: point-criteria]{(point-criteria) \usebox{\pointcrit} }
+	\subsection[Verifying: point-criterion]{(point) \usebox{\pointcrit} }
 	
-	Now we have to compute the sum of the $y_i$'s and observe if the inequation holds. So with the values given in \Cref{ex:gna} we receive:
+	Now we have to compute the sum of the $y_i$ and observe if the inequations hold. So with the values given in \Cref{ex:gna} we receive:
 	\begin{figure}[H]
 		\centering
 		$A\begin{pmatrix} x \\ x + \sum_i y_i \end{pmatrix} \le b \Leftrightarrow A\begin{pmatrix} 10 \\ -3 \\ 10 + (9+8) \\ -3 + (0+(-8))\end{pmatrix} \le b \Leftrightarrow A\begin{pmatrix} 10 \\ -3 \\ 27 \\ -11 \end{pmatrix} \le b \Leftrightarrow \begin{pmatrix} -7 \\ -10 \\ -30 \\ -6 \\ 0 \\ 5 \\ 0 \\ -5 \end{pmatrix} \le \begin{pmatrix}	-4 \\ -7 \\ -21 \\ -6 \\ 0 \\ 5 \\ 0 \\ -5 \end{pmatrix}$ 
 	\end{figure}
-	Not only one can see, that every row on its own satisfies the desired inequation, we can also observe the within \Cref{sec:point-criteria} stated equalities hold for the last $2n=2*2=4$ rows. The point-criteria obviously holds.
+	One can not only see that every row on its own satisfies the desired inequation, we can also observe that the equalities defined in \Cref{sec:point-criteria} hold for the last $2n=2\cdot 2=4$ rows. The point-criterion obviously holds.
 
 	\newsavebox{\raycrit}% Box to store smallmatrix content
 	\savebox{\raycrit}{$A\begin{pmatrix} y_i \\ \lambda_i y_i + \mu_{i-1} y_{i-1} \end{pmatrix} \le 0$ for all $1 \le i \le k$}
-	\subsection[Verifying: ray-criteria]{(ray-criteria) \usebox{\raycrit}}
-	Because the \gna is of size $2$ we have only 2 ray-criteria sub-formulas that need to be tested
+	\subsection[Verifying: ray-criterion]{(ray) \usebox{\raycrit}}
+	Because the \gna is of size $2$, we have only 2 ray-criteria sub-formulas that need to be tested.
 	\subsubsection{$r_1$: i=1}
 	\begin{figure}[H]
 		\centering
@@ -637,8 +632,8 @@ From that we can start and validate every criteria stated in \Cref{def:gna}.
 		$A\begin{pmatrix} y_2 \\ \lambda_2y_2+\mu_1y_1 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 2*8+0*9 \\ 2*(-8)+0*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 16 \\ -16 \end{pmatrix} \le 0 \Leftrightarrow \begin{pmatrix} 0 \\ -8 \\ -24 \\ -16 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} \le \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$
 	\end{figure}
 
-	Since all $r_i$ $1\le i \le 2$ are computed and checked that they hold also the ray-criteria holds.
+	Since all $r_i$, $i \in \{1,2\}$, are computed and it is checked that they hold, also the ray criterion holds.
 	\\
 	\\
-	Observing that all criteria hold the whole \gna is suitable to \Cref{def:gna} and therefore is a witness of \nonterm regard the program stated in \Cref{fig:structure-example-java}.
+	Observing that all criteria hold, the whole \gna is valid according to \Cref{def:gna} and therefore is a witness of \nonterm for the program stated in \Cref{fig:structure-example-java}.
 	

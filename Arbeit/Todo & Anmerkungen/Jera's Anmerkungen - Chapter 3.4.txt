@@ -1,0 +1,71 @@
+3.4
++ Überschrift: the -> a
+- mal so zwischendurch: Du nutzt so gut wie nie die Abkürzung GNA. Ist zwar okay, aber dann würde ich sie auch vorne nicht definieren. Also entweder überall (außer in Abstract, Introduction und bei Definition der Abkürzung durch GNA ersetzen, oder (was wahrscheinlich jetzt einfacher ist) die Definition der Abkürzung rausnehmen
++ du musst entweder die Daseinsberechtigung dieses Kapitels klarstellen (also gute Gründe nennen, warum uns diese Verifikation hilft und deine Implementierung (berichtigter Weise) nicht auch so schon sound, oder den Zweck/Namen dieses Kapitels verändern (also statt Verification vllt: Ein Beispiel für ein GNA)
++ Z. 3, Ende: „and“ hinter 2.2
++ Z. 4: „The in Chapter 3 computed Iteration Matrix and Iteration Constants“ -> „The Iteration Matrix and Iteration Constants computed in Chapter 3“
++ Z. 5: based -> are based (oder sonst fehlt irgendwo ein Verb im Satz)
++ Z. 5: Guard and Update Matrix/Constants -> lieber „and“ statt „/", außerdem nicht kursiv
++ Z. 5: \lambda’s -> \lambda_i
+
+Abschnitt darunter:
+- Z. 4: filters -> extracts
+- Z. 4: stores the -> stores them
+- Z. 5: geometric non-termination argument-class -> class GeoNonTermArgument (zweites Wort in texttt/verbatim)
+- Z. 7: Such a geometric non-termination argument-object -> An object of this class
+- Z. 10: an other -> another
+- Z. 11: Komma hinter „derivation“
+- Z. 12: for a geometric non-termination argument object -> of a GeoNonTermArgument object (vorletztes Wort in texttt/verbatim)
+- Z. 14: mentioning -> identifying
+- Z. 14: kein Komma vor „which“
+- Z. 14: criteria -> criterion (oder alternativ does -> do)
+
+Bildunterschrift zu Figure 3.6
+- Kein Bindestrich zwischen „Java“ und „class“
+
+Satz unter der ersten Matrix A
+- The from the technique given witness -> The witness given by this technique
+
+Satz unter der Tabelle (GNA)
+- criteria -> criterion
+
+3.4.1
+- Überschrift: domain-criteria -> domain criterion (Einzahl und Bindestrich weglassen; alternativ einfach nur „domain“)
+- Z. 1: criteria -> criterion
+- Z. 2: to this -> for this
+- Z. 2: \lambda’s and \mu’s -> \lambda_i and \mu_i
+
+3.4.2
+- Überschrift: init-criteria -> init criterion (Einzahl und Bindestrich weglassen; alternativ einfach nur „init“)
+
+3.4.3
+- Überschrift: point-criteria -> point criterion (Einzahl und Bindestrich weglassen; alternativ einfach nur „point“)
+- Z. 1: y_i’s -> y_i
+- Z. 1: inequation holds -> inequations hold
+
+Abschnitt unter Beispielrechnung:
+- Z. 1: Not only one can see -> One can not only see
+- Z. 1: kein Komma vor „that“
+- Z. 2: the within Section 3.3.3 stated equalities hold -> that the equalities defined in Section 3.3.3 hold
+- Z. 2: * -> \cdot
+- Z. 3: point-criteria -> point criterion
+
+3.4.4
+- Überschrift: ray-criteria -> ray criterion (Einzahl und Bindestrich weglassen; alternativ einfach nur „ray“)
+- Z. 1: Komma vor „we have“
+- Z. 1: ray-criteria -> ray criterion
+- Z. 2: Punkt am Ende
+
+Satz unter Beispielrechnung:
+- all r_i -> the r_i
+- 1 \le i \le 2 -> i \in \{1,2\} (sind ja nur zwei, oder?)
+- Komma vor und hinter  „i \in \{1,2\}“
+- „it is“ vor „checked“
+- Komma hinter „hold“
+- ray-criteria -> ray criterion
+
+Letzter Abschnitt:
+- Z. 1: Komma hinter „hold“
+- Z. 1: suitable -> valid
+- Z. 1: to -> according to
+- Z. 2: regard -> for
