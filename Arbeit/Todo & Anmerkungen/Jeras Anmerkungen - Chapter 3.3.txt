@@ -1,0 +1,61 @@
+3.3
++ Überschrift: SMT-Problem -> SMT Problem
++ Z. 1: würde Komma durch „as“ ersetzen
++ Z. 2: proof -> prove
++ Z. 3: non existence -> nonexistence
++ Z. 3: „of a model“ hinter nonexistence
++ Z 4: fulfil -> assert
++ Z. 5: decidable -> undecidable
++ Z. 5: vielleicht ein „in general“ hinter „undecidable“
++ Z. 6: „an“ vor „Update Matrix“, und dahinter ein Komma
++ Z. 6: „compute its eigenvalues and assign“ -> „compute its eigenvalues and if we have nonnegative eigenvalues, assign“ (sonst klingt es, als würde man ganz einfach aus einem unentscheidbaren Problem ein entscheidbares machen)
++ Z. 7: „existence“ -> „the existence of a GNA“
++ Z. 8: proof -> prove
++ drittnächste Zeile: „we have set values“ -> „we have constant values“, dann „as constant values“ am Ende löschen
+Letzter Abschnitt (3 centered Zeilen):
++ Z. 1: Da du auf a_1…a_n nicht mehr eingehst, solltest du die hier auch nicht einführen. Ich würde den Zwischensatz (wegen der ungewöhnlichen Satzstellung) weglassen und stattdessen schreiben:
+„If the SMT solver finds a model $m$ for the assertions created from a program $p$, then …“
+(has -> finds; program p -> a program p, Komma vor „then“)
++ Z. 2: within -> \in
++ Diesen Satz würde ich entweder in den Fließtext schreiben oder, wenn du ihn hervorheben willst, als „Lemma“.
+
+3.3.1
++ Überschrift: Criteria -> Criterion
++ Z. 2: „see:“ -> „cf.“
++ Z. 3: criteria -> criterion
++ Z. 3: „are trivial“ -> „trivially hold“
++ Z. 3/4: Begründung etwas schwierig; jeder Vektor in \R ist auch in \C (das stimmt also so nicht). Ich würde diese Begründung (ab „because“) deshalb weglassen, denn wie du sagst, ist es trivial.
++ Z. 4: „see:“ -> „cf.“
++ Z. 5: starting -> start
++ Z. 5: kein Bindestrich hinter „n“+- nächste Zeile: criteria -> criterion (2 mal)
++ nächste Zeile: make towards -> pass to
++ gleiche Zeile: is to ensure -> ensure
++ gleiche Zeile: \lambda’s -> \lambda_i
++ nächste Zeile: is only for -> only holds for
++ gleiche Zeile: positive -> nonnegative (schließt 0 ein)
++ gleiche Zeile: \mu’s -> \mu_i
++ vorletzte Zeile: of being positive -> of nonnegativity
++ vorletzte Zeile: fulfil -> satisfy
++ vorletzte Zeile: criteria -> criterion
++ letzte Zeile: Research -> Related work
++ letzte Zeile: within -> in
+
+3.3.2
+- Überschrift: Criteria -> Criterion
+- Z. 2: „see:“ -> „cf.“
+- Z. 3: criteria -> criterion
+- Z. 3: mention within -> pass to
+- Z. 4: start term nicht kursiv
+- Z. 5: Hier würd ich keinen neuen Absatz machen für diesen einen Satz
+- Z. 5: criteria -> criterion
+- Z. 5: So this criterion adds no -> So for this criterion, we do not pass any
+- Z. 5: towards -> to
+
+3.3.3
+- Überschrift: Criteria -> Criterion
+- Z. 2: „see:“ -> „cf.“
+
+3.3.4
+- Überschrift: Criteria -> Criterion
+- Z. 2: „see:“ -> „cf.“
+- Z. 3: criteria -> criterion

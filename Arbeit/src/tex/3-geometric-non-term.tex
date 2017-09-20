@@ -410,41 +410,40 @@ As stated in \Cref{def:iteration} the \iterationmatrix and the \iterationconstan
 \end{figure}
 Given $G, g, U$ and $u$, to compute $A$ and $b$ we only insert the matrix \textbf{0}$ \in \{0\}^{m\times n}$ and the identity matrix $I \in \{0,1\}^{n\times n}$, where $n$ is the number of distinct not newly introduced variables and $m$ is the number of guards without equations.
 
-\section{Derivation of the SMT-Problem}
+\section{Derivation of the SMT Problem}
 \label{sec:derivation-smt}
-The existence of a \gna is checked using an \solver, presented in \Cref{sec:smt-problem}, which will either give us a model satisfying the constraints or proof the non existence by giving an unsatisfiable core. \newline
-The constraints the \solver has to fulfil are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is decidable. Since we derive the deterministic update as \updatematrix we can further compute its eigenvalues and assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide existence efficiently \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
+The existence of a \gna is checked using an \solver as presented in \Cref{sec:smt-problem}, which will either give us a model satisfying the constraints or prove the nonexistence of a model by giving an unsatisfiable core. \newline
+The constraints the \solver has to assert are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is undecidable in general. Since we derive the deterministic update as an \updatematrix, we can further compute its eigenvalues and if we have nonnegative eigenvalues, assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide the existence of a GNA efficiently \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
 \newline
-So the next step in order to proof non-termination is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \cite{ApacheMath3} because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
-After computing the eigenvalues, we have set values for the \stem $x$ and $\lambda_1, \dots \lambda_k$ as constant values.
+So the next step in order to prove \nonterm is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \cite{ApacheMath3} because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
+After computing the eigenvalues, we have constant values for the \stem $x$ and $\lambda_1, \dots \lambda_k$.
 \newline
 Using the \smtfactory, which offers methods to create the within \Cref{sec:smt-problem} and \Cref{ex:assertion-structure} stated structure, we are able to create assertions and add them to the \solver, such that the following holds:
-\begin{figure}[H]
-	\centering
-	If the \solver, with assertions $a^p_1, \dots a^p_n$ created from program $p$,has a model $m$ \newline
-	then $m$ defines variables $y_1, \dots, y_k$ and $\mu_1, \mu_{k-1}$ within $\mathbb{N}$ such that \newline
+\begin{lemma}
+%	\centering
+	If the \solver finds a model $m$ for the assertions created from a program $p$,
+	then $m$ defines variables $y_1, \dots, y_k$ and $\mu_1, \mu_{k-1} \in \mathbb{N}$ such that 
 	$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$ is a \gna.
-\end{figure}
+\end{lemma}
 
-\subsection{The Domain Criteria}
+\subsection{The Domain Criterion}
 \begin{itemize}
 	\setlength{\itemindent}{1in}
 	\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
-	\item[] (see: \Cref{def:gna})
+	\item[] (cf. \Cref{def:gna})
 \end{itemize}
-The \domc for $x$ and $y_1, \dots y_k$ are trivial, because at no point of computation we would consider a vector $v\in\mathbb{C}$.
-The arity of $x$ is set within the derivation of the \stem (see: \Cref{sec:stem}) and sets the starting values for the $n$-variables. The arity of every $y_i$ is determined within the assertions of the \pointc and the \rayc.\newline
-The assertions one has to make towards the \solver is to ensure that the $\lambda$'s are not negative, since the proof by Leike and Heizmann is only for positive eigenvalues. Also for the $\mu$'s we have to add the assertion of being positive to fulfil the criteria. \newline
-Research on negative eigenvalues is mentioned within \Cref{chapter:related-work}.
+The \domc for $x$ and $y_1, \dots y_k$ trivially hold.
+The arity of $x$ is set within the derivation of the \stem (cf. \Cref{sec:stem}) and sets the starting values for the $n$ variables. The arity of every $y_i$ is determined within the assertions of the \pointc and the \rayc.\newline
+The assertions one has to pass to the \solver ensure that the $\lambda_i$ are not negative, since the proof by Leike and Heizmann only holds for nonnegative eigenvalues. Also for the $\mu_i$ we have to add the assertion of being nonnegativity to satisfy the criterion. \newline
+Related work on negative eigenvalues is mentioned in \Cref{chapter:related-work}.
 \subsection{The Initiation Criteria}
 \begin{itemize}
 	\setlength{\itemindent}{1in}
 	\item[(init)] x represents the \startterm (\stem)
-	\item[] (see: \Cref{def:gna})
+	\item[] (cf. \Cref{def:gna})
 \end{itemize}
 
-The \initc is quite trivial to mention within the \solver, since we defined the \stem $x$ within \Cref{sec:stem} to be exactly the  \textit{start term}.\newline
-So this criteria adds no further assertions towards the \solver.
+The \initc is quite trivial to pass to the \solver, since we defined the \stem $x$ within \Cref{sec:stem} to be exactly the start term. So for this criterion, we do not pass any further assertions to the \solver.
 
 \subsection{The Point Criteria}
 \label{sec:point-criteria}

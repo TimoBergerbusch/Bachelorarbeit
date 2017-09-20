@@ -17,8 +17,8 @@
 \BOOKMARK [2][]{subsection.3.2.1}{The Guard Matrix and the Guard Constants}{section.3.2}% 17
 \BOOKMARK [2][]{subsection.3.2.2}{The Update Matrix and the Update Constants}{section.3.2}% 18
 \BOOKMARK [2][]{subsection.3.2.3}{The Iteration Matrix and the Iteration Constants}{section.3.2}% 19
-\BOOKMARK [1][]{section.3.3}{Derivation of the SMT-Problem}{chapter.3}% 20
-\BOOKMARK [2][]{subsection.3.3.1}{The Domain Criteria}{section.3.3}% 21
+\BOOKMARK [1][]{section.3.3}{Derivation of the SMT Problem}{chapter.3}% 20
+\BOOKMARK [2][]{subsection.3.3.1}{The Domain Criterion}{section.3.3}% 21
 \BOOKMARK [2][]{subsection.3.3.2}{The Initiation Criteria}{section.3.3}% 22
 \BOOKMARK [2][]{subsection.3.3.3}{The Point Criteria}{section.3.3}% 23
 \BOOKMARK [2][]{subsection.3.3.4}{The Ray Criteria}{section.3.3}% 24

@@ -19,8 +19,8 @@
 \contentsline {subsection}{\numberline {3.2.1}The Guard Matrix\xspace and the Guard Constants\xspace }{14}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}The Update Matrix\xspace and the Update Constants\xspace }{17}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}The Iteration Matrix\xspace and the Iteration Constants\xspace }{20}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Derivation of the SMT-Problem}{20}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}The Domain Criteria}{21}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.3}Derivation of the SMT Problem}{20}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}The Domain Criterion}{21}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}The Initiation Criteria}{21}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}The Point Criteria}{21}{subsection.3.3.3}
 \contentsline {subsection}{\numberline {3.3.4}The Ray Criteria}{23}{subsection.3.3.4}
