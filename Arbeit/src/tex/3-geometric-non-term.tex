@@ -58,8 +58,7 @@ In order to derive the \stem, a $v$ satisfying the conditions needs to be found 
 
 \section{Derivation of the LOOP}
 \label{sec:loop}
-%TODO: ""
-The derivation of the \loopt is pretty straight forward applying \Cref{def:guard}, \Cref{def:update} to a looping rule and then computing the \iterationmatrix and the \iterationconstants using \Cref{def:iteration}, if no guards with equalities ("=") occur. Otherwise we first have to perform the following steps to apply the mentioned definitions. \newline
+The derivation of the \loopt is pretty straight forward applying \Cref{def:guard}, \Cref{def:update} to a looping rule and then computing the \iterationmatrix and the \iterationconstants using \Cref{def:iteration}, if no guards with equalities (``='') occur. Otherwise we first have to perform the following steps to apply the mentioned definitions. \newline
 Let $f_x$ be the start function symbol given in the \its and $r_i$ be the following rule:
 \begin{lstlisting}[escapechar=!]
 	!$f_x \rightarrow f_y(v_1, \dots, v_n) :|: cond_1$!
@@ -194,7 +193,7 @@ To transfer a guard from \stdG to \strG we have to apply the two following steps
 	\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (right.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
 \end{figure}
-So the constant term can simply be read from the right child of the \code{RPNFunctionSymbol} "$\le$", neglecting the left $\psi$-term.
+So the constant term can simply be read from the right child of the \code{RPNFunctionSymbol} ``$\le$'', neglecting the left $\psi$-term.
 
 \begin{example}
 	\label{ex:derivation-guard}
