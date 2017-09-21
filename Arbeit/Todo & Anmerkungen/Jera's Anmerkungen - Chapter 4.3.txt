@@ -1,0 +1,86 @@
+Hi Timo,
+
+die vorletzte Ladung:
+
+Titelblatt
++ Bindestrich zwischen „Rheinisch“ und „Westfälische“
++ Westfälisch -> Westfälische
+
+Abstract
++ Z. 7: „can never provide soundness in every condition“: soundness schon, aber nicht soundness und completeness gleichzeitig. Deshalb „soundness in every condition“ -> „soundness in every condition“ -> „soundness and completeness at the same time“
+
+4.3
++ Z. 3: kein Komma vor „which“
++ Z. 5: „universally more useful“ -> „applicable to more cases“
+
+4.3.1
++ Überschrift: SMT solver logic -> Choosing a Logical Fragment
++ Z. 1: problematic -> difficulty
++ Z. 1: \mu's -> \mu_i
++ Z. 1: Warum „can lead“ statt „leads“?
++ Z. 2: „the solvating of“ weglassen
++ Z. 2: Bindestrich zwischen „quantifier“ und „free“
++ Z. 3: „non-linear“ statt „undecidable“, dafür die Klammern vorher (Z. 2/3) mit dem QF-NIA weglassen
++ Z. 3: kein Komma vor „which“
++ Z. 5: \mu’s -> \mu_i
++ Z. 6: wieder \mu’s -> \mu_i
++ Z. 7: kein Komma vor „that“
++ Z. 7: kein „be“ vor „blow“
++ Z. 7: kein Komma vor „but“
++ Z. 7: problem itself -> problems theirselves
++ Z. 7: „always“ weglassen
++ Z. 9: case-study -> case study
++ Z. 9: kein Komma hinter „iteration“
++ Z. 9: „iteration“ ist hier nicht das richtige Wort, vllt „iteration approach“? Ich bin mir aber nicht sicher, was du hier sagen willst. Klingt wie „könnte sein, dass wir den falschen Ansatz gewählt haben, könnte man mit case studies rausfinden, aber machen wir nicht“. Ich würde diesen Abschnitt rauslassen, auch wenn es mir Leid um ihn tut. Er sagt nämlich im Grunde nur „alles ist möglich, wir haben es aber nicht näher untersucht“, was aber ja vorher schon klar wird.
+Außerdem ist mir der Vorteil der iterativen Methode nicht klar: die Teilprobleme sind zwar lösbar, aber es gibt unendlich viele davon, und warum würde man intelligenter aufzählen als z.B. ein SMT-Solver?
+Der letzte Abschnitt dieser Subsection ist für mich auch nicht ganz einleuchtend, da man mit 300 Sekunden deutlich mehr Zeit hat, als du bisher brauchst. Von 5 auf 300 muss man erst mal kommen.
+Ich würde diese Subsection deshalb auf die ersten beiden Abschnitte beschränken. Vielleicht noch einen finalen Satz hinzufügen wie „For the examples of the International Competition on Software Verification, we estimate the method that we chose more suitable. In general, a reliable case study could give an indication of the advantages and disadvantages of the two approaches.“
+
+4.3.2
++ Z. 1: restrict -> restricted
++ Z. 1: this -> our
++ Z. 1: to the form -> to ITSs of the form
++ Z. 2: which obviously is -> This obviously is
++ Z. 3: „be“ hinter „possibly“
++ Z. 3: Mir ist nicht klar, wie das gehen kann, wenn man die Methode k mal verwendet. Man hat ja nicht k loops?
++ Z. 3: ITS -> ITSs
++ Z. 4: „in terms of proving“ weglassen
++ Z. 5: An other -> Another
++ Z. 6: ITS -> ITSs
++ Z. 6: „like the following“ weglassen, stattdessen „ITSs of the form“
++ Z. 7: kein Komma vor „but“
++ Z. 7: but -> and
++ Z. 7: Komma vor und hinter „1 \le i \le m“
++ Z. 7: is -> are
++ Z. 7: a linear update -> linear updates
++ Z. 7: Komma hinter v_j
++ Z. 9: alternations -> extensions
++ Z. 10: universal -> universally
+
+4.3.3
++ Z. 1: Within -> In
++ Z. 2: has -> uses
++ Z. 2: it handles -> to handle
++ Z. 2: in -> with
++ Z. 3: The R… P… N… Tree structure exists mainly -> We chose R… P… N… Trees mainly
++ Z. 4: the -> The
++ Z. 4: „bases these statements on“ -> „uses“
++ Z. 4: kein Komma vor „but“
++ Z. 5: kein Komma vor dem zweiten „which“ hinter tree (vorm ersten dagegen muss es bleiben)
++ Z. 6: not only works equivalently it also prevents … -> works equivalently, but it prevents …
++ Z. 7: heißt es wirklich RPNTreeParse oder meinst du RPNTreeParser?
++ Z. 8: kein Komma vor „which“
++ Z. 8: entweder „filters“ oder „ITS“ ist hier glaube ich das falsche Wort. So klingt es, als würden nicht passende ITSe weg-gefiltert werden. Du meinst aber wahrscheinlich, dass Teile der ITSe gefiltert werden (vielleicht „which removes the parts of an ITS that we do not need to consider during our geometric non-termination analysis“)
++ Z. 9: geometric n.-t. a. nicht kursiv
++ Z. 10: many -> Many
++ Z. 10: encode -> implement
++ Z. 10: coding in the already stated classes -> extending the existing classes
++ Z. 11: accessing problems -> restricted visibility
++ Z. 12: work-around -> workaround
+
+Letzter Abschnitt:
+- Z. 1: worked with -> we tested
+- Z. 2: possible -> possibly
+- Z. 2: converting -> conversion
+- Z. 3: proposes -> uses
+- Mir ist nicht ganz klar, warum es für größere Programme besser wäre. Das klingt, als hättest du eigentlich den falschen Ansatz gewählt. Ist das wirklich so? Ansonsten würde ich die 3 Zeilen vielleicht weglassen.

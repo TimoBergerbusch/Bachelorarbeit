@@ -1,0 +1,45 @@
+Titel: Benchmark -> Benchmarks
++ Z. 1: kein Komma vor „if“
++ Z. 1: „itself“ weglassen
++ Z. 2: „terms of“ weglassen (einfach „in applicable cases“)
++ Z. 2: „very exotic and“ würd ich auch weglassen, da es in diesem Kontext etwas umgangssprachlich klingt ;)
++ Z. 4: storage -> tust du das wirklich? geht es nicht nur um die Zeit?
++ Z. 6: improvement possibilities of the implementation -> possibilities to extend and improve the implementation
++ Z. 6: and problems within, where … -> and current problems in cases where …
+
+4.1
++ Überschrift: approach -> Approach
++ Z. 1: type -> types
++ Z. 1: „and complete“ lieber rausnehmen (ist nur unter weiteren Bedingungen vollständig, deshalb kann man es so nicht bezeichnen)
++ Z. 2: kein Komma vor „which“
++ Z. 2: Komma hinter „ITS“
++ Z. 3: efficient -> efficiently
++ Z. 3: an -> a
++ Z. 3: state of the art -> state-of-the-art
++ Z. 4: Komma hinter „eigenvalue“
++ Z. 4: \mu’s -> \mu_i (2 mal)
++ Z. 4: Komma hinter „given“
++ Z. 5: kein Komma vor „but“
++ Z. 6: paper itself -> original approach
++ Z. 6: Komma hinter „guards“
+
+4.2
++ Z. 2: Komma hinter „AProVE“ weglassen
++ Z. 2: Komma hinter „techniques“ weglassen
++ Z. 3: programs -> example programs
++ Z. 3: is from -> is taken from
++ Z. 4: SV-COMP -> Termination category of the SV-COMP
++ Z. 5: Falls diese Referenz irgendwann nicht mehr gültig verlinkt ist, wäre es natürlich schöner, die Tabelle in der Arbeit stehen zu haben (z.B. im Anhang)
++ Z. 5/6: Dieser Satz klingt, als wären die 847 SV-COMP-Beispiele nur welche, bei denen deine Technik anwendbar ist (also quasi linear lasso programs), was ungünstig für dich klingt
+
+Unter benchmark overview:
++ Z. 1: proof -> prove
++ Z. 2: a save of average -> an average time saving of
++ Z. 2: is a save of about 17 percent -> , which is about 17 percent, is observed
++ Z. 5: Satz umformulieren: „So if more than one proofs is found, all but the fastest proof do not affect the average saving of time.
+
+Figure 4.1, Bildunterschrift: can not -> cannot
+
+Nächster Abschnitt:
++ Z. 1: can not -> cannot
++ Z. 1: proof -> prove

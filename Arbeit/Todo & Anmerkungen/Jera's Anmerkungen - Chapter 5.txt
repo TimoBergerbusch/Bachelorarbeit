@@ -1,0 +1,42 @@
+Aber zuerst zu Chapter 5:
+- Meckern auf hohem Niveau: Die Formulierung „the first related source is“ klingt so meta. Man schreibt ja auch nicht: Mein erster Satz in dieser Mail ist … Ich verstehe, dass es nicht einfach ist, dieses Kapitel zu formulieren, ich find’s immer eines der ätzendsten. Ich würde aber versuchen, es etwas umzuformulieren, damit man nicht das Gefühl hat, du musst hier ganz viele sources erwähnen, sondern dass du eher schreibst, warum du sie erwähnst.
+Den ersten Satz würde ich deshalb ändern zu „The approach, my thesis is based on, was developed by Jan Leike and Matthias Heizmann.“ Dann den zweiten Satz weglassen.
+- Z. 4: „and proof“ weglassen; stattdessen hinter „argument“ noch „approach and their proof of soundness“
+- Z. 4: „in combination with the derivation on lasso-programs" weglassen
+- Z. 7: that -> this
+- Z. 7: bist du sicher, dass hier „Ultimate LassoRanker“ richtig ist und nicht „Ultimate Automizer“? Steht das im GNA-Papier so?
+- Z. 7: A tool -> It is a tool
+- Z. 9: argument’s -> arguments
+- Z. 10: kein Komma vor „but“
+- Z. 11: proofed -> proved
+- Z. 11: „they in fact are“ -> „termination in fact is“ und dann „in terms of termination“ weglassen
+- Z. 12: they met the condition of only strict guards -> the condition of only strict guards is met
+- Z. 12: was genau bedeutet diese condition? kannst du das hier noch kurz erklären?
+- Z. 13: An other -> Another
+- Z. 14: not only to be ... -> to not range over the naturals but to range over the real numbers.
+- hier ist mir nicht ganz klar: ist das wirklich eine generalization? das Problem wird doch sogar einfacher über reals, oder? deshalb vllt statt „generalization“ -> „relaxation“
+- Z. 15: „from“ weglassen
+- Z. 15/16: was meinst du hier mit „basic approach“? approach, was zu tun? und ist „generalized“ hier das richtige Wort? integer lasso programs klingen eher nach einer Einschränkung. Stattdessen vielleicht: „Also … defined an approach to decide termination of integer lasso programs in those cases where the corresponding Update Matrix is …“
+- nächster Satz: Dieser Ansatz ist keine Erweiterung sondern hat mit geometrischen Nichtterminierungs-Argumenten nichts zu tun. Ist ja auch zwei Jahre älter…
+Deshalb: „An extension of the geometric … approach“ -> „An alternative non-termination approach“
+- gleiche Zeile: can be found within -> is given by
+- nächste Zeile: „providing“ durch Komma ersetzen
+- gleiche Zeile: Bindestrich zwischen „non“ und „deterministic“
+- nächste Zeile: „apart from others“ weglassen
+- nächste Zeile: „also it can work with“ -> „It also supports“
+- gleiche Zeile: second order -> second-order
+- gleiche Zeile: bit vectors -> bitvectors
+- nächste Zeile: kein Komma vor „which“
+- „These can be used to find non-terminating …“ Das klingt falsch: Die Bitvektoren werden nicht genutzt, um Lassos zu finden, sondern David et al. gehen einfach von Bitvektoren aus anstatt Variablen über \Z zu interpretieren. Deshalb:
+- „These can be used“ -> „This approach can be used“
+- und: „lassos, which do not“ -> „lassos for programs that do not“
+- nächster Satz: of such an -> of this
+
+Letzter Abschnitt
+- Z. 1: verity -> variety
+- Irgendwie ist der Satz doppelt gemoppelt. Würde es umformulieren zu „AProVE already uses two different non-termination approaches.“ Und dafür sollte das TACAS-17-Papier als Referenz verwendet werden 
+(http://dblp.uni-trier.de/rec/bibtex/conf/tacas/HenselEFSG17)
+- (vor)letzte Zeile: not only improves proving speed of applicable -> not only leads to a saving of time for applicable …
+- letzte Zeile: Komma vor „it“
+- letzte Zeile: expands -> extends
+- letzte Zeile: proving ability -> AProVE’s power to prove non-termination.

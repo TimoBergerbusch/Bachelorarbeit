@@ -34,11 +34,11 @@
 \contentsline {subsection}{\numberline {3.4.4}Verifying: ray-criterion}{26}{subsection.3.4.4}
 \contentsline {subsubsection}{$r_1$: i=1}{26}{section*.5}
 \contentsline {subsubsection}{$r_2$: i=2}{26}{section*.6}
-\contentsline {chapter}{\numberline {4}Evaluation and Benchmark}{27}{chapter.4}
-\contentsline {section}{\numberline {4.1}Evaluation of the approach}{27}{section.4.1}
+\contentsline {chapter}{\numberline {4}Evaluation and Benchmarks}{27}{chapter.4}
+\contentsline {section}{\numberline {4.1}Evaluation of the Approach}{27}{section.4.1}
 \contentsline {section}{\numberline {4.2}Benchmarks}{27}{section.4.2}
 \contentsline {section}{\numberline {4.3}Possible Improvement of the Implementation}{28}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}SMT solver\xspace logic}{28}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.1}Choosing a Logical Fragment}{28}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}\textsf {ITS}\xspace program structure}{29}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Reverse Polish Notation Tree\xspace }{29}{subsection.4.3.3}
 \contentsline {chapter}{\numberline {5}Related Work}{31}{chapter.5}

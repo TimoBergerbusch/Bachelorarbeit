@@ -80,11 +80,16 @@ J{\"u}rgen Giesl, Ren{\'e} Thiemann, Peter Schneider-Kamp, and Stephan Falke.
 \newblock In {\em Extended Abstracts of the 6th International Workshop on
   Termination, WST}, volume~3, pages 68--70, 2003.
 
-\bibitem[I217]{aproveWebsite}
-Lehrstuhl~Informatik I2.
-\newblock {\em AProVE}, 2017.
-\newblock Available at \url{http://aprove.informatik.rwth-aachen.de/},
-  [Accessed: 26-August-2017].
+\bibitem[HEF{\etalchar{+}}17]{tacas}
+Jera Hensel, Frank Emrich, Florian Frohn, Thomas Str{\"{o}}der, and
+  J{\"{u}}rgen Giesl.
+\newblock Aprove: Proving and disproving termination of memory-manipulating {C}
+  programs - (competition contribution).
+\newblock In {\em Tools and Algorithms for the Construction and Analysis of
+  Systems - 23rd International Conference, {TACAS} 2017, Held as Part of the
+  European Joint Conferences on Theory and Practice of Software, {ETAPS} 2017,
+  Uppsala, Sweden, April 22-29, 2017, Proceedings, Part {II}}, pages 350--354,
+  2017.
 
 \bibitem[LH14]{leike2014geometric}
 Jan Leike and Matthias Heizmann.
@@ -123,12 +128,6 @@ Thomas Str{\"{o}}der, J{\"{u}}rgen Giesl, Marc Brockschmidt, Florian Frohn,
 \newblock Available at \url{https://sv-comp.sosy-lab.org/2017/}, [Accessed:
   14-September-2017].
 
-\bibitem[Ter17]{TermComp}
-{\em Termination Competition}, 2017.
-\newblock Available at
-  \url{http://termination-portal.org/wiki/Termination_Competition}, [Accessed:
-  14-September-2017].
-
 \bibitem[Tiw04]{tiwari2004termination}
 Ashish Tiwari.
 \newblock Termination of linear programs.
@@ -140,18 +139,11 @@ Kristof Verschaetse, Stefaan Decorte, and Danny De~Schreye.
 \newblock In {\em Logic Program Synthesis and Transformation}, pages 168--183.
   Springer, 1993.
 
-\bibitem[Wik17a]{wikirpn}
+\bibitem[Wik17]{wikirpn}
 The Free~Encyclopedia Wikipedia.
 \newblock {\em Reverse Polish Notation}, 2017.
 \newblock Available at
   \url{http://en.wikipedia.org/w/index.php?title=Reverse_Polish_notation},
-  [Accessed: 17-August-2017].
-
-\bibitem[Wik17b]{wiki2017termComp}
-The Free~Encyclopedia Wikipedia.
-\newblock {\em Termination Competiton 2017}, 2017.
-\newblock Available at
-  \url{http://termination-portal.org/wiki/Termination_Competition_2017},
   [Accessed: 17-August-2017].
 
 \bibitem[ZC09]{zhivich2009real}

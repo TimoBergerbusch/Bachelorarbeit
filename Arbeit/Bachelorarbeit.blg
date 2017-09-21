@@ -1,10 +1,12 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Bachelorarbeit.aux
 The style file: alpha.bst
 Database file #1: src/bib/Literatur.bib
+A bad cross reference---entry "tacas"
+refers to entry "DBLP:conf/tacas/2017-2", which doesn't exist
+Warning--I didn't find a database entry for "DBLP:conf/tacas/2017-2"
 Warning--to sort, need author, organization, or key in CLANG
 Warning--to sort, need author, organization, or key in SVComp
 Warning--to sort, need author, organization, or key in Benchmark
-Warning--to sort, need author, organization, or key in TermComp
 Warning--empty note in sat2016
 Warning--empty journal in giesl2016
-(There were 6 warnings)
+(There was 1 error message)

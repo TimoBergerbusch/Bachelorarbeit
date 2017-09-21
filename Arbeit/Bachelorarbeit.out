@@ -28,11 +28,11 @@
 \BOOKMARK [2][]{subsection.3.4.2}{Verifying: init-criterion}{section.3.4}% 28
 \BOOKMARK [2][]{subsection.3.4.3}{Verifying: point-criterion}{section.3.4}% 29
 \BOOKMARK [2][]{subsection.3.4.4}{Verifying: ray-criterion}{section.3.4}% 30
-\BOOKMARK [0][]{chapter.4}{Evaluation and Benchmark}{}% 31
-\BOOKMARK [1][]{section.4.1}{Evaluation of the approach}{chapter.4}% 32
+\BOOKMARK [0][]{chapter.4}{Evaluation and Benchmarks}{}% 31
+\BOOKMARK [1][]{section.4.1}{Evaluation of the Approach}{chapter.4}% 32
 \BOOKMARK [1][]{section.4.2}{Benchmarks}{chapter.4}% 33
 \BOOKMARK [1][]{section.4.3}{Possible Improvement of the Implementation}{chapter.4}% 34
-\BOOKMARK [2][]{subsection.4.3.1}{SMT solver logic}{section.4.3}% 35
+\BOOKMARK [2][]{subsection.4.3.1}{Choosing a Logical Fragment}{section.4.3}% 35
 \BOOKMARK [2][]{subsection.4.3.2}{ITS program structure}{section.4.3}% 36
 \BOOKMARK [2][]{subsection.4.3.3}{Reverse Polish Notation Tree}{section.4.3}% 37
 \BOOKMARK [0][]{chapter.5}{Related Work}{}% 38

@@ -1,1 +1,7 @@
  - Std Lin Int: hat form a1v1+anvn+c aber auch permutationnen c+a1v1+anvn
+ 
+ 4.3.2. alle schritte und bed. so zusammen fassen, dass es in eine Regel passt
+ 4.3.3. filter ITS
+ 4.3.3. aprove tree
+ bist du sicher, dass hier „Ultimate LassoRanker“ richtig ist und nicht „Ultimate Automizer“?
+	- laut der website ist LassoRanker ein Teil des Ultimate Automizer
