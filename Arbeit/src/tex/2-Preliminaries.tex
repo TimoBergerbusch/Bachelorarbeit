@@ -1,7 +1,7 @@
 \chapter{Preliminaries}
 \label{chapter:preliminaries}
 
-In order to be able to explain the new \nonterm approach we have to declare, what \nonterm means, which programs are considered within this approach and present the construction of \gnas (GNAs), which builds the core of the approach. Furthermore we have to define a few structures we work on, we have to define what an \solver is and how it is used within this implementation.
+In order to be able to explain the new \nonterm approach we have to declare, what \nonterm means, which programs are considered within this approach and present the construction of \gnas, which builds the core of the approach. Furthermore we have to define a few structures we work on, we have to define what an \solver is and how it is used within this implementation.
 
 %\section{Non-Termination}
 %The definition of \nonterm is the most essential considering a technique proving it. Non-termination can be defined as a specific input to a program $p$, such that $p$ runs in an infinite loop.
@@ -40,7 +40,7 @@ The termination of an \its is now defined as the absence of an infinite run, i.e
 Adapted from Jan Leikes and Matthias Heizmanns paper \textit{geometric non-termination arguments (GNA)} \cite{leike2014geometric} we will define the considered programs, define the division of these programs into \stem and \loopt and finally give the definition of \textit{geometric non-termination arguments}.
 
 \subsection{Considered Programs}
-The considered programs are not bound to a special programming language. The paper works on so called \textit{linear lasso programs}, which in fact are also used within \aprove. Instead of the linear lasso programs, \aprove represents them as ITSs, stated in \Cref{sec:aprove}. Because of the also stated conversion of the program into a \seg and because of the further analysis the applicability of GNAs is not bound to any programming language. \newline
+The considered programs are not bound to a special programming language. The paper works on so called \textit{linear lasso programs}, which in fact are also used within \aprove. Instead of the linear lasso programs, \aprove represents them as ITSs, stated in \Cref{sec:aprove}. Because of the also stated conversion of the program into a \seg and because of the further analysis the applicability of \gnas is not bound to any programming language. \newline
 In order to define the specific conditions under which we can use the approach, we choose the language \tool{Java} as an example.
 \subsection{Structure}
 \label{sec:structure}
@@ -202,7 +202,7 @@ Now we can define the key element, which was originally defined for linear lasso
 		$(x, y_1, \dots, y_k, \lambda_1, \dots, \lambda_k, \mu_1, \dots, \mu_{k-1})$
 	\end{figure}  
 	\vspace{-1em}
-	is called a \gna (GNA) of size $k$ for a program $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
+	is called a \gna of size $k$ for a program $(\stem, \loopt)$ with $n$ variables iff all of the following statements hold:
 	\begin{itemize}
 		\setlength{\itemindent}{1in}
 		\item[(domain)] $x, y_1, \dots, y_k \in \mathbb{R}^n$, $\lambda_1, \dots \lambda_k, \mu_1, \dots \mu_{k-1} \ge 0$
@@ -217,7 +217,7 @@ An intuitive interpretation of the \pointc is the validity of entering the corre
 %TODO: die größe...
 %The size of the GNA defines the steps of computation since we reach and 
 \begin{example}
-	A valid GNA to the computed matrices of \Cref{ex:guardmatrix-and-constants} and \Cref{ex:updatematrix-and-constants} is:\newline
+	A valid \gna to the computed matrices of \Cref{ex:guardmatrix-and-constants} and \Cref{ex:updatematrix-and-constants} is:\newline
 	\begin{figure}[H]
 		\centering
 		\begin{tabular}{|c|c|c|c|c|c|}

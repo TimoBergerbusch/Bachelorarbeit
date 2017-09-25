@@ -22,7 +22,7 @@ Detailed results of all programs can be found in \cite{Benchmark}. Not all of th
 	\end{tabular}	
 \end{figure}
 
-Regarding the average duration it takes \aprove to prove these programs, which is 4,513 seconds, an average time saving of 0.76 seconds, which is 17 percent, is observed. Keeping in mind that the \gnanal has the objective of proving \nonterm and that \aprove uses approaches in parallel the save can be even bigger. \aprove stops if any approach returns a proof. So if more than one proof is found, all but the fastest proof do not affect the average saving of time. \newline
+Regarding the average duration it takes \aprove to prove these programs, which is 4.513 seconds, an average time saving of 0.76 seconds, which is 17 percent, is observed. Keeping in mind that the \gnanal has the objective of proving \nonterm and that \aprove uses approaches in parallel the save can be even bigger. \aprove stops if any approach returns a proof. So if more than one proof is found, all but the fastest proof do not affect the average saving of time. \newline
 
 \begin{figure}[H]
 	\begin{lstlisting}[language = java]
@@ -56,7 +56,7 @@ For the examples of the International Competition on Software Verification, we e
 %The \textit{Termination Competition 2017}, which is organized by the \textit{International Competition of Termination Tools}, for example has a time limit of 300 seconds and only allows 4 core usage, which makes an iterative method very costly \cite{wiki2017termComp}.
 
 \subsection{The \stem derivation}
-Within this thesis we considered the \stem to be derived from the \its, without any dependence to the \loopt. So we derive a \stem and try to derive a \gna based on it. A stronger approach would be if the \stem would also be derived during the derivation of a \gna. So we combine the set of assertions from \Cref{sec:stem-var} and add them to the \solver of \Cref{sec:derivation-smt}. Not restricting the \gna to one particular \stem we then  would consider any \stem that fulfils the conditions. 
+Within this thesis we considered the \stem to be derived from the \its without any dependence to the \loopt. Based on a specific \stem we try to derive a \gna. A stronger approach would be if the \stem would included in the derivation of a \gna. So we combine the set of assertions from \Cref{sec:stem-var} and add them to the \solver of \Cref{sec:derivation-smt}. Not restricting the \gna to one particular \stem we would consider any \stem that fulfils the conditions. This could prove \nonterm for programs, which have a \gna for a \stem that is not the possible first \stem given from the solver as used in this thesis.
 
 \subsection{\its program structure}
 \label{sec:structure-improvement}

@@ -144,10 +144,17 @@ To transfer a guard from \stdG to \strG we have to apply the two following steps
 						\EndFor	
 						\State remove $s$ from $V_{sub}$
 					\EndWhile
+					\ForAll{$g \in G$}
+						\If{$g \text{contains``}=\text{''}$}	\Comment{rewrite equalities of variables in $V_{left}$}
+							\State remove $g\Leftrightarrow l=r$ from $G$
+							\State add $l-r\le 0$ and $r-l\le 0$ to $G$
+						\EndIf
+					\EndFor
 					\State \Return $G$
 				\EndFunction
 			\end{algorithmic}
 		\end{algorithm}
+		If a guard contains equality, but only mentions variable that to not have to be substituted we rewrite the equality to two inequalities to retain the bounds of the \guardmatrix.
 		The result is a set $G^\prime$, which satisfies the condition of occurring variables.
 	\item \textbf{normalization} \newline
 		\label{algo:normalization}
@@ -412,7 +419,7 @@ Given $G, g, U$ and $u$, to compute $A$ and $b$ we only insert the matrix \textb
 \section{Derivation of the SMT Problem}
 \label{sec:derivation-smt}
 The existence of a \gna is checked using an \solver as presented in \Cref{sec:smt-problem}, which will either give us a model satisfying the constraints or prove the nonexistence of a model by giving an unsatisfiable core. \newline
-The constraints the \solver has to assert are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is undecidable in general. Since we derive the deterministic update as an \updatematrix, we can further compute its eigenvalues and if we have nonnegative eigenvalues, assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide the existence of a GNA efficiently \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
+The constraints the \solver has to assert are the four criteria mentioned within \Cref{def:gna}, which are non-linear. So the satisfiability of these is undecidable in general. Since we derive the deterministic update as an \updatematrix, we can further compute its eigenvalues and if we have nonnegative eigenvalues, assign these to $\lambda_1, \dots \lambda_k$, receive linear constraints and thus can decide the existence of a \gna efficiently \cite{leike2014geometric}.%TODO: show why eigenvalues simplify it
 \newline
 So the next step in order to prove \nonterm is to compute the eigenvalues of the \updatematrix. This is done by the \textit{Apache math3} library \cite{ApacheMath3} because of performance reasons. Computation of such matrices can be very costly if programmed inefficiently. %TODO: maybe show the derivation principal?
 After computing the eigenvalues, we have constant values for the \stem $x$ and $\lambda_1, \dots \lambda_k$.
@@ -560,14 +567,15 @@ If a \gna is found, it is stored as an instance of the corresponding class and g
 
 \section{Example of a Geometric Non-Termination Argument}
 \label{sec:verification-of-gna}
-\begin{wrapfigure}{R}{0.5\textwidth}
+
+An instance of a \gna can be rechecked giving the \iterationmatrix and \iterationconstants if all of the four criteria of \Cref{def:gna} hold. This mechanism was mainly used for debugging purposes. In this chapter we want to show that the given model from the \solver holds and therefore the criteria are stated correctly. \newline
+In the whole chapter we work with the example used throughout the whole thesis with its \tool{Java} code in \Cref{fig:structure-example-java} and its corresponding \its in \Cref{fig:structure-example-TRS}. The \iterationmatrix and \iterationconstants computed in \Cref{chapter:geo-non-term} are based on the Guard and Update Matrix and Constants and also the eigenvalues as the $\lambda_i$.\newline
+\begin{figure}[H]
 	\centering
 	\input{src/diagram/GeometricNonterminationArgument-classdiagram.tex}
 	\caption{The \tool{Java} class of a \gna given to \aprove as a witness of \nonterm}	
 	\label{dia:gna-classdiagram}
-\end{wrapfigure}
-An instance of a \gna can be rechecked giving the \iterationmatrix and \iterationconstants if all of the four criteria of \Cref{def:gna} hold. This mechanism was mainly used for debugging purposes. In this chapter we want to show that the given model from the \solver holds and therefore the criteria are stated correctly. \newline
-In the whole chapter we work with the example used throughout the whole thesis with its \tool{Java} code in \Cref{fig:structure-example-java} and its corresponding \its in \Cref{fig:structure-example-TRS}. The \iterationmatrix and \iterationconstants computed in \Cref{chapter:geo-non-term} are based on the Guard and Update Matrix and Constants and also the eigenvalues as the $\lambda_i$.\newline
+\end{figure}
 The implemented technique provides a model $m$ from the \solver and its assertions stated in \Cref{sec:derivation-smt}. From the model $m$ the technique extracts the values and stores them in the class \texttt{GeoNonTermArgument}, which is given to \aprove as a witness. An object of this class stores all variable declarations needed in order to revalidate itself to a given scenario. If one has another technique of derivation, it is possible to compute the matrices and set the values for a  \texttt{GeoNonTermArgument} object and validate it, either proving it or identifying, which criterion does not hold.\\ \\
 From \Cref{chapter:geo-non-term} we get the following \iterationmatrix $A$ and \iterationconstants $b$: 
 \begin{figure}[H]

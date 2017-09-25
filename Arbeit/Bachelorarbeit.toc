@@ -17,29 +17,30 @@
 \contentsline {subsection}{\numberline {3.1.2}Variable STEM\xspace }{14}{subsection.3.1.2}
 \contentsline {section}{\numberline {3.2}Derivation of the LOOP}{14}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}The Guard Matrix\xspace and the Guard Constants\xspace }{14}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}The Update Matrix\xspace and the Update Constants\xspace }{17}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.2}The Update Matrix\xspace and the Update Constants\xspace }{18}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}The Iteration Matrix\xspace and the Iteration Constants\xspace }{20}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Derivation of the SMT Problem}{20}{section.3.3}
+\contentsline {section}{\numberline {3.3}Derivation of the SMT Problem}{21}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}The Domain Criterion}{21}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}The Initiation Criterion}{21}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}The Point Criterion}{21}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.3}The Point Criterion}{22}{subsection.3.3.3}
 \contentsline {subsection}{\numberline {3.3.4}The Ray Criteria}{23}{subsection.3.3.4}
 \contentsline {subsubsection}{$i=1$:}{23}{section*.3}
 \contentsline {subsubsection}{$i > 1$:}{23}{section*.4}
 \contentsline {subsection}{\numberline {3.3.5}Additional Assertions}{24}{subsection.3.3.5}
 \contentsline {section}{\numberline {3.4}Example of a Geometric Non-Termination Argument}{24}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Verifying: domain criterion}{25}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Verifying: init-criterion}{25}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Verifying: point-criterion}{25}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.2}Verifying: init-criterion}{26}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Verifying: point-criterion}{26}{subsection.3.4.3}
 \contentsline {subsection}{\numberline {3.4.4}Verifying: ray-criterion}{26}{subsection.3.4.4}
 \contentsline {subsubsection}{$r_1$: i=1}{26}{section*.5}
-\contentsline {subsubsection}{$r_2$: i=2}{26}{section*.6}
-\contentsline {chapter}{\numberline {4}Evaluation and Benchmarks}{27}{chapter.4}
-\contentsline {section}{\numberline {4.1}Evaluation of the Approach}{27}{section.4.1}
-\contentsline {section}{\numberline {4.2}Benchmarks}{27}{section.4.2}
-\contentsline {section}{\numberline {4.3}Possible Improvement of the Implementation}{28}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Choosing a Logical Fragment}{28}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}\textsf {ITS}\xspace program structure}{29}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Reverse Polish Notation Tree\xspace }{29}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {5}Related Work}{31}{chapter.5}
-\contentsline {chapter}{Literaturverzeichnis}{31}{chapter.5}
+\contentsline {subsubsection}{$r_2$: i=2}{27}{section*.6}
+\contentsline {chapter}{\numberline {4}Evaluation and Benchmarks}{29}{chapter.4}
+\contentsline {section}{\numberline {4.1}Evaluation of the Approach}{29}{section.4.1}
+\contentsline {section}{\numberline {4.2}Benchmarks}{29}{section.4.2}
+\contentsline {section}{\numberline {4.3}Possible Improvement of the Implementation}{30}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Choosing a Logical Fragment}{30}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}The STEM\xspace derivation}{31}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}\textsf {ITS}\xspace program structure}{31}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Reverse Polish Notation Tree\xspace }{31}{subsection.4.3.4}
+\contentsline {chapter}{\numberline {5}Related Work}{33}{chapter.5}
+\contentsline {chapter}{Literaturverzeichnis}{33}{chapter.5}
