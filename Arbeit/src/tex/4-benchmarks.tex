@@ -55,6 +55,9 @@ For the examples of the International Competition on Software Verification, we e
 %A reliable case study of a large set of examples could underline the necessity of the iteration since we wouldn't be able to derive a \gna using the \qfnia. It could also lead to the overhead of computational cost using the iterative method, which can be useful if the problem does not have any time restrictions of the deciding process, but is not suitable within the competitions \aprove participates, like the \textit{International Competition of Termination Tools} or \textit{International Competition on Software Verification} \cite{aproveWebsite} \cite{TermComp} \cite{SVComp}. \newline
 %The \textit{Termination Competition 2017}, which is organized by the \textit{International Competition of Termination Tools}, for example has a time limit of 300 seconds and only allows 4 core usage, which makes an iterative method very costly \cite{wiki2017termComp}.
 
+\subsection{The \stem derivation}
+Within this thesis we considered the \stem to be derived from the \its, without any dependence to the \loopt. So we derive a \stem and try to derive a \gna based on it. A stronger approach would be if the \stem would also be derived during the derivation of a \gna. So we combine the set of assertions from \Cref{sec:stem-var} and add them to the \solver of \Cref{sec:derivation-smt}. Not restricting the \gna to one particular \stem we then  would consider any \stem that fulfils the conditions. 
+
 \subsection{\its program structure}
 \label{sec:structure-improvement}
 As stated in \Cref{sec:structure} we restricted our implementation to \itss of the form 
