@@ -43,12 +43,12 @@ where $v_i$, $1 \le i \le n$, is either a constant term like in \Cref{sec:stem-c
 The handling of equations within the guard is described within \Cref{sec:derivation-guard} and underlies the same procedure regarding the \stem.
 
 \newsavebox{\stemextwo}% Box to store smallmatrix content
-\savebox{\stemextwo}{$\begin{pmatrix}1+3*3\\-3\end{pmatrix}$}
+\savebox{\stemextwo}{$\begin{pmatrix}1+3\cdot 3\\-3\end{pmatrix}$}
 \newsavebox{\stemextwosecond}% Box to store smallmatrix content
 \savebox{\stemextwosecond}{$\begin{pmatrix}10\\-3\end{pmatrix}$}
 \begin{figure}[H]
 	\begin{lstlisting}[escapechar=!]
-	!$f_1 \rightarrow f_2(1 + 3 * v, -3) :|: v > 2\text{ \&\& }8 < 3 * v $!
+	!$f_1 \rightarrow f_2(1 + 3 \cdot  v, -3) :|: v > 2\text{ \&\& }8 < 3 \cdot  v $!
 	\end{lstlisting}	
 	\caption{Example of a variable \stem.}
 %	\caption{An example of a variable \its rule to derive the \stem from. }
@@ -175,7 +175,7 @@ To transfer a guard from \stdG to \strG we have to apply the two following steps
 			\end{figure}
 			$\eta$ is the indicator if it is necessary to invert the guard to convert $\ge$ ($>$) to $\le$ ($<$),\newline
 			$\tau$ can be seen as the subtraction of 1 to receive $\le$ instead of $<$.
-			\item transfer the $c_{\psi}$ to the right side to only obtain one constant term located on the right side. So the final form is $\eta*\psi \le \eta*c -\tau -1*\eta*c_{\psi}$, where $\eta*c -\tau -1*\eta*c_{\psi}$ is a constant term and $\psi$ is in \stdLinInt without a constant term.
+			\item transfer the $c_{\psi}$ to the right side to only obtain one constant term located on the right side. So the final form is $\eta\cdot \psi \le \eta\cdot c -\tau -1\cdot \eta\cdot c_{\psi}$, where $\eta\cdot c -\tau -1\cdot \eta\cdot c_{\psi}$ is a constant term and $\psi$ is in \stdLinInt without a constant term.
 		\end{enumerate}
 \end{enumerate}
  After that every guard is in \strG. So all that is left to do in order to compute the \guardmatrix and the \guardconstants is to apply \Cref{algo:coefficient}, to determine the coefficients stored in the \guardmatrix, and determine the constant terms. \newline
@@ -193,7 +193,7 @@ To transfer a guard from \stdG to \strG we have to apply the two following steps
 	};
 	\node[objDia, below right = of top] (right) {
 		\textbf{c1}: RPNConstant
-		\nodepart{second}value: $\eta*c-\tau-1*\eta*c_{\psi}$
+		\nodepart{second}value: $\eta\cdot c-\tau-1\cdot \eta\cdot c_{\psi}$
 	};
 	
 	\draw[thickarrow] (top.south)  -- ++(0,-0.5) -| (left.north) node [pos = 0.4, above, font=\footnotesize]{left};
@@ -237,10 +237,10 @@ The \updatematrix and the \updateconstants can be derived quite easily. The upda
 \begin{example}
 	\label{ex:derivation-update-sub}
 	This example is based on the \its from \Cref{fig:structure-example-TRS} in combination with \Cref{ex:derivation-guard} providing $V_{sub}$ and $\theta$. \newline
-	Since the set of substitutions $\theta=\{v_3/2*v_2-5\}$ is not empty and the update given by\newline
-	\hspace*{.4\textwidth}$(3*v_1+v_2\text{, } v_3)$\newline
+	Since the set of substitutions $\theta=\{v_3/2\cdot v_2-5\}$ is not empty and the update given by\newline
+	\hspace*{.4\textwidth}$(3\cdot v_1+v_2\text{, } v_3)$\newline
 	contains $v_3 \in V_{sub}$, we have to apply the substitution and receive:\newline
-	\hspace*{.37\textwidth}$(3*v_1+v_2\text{, }2*v_2-5)$
+	\hspace*{.37\textwidth}$(3\cdot v_1+v_2\text{, }2\cdot v_2-5)$
 \end{example}
 
 After restraining the updates to only contain the desired variables, we can introduce \Cref{algo:coefficient} as a procedure to compute the coefficient of a given variable. It performs a recursive search on the tree and uses the \stdLinInt that guarantees that a coefficient is always the left child of the multiplication with its corresponding variable. The procedure works as follows:
@@ -390,7 +390,7 @@ Through the \stdLinInt one of the recursive calls has to be $0$ since only one c
 		\draw[thickarrow] (minus.south)  -- ++(0,-0.5) -| (var.north) node [pos = 0.4, above, font=\footnotesize]{left};
 		\draw[thickarrow] (minus.south)  -- ++(0,-0.5) -| (cons.north) node [pos = 0.4, above, font=\footnotesize]{right};
 	\end{tikzpicture}
-	\caption{The \rpntree of the term $x-3$, where the $flip$ of \Cref{algo:constant-term} has to be used. The value recursively found for the constant term is $(-1)*3 = -3$.}
+	\caption{The \rpntree of the term $x-3$, where the $flip$ of \Cref{algo:constant-term} has to be used. The value recursively found for the constant term is $(-1)\cdot 3 = -3$.}
 	\label{ex:constant-term-minus}
 \end{figure}
 
@@ -630,13 +630,13 @@ From that we can start and validate every criterion stated in \Cref{def:gna}.
 	\subsubsection{$r_1$: i=1}
 	\begin{figure}[H]
 		\centering
-		$A\begin{pmatrix} y_1 \\ \lambda_1y_1 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 9 \\ 0 \\ 3*9 \\ 3*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 9 \\ 0 \\ 27 \\ 0 \end{pmatrix} \le 0 \Leftrightarrow \begin{pmatrix} -9 \\ -9 \\ -27 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} \le \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$
+		$A\begin{pmatrix} y_1 \\ \lambda_1y_1 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 9 \\ 0 \\ 3\cdot 9 \\ 3\cdot 0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 9 \\ 0 \\ 27 \\ 0 \end{pmatrix} \le 0 \Leftrightarrow \begin{pmatrix} -9 \\ -9 \\ -27 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} \le \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$
 	\end{figure}
 	
 	\subsubsection{$r_2$: i=2}
 	\begin{figure}[H]
 		\centering
-		$A\begin{pmatrix} y_2 \\ \lambda_2y_2+\mu_1y_1 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 2*8+0*9 \\ 2*(-8)+0*0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 16 \\ -16 \end{pmatrix} \le 0 \Leftrightarrow \begin{pmatrix} 0 \\ -8 \\ -24 \\ -16 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} \le \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$
+		$A\begin{pmatrix} y_2 \\ \lambda_2y_2+\mu_1y_1 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 2\cdot 8+0\cdot 9 \\ 2\cdot (-8)+0\cdot 0 \end{pmatrix} \le 0 \Leftrightarrow A\begin{pmatrix} 8 \\ -8 \\ 16 \\ -16 \end{pmatrix} \le 0 \Leftrightarrow \begin{pmatrix} 0 \\ -8 \\ -24 \\ -16 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix} \le \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$
 	\end{figure}
 
 	Since all $r_i$, $i \in \{1,2\}$, are computed and it is checked that they hold, also the ray criterion holds.

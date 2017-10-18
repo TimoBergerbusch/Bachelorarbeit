@@ -26,8 +26,8 @@ The \its shown in \Cref{fig:its-structure} consists of a set of structure elemen
 	\item[(line 2)] A self-looping rule. Other looping rules will be presented in \Cref{sec:structure-improvement}.
 	\item[(1)] The \textit{start function symbol} is the first symbol used, consisting of a function symbol without arguments. Further explanation in (line 1) and \Cref{fig:structure-example-TRS}.
 	\item[(2)] A function symbol denoting a current program state
-	\item[(3)] The arguments of a function symbol showing the update of the values by applying this rule. The value of $v^\prime_i$ is a linear update of the variables $v_j$, $1 \le j \le n$, in \stdLinInt. \footnote{The \stdLinInt has the following pattern: $ a_1*v_1 + \dots + a_n*v_n + c$, where $a_i , c \in \mathbb{Z}$, $1 \le i\le n$.  }
-%		Also it is important that $a_i * v_i$ has this order and not $v_i*a_i$} 
+	\item[(3)] The arguments of a function symbol showing the update of the values by applying this rule. The value of $v^\prime_i$ is a linear update of the variables $v_j$, $1 \le j \le n$, in \stdLinInt. \footnote{The \stdLinInt has the following pattern: $ a_1\cdot v_1 + \dots + a_n\cdot v_n + c$, where $a_i , c \in \mathbb{Z}$, $1 \le i\le n$.  }
+%		Also it is important that $a_i \cdot  v_i$ has this order and not $v_i\cdot a_i$} 
 	\item[(4)] The conditional term of the form $\text{(in)equation}_1 \text{ \&\& } \dots \text{ \&\& } \text{(in)equation}_m$, $m \in \mathbb{N}$, where $\text{(in)equation}_i$ does not only contain the variables $v_j$, $1 \le j \le n$, but can also introduce new variables. The form of the (in)equalities is defined in \Cref{sec:derivation-guard}.	
 \end{enumerate} 
 
@@ -51,7 +51,7 @@ The structure of the considered programs is quite simple. It contains an optiona
 	\item The guard: \newline
 		The guard of the \code{while}-loop is essential to restrict the variable $a$ as we will see in \Cref{sec:stem-var}. With the restriction of $a+b\ge 4 $ we can prove termination for an initial value of $a < 3$ without further analysis, and also, in order to prove \nonterm, assume that initially $a \ge 3$.
 	\item The linear updates: \newline
-		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their values determine if the guard still holds. The approach only works with linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have an update of the form $v_i=a_1*v_1+...+a_n*v_n+c$ with $a_i \in \mathbb{Z}$ for $1 \le i \le n$ and $c \in \mathbb{Z}$.
+		The updates of the variables within the \code{while}-loop are the most essential part for termination, since their values determine if the guard still holds. The approach only works with linear updates of the variables, so for every variable $v_i$ where $1\le i\le n$ we can have an update of the form $v_i=a_1\cdot v_1+...+a_n\cdot v_n+c$ with $a_i \in \mathbb{Z}$ for $1 \le i \le n$ and $c \in \mathbb{Z}$.
 \end{itemize} 
 
 \begin{figure}[h]
@@ -94,9 +94,9 @@ As we can see, the original program can be recognized quite easily. The first ru
 %TODO: richtig formatieren
 \begin{figure}[H]	
 	\begin{lstlisting}[linewidth=1.1\textwidth, escapechar = !]
-!$\overbrace{f_1	     \rightarrow f_2(1+3*v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3*v_1}^{\text{\stem}}$!
-!$f_2(v_1,v_2) \rightarrow f_2(3*v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } 3 * v_1 > 20 \text{ \&\& }$!
-!$\underbrace{\text{\qquad\qquad\qquad\qquad\qquad\qquad}}_{\text{linear update}}$!		!$\underbrace{ 5 + v_3 = 2 * v_2 \text{ \&\& } v_3 < -10\text{\qquad\qquad\qquad} }_{\text{guards}}$!
+!$\overbrace{f_1	     \rightarrow f_2(1+3\cdot v_1,-3)   :|: v_1>2 \text{ \&\& } 8<3\cdot v_1}^{\text{\stem}}$!
+!$f_2(v_1,v_2) \rightarrow f_2(3\cdot v_1+v_2,v_3) :|: v_1 + v_2 > 3 \text{ \&\& } v_1 > 6 \text{ \&\& } 3 \cdot  v_1 > 20 \text{ \&\& }$!
+!$\underbrace{\text{\qquad\qquad\qquad\qquad\qquad\qquad}}_{\text{linear update}}$!		!$\underbrace{ 5 + v_3 = 2 \cdot  v_2 \text{ \&\& } v_3 < -10\text{\qquad\qquad\qquad} }_{\text{guards}}$!
 !$\underbrace{\text{\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad}}_{\text{\loopt}}$!
 	\end{lstlisting}
 
@@ -105,9 +105,9 @@ As we can see, the original program can be recognized quite easily. The first ru
 \end{figure}
 
 Neglecting the conditional terms for now, we initialize  $v^\prime_2$, which is the second argument of $f_2$, in line 1 to the value of -3, 
-because during the construction of the \seg, \aprove always unrolls the first iteration of the \loopt. Therefore, the \stem computed by \aprove will always contain the first execution of the \loopt. Starting with $b=1$ one step would be the computation of $b = 2*1-5=-3$. The definition of $v^\prime_1$ is more difficult and will be shown within \Cref{sec:stem}.
+because during the construction of the \seg, \aprove always unrolls the first iteration of the \loopt. Therefore, the \stem computed by \aprove will always contain the first execution of the \loopt. Starting with $b=1$ one step would be the computation of $b = 2\cdot 1-5=-3$. The definition of $v^\prime_1$ is more difficult and will be shown within \Cref{sec:stem}.
 %TODO: b von 1 zu -3
-Also the update of  $v^\prime_1$, which is the first argument of $f_2$, within line 2 is the same as in \Cref{fig:structure-example-java} line 7. The definition of the second argument of $f_2$, $v^\prime_2 = v_3$, is fundamental and not as simple as $v^\prime_1$, since $v_3$ is a new variable introduced within the guards through the equality $5+v_3=2*v_2$. The handling of such variables will be explained in \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}. \newline
+Also the update of  $v^\prime_1$, which is the first argument of $f_2$, within line 2 is the same as in \Cref{fig:structure-example-java} line 7. The definition of the second argument of $f_2$, $v^\prime_2 = v_3$, is fundamental and not as simple as $v^\prime_1$, since $v_3$ is a new variable introduced within the guards through the equality $5+v_3=2\cdot v_2$. The handling of such variables will be explained in \Cref{sec:derivation-guard} and \Cref{sec:derivation-update}. \newline
 
 \subsection{Preliminary Definitions}
 In order to be able to define the key element of this approach, the \gna, we have to define a number of matrices and constant vectors, which are used to derive such a \gna. 
@@ -149,9 +149,9 @@ Regarding the new variable $v_3$, we have to substitute in order to keep the des
 	\label{ex:updatematrix-and-constants}
 	Referring to the \its from \Cref{fig:structure-example-TRS} we have to substitute $v_3$.
 	\begin{center}
-		$5+v_3=2*v_2 \Leftrightarrow v_3=2*v_2-5$
+		$5+v_3=2\cdot v_2 \Leftrightarrow v_3=2\cdot v_2-5$
 	\end{center}
-	So we substitute $v_3$ in the second argument and receive the arguments $2*v_1+v_2$ and $2*v_2-5$.
+	So we substitute $v_3$ in the second argument and receive the arguments $2\cdot v_1+v_2$ and $2\cdot v_2-5$.
 	The corresponding \updatematrix is therefore $U = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ and the \updateconstants are $u = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$.
 	
 	The detailed derivation of substitutions is explained in \Cref{sec:derivation-update}.
@@ -285,13 +285,13 @@ An example of the \rpntree's usage is shown in \Cref{ex:rpntree}
 			scale=0.6,
 			every edge/.append style = { dashedarrow },
 			every node/.append style = { stdNode} ]
-		\node (L) {\begin{tabular}{cc} mathematical expression: \\ $3*v_1+v_2$ \end{tabular} };
-		\node[below = of L] (M)  {\begin{tabular}{cc} reverse polish notation: \\ $+(*(3, v_1),v_2)$ \end{tabular} };
+		\node (L) {\begin{tabular}{cc} mathematical expression: \\ $3\cdot v_1+v_2$ \end{tabular} };
+		\node[below = of L] (M)  {\begin{tabular}{cc} reverse polish notation: \\ $+(\cdot (3, v_1),v_2)$ \end{tabular} };
 		\node[right = of M] (R) {\usebox\mybox};
 		\draw (L.south) edge (M.north);
 		\draw (M.east) edge (R.west);
 	\end{tikzpicture}
-	\caption{An example of the representation of the term $3*v_1+v_2$ as a graph using the \rpntree}
+	\caption{An example of the representation of the term $3\cdot v_1+v_2$ as a graph using the \rpntree}
 	\label{ex:rpntree}
 \end{figure}
 
@@ -306,7 +306,7 @@ Within this approach we use the so called \code{Basic Structures} defined within
 	\begin{lstlisting}[escapechar = !]
 		!$\underbrace{
 			\underbrace{
-				\underbrace{\underbrace{3}_{(1)}*\underbrace{v_1}_{(2)}}_{(3)} \quad + \quad ...
+				\underbrace{\underbrace{3}_{(1)}\cdot \underbrace{v_1}_{(2)}}_{(3)} \quad + \quad ...
 			}_{(4)} 
 			\qquad
 			\underbrace{\le}_{(5)}
